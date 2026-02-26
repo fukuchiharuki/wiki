@@ -1,0 +1,11 @@
+ viを使う最低限の（自分）設定
++ :set tw=0
+  :set noswapfile
+  :set nobackup
+  :set number
+  :set tabstop=4
+  :set softtabstop=4
+  :set shiftwidth=4
+  :set noexpandtab
+  :set guifont=MS_Gothic:h10
+  :colorscheme desert

@@ -1,0 +1,16 @@
++*関連 [#d7fa2d17]
++-Tomcat
++-Google Chrome
+ 
++*現象 [#q6eadd35]
++web.xmlで404ページを設定しても表示されない。
++
++*原因 [#e04f6ec3]
++Google Chromeは404に対して独自のページを表示する。
++
++*対策 [#o7e4cb37]
++実はちゃんと出力されているので、他のブラウザで表示する。
++
++*参考 [#h442d650]
++-http://www.atmarkit.co.jp/fjava/javatips/064container011.html
++

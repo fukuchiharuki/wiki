@@ -1,0 +1,23 @@
+ * キーワード [#ge1e91c2]
+ - Eclipse
+ - git clone
+ - svn checkout
+ 
+ * したいこと [#i876b3e1]
+ 
+ git clone や svn checkout でローカルに取得したディレクトリをEclipseのプロジェクトとして開きたい。Eclipseのプロジェクトファイルがリポジトリに含まれていればそれを開くだけだが、ソースコードだけしかない場合やり方が異なる。
+ 
+ * どうやって [#ked8bb07]
+ 
+-新規プロジェクト作成の手順で始めて、
+-
+++ 新規プロジェクト作成の手順で始めて、
+ #ref(new-project.png,center)
+-
+-「Use default Location」のチェックを外して「Location」に取得したディレクトリを指定する。
+-
+++「Use default Location」のチェックを外して「Location」に取得したディレクトリを指定する。
+ #ref(location.png,center)
+ 
+ * 参考 [#zf4122e9]
+ - [[既存ソースコードから新規プロジェクトを作成 - 既存ソースコード - Eclipse入門>http://www.javadrive.jp/eclipse3/import/index1.html]]

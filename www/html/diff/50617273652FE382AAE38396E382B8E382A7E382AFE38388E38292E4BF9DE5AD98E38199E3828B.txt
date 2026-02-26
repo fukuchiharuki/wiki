@@ -1,0 +1,78 @@
+-[[../]]
+-
+ *キーワード [#z6831085]
+ -Parse
+ -JavaScript
+ -Object
+ -save
+ 
+ *概要 [#p99e2db6]
+ アプリケーションに定義したクラスのオブジェクトを保存します。
+ 
+ 今回のサンプルは次のクラスを定義したものとしています(※Parse規定のカラムを除く)。
+ 
+ -Post
+ |CENTER:BGCOLOR(#EEEEEE):カラム|CENTER:BGCOLOR(#EEEEEE):型|
+ |title|String|
+ |body|String|
+ 
+ *サンプル [#vb78111a]
+  // オブジェクトを保存する
+  var post = function(title, body) {
+  
+  	// クラス
+  	var Post = Parse.Object.extend('Post');
+  
+  	// インスタンス
+  	var post = new Post();
+  		
+  	// 属性
+  	post.set('title', title);
+  	post.set('body', body);
+  
+  	// 保存
+  	post.save(null, {
+  		success: function(post) {
+  			jQuery('#message').text('新しいポスト: ' + post.id);
+  		},
+  		error: function(post, error) {
+  			jQuery('#message').text('ERROR: ' + error.description);
+  		}
+  	});
+  };
+  
+  // イベント処理(Parseとは直接関係ないところ)
+  jQuery('input[name=object-save-post]').click(function() {
+  	var title = jQuery('input[name=object-save-title]').val();
+  	var body = jQuery('textarea[name=object-save-body]').val();
+  	if (title.length > 0 && body.length > 0) {
+  		post(title, body);
+  	} else {
+  		jQuery('#message').text('WARN: ' + 'titleとbodyを入力してからpostしてね。');
+  	}
+  });
+ 
+ *解説 [#j9224c31]
+ **Parse.Object.extend(className) [#s46461af]
+ -https://www.parse.com/docs/js/symbols/Parse.Object.html#.extend
+ 
+ クラス名を指定してサブクラスを作成します。
+ 
+ 第2引数と第3引数を指定しない場合、指定のクラス名のクラスを作成するものなのだと思います。
+ 
+ **object.set(key, value) [#m3c6f48a]
+ -https://www.parse.com/docs/js/symbols/Parse.Object.html#set
+ 
+ 名前と値を指定して、そのオブジェクトの属性をセットします。
+ 
+ **object.save(attrs, options) [#f072a350]
+ -https://www.parse.com/docs/js/symbols/Parse.Object.html#save
+ 
+ そのオブジェクトの属性をセットして、サーバーに保存します。
+ 
+ セットする属性がない場合は attrs に null を指定します。
+ 
+ option には success と error にそれぞれ成功時と失敗時に実行する関数をオブジェクトで指定します。
+ 
+ *参考 [#l74d2228]
+ -[[Parse.Object - Parse JavaScript SDK Reference>https://www.parse.com/docs/js/symbols/Parse.Object.html]]

@@ -1,0 +1,41 @@
+*キーワード [#k814b602]
+-sh
+-bash
+
+*したいこと [#fbe0fc4d]
+ファイルを読み込んで一行ずつ処理したい。
+
+*方法 [#xaf7fe0b]
+
+** 標準入力から処理する [#faccc26e]
+ #!/bin/bash
+ while read LINE
+ do
+     echo ${LINE}
+ done
+
+あるいは
+
+ #!/bin/bash
+ cat - | xargs -i echo {}
+
+とすると
+
+ $ cat file.txt | line.sh
+
+パイプをまたいで処理できます。
+
+** ファイル名から処理する [#c7ba4e9b]
+ #!/bin/bash
+ while read LINE
+ do
+     echo ${LINE}
+ done < file.txt
+
+ファイル名は done の後に書きます。
+
+*解説 [#f3afd95d]
+標準入出力は「-」で表現します。
+
+*参考 [#j6c47f37]
+-http://www.sssg.org/blogs/naoya/archives/1124

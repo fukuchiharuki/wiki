@@ -1,0 +1,27 @@
+#author("2025-08-13T07:22:05+00:00","default:haruki","haruki")
+* キーワード [#e9970214]
+- Kotlin
+- nullable
+- Any
+- cast
+
+* したいこと [#n43ad5f4]
+
+Any?を、warningを受けないように、リストにキャストするには一工夫要る。
+
+* どうやって [#sfe8be86]
+
+Any?をList<Exception>?にする例
+
+ (value as? List<*>)
+   ?.takeIf { list ->
+     list.all { it is Exception }
+   }
+   ?.map { it as Exception }
+
+* ちなみに [#ce9208b0]
+
+
+* 参考 [#p54c12e8]
+- 
+-

@@ -1,0 +1,25 @@
+ *キーワード [#g5deab27]
+ -MySQL
+ -hosts
+ 
+ *関連 [#f3546f74]
+--[[障害メモ/MySQLがあがらない「The server quit without updating PID file」]]
++-[[障害メモ/MySQL関連]]
+ 
+ *現象 [#a29eacf0]
+ リモートからMySQLに接続できない。エラーメッセージは次。
+  Can't get hostname for your address
+ 
+ *原因 [#r1d476fd]
+ あなたのアドレスからホスト名を取得できません。
+ 
+ *対策 [#vb2fd3b2]
+ サーバ側のhostsファイルに接続元のIPアドレスを登録しておくことで解決できます。
+ 
+ -hosts
+  接続元のIPアドレス 何か適当な名前
+ 
+ あるいは名前サーバを立てるか、逆引きさせない手段もあるようです。
+ 
+ *参考 [#n04dc3c2]
+ -[[MYSQLについて教えてください。Win XP SP3にMYSQL 5.58をインス.. - 人力検索はてな>http://q.hatena.ne.jp/1301120736]]

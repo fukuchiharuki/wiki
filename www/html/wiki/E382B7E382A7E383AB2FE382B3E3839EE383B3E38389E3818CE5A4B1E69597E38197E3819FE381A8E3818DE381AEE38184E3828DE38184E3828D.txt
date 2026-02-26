@@ -1,0 +1,44 @@
+* キーワード [#yeee2ed4]
+- bash
+- 終了ステータス
+
+* したいこと [#f2329a48]
+
+コマンド実行が終了したときにエラー表示する。
+
+* どうやって [#h8e6dc5c]
+
+** 「||」で [#i7b545a3]
+
+ command || echo "error"
+
+** 終了ステータスをif文にかけて [#pd3dfa91]
+
+ command
+ if [ $? -ne 0 ]
+ then
+   echo "error"
+ fi
+
+** コマンドを直接if文にかけて [#r745472d]
+
+ if ! { command; }
+ then
+   echo "error"
+ fi
+
+または
+
+ if ! (command)
+ then
+   echo "error"
+ fi
+
+後者の場合commandはサブプロセスで実行される。
+
+* ノート [#qd32f6aa]
+
+コマンドの実行結果（終了ステータス）はそのまま真偽値として扱える。正常終了（終了ステータス=0）なら真、異常終了（終了ステータス!=0）なら偽。
+
+* 参考 [#cd5615cd]
+- [[bashの&quot;;&quot;, &quot;&amp;&amp;&quot;, &quot;||&quot; に関する補足ネタ。コマンドグルーピングとの併用例 - Qiita>http://qiita.com/jpshadowapps/items/3f3fa3b214a998afd819]]

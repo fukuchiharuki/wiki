@@ -1,0 +1,7 @@
+*Lifehack [#o90aa1c3]
+Lifehack（簡便かつ効率的な仕事術）的な壁紙のお気に入り。
+
+-[[列・暗闇版（Ubuntu仕様）>http://1.bp.blogspot.com/_qg0qAwZ_-N8/TA2uCsNnpzI/AAAAAAAAAIo/dDt2IoF2dNU/s1600/warty-final-ubuntu.png]]
+--縦4つ割り(new unsorted/current work/archive queue/permanent)
+-[[デスクトップを四等分>http://cache.gawker.com/assets/images/lifehacker/2011/06/color-quadrants.jpg]]
+--4方4つ割り(黄/橙/緑/水)

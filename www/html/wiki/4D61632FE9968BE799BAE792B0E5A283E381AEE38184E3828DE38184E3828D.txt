@@ -1,0 +1,35 @@
+#author("2018-01-12T01:53:47+00:00","default:haruki","haruki")
+#contents
+
+何入れてるのか忘れないように。手を離れると忘れちゃうので。
+
+* Homebrew [#j35e918b]
+
+macOS用のパッケージ・マネージャー。yumとかaptとかみたいな。
+
+* nodebrew [#q0cbbebd]
+
+Node.jsのバージョン・マネジャー。node.jsとnpmはここから。
+
+** nodebrewのアップデート [#i1cff67c]
+
+しばらく使ってないとNode.jsのインストールができなくなることがある。サーバーが更新されたことによるらしく、nodebrewをアップデート（再インストール）すると解決する。
+
+ $ curl -L git.io/nodebrew | perl - setup
+
+** Node.jsのアップデート [#z9ef3dc5]
+
+「install」でインストールすると日が暮れる。ので、「install-binary」でインストールする。
+
+ $ nodebrew install-binary stable
+ $ nodebrew use stable
+
+** npmのアップデート [#a6b6dd5e]
+
+自分でアップデートできる。
+
+ $ npm update -g npm
+
+* RVM [#y2c6908a]
+
+Rubyのバージョン・マネジャー。[[root権限が求められる事態>https://stackoverflow.com/questions/17550903/why-do-i-get-a-permission-denied-error-while-installing-a-gem]]があるので入れ直したほうがいい。

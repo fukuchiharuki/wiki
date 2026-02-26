@@ -1,0 +1,45 @@
+-*関連 [#x4879276]
+--JavaScript
+--jQuery
+--ajax
+ 
+-*概要 [#o685770d]
+-ajaxの枠組みがないフレームワーク等の環境でとりあえずajaxさせたいときのTips。
+-
+-- 前提条件が次のような感じだとして
+--- ajaxする仕組みが特別ない
+--- ページを出力する枠組みしかない
+--- jQueryが使える
+-
+-*方法 [#af8d7533]
+- var formData = $(フォームのセレクタ).serializeArray();
+- $.ajax({
+- 	type: 'POST',
+- 	url: 別ページのURL,
+- 	data: formData,
+- 	cache: false,
+- 	success: function(html) {
+- 		var div = $(html).filter(抜き出したい要素のセレクタ);
+- 		// 正常時
+- 		if ($(div).size() > 0) {
+- 			$(入れ込みたい要素のセレクタ).html($(div).html());
+- 		}
+- 		// エラー時（抜き出したい要素が拾えないとき）
+- 		else {
+- 			alert('ダメでした。');
+- 		}
+- 	},
+- 	// エラー時（通信的エラーのとき）
+- 	error: function(XMLHttpRequest, textStatus, errorThrown) {
+- 		alert('ダメでした。');
+- 	}
+- });
+-
+-
+-*解説 [#y312488d]
+-
+-
+-*参考 [#x2efb875]
+--
+--
+-

@@ -1,0 +1,25 @@
++*キーワード [#g5286d89]
++-Widdows7(64bit)
++-Lhaplus
+ 
++*現象 [#i3dbadf2]
++Lhaplusでパスコード付きのzipを作成したいができない。
++-右クリックの送り先が出ない
++-Lhaplusアイコンにフォルダをドラッグ＆ドロップしてもうまくいかないときがある
++--テキストのエンコードを聞かれたり
++--エクセルファイルを解凍したり
++--うんともすんとも言わなかったり
++
++*原因 [#n5afc7ba]
++右クリックの送り先がないのは32bit版しか対応してないからとか。
++
++*対策 [#saf51055]
++-[[Lhaplus x64 shell extension>http://www.sharkpp.net/soft/tool/lhaplus-x64-shell-extension.html]]
++
++ありがたいエクステンションを開発してくれている方がいらっしゃいます。~
++管理者権限でcmd(バッチ)を実行するだけで右クリックの対応をしてくれます。
++
++*参考 [#y06d95de]
++-http://www.sharkpp.net/soft/tool/lhaplus-x64-shell-extension.html
++-http://d.hatena.ne.jp/kiyoshi_net/20120103/1325522003
++

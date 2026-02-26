@@ -1,0 +1,20 @@
+ *キーワード [#a7b07682]
+ -php
+ -mb_strlen()
+ -mbstring
+ 
+ *現象 [#i0733011]
+ php で mb_strlen() が使えない。
+  Fatal error: Call to undefined function mb_strlen() in どこどこ on line どこどこ
+ 
+ *原因 [#h314f1ce]
+ php-mbstring のインストールができていない。
+ 
+ *対策 [#ya865489]
+ yum でサクッとインストールする。
+  # yum install php-mbstring
+ 
+ *参考 [#tce3d5ed]
+ -[[php - Fatal error: Call to undefined function mb_strlen() - Stack Overflow>http://stackoverflow.com/questions/6419102/fatal-error-call-to-undefined-function-mb-strlen]]
+--
++-[[PHP: Installation - Manual>http://www.php.net/manual/en/mbstring.installation.php]]

@@ -1,0 +1,13 @@
+-*プログラミング [#va1c24ae]
+--SHA1ハッシュ化＠JavaScript
+---http://labs.cybozu.co.jp/blog/mitsunari/sha1/
+--MySQL - 一貫性非ロック読み取り
+---http://dev.mysql.com/doc/refman/5.1-olh/ja/innodb-consistent-read.html
+--MySQL - InnoDBとTRANSACTION ISOLATION LEVEL
+---http://dev.mysql.com/doc/refman/5.1/ja/innodb-transaction-isolation.html
+--[[ThredLocal>http://java.sun.com/javase/ja/6/docs/ja/api/java/lang/ThreadLocal.html]]
+---[[TomcatでHTTPセッション単位のデータを扱う方法>http://blog.flup.jp/2008/04/04/process_static_data_in_each_http_session_of_tomcat/]]
+--[[MyBatis>http://www.mybatis.org/]]
+---[[iBATISを使ったO/RマッピングによるDBアクセスの実例 >http://codezine.jp/article/detail/1289]]
+--オブジェクト指向の本当のところ
+---http://chikura.fprog.com/index.php?UID=1091679610

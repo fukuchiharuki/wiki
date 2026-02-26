@@ -1,0 +1,4 @@
+#author("2024-10-28T04:54:20+00:00;2013-08-17T09:07:15+00:00","default:haruki","haruki")
+*参考 [#k2ce4649]
+-[[Unicode/Character reference - Wikibooks>http://en.wikibooks.org/wiki/Unicode/Character_reference]]
+-[[DerivedAge-6.0.0.txt>http://www.unicode.org/Public/UNIDATA/DerivedAge.txt]]

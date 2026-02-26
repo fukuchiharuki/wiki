@@ -1,0 +1,18 @@
+*キーワード [#z3ff2bd3]
+-MySQL
+-database
+
+*関連 [#n9abc824]
+-[[MySQL/ユーザーを作成する]]
+
+*概要 [#oc5333ff]
+文字コードを指定してデータベースを作成する
+
+*方法 [#z7461f66]
+ mysql> CREATE DATABASE データベース名 CHARACTER SET 文字コード;
+
+*解説 [#i8e2967b]
+文字コードは utf8 など
+
+*参考 [#vb900aa8]
+-http://dev.mysql.com/doc/refman/5.1/ja/create-database.html

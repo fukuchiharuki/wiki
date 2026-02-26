@@ -1,0 +1,32 @@
+-#author("2018-03-09T01:33:56+00:00","default:haruki","haruki")
++#author("2018-03-09T01:39:12+00:00","default:haruki","haruki")
+ * キーワード [#za81992c]
+ - Mac
+ - Windows用
+ - キーボード
+ 
+ * したいこと [#jb6d1010]
+ 
+ Windows用のキーボードをMacで使いたい。
+ 
+ * どうやって [#xdc38329]
+ 
+ [[Karabiner-Elements>https://pqrs.org/osx/karabiner/]]でキーの置き換えができる。
+ 
+ * ちなみに [#m5af3698]
+ 
+ 僕はこうしてる。
+ 
+ |Windows用のキーボード →|Macでの役割|h
+ |CapsLock|Control|
+ |無変換|英数|
+ |変換|かな|
+ |窓|Option|
+ |Alt|左Command|
+ |右Ctrl|右Command|
+ 
+ ** 設定値 [#kaac34b2]
+ 
++#ref(./karabiner-settings-simple-modifications.png,40%)
++#ref(./karabiner-settings-device.png,40%)
++

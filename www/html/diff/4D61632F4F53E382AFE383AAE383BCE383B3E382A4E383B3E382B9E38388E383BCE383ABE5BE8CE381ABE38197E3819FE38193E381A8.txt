@@ -1,0 +1,62 @@
+-#author("2018-09-29T10:13:31+00:00","default:haruki","haruki")
++#author("2018-09-29T10:13:45+00:00","default:haruki","haruki")
+ #contents
+ 
+ * 3本指でドラッグする [#medcc88f]
+ 
+ さすがにこれができないのはつらい。
+ 
+ #ref(drag1.png,center,75%)
+ #ref(drag2.png,center,75%)
+ 
+ * .bashrcと.bash_profileの作成 [#a5b11f54]
+ 
+ コマンド待ちの表示とエイリアスを設定した。これをしないとターミナルが使いづらい。
+ 
+ - $HOME/.bashrc
+ 
+  PS1="[\u@\h \W]¥n$ "
+  
+  alias ll="ls -l"
+  alias la="ls -la"
+ 
+ - $HOME/.bash_profile
+ 
+  test -r ~/.bashrc && . ~/.bashrc
+ 
+ * コンピュータ名の変更 [#e4d62b99]
+ 
+ コンピュータにはお花の名前をつけると決めている。
+ 
+ #ref(computername1.png,center,75%)
+ #ref(computername2.png,center,75%)
+ 
+ * .ssh/の作成 [#r6d12dc8]
+ 
+ $HOME/.ssh/を作成して、バックアップしたconfigとid-rsaなどを置く。
+ 
+ 
+ * 開発系ツールのインストール [#g8f908cc]
+ 
+ - homebrew
+ -- homebrew-cask
+- brew tap caskroom/cask
+- brew tap caskroom/versions
++ $ brew tap caskroom/cask
++ $ brew tap caskroom/versions
+ - nodebrew
+ -- node
+ -- npm
+ - SDKMAN!
+ -- gradle
+ -- JDK (Oracle)もいける？
+ - エディタ
+ -- Visual Studio Code
+ -- Vimはターミナルで使える状態
+ 
+ 次はやめた。
+ - Atom &color(green){// Visual Studio Codeに乗り換えた};
+ -- vim-mode
+ -- ex-mode
+ -- keyboard-localization
+ -- atom-typescript

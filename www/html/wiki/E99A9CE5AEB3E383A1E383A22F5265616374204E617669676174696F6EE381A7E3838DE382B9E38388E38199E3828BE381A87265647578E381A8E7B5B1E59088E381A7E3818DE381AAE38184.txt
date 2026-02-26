@@ -1,0 +1,37 @@
+#author("2017-12-30T08:17:46+00:00","default:haruki","haruki")
+* キーワード [#f481ef42]
+- React Native
+- React Navigation
+- redux
+
+* 現象 [#lbb966c7]
+
+React Nativeにて、React Navigationをネスト（TabとStack）した状態でreduxと統合しようとするとエラーになる。
+
+ undefined is not an object (evaluating 'state.routes[state.index]')
+
+* 原因 [#ya32915b]
+
+Navigationをネストしているのがよくないらしい。
+
+* 対策 [#z48ae68f]
+
+initialStateの与えた方を次のように変更する。
+
+ const initialState = AppNavigator.router.getStateForAction(
+   NavigationActions.reset({
+     index: 0,
+     actions: [
+       NavigationActions.navigate({
+         routeName: 'Home'
+       })
+     ]
+   })
+ )
+
+* 備考 [#ldff8695]
+
+なし。
+
+* 参考 [#la2ec4b3]
+- [[undefined is not an object (evaluating &#39;state.routes[state.index]&#39;) · Issue #1357 · react-navigation/react-navigation>https://github.com/react-navigation/react-navigation/issues/1357]]

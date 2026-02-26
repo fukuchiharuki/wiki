@@ -1,0 +1,131 @@
+-&color(red){ここはもう古いです。};~
+-&color(red){[[Orca>https://github.com/fukuchiharuki/Orca/]] および [[OrcaSample>https://github.com/fukuchiharuki/OrcaSample/]] を見てください。};
+-----
+ 
+-[[Orca]]
+-
+-#contents
+-
+-*セットアップ [#u00fd883]
+-
+-**開発環境 [#ab209691]
+-Orcaは次の環境で開発しています。Orcaのコンパイルは7.0のjavax.servlet.*がないとできません（JBossでも新しい実装であれば大丈夫かと。）
+-:JDK|Java SE Development Kit 6u24
+-:Tomcat|Tomcat 7.0
+-
+-**依存パッケージ [#r6546c74]
+-Orcaは次のパッケージに依存しています。
+-:[[Commons IO>http://commons.apache.org/io/]]|ファイルアップロードに必要です
+-:[[Commons FileUpload>http://commons.apache.org/fileupload/]]|ファイルアップロードに必要です
+-
+-*ミニマムプロジェクト作成 [#w3ebe9a5]
+-EclipseでOrcaを動作させる最小のセットアップをします。
+-
+-**プロジェクトを作成する [#cac7277b]
+-+Dynamic Web Projectを作成します
+-+Orcaと依存パッケージのパスを通します
+---単発ならそれぞれのjarファイルを次のディレクトリ下に配置するのが良いと思います
+----（プロジェクトルート）/WebContent/WEB-INF/lib/
+-
+-**ページクラス＋JSPを作成する [#zf05a0b2]
+-Orcaでは''1ページ＝1クラス＋1JSP''です。まずは1ページ分とクラスとJSPを作成します。
+-
+-まずはクラスからです。
+--HomePage.java
+- public class HomePage implements Serializable {
+-     private static final long serialVersionUID = 1L;
+- 
+-     @Index
+-     public PageTransition index() {
+-         return new PageTransition().showJsp("/WEB-INF/jsp/HomePage.jsp");
+-     }
+- }
+-
+-次にJSPを作成します。
+--HomePage.jsp
+- <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><%--
+- --%><%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %><%--
+-  // -------------------------------------------------- [tag library]
+- --%><%@ taglib uri="http://fukuchiharuki.me/orca/app/customtag" prefix="o" %><%--
+-  // -------------------------------------------------- [html]
+- --%>
+- <html>
+- <head>
+- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+- <title>ホームページ</title>
+- </head>
+- <body>
+-   <h1>ホームページ</h1>
+- </body>
+- </html>
+-
+-**サーブレットを作成する [#gb0859f3]
+-Orcaではサーブレットはアプリケーション内に唯一存在します。
+--RequestProcessor.java
+- public class RequestProcessor extends AbstractRequestProcessor {
+-     private static final long serialVersionUID = 1L;
+- 
+-     public RequestProcessor() {
+-         super();
+-         this.registerBookmarkablePage("home", HomePage.class);
+-     }
+- 
+-     @Override
+-     protected Class<?> getHomePage() {
+-         return HomePage.class;
+-     }
+- 
+-     @Override
+-     protected Class<?> getNotFoundPage() {
+-         return HomePage.class; // 本当はそれ用のページを作成する
+-     }
+- 
+-     @Override
+-     protected Class<?> getErrorPage() {
+-         return HomePage.class; // 本当はそれ用のページを作成する
+-     }
+- }
+-
+-次にサーブレットマッピングを設定します。
+--/WebContent/WEB-INF/web.xml
+- <?xml version="1.0" encoding="UTF-8"?>
+- <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+- 
+-     ・・・
+-  
+-     <servlet>
+-         <servlet-name>RequestProcessor</servlet-name>
+-         <servlet-class>（上記サーブレットのパッケージ）.RequestProcessor</servlet-class>
+-     </servlet>
+-     <servlet-mapping>
+-         <servlet-name>RequestProcessor</servlet-name>
+-         <url-pattern>/</url-pattern>
+-     </servlet-mapping>
+-  
+- </web-app>
+-
+-*確認 [#b213ca95]
+-
+-**ミニマムの構成 [#d5b1ed66]
+-最終的にはこんな感じになっています（src下のパッケージ名は任意。）
+- （プロジェクトルート）
+- ┣ src
+- ┃┣ me.fukuchiharuki.sample.page
+- ┃┃┗ HomePage.java
+- ┃┗ me.fukuchiharuki.sample.servlet
+- ┃  ┗ RequestProcessor.java
+- ┣ ・・・
+- ┗ WebContent
+-   ┗ WEB-INF
+-     ┣ jsp
+-     ┃┗ HomePage.jsp
+-     ┣ lib 
+-     ┃┣ commons-fileupload-1.2.2.jar (2011-05-30時点)
+-     ┃┣ commons-io-2.0.1.jar (2011-05-30時点)
+-     ┃┗ Orca-1.0-beta-1.jar (2011-05-30時点)
+-     ┗ web.xml
+-
+-**動作確認 [#x74c194c]
+-ブラウザで次のURLにアクセスして「ホームページ」と表示されたら正常に動作しています。
+--ttp://localhost:8080/（プロジェクト名）/
+-

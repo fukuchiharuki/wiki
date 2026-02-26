@@ -1,0 +1,15 @@
+ *手順 [#pb3e32ab]
+ 
+ **ポートフォワーディングを使う [#t5b23077]
+ 
+ ***トンネルする [#r1735204]
+ 次のようにしてssh接続する。
+- ssh <接続設定> -L3690:localhost:3690
++ ssh <接続設定> -L3690:127.0.0.1:3690
+ 
+ ***ローカルホストに接続する [#ua0ae1df]
+ svnクライアントで次のURLにアクセスする。
+  svn://localhost/<sample>
+ 
+ *参考 [#k6a28576]
+ -http://www14.plala.or.jp/campus-note/vine_linux/server_ssh/ssh_portforwarding.html

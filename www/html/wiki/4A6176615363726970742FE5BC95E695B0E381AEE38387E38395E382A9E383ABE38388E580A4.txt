@@ -1,0 +1,15 @@
+*関連 [#z0da5104]
+-JavaScript
+
+*引数のデフォルト値 [#ff950e2d]
+関数の引数についてデフォルト値を与えることはできないが次の手段で代替できる。
+ function sample(arg1, arg2) {
+ }
+を
+ sample(1);
+でコールした場合
+ (typeof arg2 == 'undefined')?
+で引数がなかったことが分かる。
+
+*参考 [#jb228b3f]
+-http://chaichan.web.infoseek.co.jp/qa4000/qa4183.htm

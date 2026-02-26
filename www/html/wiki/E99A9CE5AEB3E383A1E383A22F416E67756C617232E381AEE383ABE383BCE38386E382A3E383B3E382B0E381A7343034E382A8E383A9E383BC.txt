@@ -1,0 +1,32 @@
+* キーワード [#h9211d90]
+- Angular2
+- routing
+- 404 not found
+
+* 現象 [#r2284f43]
+
+Angular2でルーティングしたときにURLが切り替わる。このURLをリロードすると404エラーになる。ただし、開発時ng serverなどで動かしているときは問題がない。
+
+* 原因 [#w3c5898a]
+
+ないものはないから。なかったときにindex.htmlをレスポンスするようにサーバー設定する必要がある。ng serverなどで動くサーバーはそれをやってくれているのだと思う。
+
+* 対策 [#s14f4734]
+
+ <Directory "/Applications/XAMPP/xamppfiles/htdocs"> # ここはいろいろ
+     # rewrite to index.html for Angular2
+     Options Indexes FollowSymLinks
+     RewriteEngine On
+     RewriteBase /
+     RewriteRule ^index\.html$ - [L]
+     RewriteCond %{REQUEST_FILENAME} !-f
+     RewriteCond %{REQUEST_FILENAME} !-d
+     RewriteRule . /index.html [L]
+ </Directory>
+
+* 備考 [#j25b94b1]
+
+開発環境がいろいろやってくれている部分が見えないとハマったときに困る。。
+
+* 参考 [#jfa86698]
+- [[angular2 - Angular 2 routing and direct access to a specific route : how to configure Apache? - Stack Overflow>http://stackoverflow.com/questions/35198319/angular-2-routing-and-direct-access-to-a-specific-route-how-to-configure-apach]]

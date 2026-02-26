@@ -1,0 +1,96 @@
+* フォームを作成する [#v2233508]
+
+ <form #userForm="ngForm" novalidate>
+ ...
+ </form>
+
+** フォームに名前をつける [#r42af26f]
+
+ #userForm="ngForm"
+
+- userFormが名前になる
+- ngFormは固定、こういうもの
+
+** novalidateをつける [#kdf7d01f]
+
+ novalidate
+
+- novalidateは、Angular2でvalidateするからHTML5でしないでねということ
+-- 属性requiredが被っていて、HTML5の機能が邪魔になるので
+
+* submitボタンを作成する [#o8d06dff]
+
+ <button [disabled]="! userForm.valid" (click)="onSubmit(userForm)">保存</button>
+
+** disabled属性にtrue/falseをバインドする [#qc49480e]
+
+ [disabled]="! userForm.valid"
+
+- ng-reflect-disabled="true"を介して（？）、disabled属性が追加される
+- ng-reflect-disabled="false"を介して（？）、disabled属性が削除される
+- 名前をつけたフォーム.validでフォームとしてvalidationをパスしているかが分かる
+
+** クリックイベントでフォームデータを渡す [#dad7aca8]
+
+ (click)="onSubmit(userForm)"
+
+あるいは次のようにも書ける。
+
+ <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm) novalidate>
+
+- 名前をつけたフォームを渡すことができる
+- (form: NgForm)として受けたonSubmitで
+-- form.validでvalidationをパスしているかが分かる
+-- form.valueで各入力値を取得できる
+
+* コントロールを作成する [#na86e98a]
+
+ <input type="text" placeholder="Name"
+   [(ngModel)]="user.name" name="name"
+   #nameInput="ngModel"
+   required>
+ <div *ngIf="! nameInput.valid">
+   <label *ngIf="nameInput.errors.required" for="name">入力必須</label>
+ </div>
+
+** ngModelにはname属性が必要 [#h9cad7f1]
+
+ [(ngModel)]="user.name" name="name"
+
+- [(ngModel)]="user.name"で双方向バインディングする（単方向で済むならそれでも）
+- name属性を必ずつける
+-- フォームの値 form.value.name として取得できる
+
+** コントロールに名前をつける [#hb12ddb7]
+
+ #nameInput="ngModel"
+
+- nameInputが名前になる
+- フォームに名前をつけるのと同様
+
+** validationを定義する [#o06d9492]
+
+ required
+
+- 属性として記述する
+- required、minlength、maxlength、patternがある
+
+** エラー表示の枠を作成する [#mb66d9e2]
+
+ <div *ngIf="! nameInput.valid">
+ ...
+ </div>
+
+- 名前をつけたコントロール.validでそのコントロールがvalidationをパスしているかが分かる
+- *ngIfでそのコントロールにエラーがあるときにだけ表示する枠を作成できる
+
+** エラーの内容を表示する [#a4ddde70]
+
+ <label *ngIf="nameInput.errors.required" for="name">入力必須</label>
+
+- 名前をつけたコントロール.errors.requiredで必須チェックエラーかどうかが分かる
+- バリデーションの種類required、minlength、maxlength、patternでそれぞれ
+- *ngIfでそのvalidationにエラーがあるときにだけ表示することができる
+
+* 参考 [#e0d0cc1e]
+- [[Angular2 Forms - Submit Button Disabled? - Stack Overflow>http://stackoverflow.com/questions/32062051/angular2-forms-submit-button-disabled]]

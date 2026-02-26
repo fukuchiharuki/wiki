@@ -1,0 +1,41 @@
++#author("2017-05-30T03:25:37+00:00","default:haruki","haruki")
++* キーワード [#a3f4a1f1]
++- MyBatis
++- 文字化け
++- MySQL
++- sjis
+ 
++* 現象 [#i76db77a]
++
++MyBatisで日本語文字列をupdateすると文字バケる。
++
++- RDMSはMySQL
++- データベースのレベルでsjis
++- MyBatis Generatorでselectしたものをそのままupdateする
++-- と、「???」になる
++
++* 原因 [#se9ba0fa]
++
++接続で文字コードを指定していないから。
++
++* 対策 [#nf5171af]
++
++Spring Bootではapplication.ymlに次のように書ける。
++
++ spring:
++   datasource:
++     url: jdbc:mysql://localhost:3306/MYDATABASE?useSSL=false&characterEncoding=SJIS
++     username: myusername
++     password: mypassword
++     driverClassName: com.mysql.jdbc.Driver
++
++* 備考 [#y1d4f7bd]
++
++基本的なことだった。
++
++* 参考 [#k2d087f5]
++以下は直接関係ないけど、使うことがありそうなのでメモ。
++
++- [[システムアーキテクト~My batis編~>https://www.slideshare.net/s_kozake/my-batis-35862790]]
++- [[mybatis-spring-boot-starterの使い方 - Qiita>http://qiita.com/kazuki43zoo/items/ea79e206d7c2e990e478]]
++- [[MyBatis &#x2013; MyBatis 3 | 設定>http://www.mybatis.org/mybatis-3/ja/configuration.html#typeHandlers]]

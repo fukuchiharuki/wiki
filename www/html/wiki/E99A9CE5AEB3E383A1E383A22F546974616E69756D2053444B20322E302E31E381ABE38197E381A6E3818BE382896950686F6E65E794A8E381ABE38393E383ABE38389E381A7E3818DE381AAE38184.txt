@@ -1,0 +1,21 @@
+*関連 [#v6a61b66]
+-Titanium Mobile
+-Xcode
+
+*現象 [#p28e6266]
+Titanium SDKのバージョンを2.0.1にしてからiPhone用のビルドができない。
+
+現象は[[ここ>http://developer.appcelerator.com/question/135521/build-error-with-titanium-sdk-201--ios-sdk-42]]。
+
+*原因 [#c9bccd68]
+Xcodeのバージョンによる？
+
+*対策 [#m4516544]
+-OSをLionにする
+-AppStoreからXcodeの最新をインストールする
+-次のコマンドを叩く（[[Titaniumのドキュメントに解説あり>http://docs.appcelerator.com/titanium/release-notes/?version=2.0.1.GA#xcode43]]）
+ sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer
+
+*参考 [#nc78f34d]
+-http://developer.appcelerator.com/question/135521/build-error-with-titanium-sdk-201--ios-sdk-42
+-http://docs.appcelerator.com/titanium/release-notes/?version=2.0.1.GA#xcode43

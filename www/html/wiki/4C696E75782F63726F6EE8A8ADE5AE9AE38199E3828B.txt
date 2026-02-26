@@ -1,0 +1,32 @@
+*キーワード [#e6868777]
+-Linux
+-cron
+
+*概要 [#y65bb527]
+cron 設定します。
+
+*方法 [#f27f678c]
+実行させたいユーザーで次のコマンドを入力する。
+ $ crontab -e
+
+vi が上がるので設定を編集する
+ # コメント
+ */5 * * * * /your/sh/file/path
+
+保存して終了する(vi の操作)
+ :wq
+
+最後に設定を確認する
+ $ crontab -l
+
+*解説 [#q004f7d8]
+専用のコマンドで編集を上げて確認します。
+定時実行するユーザーは crontab -e を実行したユーザーです。
+ここで、「''全部 root が実行ユーザーを添えて設定しろ''」という考え方もあるようです。
+
+設定の書き方は参考サイトなどを参考にして。
+
+*参考 [#adf04682]
+-[[crontabの書き方 &mdash; server-memo.net>http://www.server-memo.net/tips/crontab.html]]
+-[[Nippon Kaisho システムツール [ CRONTAB設定ヘルパー ]>http://www.japan9.com/cgi/cron.cgi]]
+-[[crontab -e は「絶対に」使ってはいけない - ろば電子が詰まっている>http://d.hatena.ne.jp/ozuma/20120711/1342014448]]

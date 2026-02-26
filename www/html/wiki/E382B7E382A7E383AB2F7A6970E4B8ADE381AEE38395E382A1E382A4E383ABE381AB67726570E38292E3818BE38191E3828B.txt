@@ -1,0 +1,21 @@
+* キーワード [#x0918cef]
+- zipgrep
+
+* したいこと [#dbcc5d90]
+zipを（手動で）展開せずにアーカイブ中のファイルにgrepをかける。
+
+warファイル中のプロパティファイルが本番用のそれであることをリリース準備にて確認することになっていた。これが手作業でどうにも面倒な感じだったので対策を探したら普通にあった。そもそもこの手順自体なくしてしまえばよいのだが一度出来上がってしまっているやり方を省くのはなかなか受け入れられなかったりするのだ。やりづらくてしょうがないね。
+
+* どうやって [#ca70ff39]
+
+ $ zipgrep <パターン> <zipファイル> [<指定ファイル>]
+
+* ノート [#v93997f2]
+やりたいことがプロパティファイルの検索だったので次のようにピンポイントでファイルを指定することができる。
+
+ $ zipgrep DeployMode web.war WEB-INF/classes/resources/application.properties
+ WEB-INF/classes/resources/application.properties:DeployMode=pro
+ $
+
+* 参考 [#kd1db465]
+- [[圧縮されたアーカイブログにもgrepがかけられる「zgrep」が便利！ - colori>http://colo-ri.jp/develop/2010/01/grepzgrep.html]]

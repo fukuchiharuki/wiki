@@ -1,0 +1,19 @@
+* キーワード [#keyword]
+- 
+- 
+
+* 現象 [#issue]
+
+
+* 原因 [#cause]
+
+
+* 対策 [#action]
+
+
+* 備考 [#note]
+
+
+* 参考 [#reference]
+- 
+-

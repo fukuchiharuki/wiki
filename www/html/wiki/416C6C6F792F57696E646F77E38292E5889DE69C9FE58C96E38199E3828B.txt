@@ -1,0 +1,15 @@
+*キーワード [#oaf38297]
+- Titanium Mobile
+- Alloy
+
+*目標 [#mc72d7f1]
+Window の初期化処理します。
+
+*方法 [#d5e5c98b]
+- Window.js
+ $.window.addEventListener('open', function(e) {
+ 	// 初期化処理
+ });
+
+*解説 [#xd330f5a]
+イベント open で処理します。イベント load だと子要素のロード前に動いてしまうのかダメです。

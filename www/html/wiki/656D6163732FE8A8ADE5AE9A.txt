@@ -1,0 +1,21 @@
+これだけやれば最低限使えるかなーというところで。
+-「~」なファイルを作らない
+-「#」なファイルを作らない
+-C-hでバックスペースする
+-C-\でundoする
+
+*設定 [#oec4a192]
+
+-&tilde;/.emacs
+
+ ;;; don't make backup file
+ (setq make-backup-files nil)
+ 
+ ;;; don't make save-default file
+ (setq auto-save-default nil)
+ 
+ ;;; C-h to delete
+ (define-key global-map "\C-h" 'delete-backward-char)
+ 
+ ;;; C-\ to undo
+ (define-key global-map "\C-\\" 'undo)

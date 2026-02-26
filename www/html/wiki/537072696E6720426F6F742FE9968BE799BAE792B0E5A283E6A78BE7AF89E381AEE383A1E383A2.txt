@@ -1,0 +1,99 @@
+#author("2017-12-13T01:44:24+00:00","default:haruki","haruki")
+* インストール [#o58e0f1e]
+
+- Gradle ([[https://gradle.org/]])
+- Git for Windows ([[https://git-for-windows.github.io/]])
+-- Git Bashを含めてインストールする
+- Docker for Windows ([[https://docs.docker.com/docker-for-windows/install/]])
+-- Windows 7の場合はDocker Toolbox ([[https://docs.docker.com/toolbox/overview/]])
+- MySQL Workbench ([[https://dev.mysql.com/downloads/workbench/]])
+-- サーバーはなし、クライアントだけでOK
+- STS ([[https://spring.io/tools/sts]])
+
+* MySQL環境 [#ab9f2913]
+Docker上にMySQLサーバーを立てる。ので、Git Bashで操作する。
+
+** イメージをダウンロード [#k1a8bd22]
+
+ $ docker pull mysql 
+
+** コンテナを起動 [#oae58ecd]
+
+ $ docker run \
+ --name hoge \
+ -e "TZ=Asia/Tokyo" \
+ -e MYSQL_ROOT_PASSWORD=rootpassword \
+ -e MYSQL_DATABASE=HOGE \
+ -e MYSQL_USER=hoge \
+ -e MYSQL_PASSWORD=hoge \
+ -p 3306:3306 \
+
+** 停止と再起動 [#h2e6b1df]
+
+停止。
+ $ docker stop hoge
+
+再起動。
+ $ docker start hoge
+
+* プロジェクトを開く [#wf1f2110]
+** STS環境 [#p09f9758]
+*** プラグイン [#o0d62ea7]
+
+Help > Eclipse Marketplace...からインストールする。
+
+- Buildship
+- EGit
+- Properteis Editor
+
+*** その他 [#e73b151f]
+
+- Lombok ([[https://projectlombok.org/download.html]])
+-- ダウンロードしたjarを実行してインストールする
+
+** ソースコードをクローンしてEclipse用に構成 [#t4d756db]
+
+ $ cd /path/to/project/
+ $ git clone https://***/hoge.git
+ $ cd hoge/
+ $ gradle eclipse
+
+** STSで開く [#r6af8e1d]
+
++ 右クリック > Import...
++ Gradle/Existing Gradle Project
+-- Next >
++ Project root directory: C:\path\to\project\hoge
+-- Next >
++ Gradle distribution: Gradle wrapper
+-- Next >
++ Finish
+
+* Webアプリケーションを実行する [#j878d03c]
+** STSから実行 [#u3d195e5]
+
++ Package Explorerでwebを選択状態にする
++ 虫マーク右の三角 > Debug As > Spring Boot App
+-- Started WebApplication in *** secondsを確認
++ ブラウザから ttp://localhost:8080/ にアクセス
+
+** Git Bashから実行 [#c6ae81a0]
+
+ビルド。
+ $ gradle build
+
+実行。
+ $ java -jar web/build/libs/web-0.0.1-SNAPSHOT.jar
+
+ブラウザから ttp://localhost:8080/ にアクセス。
+
+*** 文字化けしてるっぽいとき [#w5fa6768]
+
+環境変数を書き換える。
+- /path/to/gradle/bin/gradle.bat
+
+ set DEFAULT_JVM_OPTS="-Dfile.encoding=UTF-8"
+
+* 参考 [#s8c19c78]
+
+- [[Gradle があつかうファイル入出力の文字コードを設定する - Java開発のんびり日記>http://hideoku.hatenablog.jp/entry/20121029/1351476635]]

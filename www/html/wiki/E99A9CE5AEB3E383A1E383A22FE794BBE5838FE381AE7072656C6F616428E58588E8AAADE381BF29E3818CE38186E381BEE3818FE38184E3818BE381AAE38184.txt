@@ -1,0 +1,36 @@
+*キーワード [#j9f614c6]
+-HTML/JavaScript
+-img
+-Image
+
+*現象 [#jdcfee5f]
+次の状況でうまくいかない。
++XXX_off.png を初期表示
++XXX_on.png をpreload(先読み)
++画像を読み込めない状況にする
++mouseover で XXX_off.png を XXX_on.png に切り替えて表示
++mouseout で XXX_on.png を XXX_off.png に切り替えて表示
+
+うまくいかないのは 5. のところ。つまり元の画像に戻すところ。
+
+少なくともIE8ではだめ。
+
+*原因 [#t9f0023c]
+JavaScriptで切り替える画像はJavaScriptでpreload(先読み)する必要があるくさい。
+
+参考サイト([[画像のプリロード（先読み）>http://lion.zero.ad.jp/inn/js/image/image-preload.html]])で「ここでプリロードした画像はJavaScriptで表示させる必要があります。」とあるが、どうやら逆もそうらしい(と思える動作をする、IE8が)。
+
+従って、初期表示している画像をpreload(先読み)しないと mouseout のタイミングで画像が消えていく。
+
+*対策 [#n2f94a08]
+
+初期表示している画像をpreload(先読み)する。
++XXX_off.png を初期表示
++XXX_off.png をpreload(先読み) ← ここ
++XXX_on.png をpreload(先読み)
++画像を読み込めない状況にする
++mouseover で XXX_off.png を XXX_on.png に切り替えて表示
++mouseout で XXX_on.png を XXX_off.png に切り替えて表示
+
+*参考 [#x5ea74a3]
+-http://lion.zero.ad.jp/inn/js/image/image-preload.html

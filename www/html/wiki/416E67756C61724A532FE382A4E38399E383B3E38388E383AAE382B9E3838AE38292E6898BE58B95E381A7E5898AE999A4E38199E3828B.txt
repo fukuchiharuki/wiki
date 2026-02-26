@@ -1,0 +1,47 @@
+#author("2017-12-04T06:37:33+00:00","default:haruki","haruki")
+* キーワード [#neacf127]
+- AngularJS
+- ディレクティブ
+- イベントリスナ
+
+* したいこと [#d19b9598]
+
+$on()を経由せずエレメントに直接追加したイベントリスナは手動で削除する必要があるっぽいです。
+
+* どうやって [#ze5953ef]
+
+「$destroy」イベントを拾って処理する。
+
+ element.on('click', function () {
+   ...
+ });
+ 
+ scope.$on('$destroy', function () {
+   element.off();
+ });
+
+$rootScopeに登録したリスナも片付ける必要があるようです。
+
+ const deregister = $rootScope.$on('anEvent', function () {
+   ...
+ });
+ 
+ scope.$on('$destroy', deregister);
+
+$timeoutでペンディング中のものもキャンセルするべきみたい。
+
+ const timer = $timeout(function () {
+   ...
+ }, 60000);
+ 
+ scope.$on('$destroy', function () {
+   $timeout.cancel(timer);
+ });
+
+* ちなみに [#n1b472ef]
+
+DataTablesにも同じようなことがあるらしい。
+
+* 参考 [#laead680]
+- [[memory leaks - AngularJS - Does $destroy remove event listeners? - Stack Overflow>https://stackoverflow.com/questions/26983696/angularjs-does-destroy-remove-event-listeners]]
+- [[Possible memory leak when refreshing table - DataTables forums>https://datatables.net/forums/discussion/35701/possible-memory-leak-when-refreshing-table]]

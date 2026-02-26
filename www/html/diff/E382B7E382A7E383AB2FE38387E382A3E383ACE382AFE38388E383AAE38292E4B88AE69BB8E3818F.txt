@@ -1,0 +1,28 @@
+ * キーワード [#b9255ac1]
+ - ディレクトリ
+ - 上書き
+ - cp
+ 
+ * やりたいこと [#k6130620]
+ ディレクトリ a からディレクトリ b にその内容を上書きたい。ちなみに cp ではうまくできない。
+ 
+ - a
+  a/
+  └ a.txt
+ - b(上書く前)
+  b/
+  └ b.txt
+ - b(上書いた後)
+  b/
+  ├ a.txt
+  └ b.txt
+ 
+ * 方法 [#w14d2553]
+  $ ( cd a; tar cf - * ) | ( cd b; tar xf - )
+ 
+ * 詳細 [#b2901c4c]
+ tar でアーカイブして tar で展開する、データI/Oはパイプでやるということのようです。
+ 
+ * 参考 [#o0f98fec]
+ - [[ディレクトリの内容をそのまま上書きする方法 － Linux Square － ＠IT>http://www.atmarkit.co.jp/bbs/phpBB/viewtopic.php?topic=17208&forum=10]]
++- [[人生ずっと勉強。 tarコマンドのハイフン「-」だけオプションの意味>http://kiyotakagoto.blog3.fc2.com/blog-entry-8.html]]

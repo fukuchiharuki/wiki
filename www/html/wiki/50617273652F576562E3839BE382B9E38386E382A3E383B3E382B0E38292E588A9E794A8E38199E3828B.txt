@@ -1,0 +1,83 @@
+*キーワード [#r31c0704]
+-Parse
+-Webホスティング
+
+*概要 [#r8a79fe7]
+ParseのWebホスティングを利用してWebサイトを公開します。
+
+''前提条件''
+- Parseにサインアップ済み
+- ParseにAppを作成済み
+
+'''※この前提条件はWebからぽちぽちするだけなので簡単です。'''
+
+*準備 [#wf73b2b4]
+まずはParseにログインし、ダッシュボードから
+#ref(01.ダッシュボード.png,center)
+
+アプリケーションを選択、そのセッティングから
+#ref(02.セッティング.png,center)
+
+Webホスティングを選択、
+#ref(03.Webホスティング.png,center,75%)
+
+ParseApp Name(WebブラウザからアクセスすることになるURL)を入力します。
+#ref(04.ParseApp Name.png,center,75%)
+
+*方法 [#k3c24eac]
+基本的には公式の[[Cloud Code Guide>https://parse.com/docs/cloud_code_guide]]の通りです。
+
+'''※Windowsは知らん。試した環境はMaxOSです。'''
+
+** ローカルマシンにParseコマンドラインツールをインストールする [#c6fd1dee]
+ParseのWebホスティング環境からファイル(htmlやjsなど)をダウンロードしたりアップロードしたりするためのコマンドラインツールをローカルマシンにインストールします。
+ $ curl -s https://www.parse.com/downloads/cloud_code/installer.sh | sudo /bin/bash
+ Password:(ここでローカルマシンのパスワードを入力)
+ Fetching latest version ...
+ ######################################################################## 100.0%
+ Making /usr/local/bin
+ Installing ...
+ $
+
+** ParseのWebホスティング環境にコードをストアするためのディレクトリを作成する [#h12ab9eb]
+ParseのWebホスティングはローカルマシンのファイル群をそのままアップロードする仕組みです。そのためのディレクトリを作成します。
+
+Parseに「AppFoo」というアプリケーションを作成しているものとして、ローカルマシンにも同じ名前のディレクトリを作成することにします(この辺りは任意なので適当に置き換えてください)。
+
+ParseアカウントのEメールアドレスとパスワードを入力して認証します。するとアプリケーション一覧が表示されますので、続けて表示上のアプリケーション番号を入力します。
+ $ parse new AppFoo
+ Creating a new project in directory (カレントディレクトリ)/AppFoo
+ Creating directory (カレントディレクトリ)/AppFoo/config
+ Creating config file (カレントディレクトリ)/AppFoo/config/global.json
+ Creating directory (カレントディレクトリ)/AppFoo/cloud
+ Writing out sample file (カレントディレクトリ)/AppFoo/cloud/main.js
+ Creating directory (カレントディレクトリ)/AppFoo/public
+ Writing out sample file (カレントディレクトリ)/AppFoo/public/index.html
+ Email: (ここでParseアカウントのメールアドレスを入力)
+ Password: (ここでParseアカウントのパスワードを入力)
+ 1: AppFoo
+ Select an App: (ここでアプリケーション番号を入力)
+ $
+
+**Webページを作成してアップロードする [#q1717f76]
+ファイルのアップロードは先に作成したディレクトリにて行います。
+
+ここでは「public/index.html」を適当に編集してこれをアップロードしてみます。
+ $ cd AppFoo
+ $ echo 'Hello Parse!' > public/index.html
+ $ parse deploy
+ Uploading source files
+ Finished uploading files
+ New release is named v1
+ $
+
+**Webブラウザで表示する [#pa81fe12]
+あとは最初に設定した「ParseApp Name」をWebブラウザからアクセスするだけです。
+
+*解説 [#c0768633]
+「parse new」コマンドはローカルマシンにParse連携用のディレクトリを作成するためのコマンドです。いちどデプロイしてから別途「parse new」するとデプロイ後状態のファイル群でディレクトリを作成することができます(まあそりゃあそうですね)。
+
+ParseのWebホスティングはSSL(https)でも接続することができる優れものです。
+
+*参考 [#x22e91c4]
+-[[Parse Hosting触ってみた>http://henteko07.hatenablog.com/entry/2013/05/10/165723]]

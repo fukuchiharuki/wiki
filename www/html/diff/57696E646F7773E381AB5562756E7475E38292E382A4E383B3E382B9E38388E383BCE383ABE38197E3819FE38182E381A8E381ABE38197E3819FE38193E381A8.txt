@@ -1,0 +1,24 @@
+-#author("2019-09-01T02:18:51+00:00","default:haruki","haruki")
++#author("2019-09-01T02:20:37+00:00","default:haruki","haruki")
+ * apt [#tc172b87]
+ ** aptのリポジトリを日本のものにする [#z4cf1b54]
+ 
+  $ cd /etc/apt
+  $ sudo sed -i.bak -e "s/http:\/\/archive\.ubuntu\.com/http:\/\/jp\.archive\.ubuntu\.com/g" sources.list
+ 
+ ** 更新 [#cb25ea25]
+ 
+  $ sudo apt update
+  $ sudo apt upgrade
+ 
+ * 日本語化 [#oc8d18c1]
+ ** 言語設定 [#qd08562e]
+ 
+  $ sudo apt install language-pack-ja
+  $ sudo update-locale LANG=ja_JP.UTF-8
+ 
+ ** タイムゾーン [#q2cdc4a2]
+ 
+  $ sudo dpkg-reconfigure tzdata
+ 
++「アジア」>「東京」を選択する。

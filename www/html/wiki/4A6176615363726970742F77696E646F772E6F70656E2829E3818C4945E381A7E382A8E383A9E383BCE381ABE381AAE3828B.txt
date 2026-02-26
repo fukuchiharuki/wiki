@@ -1,0 +1,15 @@
+*関連 [#bed8b684]
+-IE (Internet Explore)
+-JavaScript
+
+*現象 [#m0ace0e0]
+window.open(url, window)がIEでエラーになる。
+
+*原因 [#m51db2e6]
+パラメータwindowに使えない文字(「-」が少なくとも使えない)がある。
+
+*対策 [#p74c833e]
+パラメータwindowに使えない文字を使わない。
+
+*参考 [#te8f265c]
+-http://okwave.jp/qa/q3279120.html

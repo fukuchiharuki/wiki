@@ -1,0 +1,65 @@
+-[[../]]
+-
+ *キーワード [#x62d3c97]
+ - Titanium Mobile
+ - Alloy
+ 
+ * Window 系 [#c8e703b5]
+ #ref(TabGroup_Tab_Window.png,center,50%)
+ 
+ ** TabGroup [#d16d1cda]
+ Tab のコンテナです。
+ 
+ ** Tab [#m5573810]
+ OS 標準 UI のタブです。
+ 
+ ** Window [#dbde0894]
+ ひとつの画面に対応するコントロールです。
+ 
+ タブ式アプリの場合 TabGroup, Tab, Window は固定です。
+ 
+ * View 系 [#of790871]
+ ** View [#df62968b]
+ 汎用コンテナ(HTML で div を書くような)のように使えるコントロールです。
+ 
+ デフォルトスタイルは次のようになっているように見えます。
+ - View のデフォルトスタイル
+  {
+      top: 0,
+      left: 0,
+      width: Ti.UI.FILL,
+      height: Ti.UI.FILL,
+      textAlign: 'center',
+      verticalAlign: 'middle',
+  }
+ 
+ *** 幅と高さの指定 [#da991960]
+ 最近の Titanium Mobile では幅と高さに Ti.UI.FILL と　Ti.UI.SIZE を指定できるようです。
+ :Ti.UI.FILL|幅いっぱい、高さいっぱいです
+ :Ti.UI.SIZE|かつての 'auto' 指定です、内要素に大きさを合わせます
+ 
+ また、数値を指定することもできます。
+ 
+ ** ScrollView [#e53811f0]
+ 汎用コンテナのように使えスクロールできるコントロールです。
+ 
+ TableView などで画面の高さを超えて縦に長いときはこのコントロールの上に乗せます。
+ 
+ * TableView 系 [#v6063792]
+ #ref(TableView.png,center,50%)
+ 
+ ** TableView [#k78d3f10]
+ ** TableViewSection [#gf93e053]
+ ** TableViewRow [#wc4c2620]
+ 
+ * その他 [#f437f0de]
+ ** Label [#ycd79ef5]
+ 
+ テキストを配置します。
+ 
+ ** ImageView [#u42b4971]
+ 
+ 画像を配置します。
+ 
+ *参考 [#zb60b659]
+ - [[Titanium Mobile 2.0 対応など - naoyaのはてなダイアリー>http://d.hatena.ne.jp/naoya/20120426/1335435147]]

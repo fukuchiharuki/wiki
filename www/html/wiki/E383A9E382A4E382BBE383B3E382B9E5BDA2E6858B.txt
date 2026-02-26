@@ -1,0 +1,24 @@
+*はじめに [#v32ed0c7]
+どうにも断言する記事が少なくてなんだかよく分からないのでまとめ。
+
+ここでも断言はしません。誤った解釈をしてそれを拡げてしまうわけにもいきませんので。従って、解釈は原文にのみあるべきと考えています。
+
+*まとめ [#d952dabc]
+**MITライセンス [#z60dd165]
+著作権表示さえしていれば、自由に利用できるライセンス。
+:原文|http://www.opensource.org/licenses/mit-license.php
+
+**BSDライセンス [#n11a2734]
+「無保証」であることの明記と著作権表示さえしていれば、自由に利用できるライセンス。
+:原文|http://www.opensource.org/licenses/bsd-license.php
+
+**GPLライセンス [#s051af70]
+自由な利用・改変が可能なライセンス。ただし、GPLライセンスをもとにつくられたソフトウェアはGPLライセンスで配布されなくてはいけない。
+:原文|http://www.opensource.org/licenses/gpl-license.php
+
+**クリエイティブ・コモンズ [#e7ae8085]
+「表示」「継承」「非営利」「改変禁止」の4つのルールの組み合わせにより、著作権者が目的に合ったライセンス形態を選択できる。
+:原文|http://creativecommons.jp/
+
+*参考 [#v319afbb]
+-http://smkn.xsrv.jp/blog/2009/03/summary_for_gpl_mit_cc_etc/

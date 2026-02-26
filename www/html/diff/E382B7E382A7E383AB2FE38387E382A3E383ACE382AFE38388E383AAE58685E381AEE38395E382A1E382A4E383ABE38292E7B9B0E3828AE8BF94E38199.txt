@@ -1,0 +1,18 @@
+ * キーワード [#va7593c6]
+ - bash
+ 
+ * したいこと [#k8b3ccf9]
+ 
+ ディレクトリ内のファイル一覧を取得してひとつずつ処理する。
+ 
+ * どうやって [#h95b9117]
+ 
+  FILES=/path/to/files/*.txt
+  for FILE in $FILES
+  do
+    echo $FILE
+  done
+ 
++* 参考 [#se8446a0]
++
++- [[bashスクリプトでディレクトリ内のファイル一覧とディレクトリ一覧を出力 | VPSサーバーでWebサイト公開　備忘録　~Linux、MySQLからAJAXまで>http://wordpress.honobono-life.info/code/bash%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%83%88%E3%81%A7%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%88%E3%83%AA%E5%86%85%E3%81%AE%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E4%B8%80%E8%A6%A7%E3%81%A8/]]

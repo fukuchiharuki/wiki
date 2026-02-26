@@ -1,0 +1,20 @@
+どうもEclipse + TypEcsがいい感じではないので、巷で話題のAtomを使うことにしました。
+
+* パッケージを入れるだけ [#j3b905c5]
+
+次のパッケージをAtomのパッケージインストーラで入れるだけ。設定もそのままでいい感じに使えます。
+
+:atom-typescript|
+TypeScriptのハイライト、文法チェック、補完、コンパイルをしてくれる
+:vim-mode|
+Vimのキーバインドが使える
+:ex-mode|
+Vimの「:」コマンドが使える
+
+#ref(atom-package.png,center)
+
+* git statusの様子が見られる [#b14742b7]
+
+エクスプローラにはgit statusの様子が色分けして見られます。Eclipseを使いたい理由のひとつが、エクスプローラで変更したファイルが分かることだったので、これは助かります。
+
+#ref(atom-git_status.png,center)

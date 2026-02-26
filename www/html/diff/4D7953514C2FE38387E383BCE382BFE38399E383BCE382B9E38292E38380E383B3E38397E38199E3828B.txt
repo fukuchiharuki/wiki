@@ -1,0 +1,28 @@
+-#author("2017-04-13T09:21:06+00:00","default:haruki","haruki")
++#author("2017-04-13T09:23:52+00:00","default:haruki","haruki")
+ *関連 [#y671880f]
+ -MySQL
+ 
+ *概要 [#ab7d356f]
+ データベースを丸ごとダンプして別のデータベースにコピーする。
+ 
+ *方法 [#za57ca92]
+ データベースsrcからデータベースdstにコピーするものとして。
+  $ mysqldump src -u**** -p**** --add-drop-table --extended-insert --no-autocommit > dump
+  $ mysql dst -u**** -p**** < dump
+ 
+ *解説 [#qee41110]
+ :--add-drop-table|CREATE TABLE文の前にDROP TABLE文をつける
+-:--extended-insert|複数行INSERT構文を使用する（→高速化）
+-:--no-autocommit|テーブル毎のトランザクションにする（→高速化）
++:--extended-insert|複数行INSERT構文を使用する（→取り込むときに高速化）
++:--no-autocommit|テーブル毎のトランザクションにする（→取り込むときに高速化）
+ 
+ *さらに [#qecbdd30]
+ :--single-transaction|ダンプ中テーブルをロックしない
+ :-t データベース名 テーブル名|データだけ
+ :-d データベース名 テーブル名|スキーマだけ
+ 
+ *参考 [#j1466ce1]
+ - [[MySQL :: MySQL 5.6 リファレンスマニュアル :: 4.5.4 mysqldump — データベースバックアッププログラム>http://dev.mysql.com/doc/refman/5.1/ja/mysqldump.html]]
+ - [[tree-tips: mysqldumpでロックせずオンラインバックアップする | MySQL>http://www.tree-tips.com/mysql/mysqldump/online_backup/]]

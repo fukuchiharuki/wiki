@@ -1,0 +1,26 @@
++&color(red){次と重複};
++- [[シェル/特定の文字列を含むファイルを探す]]
++
+ * キーワード [#g965e86d]
+ - find
+ - grep
+ 
+ * やりたいこと [#q46d9080]
+ 
+ 特定の文字列を含むファイルのファイル名をリストしたい。
+ 
+ * どうやって [#jf563c00]
+ 
+ たとえば「HOGE」を探す場合
+ 
+  $ find . -name "*.txt" -exec grep -q HOGE {} \; -print
+ 
+ または
+ 
+  $ find . -name "*.txt" -print | xargs grep HOGE
+ 
+ * 備考 [#m5f060b4]
+ オプションでgrepするか、パイプしてxargs越しにgrepする。
+ 
+ * 参考 [#na6e9b72]
+ - [[find -execの使い方 - にたまごほうれん草>http://d.hatena.ne.jp/emergent/20071127/1196091725]]

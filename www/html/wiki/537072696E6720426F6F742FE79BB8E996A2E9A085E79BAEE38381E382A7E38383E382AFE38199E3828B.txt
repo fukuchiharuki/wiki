@@ -1,0 +1,47 @@
+#author("2017-05-29T01:32:24+00:00","default:haruki","haruki")
+* キーワード [#r10f51eb]
+- Spring Boot
+- 入力チェック
+- 相関項目
+
+* したいこと [#q6720859]
+
+たとえば、『新しいパスワード』と『新しいパスワード(再入力)』が同じであることをチェックしたい。
+
+* どうやって [#ydee33fb]
+
+@AssertTrueを使うと楽に実装できる。
+
+ @Data
+ public class PasswordResetForm {
+ 
+ 	@NotBlank
+ 	private String currentPassword;
+ 	@NotBlank
+ 	private String newPassword;
+ 	private String newPasswordConfirm;
+ 
+ 	@AssertTrue(message="{application.validation.multiField.newPasswordConfirmed.message}")
+ 	public boolean isNewPasswordConfirmed() {
+ 		if (newPassword == null || newPassword.isEmpty()) return true;
+ 		return newPassword.equals(newPasswordConfirm);
+ 	}
+ 	
+ }
+
+Thymeleaf上では次のように書ける。
+
+ <p th:if="${#fields.hasErrors('*{newPasswordConfirmed}')
+    th:errors="*{newPasswordConfirmed}">
+ エラーメッセージ
+ </p>
+
+* ノート [#wdb8b41c]
+
+- 入力があるときだけ、などにしたい場合、順番を気にする必要がある
+- 相関チェックするValidatorを作成することもできる(そのほうがいいかもしれない)
+- メッセージはValidationMessages.propertiesの方に書く(messages.propertiesでなく)
+
+* 参考 [#g799de2b]
+- [[Spring Boot 入力チェック - NOTEです>http://ziqoo.com/wiki/index.php?Spring%20Boot%20%C6%FE%CE%CF%A5%C1%A5%A7%A5%C3%A5%AF]]
+- [[Spring Boot/突合チェックする]]

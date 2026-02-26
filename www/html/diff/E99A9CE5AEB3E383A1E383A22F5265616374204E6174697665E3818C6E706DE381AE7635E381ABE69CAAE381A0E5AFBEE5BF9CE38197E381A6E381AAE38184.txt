@@ -1,0 +1,50 @@
+-#author("2017-12-24T04:12:14+00:00","default:haruki","haruki")
++#author("2017-12-24T04:12:34+00:00","default:haruki","haruki")
+ * キーワード [#mea65f68]
+ - React Native
+ - create-react-native-app
+ - npm
+ - nodebrew
+ 
+ * 現象 [#mc408cf9]
+ 
+ create-react-native-appすると次のメッセージが現れる。
+ 
+  *******************************************************************************
+  ERROR: npm 5 is not supported yet
+  *******************************************************************************
+  
+  It looks like you're using npm 5 which was recently released.
+  
+  Create React Native App doesn't work with npm 5 yet, unfortunately. We
+  recommend using npm 4 or yarn until some bugs are resolved.
+  
+  You can follow the known issues with npm 5 at:
+  https://github.com/npm/npm/issues/16991
+  
+  *******************************************************************************
+ 
+ * 原因 [#q6468fed]
+ 
+ メッセージのとおり、npmのv5には対応してないらしい。
+ 
+ * 対策 [#tb3434da]
+ 
+ 下げるしかない？
+ 
+  $ nodebrew install-binary v7.10.1
+  $ nodebrew use v7.10.1
+  $ npm -v
+  4.2.0
+ 
+-バージョンごとにCLIもインストールしてあげる必要があるのね。
++バージョン変えるとCLIもインストールしてあげる必要があるのね。
+ 
+  $ npm install -g create-react-native-app
+ 
+ * 備考 [#c7e02d6a]
+ 
+ npmのv4なのはnodeのv7までのようです（参考のリンクを参照）。
+ 
+ * 参考 [#yc881455]
+ - [[リリース一覧 | Node.js>https://nodejs.org/ja/download/releases/]]

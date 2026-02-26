@@ -1,0 +1,87 @@
+-#author("2018-05-14T06:08:55+00:00","default:haruki","haruki")
++#author("2018-05-14T06:10:49+00:00","default:haruki","haruki")
+ * キーワード [#i72a4e02]
+ - JavaScript
+ - prototype
+ 
+ * したいこと [#ef33a54d]
+ 
+ サーバーから受け取るリストはArrayとして扱える。そこに業務的な独自関数を追加して、ロジックの流出を防ぎたい。
+ 
+ たとえば、次のように相乗できる配列を作ることを考えてみる。
+ 
+  const org = { __content: [1, 2, 3] }; // または直接 [1, 2, 3]
+  const collection = raisableCollectionOf(org);
+  collection.raise().raise(); // [1, 16, 81]
+ 
+ * どうやって [#h0c63197]
+ 
+ ** コレクションをフィールドにもつなら [#je6c2a14]
+ 
+  const org = { __content: [1, 2, 3] };
+ 
++とする場合。（フロント側ではあんまりやらないかも。）
++
+ ファーストクラスコレクションの形でデータをもつなら、その型のprototypeに関数をもたせることができる。
+ 
+  function FirstClassCollection() {
+    this.__content;
+  }
+  FirstClassCollection.prototype.size = function () {
+    return this.__content.length;
+  };
+  FirstClassCollection.prototype.map = function (...args) {
+    const newCollection = Object.create(Object.getPrototypeOf(this));
+    newCollection.__content = this.__content.map(...args);
+    return newCollection;
+  };
+  
+  function firstClassCollectionOf(target) {
+    Object.setPrototypeOf(target, FirstClassCollection.prototype);
+    return target;
+  }
+ 
+  function RaisableCollection() {
+    this.__content;
+  }
+  Object.setPrototypeOf(RaisableCollection.prototype, FirstClassCollection.prototype);
+  RaisableCollection.prototype.raise = function() {
+    return this.map(value => value * value)
+  };
+  
+  function raisableCollectionOf(target) {
+    Object.setPrototypeOf(target, RaisableCollection.prototype);
+    return target;
+  }
+ 
+ ** コレクションをフィールドにもたなくてもいい [#r608d698]
+ 
+  const org = [1, 2, 3];
+ 
++とする場合。（こちらの方が普通かも。）
++
+ 表示データとしてはわざわざコレクションをフィールドにもつファーストクラスコレクションの形にしないかもしれない。
+ 
+ JavaScriptではprototypeチェーンでArrayをラップして関数をもたせることができる。
+ 
+  function RaisableCollection() {
+  }
+  Object.setPrototypeOf(RaisableCollection.prototype, Array.prototype);
+  RaisableCollection.prototype.raise = function() {
+    return raisableCollectionOf(
+      this.map(value => value * value)
+    );
+  };
+  
+  function raisableCollectionOf(target) {
+    Object.setPrototypeOf(target, RaisableCollection.prototype);
+    return target;
+  }
+ 
+ * なお書き [#tb4d38cf]
+ 
+ - 新しいclassもprototypeのシンタックスシュガーなんだってね。
+ 
+ * 参考 [#n43aaca9]
+ - [[Object.create() - JavaScript | MDN>https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Object/create]]
+ - [[Object.setPrototypeOf() - JavaScript | MDN>https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf]]

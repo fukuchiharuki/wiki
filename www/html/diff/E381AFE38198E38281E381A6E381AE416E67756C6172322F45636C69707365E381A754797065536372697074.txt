@@ -1,0 +1,96 @@
+ vimでもいいのですが、やっぱりIDEがほしい。使い慣れたEclipseでTypeScriptな環境を作ることにしました。
+ 
+-&color(red){-- 嘘です！[[Atomを使うことにしました>../AtomでTypeScriptを書く]]};
++&color(red){-- 嘘です！[[Atomを使うことにしました>../AtomでTypeScript]]};
+ 
+ * TypEcs - TypeScript IDE for Eclipse [#oce6a7be]
+ 
+ - [[TypEcs - TypeScript IDE for Eclipse>http://typecsdev.com]]
+ 
+ Quick Startのとおりでインストールできる。普通にプラグインをインストールするやり方。
+ 
+ ** NodeJSがインストールされていません [#y81968bc]
+ 
+ #ref(an_error.png,center)
+ 
+  An error occured during TypeScript engine initialization.
+  TypeScript runtime requires NodeJS that should be installed separately.
+  It seems NodeJS is not installed or is not available in system path.
+ 
+ NodeJSが見つからないからTypeScriptエンジンが初期化できないそうです。いやいや、まてまて、そんなはずはない。Hello Worldやったもん。nodeもnpmも動いてるはずだよ？
+ 
+ - Macを使っています
+ - nodebrewでnodeをインストールしました
+ 
+ *** /usr/local/bin/nodeなら見つかった [#i07a3879]
+ 
+ シンボリックリンクで /usr/local/bin/node を作ってあげるとエラーはでなくなった。PATH変数をみているのではどうやらなさそう。でもこのシンボリックリンクは気持ちが悪い。共有の場所からホームディレクトリへのシンボリックリンクはさすがにイヤ。
+ 
+ *** /usr/local/bin/nodeを作る [#sf54ae7d]
+ 
+ ホームディレクトリを直に書いてシンボリックリンクを張るのは気持ちが悪いので、環境変数を使ってホームディレクトリ下のnodeに橋渡しするスクリプトを書いて置いておくことにしました。なければ呼べないだけ。
+ 
+ - /usr/local/bin/node 
+  $HOME/.nodebrew/current/bin/node $@
+ 
+ *** %%システムパスにnodebrewを追加する%% [#sf1f3da9]
+ 
+ &color(red){-- この方法では解決できていませんでした};
+ 
+ Macのシステムパスを追加するには/etc/paths.d/にパスを書いたファイルを作成してあげればよいみたいです。
+ 
+ - /etc/paths.d/node
+  ~/.nodebrew/current/bin
+ 
+ 次のようにたどれます。
+ 
+ - /etc/profile から /usr/libexec/path_helper を実行している
+ - path_helperは /etc/paths.d/* を読み上げている
+ - /etc/paths.d/node を追加する
+ 
+ この記事が教えてくれました。
+ 
+ - [[PATH設定がどこにあるか分からないときに見るべきファイル - Qiita>http://qiita.com/gm_kou/items/24dec9f0e51b9343651b]]
+ 
+ * Validationを省く [#nc86c252]
+ 
+ ううん、エラーがいっぱい出るよう。動くからいいんだけど、さすがに気になるのでエラーがでないようにします。
+ 
+ ** node_modulesは見ない [#aa82de17]
+ 
+ node_modulesはnpmでインストールされるものなのでここはみてくれなくてもいい。くれなくてもいいというか、ここでエラー出ちゃうのって＞＜
+ 
+ *** Include Path [#m5c317f2]
+ 
+ + プロジェクトを右クリックして Properties を開く
+ + JavaScript > Include Path を選択
+ + Excluded: (None) を選択して Edit... をクリック
+ #ref(include_path_1.png,center)
+ + Exclusion patterns: の方の　Add... をクリック
+ #ref(include_path_2.png,center)
+ + Browse... をクリック
+ #ref(include_path_3.png,center)
+ + ファイル一覧から node_modules を選択して OK、OK、Finish をクリック
+ #ref(include_path_4.png,center)
+ + Excluded: node_modules/ の表示を確認
+ #ref(include_path_5.png,center)
+ 
+ *** HTMLとJSON [#k45f7558]
+ 
+ + メニューの Eclipse > 環境設定... をクリック
+ + Validation を選択
+ + HTML Syntax Validator のチェックを外す（Angular2の書き方だと必ず警告が出てダルいので）
+ + JSON Validator 行の ... をクリック
+ #ref(json_1.png,center)
+ + Add Exclude Group... をクリック
+ + Exclude Group を選択して Add Rule... をクリック
+ #ref(json_2.png,center)
+ + Folder or file name を選択して Next > をクリック
+ #ref(json_3.png,center)
+ + Browse Folder... をクリック
+ + 何も選択せずそのまま 開く をクリック（ここが謎のコツ）
+ #ref(json_4.png,center)
+ + node_modules を入力して Finish をクリック
+ #ref(json_5.png,center)
+ + Exclude Group に Folder: node_modules の表示を確認
+ #ref(json_6.png,center)

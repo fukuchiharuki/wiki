@@ -1,0 +1,69 @@
+ *参考 [#z2a0dfba]
+ -WHERE句の最適化（リファレンス）
+ --http://dev.mysql.com/doc/refman/4.1/ja/where-optimisations.html
+ -EXPLAIN
+ --http://nippondanji.blogspot.com/2009/03/mysqlexplain.html
+ -インデックス
+ --左端プリフィックス
+ ---http://dev.mysql.com/doc/refman/4.1/ja/mysql-indexes.html
+ --インデックスの長さ
+ ---http://hamamuratakuo.blog61.fc2.com/blog-entry-407.html
+ --インデックスの長さを指定する
+ ---http://dev.mysql.com/doc/refman/4.1/ja/create-index.html
+ --INをUNION ALLで代替
+ ---http://www.mysqlperformanceblog.com/2006/08/10/using-union-to-implement-loose-index-scan-to-mysql/
+ --UNION ALLしてCOUNTするときの注意
+ ---http://ameblo.jp/udzura/entry-10122301087.html
+ -全文検索
+ --マルチバイト文字対応（4.1.1以降）
+ ---http://www.tatamilab.jp/rnd/archives/000389.html
+ -JOIN+ソート
+ --http://nippondanji.blogspot.com/2009/03/using-filesort.html
+ --ORDER BYについてMySQL公式
+ ---http://dev.mysql.com/doc/refman/5.1/ja/order-by-optimization.html
+ -カウント
+ --FOUND_ROWS()
+ ---http://dev.mysql.com/doc/refman/5.1/ja/information-functions.html
+ --Covering Index
+ ---http://nippondanji.blogspot.com/2010/03/innodbcount.html
+ -パーティショニング
+ --http://itpro.nikkeibp.co.jp/article/COLUMN/20080710/310540/
+ --http://nippondanji.blogspot.com/2009/05/linear-hash.html
+ -レプリケーション
+ --http://dev.mysql.com/doc/refman/5.1/ja/replication-solutions-scaleout.html
+ --http://dev.mysql.com/doc/refman/5.1-olh/ja/innodb-and-mysql-replication.html
+ --http://dev.mysql.com/doc/refman/5.1/ja/replication-solutions-diffengines.html
+ --http://opendatabaselife.blogspot.com/2009/08/innodbmyisam.html
+ -InnoDBとMyISAM
+ --http://www.inter-office.co.jp/contents/95/
+ -なんかいろいろ
+ --http://d.hatena.ne.jp/LukeSilvia/20080909/p1
+ --http://nippondanji.blogspot.com/2009/02/mysql10.html
+ --http://pagerank.cocolog-nifty.com/blog/mysql/index.html
+ --http://txqz.net/blog/2006/12/13/0943
+ --http://hain.jp/index.php/tech-j/2006/12/18/p106
+ 
+ *参考になりそうな実際例 [#t2c5e745]
+ -はてなの例
+ --http://d.hatena.ne.jp/naoya/20081111/1226395400
+ -mixiの例
+ --http://blog.livedoor.jp/nipotan/archives/50538571.html
+ 
+ *まとめ [#m107bffe]
+ -IN句でインデックスを使わないのは複合インデックスのうち先頭のみ
+ -複合インデックスの順とWHERE句で出現する順は同じでなくてよい
+ -ファイルソートは一番まずい
+ -時間はchar型で保存するのがいい
+ 
+ **MySQLのコメント [#fb9a97fd]
+-> MySQL では利用可能な場合でもインデックスが使用されない場合が
+-> あることに注意してください。この一例として、インデックスの使
+-> 用によって、MySQL がテーブルの 30% を超えるレコードにアクセス
+-> する必要が生じる場合が挙げられます（この場合は、必要なシーク
+-> が大幅に減少するため、テーブルスキャンのほうが高速になる可能
+-> 性が高くなります）。 ただしこのクエリに、レコードの一部のみを
+-> 取り出す LIMITが使用されている場合、結果で返される少数のレコー
+-> ドを迅速に検索できるため、MySQL はインデックスを使用します。
++> MySQL では利用可能な場合でもインデックスが使用されない場合があることに注意してください。この一例として、インデックスの使用によって、MySQL がテーブルの 30% を超えるレコードにアクセスする必要が生じる場合が挙げられます（この場合は、必要なシークが大幅に減少するため、テーブルスキャンのほうが高速になる可能性が高くなります）。ただしこのクエリに、レコードの一部のみを取り出す LIMITが使用されている場合、結果で返される少数のレコードを迅速に検索できるため、MySQL はインデックスを使用します。
+ 
+ -WHERE句で絞り込んだ結果がテーブルの30%を超えるとサーチしてフェッチするコストのが大きい

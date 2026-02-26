@@ -1,0 +1,11 @@
++#author("2023-05-31T00:55:04+00:00","default:haruki","haruki")
++自分用。
+ 
++* Keyboard Shortcuts [#u8534d1c]
++
++- Go Back: option+command+left
++- Go Forward: option+command+right
++- View: Open Previous Editor: control+P
++- View: Open Next Editor: control+N
++- Go to File...: command+P
++- Show all Commands: shift+command+P

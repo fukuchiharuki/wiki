@@ -1,0 +1,38 @@
+#author("2017-04-14T04:03:19+00:00","default:haruki","haruki")
+* キーワード [#ye5d4f6f]
+- Spring Boot
+- application.yml
+- プロパティ設定
+
+* したいこと [#ac2b1395]
+
+環境ごとに（例えば本番環境やステージング環境）、プロパティを設定する。ただし、どの環境でもバイナリは同じにしたい。
+
+* どうやって [#fd716cc5]
+
+** プロパティファイル [#c02bd490]
+
+ベースとなるプロパティと環境ごとのプロパティを用意する。
+
+- application.yml
+- application-production.yml
+- application-staging.yml
+
+ベースとなるプロパティが読まれて環境ごとのプロパティが上書きされる、ことを前提に分割する。
+
+** 実行 [#je4fb77c]
+
+*** jarファイルを実行する場合 [#oe8940c9]
+
+起動パラメータを指定してjarファイルを実行する。
+
+ java -jar --spring.profiles.active=production hoge.jar
+
+*** warファイルをデプロイする場合 [#m5a62005]
+
+環境変数をセットしてデプロイする。
+
+ export SPRING_PROFILES_ACTIVE=production
+
+* 参考 [#l0afc3be]
+- [[Spring-Bootの設定プロパティと環境変数 - Qiita>http://qiita.com/NewGyu/items/d51f527c7199b746c6b6]]

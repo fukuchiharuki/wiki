@@ -1,0 +1,47 @@
+#author("2017-12-08T06:06:11+00:00","default:haruki","haruki")
+#contents
+
+勉強がてらまとめたものです。違うこと書いてるかもなので注意ね。
+
+* Store [#ba1176f0]
+
+React/Reduxにおいて、''State''を管理する''Store''はただひとつだけ存在します。
+
+''Store''がただひとつだけであるのは、制御の流れをシンプルにするためです。''State''を更新するための''Action''はすべて''Store''が受け取ります。
+
+「グローバルにたったひとつ！？正気で言ってんのか！？」と思いますが、''Reducer''ごとにそれぞれの''State''を取り扱うので、グローバルにひとつの構成を把握する必要はありません。
+
+* State [#ja9480f9]
+
+画面表示の対象にするデータが''State''です。
+
+''State''は''Store''においてのみ更新することができます。更新は''Store''が''Action''を受け取ることで実行されます。更新処理の実体は''Reducer''です。
+
+* Action [#t01d7b4c]
+
+''State''を更新するきっかけになるのが''Action''です。
+
+''Action''は単にオブジェクト（を返却する関数）で、''State''を更新するのに必要なデータをもちます。すなわち、どのような作用であるかを識別するための種別とどのように作用させるかを示す値です。
+
+たとえば次のような''Action''を作ることができます。
+
+ const inputNumber = (number) => ({
+     type: ActionTypes.INPUT_NUMBER,
+     number
+ })
+
+* Reducer [#kb692673]
+
+''Action''をもとに''State''を更新するのが''Reducer''です。
+
+''Reducer''は単に新しい''State''を返却する関数です。''Action''がもつ種別と値に応じて新しい''State''を返却しますが、もとの''State''に変更を加えては&color(red){いけません};。
+
+次のように''Reducer''は単に関数です。
+
+ const HogeReducer = (state = initialState, action) => {
+   // actionの種別によって分岐などして新しいstateを作成して返却する
+   return {
+     ...state,
+     // 更新内容
+   }
+ }

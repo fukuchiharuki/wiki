@@ -1,0 +1,20 @@
+*キーワード [#j1c7c690]
+-Apache
+-.htaccess
+
+*概要 [#xae30089]
+.htaccessを使って正規表現にマッチするアクセスをリダイレクトさせたい。
+
+*方法 [#ge39056f]
+ルートにアクセスがあったときにhogemogeにリダイレクトさせるには次のようにします。
+ RedirectMatch ^/$ http://hogemoge/
+
+*解説 [#p3649a63]
+.htaccessにはRedirectを書くことができますが、RedirectMatchを使用するともっと限定した条件をつくることができます。例えば上記の例ではルートへのアクセスは外部にリダイレクトさせますが、ファイルへのアクセスがあればそのままです（正規表現にマッチしないので。）
+
+また、RedirectMatchを使ってRedirect相当のことをするにはグループを用いることで実現できます。
+ RedirectMatch (.*)\.gif http://hogemoge$1.gif
+例えば上記のようにすればgifへのアクセスのみをhogemogeにリダイレクトさせることができます。
+
+*参考 [#q37fef42]
+-http://httpd.apache.org/docs/2.0/ja/mod/mod_alias.html

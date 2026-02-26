@@ -1,0 +1,18 @@
++*関連 [#l683eb8b]
++-JavaScript/jQuery
++-HTML
+ 
++*現象 [#i3df7c46]
++jQueryにて次のコードでチェックボックスをオンにできない。
++ $('#hoge').attr('checked', 'checked');
++
++*原因 [#f0433091]
++HTMLのチェックボックスタグに名前がないから。
++
++*対策 [#fd7b477d]
++HTMLのチェックボックスタグに名前をつけてあげる。
++ <input type="checkbox" name="hoge" id="hoge"></input>
++
++*参考 [#ybeae1b2]
++-(なし)
++

@@ -1,0 +1,47 @@
+*キーワード [#u0c6fd7d]
+- Titanium Mobile
+- Alloy
+
+* 関連 [#sc3fb7ee]
+- [[../ソースコードを分離する]]
+
+*目標 [#s8651342]
+ピュア JavaScript なコードを分離します。
+
+*方法 [#d1bab43b]
+** ディレクトリを用意する [#z92dd45a]
+
+app の下に lib ディレクトリを作成します。
+ /
+ └ app/
+ 　└  lib/
+
+** 分離するコードを作成する [#ddd7d692]
+- /app/lib/cycles/SettingsFactory.js
+ function SettingsFactory() {
+ 	var self = {};
+ 
+ 	self.create = function(version) {
+ 		var model = Alloy.createModel('Settings');
+ 		model.set({
+ 			version: version
+ 		});
+ 		return model;
+ 	};
+ 	
+ 	return self;
+ };
+ module.exports = SettingsFactory;
+
+** require する [#bda0c62b]
+- /app/alloy.js
+ Alloy.Globals.Cycles = {};
+ Alloy.Globals.Cycles.SettingsFactory = require('cycles/SettingsFactory');
+
+*解説 [#o775b5ff]
+lib ディレクトリの下に作成してそこからの相対パスで require します。
+
+''※ ここに至らずにだいぶハマった''
+
+*参考 [#k557deb1]
+- [[Titanium alloy &amp; CommonJS files &raquo; Community Questions &amp; Answers &raquo; Appcelerator Developer Center>https://developer.appcelerator.com/question/150114/titanium-alloy--commonjs-files]]

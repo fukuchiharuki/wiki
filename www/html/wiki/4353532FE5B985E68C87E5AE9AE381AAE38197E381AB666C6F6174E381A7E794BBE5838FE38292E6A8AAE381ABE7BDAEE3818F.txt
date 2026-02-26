@@ -1,0 +1,30 @@
+*キーワード [#g60d82de]
+-CSS
+--float
+--overflow
+
+*概要 [#nc3d4a5d]
+幅指定なしに float で画像を横に置くときのtip。
+
+*方法 [#he3eedf4]
+ <div>
+   <div style="float: left;">
+     <img src="(画像ファイル)">
+   </div>
+   <div style="overflow: hidden;">
+     テキストテキストテキスト
+   </div>
+ </div>
+
+*解説 [#w3308dd0]
+-画像側のdivは「float: left;」を指定する
+-テキスト側のdivは「overflow: hidden;」を指定する
+
+こうすると、
+-画像側は float によってコンテンツ依存の幅になる
+-テキスト側は overflow によって残りの幅になる
+
+はみ出した部分を表示しない、の指定(overflow)がなぜかはみ出さないになるのはなんで？？
+
+*参考 [#v3518ef1]
+-http://www.acky.info/tips/css/00028.html

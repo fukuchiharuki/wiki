@@ -1,0 +1,14 @@
++*関連 [#x6bbb6d7]
++-sed
+ 
++*概要 [#hb8e2923]
++入力と出力を同じにしてsedを使いたいとき。
++
++*方法 [#tf760858]
++ sed -i -e (やりたいこと) (ファイル名)
++
++*解説 [#w1300ec2]
++iオプションが「--in-place」ということなのだそうです。
++
++*参考 [#q6a18c85]
++-http://www.dab.hi-ho.ne.jp/sasa/biboroku/unix/sed-i.html

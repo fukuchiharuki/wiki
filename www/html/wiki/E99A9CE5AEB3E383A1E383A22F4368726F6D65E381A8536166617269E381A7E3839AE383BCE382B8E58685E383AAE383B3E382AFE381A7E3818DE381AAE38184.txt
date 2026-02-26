@@ -1,0 +1,27 @@
+*キーワード [#p002a07e]
+-HTML/CSS
+-after(疑似要素)
+
+*現象 [#a585423d]
+Google ChromeとSafariでページ内リンクできない。
+
+-HTML
+ <div id="header"></div>
+ 
+ <a href="#header"><span></span></a>
+
+-CSS
+ a[href="#header"] > span:after {
+   content: "このページのトップへ"
+ }
+
+見栄えはアンカーだがリンクになってない。
+
+*原因 [#ub39511b]
+どうも疑似要素ではリンクできないくさい。
+
+*対策 [#e73490c5]
+JavaScriptで差し替えた。
+ jQuery('a[href="#header"] > span').after("このページのトップへ").remove();
+
+*参考 [#z986afd6]

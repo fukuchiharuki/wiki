@@ -1,0 +1,43 @@
+ * キーワード [#x378524e]
+ - Angular2
+ - ディレクトリ構成
+ 
+ * したいこと [#d3849b52]
+ 
+ ディレクトリ構成
+ 
+  quickstart/
+    app/
+    node_modules/
+    index.html
+    systemjs.config.js
+ 
+ となっているものを、
+ 
+  index.html
+    quickstart/
+      app/
+      node_modules/
+      systemjs.config.js
+ 
+ とできないものか。
+ 
+ * どうやって [#tda4d6a9]
+ 
+ systemjs.config.jsをbaseURLを追記すると動いた。
+ 
+  System.config({
+-   baseURL: '/quickstart'
++   baseURL: '/quickstart',
+ 
+ * ノート [#j0163473]
+ 
+ SystemJSはモジュールローダーで次のメリットがある。
+ 
+ - <script>を大量に書かない
+ - 順番も気にしない
+ 
+ ビルドしてminifyする方法がきっとあると思うんだけど、知らない。誰か教えて＞＜
+ 
+ * 参考 [#p117566c]
+ - [[SystemJS 一巡り>http://minotaur.badwitch.io/getting-started-with-systemjs/]]

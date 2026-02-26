@@ -1,0 +1,33 @@
++#author("2017-10-03T09:47:22+00:00","default:haruki","haruki")
++* キーワード [#bc956427]
++- DataTables
++- drawCallback
+ 
++* 現象 [#ra633aaf]
++
++データが存在しないと次の内容の行ができてしまう。
++
++ No data available in table
++
++* 原因 [#lf033949]
++
++障害というか、DataTablesの仕様。
++
++* 対策 [#y2964d8f]
++
++描画後に無理やり消してやる。
++
++ .DataTable({
++   .. options ..
++   drawCallback: function(settings) {
++     $('.dataTables_empty').parent().hide();
++   }
++ });
++
++* 備考 [#xd1089e6]
++
++この行を出力しないためのオプションはないっぽい。
++
++* 参考 [#i6f9194c]
++- [[drawCallback>https://datatables.net/reference/option/drawCallback]] (Official)
++

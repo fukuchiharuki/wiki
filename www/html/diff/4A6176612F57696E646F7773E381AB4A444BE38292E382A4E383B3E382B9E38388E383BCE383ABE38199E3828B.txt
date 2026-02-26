@@ -1,0 +1,22 @@
+ *目標 [#qd1c93c5]
+ -JDKをインストールする
+ 
+ *手順 [#c86b09f8]
+ **インストールファイルをダウンロードする [#db0a2f8a]
+ +次のサイトの JavaPlatform(JDK)->JDK を選択する
+ --http://java.sun.com/javase/ja/6/download.html
+ +Platformに Windows を選択する
+ +「I agree to...」にチェックを入れる
+ +Continue を選択する
+ +jdk-6u24-windows-i586.exe（2011-04-27時点）をクリックしてダウンロードする
+ 
+ **JDKをインストールする [#r98b9838]
+ +ダウンロードしたインストールファイルを実行する
+ +次へ、完了をクリックしていく
+ 
++#ref(JDKインストール00.JPG,center,70%)
++#ref(JDKインストール01.JPG,center,70%)
++#ref(JDKインストール02.JPG,center,70%)
++#ref(JDKインストール03.JPG,center,70%)
+ 
+ *参考 [#effbee7f]

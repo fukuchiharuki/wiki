@@ -1,0 +1,2 @@
++*参考 [#b213b0ad]
++-http://jibun.atmarkit.co.jp/ljibun01/cs/201001/02/01.html

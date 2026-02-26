@@ -1,0 +1,30 @@
+* キーワード [#qc7092bd]
+- sleep
+- usleep
+- expr
+
+* したいこと [#l1ce3e8e]
+
+ミリ秒単位で待つ処理を入れたい。
+
+* どうやって [#i8db3a99]
+
+ usleep $(($RANDOM * 1000))
+
+* ノート [#j6792b1d]
+
+ usleep
+
+は100万分の1秒単位の指定で待つ。
+
+ $RANDOM
+
+で0から32767までの整数を取得することができるが小さいので、
+
+ $((計算式))
+
+で計算する。これはexprするのと同じ。
+
+* 参考 [#v6227e28]
+- [[【レビュー】シェルやシェルスクリプトで乱数を使う2つの方法 | マイナビニュース>http://news.mynavi.jp/articles/2010/04/30/shell-random-number/]]
+- [[Studio ODIN - blog風小ネタ集 &gt; Bash で計算してみる>http://www.odin.hyork.net/write/write0293.html]]

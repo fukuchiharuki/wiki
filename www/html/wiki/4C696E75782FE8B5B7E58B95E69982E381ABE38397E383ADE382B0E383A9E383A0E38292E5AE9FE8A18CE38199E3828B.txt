@@ -1,0 +1,17 @@
+*キーワード [#n20f2120]
+-Linux
+-rc
+
+*概要 [#i0525e14]
+起動時にプログラムを実行させます。
+
+*方法 [#ec07f510]
+/etc/rc.d/rc.local に記述します。
+ # vi /etc/rc.d/rc.local
+
+*解説 [#k2492dea]
+どうも /etc/init.d なサービス起動よりも前にキックされてる？
+
+*参考 [#f910fcbd]
+-[[Linux起動時にコマンドやプログラムを自動実行させる｜Linux Tips>http://www.linuxmaster.jp/linux_skill/2007/04/linux-1.html]]
+-[[Windowsユーザーに教えるLinuxの常識（最終回）：Linux起動の仕組みを理解しよう［rcスクリプト編］ - ＠IT>http://www.atmarkit.co.jp/ait/articles/0206/04/news001.html]]

@@ -1,0 +1,43 @@
+ *関連 [#nca33ce2]
+ -Perl
+ 
+ *概要 [#d9e7a07d]
+ Perlでクラスを作成する
+ 
+ *方法 [#l0add70f]
+  #!/usr/bin/perl
+  {
+    package Hoge;
+  
+    # コンストラクタ
+    sub new {
+      my $class = shift;
+      my $this = {
+        foo = 10,
+      };
+      return bless $this, $class;
+    }
+  
+    # メソッド
+    sub getFoo {
+      my $this = shift;
+      return  $this->{foo};
+    }
+  }
+  {
+    package main;
+-   $hoge = new Hoge;
++   $hoge = new Hoge();
+    print $hoge->getFoo() . "\n";
+  }
+ 
+ *解説 [#p8ac2360]
+ ポイントは
+ -パッケージ分割
+ -shift（引数）
+ -bless
+ 
+ えっと、急ぎメモなので正直良く分かってないです。
+ 
+ *参考 [#vc21c846]
+ -http://rfs.jp/sb/perl/04/02.html

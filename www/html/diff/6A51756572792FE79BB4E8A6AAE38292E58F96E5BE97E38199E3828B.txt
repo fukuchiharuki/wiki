@@ -1,0 +1,17 @@
++*関連 [#s1ada969]
++-JavaScript
++-jQuery
+ 
++*概要 [#a79267e9]
++jQueryで直親要素を取得します。
++
++*方法 [#vc7ffa84]
++ var parent = $('#child').parent().get(0);
++
++*解説 [#i4e37a04]
++.parent()で取得できるのが近いところから配列になってるっぽいです。
++
++*参考 [#k5d6373f]
++-http://semooh.jp/jquery/api/traversing/parent/%5Bexpr%5D/
++
++

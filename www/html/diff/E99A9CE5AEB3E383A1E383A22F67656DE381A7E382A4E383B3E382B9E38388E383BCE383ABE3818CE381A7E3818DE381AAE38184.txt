@@ -1,0 +1,27 @@
++#author("2017-10-28T06:43:49+00:00","default:haruki","haruki")
++* キーワード [#k284f0f7]
++- ruby
++- gem
+ 
++* 現象 [#oef8f192]
++
++次のエラーが出てインストールができない。
++
++ Permission denied @ dir_s_mkdir
++
++* 原因 [#yb554830]
++
++root権限がないから。
++
++* 対策 [#f0675bad]
++
+++ sudoでやる
+++ sudoが要らないようにrubyを用意する→rvm
++
++* 備考 [#u6e02311]
++
++rvmでrubyを管理しておくのがよさそう、か。
++
++* 参考 [#xfd13903]
++- [[ruby - Why do I get a &quot;permission denied&quot; error while installing a gem? - Stack Overflow>https://stackoverflow.com/questions/17550903/why-do-i-get-a-permission-denied-error-while-installing-a-gem]]
++

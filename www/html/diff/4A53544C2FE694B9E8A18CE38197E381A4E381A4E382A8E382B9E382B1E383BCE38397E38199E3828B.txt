@@ -1,0 +1,22 @@
++*関連 [#sef68dc7]
++-Java
++-JSP
++-JSTL
+ 
++*概要 [#r705905e]
++c:outでエスケープさせたいが改行は<br>で表示させたい。
++
++*方法 [#y8b889ea]
++ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
++ <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
++ 
++ <c:forEach var="str" items="${fn:split(text,'
++ ')}" ><c:out value="${str}" /><br></c:forEach>
++ただし、textでリクエスト属性に改行を含む文字列を保存している場合。
++
++*解説 [#e2e487a9]
++fn:splitでsplitができるわけですがどういうわけか\\nではエラーになります。苦肉の策で該当箇所に改行を書いてしまいます。
++
++*参考 [#ce3a9d90]
++-http://tech.g.hatena.ne.jp/koseki/20050706/jstlreturnreplace
++

@@ -1,0 +1,30 @@
+*キーワード [#dad1c1ef]
+-Apache
+-.htaccess
+-subversion
+
+*概要 [#y0cfae51]
+Perl や PHP などでアプリケーションを書いたとき、subversion で checkout したものを update して更新してしまうのが楽ですよね。しかしそうすると subversion 管理用の「.svn」ディレクトリが作成されてしまうのでこれを隠したいです。
+
+*方法 [#t616ab6f]
+ドキュメントルートなディレクトリの .htaccess を次のようにします。
+- .htaccess
+ RewriteEngine On
+ RewriteRule (^|/).svn/ - [F,L] 
+
+ただしこれをやると Redmine から http な URL にアクセスできないようになってしまうので、間に ip アドレスを制限する行を挟むといいです。
+- .htaccess
+ RewriteEngine On
+ RewriteCond %{REMOTE_ADDR} !^(IPアドレス)$
+ RewriteRule (^|/).svn/ - [F,L] 
+
+(IPアドレス)にはパスするアドレスを書きますが、セパレータの「.」は「\.」と書くこと。
+
+*解説 [#lf7c05c7]
+.htaccess の書き方については公式([[RewriteRule Flags - Apache HTTP Server>http://httpd.apache.org/docs/2.2/rewrite/flags.html]])を参照ください。
+
+.htaccess を有効にする方法については公式([[core - Apache HTTP サーバ>https://httpd.apache.org/docs/2.4/ja/mod/core.html#allowoverride]])を参照ください。
+
+*参考 [#hf67b5a1]
+-[[RewriteRule Flags - Apache HTTP Server>http://httpd.apache.org/docs/2.2/rewrite/flags.html]]
+-[[core - Apache HTTP サーバ>https://httpd.apache.org/docs/2.4/ja/mod/core.html#allowoverride]]

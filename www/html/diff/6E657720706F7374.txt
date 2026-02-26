@@ -1,0 +1,3 @@
+-#author("2017-07-23T05:04:05+00:00","default:haruki","haruki")
+-new post
++#author("2017-07-23T07:45:05+00:00","default:haruki","haruki")

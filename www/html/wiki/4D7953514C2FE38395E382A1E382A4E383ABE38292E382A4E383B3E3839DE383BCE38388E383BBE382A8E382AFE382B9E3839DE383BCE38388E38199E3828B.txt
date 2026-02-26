@@ -1,0 +1,22 @@
+*関連 [#h25d393f]
+-MySQL
+
+*概要 [#be5dae87]
+タブ区切りのデータをインポートしたりエクスポートしたりします。
+**制限事項 [#cbb41ee1]
+各カラム値に改行はないものとして
+
+*方法 [#u0d76b0c]
+**インポート [#q5c858cd]
+ $ mysql --local-infile=1 -u ${user} -p${passwd} ${database} -e "LOAD DATA LOCAL INFILE '${file}' REPLACE INTO TABLE ${table} FIELDS TERMINATED BY '\t'
+**エクスポート [#oa641b2c]
+ $ mysql -u ${user} -p${passwd} ${database} -e "SELECT * FROM ${table} INTO OUTFILE '${file}' FIELDS TERMINATED BY '\t'
+
+*解説 [#ye26e4ca]
+LOAD DATA LOCALする場合、環境によってはオプション「--local-infile=1」が必要です。
+
+SELECT INTO OUTFILEするユーザーはmysqldを動かしているユーザーです。/tmp/下にファイル指定する必要があるかもしれません。
+
+*参考 [#ge30c2d1]
+-http://oshiete.goo.ne.jp/qa/1030943.html
+-http://q.hatena.ne.jp/1159437279

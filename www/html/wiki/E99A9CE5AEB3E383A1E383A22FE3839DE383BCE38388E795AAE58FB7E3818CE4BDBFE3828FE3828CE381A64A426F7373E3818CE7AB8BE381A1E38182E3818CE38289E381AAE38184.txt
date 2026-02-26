@@ -1,0 +1,28 @@
+*関連 [#x6e3e588]
+-JBoss (Tomcat)
+-netstat
+
+*現象 [#t8f9f1bc]
+JBoss (Tomcat)を起動しようとすると次のエラーになる。
+ ERROR [AbstractKernelController] Error installing to Start: （どうのこうの）
+ java.rmi.server.ExportException: Port already in use: 1090; nested exception is: 
+
+*原因 [#k9918d47]
+ポート番号が既に使われているために起動できない様子。
+
+*対策 [#ke7eb95f]
+まずnetstatでポート番号を使っているプロセスを特定する。
+ > netstat -no
+ 
+ Active Connections
+ 
+   Proto  Local Address          Foreign Address        State           PID
+           ～省略～
+   TCP    xxx.xx.xxx.xxx:1090    xxx.xx.xxx.xxx:6080    ESTABLISHED     3088
+           ～省略～
+
+次にタスクマネジャで該当するプロセスを殺す。~
+netstat で State が ESTABLISH になっている場合は大丈夫かどうか確認を。
+
+*参考 [#y4762f80]
+-http://www.atmarkit.co.jp/fwin2k/win2ktips/234netstat/netstat.html

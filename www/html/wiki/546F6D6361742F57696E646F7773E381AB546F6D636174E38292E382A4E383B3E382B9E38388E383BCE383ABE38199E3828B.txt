@@ -1,0 +1,42 @@
+*目標 [#ja762ff2]
+-Tomcatをインストールする
+-Tomcatを起動する
+
+*手順 [#q7dcd7e0]
+
+**Tomcatをダウンロードする [#sbf6261a]
++次のサイト左の Download->Tomcat7.0（2011-04-27時点）を選択する
+--http://tomcat.apache.org/
++画面中央の Binary Distributions->Core->zip を選択してアーカイブをダウンロードする
++適当なディレクトリにアーカイブを展開する
+--ここでは c:\opt\tomcat\apache-tomcat-7.0.12 に展開した
+
+#ref(Tomcatインストール00.JPG,center,60%)
+
+**環境変数を追加する [#vaece186]
++マイコンピュータの右クリックメニューからプロパティを選択する
++詳細設定タブの環境変数を選択する
++誰某のユーザー環境変数で新規を選択する
++変数名と変数値を次のように設定する
+--変数名：JAVA_HOME
+--変数値：C:\Program Files\Java\jdk1.6.0_24
+
+#ref(環境変数00.JPG,center,60%)
+#ref(環境変数01.JPG,center,60%)
+
+**Tomcatを起動する [#t00d6a19]
++プロンプトで次のように叩く
+ >cd c:\opt\tomcat\apache-tomcat-7.0.12\
+ >bin\startup.bat
+
+***動作確認する [#w3987b45]
+別のプロンプトが立ち上がって次のように表示されたらOKです。
+ 情報: Server startup in 0000 ms
+
+ブラウザからも確認してみましょう。次のURLにアクセスします。
+ http://localhost:8080/
+
+猫さんが表示されたらOKです。
+
+*参考 [#o834f81e]
+-http://coffeecupman.blog28.fc2.com/blog-entry-10.html

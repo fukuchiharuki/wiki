@@ -1,0 +1,14 @@
+-&color(red){ここはもう古いです。};~
+-&color(red){[[Orca>https://github.com/fukuchiharuki/Orca/]] および [[OrcaSample>https://github.com/fukuchiharuki/OrcaSample/]] を見てください。};
+-----
+ 
+-[[Orca]]
+-
+-#contents
+-
+-*ライセンス [#r2772419]
+--[[New BSD License>http://www.opensource.org/licenses/bsd-license.php]]
+-
+-*お願い [#kadf44b2]
+-いろんな人といろんな意見交換したいです。ちょっとでもOrcaを気になったり使ってみたりしたらコンタクトくださると嬉しいです。[[Twitter>http://twitter.com/fukuchiharuki]]が一番レスポンス良いです。
+-

@@ -1,0 +1,70 @@
++#author("2017-05-31T01:41:01+00:00","default:haruki","haruki")
++* キーワード [#k9fc1a7d]
++- Spring Boot
++- Thymeleaf
++- checkbox
++- Map
++- enum
+ 
++* したいこと [#tc3ae62c]
++
++複数のチェックボックスで入力したい。例えば、権限マスタがあって、その権限マスタについてそれぞれチェックボックスを設ける、次のような。
++
++ □ 権限A　□ 権限B
++
++* どうやって [#tda32967]
++
++** マスタを用意する [#add68f98]
++
++enumで実装するのがよいと思う。
++
++ @AllArgsConstructor
++ public enum RoleType {
++   ROLE_A("権限A"),
++   ROLE_B("権限B");
++   @Getter private String displayName;
++ }
++
++** フォームを作る [#z54ac638]
++
++権限のコード値に対してオン/オフを取得するため、Map<String, Boolean>で受け取る。
++
++ @Data
++ public class Form {
++   private Map<String, Boolean> roles;
++ }
++
++** コントローラでモデルを設定する [#k04f01f1]
++
++入力ページと確認ページで使えるようにメソッドで定義するのがよいと思う。
++
++ @ModelAttribute("rolesTypes")
++ public RoleType[] getRolesTypes() {
++   return RoleType.values();
++ }
++
++** チェックボックスを書く [#e696ac1a]
++
++ <div th:if="${#fields.hasErrors('*{roles}')}">
++   <div th:errors="*{roles}"></div>
++ </div>
++ 
++ <ul>
++ <li th:each="roleType: ${rolesTypes}">
++   <input th:id="${roleType}" type="checkbox" th:field="*{roles[__${roleType}__]}" value="on" />
++   <label th:for="${roleType}" th:text="${roleType.displayName}"></label>
++ </li>
++ </ul>
++
++* ノート [#weae2135]
++
++ミソは、
++- enumオブジェクトを表示しようとするとname()を呼ぶのと同じになる
++- フィールドの指定は連想配列的に書ける
++-- キー名は予め展開しておくため「__${roleType}__」と書く
++-- それがMap<String, Boolean>にマッピングされる
++
++* 参考 [#wd4e3554]
++- [[Thymeleafを使用した入力フォームのサンプルコード - Qiita>http://qiita.com/rubytomato@github/items/387d46ea34eb92071065]]
++
++

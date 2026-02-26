@@ -1,0 +1,44 @@
++#author("2018-04-12T10:16:35+00:00","default:haruki","haruki")
++* キーワード [#w5589b6c]
++- JavaScript
++- hash
++- ページ内リンク
++- アニメーション
+ 
++* したいこと [#d26dfef9]
++
++ページ内リンクをアニメーションしてスクロールさせたい。簡単に。
++
++* どうやって [#p227acc9]
++
++htmlにスクロール先をマーキングして、
++
++ <a name="pageTop"></a>
++
++クリックでリンクするなら普通にアンカーリンク。
++
++ <a href="#pageTop">page top</a>
++
++JavaScriptでリンクするならhashの値を変更。
++
++ window.location.hash = ""
++ window.location.hash = "pageTop"
++
++cssでscroll-behaviorをsmoothにセットしておくとアニメーションできる。
++
++ #scroll-container {
++   scroll-behavior: smooth;
++ }
++
++* ちなみに [#c31db27a]
++
++JavaScriptでリンクするときに
++
++ window.location.hash = ""
++
++としているのは、JavaScriptで二度続けて同じページ内リンクをできるようにするため。hash値のリセットがないと二度目にスクロールしてくれない。ただしこれだと履歴が汚れる。が、気にしないならこれで済む。
++
++* 参考 [#vc00e879]
++- [[window.location - Web API インターフェイス | MDN>https://developer.mozilla.org/ja/docs/Web/API/Window/location]]
++- [[scroll-behavior - CSS: カスケーディングスタイルシート | MDN>https://developer.mozilla.org/ja/docs/Web/CSS/scroll-behavior]]
++

@@ -1,0 +1,28 @@
+-#author("2017-07-21T05:37:10+00:00","default:haruki","haruki")
++#author("2017-07-21T05:37:46+00:00","default:haruki","haruki")
+ *関連 [#lf8abbdf]
+ -JavaScript
+ 
+ *概要 [#v171ff83]
+ 現在表示しているHTMLのファイル名をJavaScriptで取得する。
+ 
+ *方法1 [#hf163b08]
+  var filename = location.href.substring(location.href.lastIndexOf("/")+1, location.href.length);
+ 
+ **解説 [#b3f1d77b]
+ 開始位置が「/」の後で終了位置が文字列の最後。
+ 
+ *方法2 [#q7531ca5]
+ ファイル名(拡張子を除く)が欲しいなら次のようにも書ける。
+  var filename = 
+  	location.href
+  	.split(/\/(?!.*\/)/)[1]
+  	.split(/\.(?!.*\.)/)[0];
+ 
+ **解説 [#r21bcb67]
+ 「?!」っていうのは位置にマッチする正規表現らしい(知らなかった、、)。後ろに「/」が続かない「/」と後ろに「.」が続かない「.」をそれぞれ表現しているわけですね。
+ 
+ *参考 [#vc85bcaf]
+ -http://page.freett.com/elledia/tips/getfilename.html
++-[[JavaScriptでファイル名を拡張子とそれ以外に分ける - ひよこ3分07秒のTechブログ>https://tech.chick307.com/2014/04/26/javascript-split-ext/]]
+ -[[正規表現_基本メモ - …Inertia>http://koshinran.hateblo.jp/entry/2016/11/21/201520]]

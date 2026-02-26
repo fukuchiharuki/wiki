@@ -1,0 +1,42 @@
+* キーワード [#k886a2f3]
+- Subversion(SVN)
+- チェックアウト
+- エラー
+
+* 現象 [#w1e67b15]
+
+SVNからチェックアウトしようとすると次のメッセージでエラーになる。
+
+ can't find a temporary directory
+
+* 原因 [#pba384ad]
+
+HDがいっぱいになっているからのようでした。
+
+ $ df -h
+ Filesystem            Size  Used Avail Use% マウント位置
+                        50G   49G     0 100% /
+
+100%!!
+
+* 対策 [#o1a86bc3]
+
+不要ファイルを消します。
+
+ $ df -h
+ Filesystem            Size  Used Avail Use% マウント位置
+                        50G   14G   34G  29% /
+
+* 備考 [#n2484c2b]
+
+ $ df -h
+
+マウントしたディスクごとの容量を確認する。
+
+ $ du -k --max-depth=1 /
+
+ファイルシステム上の容量を確認する。深さを1にしてどこが圧迫しているのかを探した。
+
+* 参考 [#aebac44d]
+- [[svnのupdateに失敗 - Connect, Automate, Speed Up, Make Happy>http://d.hatena.ne.jp/snegishi/20091228/1261952589]]
+- [[Subversionからチェックアウトができなくなった - なみひらブログ>http://namihira.hatenablog.com/entry/2013/10/21/185631]]

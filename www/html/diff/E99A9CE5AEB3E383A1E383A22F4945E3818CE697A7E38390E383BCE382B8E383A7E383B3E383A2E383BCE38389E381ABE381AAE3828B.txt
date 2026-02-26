@@ -1,0 +1,20 @@
+ *関連 [#r1c69259]
+ -Internet Explore
+ -HTML
++-Servlet/JSP
+ 
+ *現象 [#jd2becb3]
+ IEがIE7モードでページを表示してしまう。
+ 
+ *原因 [#f9878586]
+ よく分からん。
+ 
+ *対策 [#nbe8f4f0]
+ 最新のモードで表示するように次のmetaタグを仕込んであげる。
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+ 
++JavaのWebアプリケーションならServletやJSPで次のように書ける。
++ <% response.addHeader("X-UA-Compatible", "IE=edge,chrome=1"); %>
++
+ *参考 [#wd05ee23]
+ -http://blog.summerwind.jp/archives/1145

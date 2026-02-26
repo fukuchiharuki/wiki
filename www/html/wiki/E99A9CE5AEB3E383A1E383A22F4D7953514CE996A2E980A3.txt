@@ -1,0 +1,7 @@
+まとめです。
+-[[障害メモ/MySQLがあがらない「Unable to lock .../data/ib_logfile0」]]
+--ファイルロックができなくてあがらなかった？
+-[[障害メモ/MySQLがあがらない「The server quit without updating PID file」]]
+--メモリサイズの指定がまずくてあがらなかった
+-[[障害メモ/MySQLにログインできない「Can't get hostname for your address」]]
+--ホスト名を逆引きできずにログインできなかった

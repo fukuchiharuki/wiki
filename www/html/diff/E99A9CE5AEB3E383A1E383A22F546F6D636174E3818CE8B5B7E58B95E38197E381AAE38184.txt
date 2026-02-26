@@ -1,0 +1,47 @@
+ このログはTomcatのインストールができていなかったというオチです。
+ Tomcat関連のインストールは「[[WindowsでWebアプリケーションを作ってみる]]」を参考にしてみてください。開発環境くらいは整うと思います。
+ 
+-*関連 [#ad37df00]
++*キーワード [#z72665ff]
+ -Apache
+ -Tomcat
+ 
++*関連 [#ad37df00]
++-[[障害メモ/Tomcat関連]]
++
+ *現象 [#ic5971ed]
+ AJPでTomcatに接続したいが、
+ ブラウザから確認できない。
+ 
+ **Apacheのエラーメッセージ [#hd838cd6]
+ -/etc/httpd/logs/error_log
+ 
+  [Sun Oct 17 23:48:46 2010] [error] proxy: AJP: disabled connection for (localhost)
+  [Sun Oct 17 23:49:05 2010] [error] (111)Connection refused: proxy: AJP: attempt to connect to 127.0.0.1:8009 (localhost) failed
+  [Sun Oct 17 23:49:05 2010] [error] ap_proxy_connect_backend disabling worker for (localhost)
+  [Sun Oct 17 23:49:05 2010] [error] proxy: AJP: failed to make connection to backend: localhost
+ どうもローカルに接続できないとかって。
+ 
+ **telnetのエラーメッセージ [#h6ba9c25]
+ 8080番へtelnetしてみる。やっぱり繋がってない。
+  $ telnet localhost 8080
+  Trying 127.0.0.1...
+  telnet: connect to address 127.0.0.1: Connection refused
+ そもそも8080が上がっていないのでは。
+ 
+ **リスンしているポートを確認 [#s7f678df]
+  $ netstat -anp
+ 21番、22番、80番しかリスンしていない。
+ 
+ *原因 [#ge43dc92]
+ Apacheがどう、ではなく、Tomcatがまともに上がっていないっぽい。
+ 
+ -その通りでした。
+ 
+ *対策 [#of791ed8]
+ .tar.gzを解凍して素直にstartup.shからの起動でリスンされました。
+ AJPのポート（8009）のコネクタはデフォルトで設定されている。
+ 
+ *参考 [#t27b9d25]
+ -[[Tomcat－３．Webサーバとの連携>http://www.javaroad.jp/opensource/js_tomcat3.htm]]
+ -[[Tomcatマスターになるために>http://thinkit.co.jp/free/article/0708/2/1/]]

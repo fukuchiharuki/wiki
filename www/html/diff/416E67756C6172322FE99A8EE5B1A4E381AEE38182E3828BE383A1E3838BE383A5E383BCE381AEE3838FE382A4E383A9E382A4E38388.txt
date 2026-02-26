@@ -1,0 +1,32 @@
+-* キーワード [#ub857494]
++* キーワード [#bce71e5e]
+ - Angular2
+ - routerLinkActive
+ 
+ * したいこと [#s61a8e0f]
+ 
+ 階層のあるメニューで、親の要素もハイライトしたい。
+ 
+  ├ メニュー☆
+  │ ├ サブメニュー☆
+  │ └ サブメニュー
+ 
+ * どうやって [#v9bda779]
+ 
+ 単に、親にもrouterLinkActiveを書いてあげる。
+ 
+  <li routerLinkActive="active">メニュー
+    <ul>
+      <li routerLinkActive="active"><a routerLink="/x">サブメニュー</a></li>
+      <li routerLinkActive="active"><a routerLink="/y">サブメニュー</a></li>
+    </ul>
+  </li>
+ 
+ 
+ * ノート [#q12250b1]
+ 
+ 痒いところに手が届く感。
+ 
+ 
+ * 参考 [#oac86eef]
+ - [[angular2 - In Angular 2 how do you determine the active route in Child Routing with parent routing? - Stack Overflow>http://stackoverflow.com/questions/38822911/in-angular-2-how-do-you-determine-the-active-route-in-child-routing-with-parent]]

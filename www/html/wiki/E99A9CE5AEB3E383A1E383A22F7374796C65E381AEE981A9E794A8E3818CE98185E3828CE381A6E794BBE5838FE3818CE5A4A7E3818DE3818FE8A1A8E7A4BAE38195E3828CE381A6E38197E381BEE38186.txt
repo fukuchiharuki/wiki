@@ -1,0 +1,28 @@
+#author("2018-08-17T07:16:26+00:00","default:haruki","haruki")
+* キーワード [#sc6d5a51]
+- webpack
+- スタイルシート, stylesheet
+- 画像, images
+
+* 現象 [#eba23c35]
+
+画面初期表示時に画像が一瞬大きく表示される。すぐにスタイルシートが適用されて正しい表示になる。
+
+* 原因 [#m53baeb3]
+
+- webpackでビルドしたスタイルシートの適用が遅れるから
+- 遅れるのはlinkタグでスタイルシートを読み込むから
+-  linkタグで読み込むのはsourceMapを有効にするから
+
+* 対策 [#ocb6081b]
+
+- sourceMapを無効にする
+- 無効にするとstyleタグでスタイルが書かれる
+- styleタグで書かれると適用が遅れない
+
+* 備考 [#d03bfd90]
+
+言われてみればなるほどだが。。
+
+* 参考 [#n80f0940]
+- [[css-loader with `sourceMap: true` cause adding style tag delayed · Issue #613 · webpack-contrib/css-loader>https://github.com/webpack-contrib/css-loader/issues/613]]

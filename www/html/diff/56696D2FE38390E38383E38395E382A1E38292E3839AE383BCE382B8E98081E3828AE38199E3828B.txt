@@ -1,0 +1,25 @@
++* キーワード [#k6d84051]
++- Vim
+ 
++* やりたいこと [#b34d1fdc]
++バッファにあるファイルをショートカットでページ送りします。
++
++* 方法 [#ocd45659]
++- _gvimrc
++ :map <silent> <C-p> :bp<CR>
++ :map <silent> <C-n> :bn<CR>
++ :map <silent> <F2> :bp<CR>
++ :map <silent> <F4> :bn<CR>
++ :map <silent> <F3> :call BufferList()<CR>
++
++
++* 詳細 [#ge6e42d7]
++:ページ送り(次)|C-n, F4
++:ページ送り(前)|C-p, F2
++:バッファ一覧|F3
++
++F3 の分はプラグインが必要です。
++
++* 参考 [#ld0e09e7]
++- [[bufferlist.vim : シンプルで軽量なバッファ管理マネージャ &mdash; 名無しのvim使い>http://nanasi.jp/articles/vim/bufferlist_vim.html]]
++

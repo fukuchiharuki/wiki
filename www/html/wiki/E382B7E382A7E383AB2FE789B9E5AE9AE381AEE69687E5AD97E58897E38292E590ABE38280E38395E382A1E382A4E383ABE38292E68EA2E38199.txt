@@ -1,0 +1,49 @@
+* キーワード [#y1e25e49]
+- find
+- grep
+
+* したいこと [#aa4283e6]
+
+ファイルの中身に特定の文字列を含むファイルを探してリストします。
+
+* どうやって [#v59a0775]
+
+たとえば「HOGE」を含む「.txt」ファイルを探す場合次のようにします。
+
+ $ find . -name "*.txt" -exec grep -q HOGE {} \; -print
+
+または次のようにすることもできます。
+
+ $ find . -name "*.txt" | xargs grep -l HOGE
+
+* ノート [#e8ad3115]
+
+** -execする方法 [#b6e80e8c]
+
+次のようにすると「.txt」ファイルを -exec オプションで grep できます。出力結果は grep の出力結果と同じです。つまりファイル名ではなくファイルの中身です。
+
+ $ find . -name "*.txt" -exec grep HOGE {} \;
+
+それでは困るので -print オプションをつけて次のようにしてみます。
+
+ $ find . -name "*.txt" -exec grep HOGE {} \; -print
+
+すると先の出力結果に加えてファイル名を出力ます。これは -print オプションが -exec の評価を受け取ってファイル名を出力するからです。
+
+ここで grep に -q オプションをつけると grep の出力を省略できます。
+
+ $ find . -name "*.txt" -exec grep -q HOGE {} \; -print
+
+** xargsする方法 [#uc903962]
+
+次のように xargs を使うと「.txt」ファイルをパイプを経由して grep できます。出力結果はやはり grep の出力結果と同じです。
+
+ $ find . -name "*.txt" | xargs grep HOGE
+
+それではこまるので grep に -l オプションをつけるとファイル名を出力できます。
+
+ $ find . -name "*.txt" | xargs grep -l HOGE
+
+* 参考 [#m5423366]
+- [[grep -q が速いワケ - 刺身☆ブーメランのはてなダイアリー>http://d.hatena.ne.jp/a666666/20091201/1259681106]]
+- [[grepしてファイル名だけ表示する - にっきちょう>http://d.hatena.ne.jp/seamlessbias/20091013/1255444498]]

@@ -1,0 +1,17 @@
+*関連 [#b500f743]
+-MySQL
+
+*現象 [#dc15cbed]
+MySQLに対して"LOAD DATA LOCAL"でファイルインポートしようとすると次のエラーを得る。
+ ERROR 1148 (42000) at line 1:The used command is not allowed with this MySQL version
+
+*原因 [#f77be044]
+LOAD DATA LOCALが有効ではないから。
+
+*対策 [#x0d66d9f]
+MySQLログインにへのログインに次のオプションをつける。
+ --local-infile=1
+
+*参考 [#p700e654]
+-http://dev.mysql.com/doc/refman/5.1/ja/load-data-local.html
+-http://oshiete.goo.ne.jp/qa/1030943.html

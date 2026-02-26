@@ -1,0 +1,38 @@
+*キーワード [#y52f1aa0]
+- Titanium Mobile
+- Alloy
+
+*目標 [#c23b3103]
+多言語化(iPhone の言語設定に合わせる)します。
+
+*方法 [#i9033486]
+プロジェクト直下に「i18n」ディレクトリを作成します。
+ {Project}/
+ └ i18n/
+ 　├ en/
+ 　│└ strings.xml
+ 　└ ja/
+ 　　└ strings.xml
+
+- i18n/en/strings.xml
+ <?xml version="1.0" encoding="UTF-8"?>
+ <resources>
+ 	<string name="key">value</string>	
+ </resources>
+
+- i18n/ja/strings.xml
+ <?xml version="1.0" encoding="UTF-8"?>
+ <resources>
+ 	<string name="key">値</string>	
+ </resources>
+
+- app/styles/Window.xml
+ '#window': {
+ 	title: L('key'),
+ }
+
+*解説 [#za05ba1a]
+どうもビューからバインドすることはできないようなので、スタイルかコントローラから指定します。
+
+*参考 [#v381ae44]
+- [[Titanium MobileのAlloyで多言語化（i18n）対応する #titaniumjp | Webエンジニアライフ>http://webengineerlife.com/2012/12/21/titanium-mobile%E3%81%AEalloy%E3%81%A7%E5%A4%9A%E8%A8%80%E8%AA%9E%E5%8C%96%EF%BC%88i18n%EF%BC%89%E5%AF%BE%E5%BF%9C%E3%81%99%E3%82%8B/]]

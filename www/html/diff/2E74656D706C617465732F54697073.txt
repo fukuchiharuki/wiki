@@ -1,0 +1,19 @@
+-#author("2018-08-31T02:31:27+00:00","default:haruki","haruki")
++#author("2018-09-21T01:22:24+00:00","default:haruki","haruki")
+ * キーワード [#keyword]
+ - 
+ - 
+ 
+ * したいこと [#goal]
+ 
+ 
+ * どうやって [#howto]
+ 
+ 
+-* くわしく [#sidenote]
++* ちなみに [#sidenote]
+ 
+ 
+ * 参考 [#reference]
+ - 
+ -

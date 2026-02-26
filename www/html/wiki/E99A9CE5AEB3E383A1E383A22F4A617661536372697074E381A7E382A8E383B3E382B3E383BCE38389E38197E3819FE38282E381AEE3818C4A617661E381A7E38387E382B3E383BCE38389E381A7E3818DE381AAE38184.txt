@@ -1,0 +1,31 @@
+&color(red){なんか間違えてたっぽいです。};
+
+*キーワード [#e6af0a43]
+-JavaScript/encodeURI()
+-Java/URLDecoder.decode()
+
+*現象 [#xc174ae3]
+%%次のコードでデコードしきれない文字がある。%%
+
+次のコードでエンコードとデコードの対応がうまくいっていない。
+
+-JavaScriptでエンコード
+ keyword = encodeURIComponent(keyword);
+ // これをlocation.hrefで使う
+
+-Javaでデコード
+ keyword = URLDecoder.decode(keyword)
+
+*原因 [#ree621e9]
+%%URLDecoder.decode()はencodeURIComponent()でエンコードするすべてをデコードしない。%%
+%%URLDecoder.decode()がデコードしない分はおそらく「#$&+,/:;=?@」で、%%
+%%encodeURI()と対応づくのかもしれない？(検証してない)%%
+
+location.hrefがエンコードをどうしてるかに依っていた気がする。
+
+*対策 [#sdae8af2]
+%%URLDecoder.decode()する想定ならencodeURI()にしておく。%%~
+%%大した数ではないのであるいは不足分を自前でデコードする。%%
+
+*参考 [#xef11e41]
+-http://javascript.dohow.jp/basic/encode.shtml

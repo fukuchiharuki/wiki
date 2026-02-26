@@ -1,0 +1,17 @@
+ *関連 [#hb60ec1d]
+ -Ubuntu
+ -Gnome
+ 
+ *現象 [#f263cae1]
+ 毎起動時に「バッテリーが壊れているかも・・・」が表示される。
+ 
+ *原因 [#n1a42c06]
+ バッテリーが残念なことになっている。動作としてはおそらく正常。
+ 
+ *対策 [#te7a6a03]
+-gconf-editorで/apps/gnome-power-manager/notify/low_capacityをオフに設定する。
++gconf-editorで次の項目ををオフに設定する。
++-/apps/gnome-power-manager/notify/low_capacity
+ 
+ *参考 [#vac818a2]
+ -https://forums.ubuntulinux.jp/viewtopic.php?id=7741

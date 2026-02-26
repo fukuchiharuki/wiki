@@ -1,0 +1,67 @@
+-#author("2017-05-25T01:10:01+00:00","default:haruki","haruki")
++#author("2017-06-07T02:29:52+00:00","default:haruki","haruki")
+ * キーワード [#m09109f5]
+ - Spring Boot
+ - Spring Security
+ - エラーメッセージ
+ 
+ * 現象 [#vf91a3c5]
+ 
+ Spring Securityでログインページを作成するとき、エラーメッセージにシステムエラーが表示されてしまう。たとえば、JDBCアクセスできなかったという詳細なエラーメッセージが「ログインIDかパスワードが間違っています。」と表示したい箇所にモロ出しになる。
+ 
+ * 原因 [#y087520b]
+ 
+ ログインプロセス中に生じた例外をSpring Securityが拾ってしまうため。
+ 
+ * 対策 [#o704bc5d]
+ 
+ ** エラーページにリダイレクトする [#k252631c]
+ 
+ ExceptionMappingAuthenticationFailureHandlerを作成して次の例外でエラーページにリダイレクトするように設定する。
+ 
+ - org.springframework.security.authentication.InternalAuthenticationServiceException
+ 
+  public class SecurityConfigAuthenticationFailureHandler extends ExceptionMappingAuthenticationFailureHandler {
+  
+  	public SecurityConfigAuthenticationFailureHandler() {
+  		this.setDefaultFailureUrl("/");
+  		this.setExceptionMappings(getFailureUrlMap());
+  	}
+  	
+  	private Map<String, String> getFailureUrlMap() {
+  		Map<String, String> map = new HashMap<>();
+  		map.put(InternalAuthenticationServiceException.class.getName(), "/error");
+  		return map;
+  	}
+  
+  }
+ 
+ ** ログ出力する [#nb308b1c]
+ 
+ エラーページにリダイレクトしても例外オブジェクトは届けられない。ExceptionMappingAuthenticationFailureHandlerは単純にリダイレクトをしているだけだから。なので、このハンドラ中でエラーログ出力してあげる必要がある。
+ 
+  	@Override
+  	public void onAuthenticationFailure(
+  			HttpServletRequest request,
+  			HttpServletResponse response, 
+  			AuthenticationException exception
+  	) throws IOException, ServletException {
+  
+  		// TODO: ここで、exceptionを利用してエラーログ出力する
+  
+  		super.onAuthenticationFailure(request, response, exception);
+  	}
+ 
+ * 備考 [#g1d6acad]
+ 
+ - InternalAuthenticationServiceExceptionは名前どおり、内部的なエラーを包む。
+ - InternalAuthenticationServiceExceptionに対するメッセージを定義するだけで足りたりする？(試してない)
+ -- それにしてもエラーログ出力はしたいから何か手を打つ必要はある
++- &color(red){SimpleUrlAuthenticationFailureHandlerを継承するようにして、InternalAuthenticationServiceExceptionであればthrowする方がよいような気がしました};
++-- 例外のロギングをいろんなところに書きたくない
++-- 例外はErrorControllerがもつ、がシンプルでいい
+ 
+ * 参考 [#ga5691d7]
+ - [[[Authentication] DBエラー発生時に例外メッセージが出力されるケースがある · Issue #811 · terasolunaorg/guideline · GitHub>https://github.com/terasolunaorg/guideline/issues/811]]
+ - [[InternalAuthenticationServiceException (Spring Security 4.2.2.RELEASE API)>https://docs.spring.io/spring-security/site/docs/current/apidocs/org/springframework/security/authentication/InternalAuthenticationServiceException.html]]
+ - [[Spring Boot/特定のログインエラーで画面遷移する]]

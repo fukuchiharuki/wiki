@@ -1,0 +1,49 @@
+* Injectableってなに [#tcfe4078]
+
+Angular2でDIするときのinjectする要素。
+
+* Injectableを作る [#x8d82e4a]
+
+- @Injectable（デコレータ）をつけて（多段Injectでなければ要らない？→そうみたいです※）
+ @Injectable()
+
+- classをexportする
+ export class MyService{
+   loadData(): string[] {
+     return ['hoge', 'moge', 'fuga'];
+   }
+ }
+
+@Injectableというデコレータを書くだけです。
+
+オフィシャルでは、今は要らなくてもとりあえず書いておく、のがベストプラクティスだと言っています。
+> The HeroService doesn't have any dependencies at the moment. Add the decorator anyway. It is a "best practice" to apply the @Injectable() decorator ​from the start​ both for consistency and for future-proofing.
+
+* Injectableを利用（Inject）する [#e2292675]
+
+- exportしたクラスをimportして
+ import {MyService} from './my.service';
+
+- メタデータのprividersに追加して
+ @Component({
+   ...
+   providers: [MyService]
+ })
+
+- constructorの引数にする
+ export class AppComponent{
+   private list: string[];
+   constructor(private myService: MyService) {
+     this.list = myService.loadData();
+   }
+ }
+
+コンストラクタの引数にするだけでDIされますが、この記述はInjectを省略しているだけのようです。また、providersにProviderを与えずにMyServiceを与えているのも省略した書き方です（参考記事を見てね）。
+
+* ソースコード [#u7db3f15]
+
+- [[til/javascript/angular2/angular2-practical-ABC-r2 at master · fukuchiharuki/til>https://github.com/fukuchiharuki/til/tree/master/javascript/angular2/angular2-practical-ABC-r2]]
+
+* 参考 [#xf87cf66]
+
+- [[Angular2のDIを知る - Qiita>http://qiita.com/laco0416/items/61eed550d1f6070b36ab]]

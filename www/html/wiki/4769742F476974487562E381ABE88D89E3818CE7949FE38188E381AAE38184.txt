@@ -1,0 +1,23 @@
+* キーワード [#c8cb03f5]
+- GitHub
+- Contribution(s)
+- 草
+
+* 現象 [#a1796942]
+
+どれだけコミットしても草が生えない（Contributionsが緑色になっていかない）。OSのクリーンインストールをしてまっさらにしてしまってからこうなる、というかならない。
+
+* 原因 [#m9e8f91a]
+
+ユーザー設定ができていないから。
+
+* 対策 [#qc89010d]
+
+ユーザー設定する。
+
+ git config --global user.name "ユーザーネーム"
+ git config --global user.email "メールアドレス"
+
+* 参考 [#z8822c24]
+
+- [[Why are my contributions not showing up on my profile? - User Documentation>https://help.github.com/articles/why-are-my-contributions-not-showing-up-on-my-profile/#common-reasons-that-contributions-are-not-counted]]

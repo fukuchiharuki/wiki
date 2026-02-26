@@ -1,0 +1,41 @@
++#author("2017-03-31T07:32:06+00:00","default:haruki","haruki")
++* キーワード [#w9d9f619]
++- Spring Boot
++- ConfigurationProperties
++- application.properties
++- application.yml
+ 
++* 現象 [#lb8500ab]
++
++プロパティ設定を読めるという@ConfigurationPropertiesでプロパティ設定をセットできていない。
++
++ @Value
++ @NoArgsConstructor
++ @Component
++ @ConfigurationProperties(prefix="application.web")
++ public class WebProperties {
++ 	private String contextpath;
++ }
++
++* 原因 [#od318707]
++
++setterがない。
++
++* 対策 [#v5532222]
++
++@Valueでなくて@Dataでないといけない。
++
++ @Data
++ @Component
++ @ConfigurationProperties(prefix="application.web")
++ public class WebProperties {
++ 	private String contextpath;
++ }
++
++* 備考 [#j2eaf0a1]
++
++Springは素直にsetterを探しに行ってるんですね。
++
++* 参考 [#zfc2c7f0]
++- [[Spring Bootの外部設定値の扱い方を理解する - Qiita>http://qiita.com/kazuki43zoo/items/0ce92fce6d6f3b7bf8eb]]
++

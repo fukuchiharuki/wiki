@@ -1,0 +1,46 @@
+#author("2017-12-12T07:45:59+00:00","default:haruki","haruki")
+Reactをやるのにインストールするいろいろ。
+
+小慣れてくるまでは忘れてしまうと思うのでメモ。
+
+#contents
+
+* 基本 [#i455a130]
+
+** create-react-app [#od21edd5]
+
+angular-cliみたいなアレ。
+
+** redux [#z58a2c44]
+
+Fluxの思想を取り入れた状態管理の実装。
+
+** react-redux [#f156ddb1]
+
+ReactでReduxを使うためのもの。
+
+** prop-types [#wb338138]
+
+React.PropTypes廃止につき。
+
+* http [#tf0f7c5b]
+
+** axios [#d7b4e1b8]
+
+httpをするためのもの。他にsuperagentというものもあるみたい。
+
+** redux-thunk [#je187472]
+
+Actionで非同期にhttpなどするためのもの。
+
+* ルーティング [#j50332b6]
+
+** react-router-dom [#d14b353e]
+
+ルーティングするためのもの。他にも@uirouter/react (Angularでおなじみの)などがある。
+
+* フォーム [#t6656df2]
+
+** redux-form [#x6ef8c54]
+
+React/Reduxに対応したフォームを作成するためのもの。

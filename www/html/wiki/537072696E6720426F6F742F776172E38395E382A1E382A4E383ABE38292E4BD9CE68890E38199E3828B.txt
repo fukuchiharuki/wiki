@@ -1,0 +1,85 @@
+#author("2017-04-14T03:11:06+00:00","default:haruki","haruki")
+* キーワード [#m6e20a64]
+- Spring Boot
+- war
+- ビルド
+- Tomcat
+
+* したいこと [#c5e7e3a8]
+
+Spring Bootでwarファイルを作成する。
+
+* どうやって [#c0958eff]
+
+** build.gradle の設定 [#z3bf6ce6]
+
+ project(':web') {
+ 	apply plugin: 'org.springframework.boot'
+ 	apply plugin: 'war'
+ 	war {
+ 		archiveName 'web.war'
+ 	}
+ 	dependencies {
+ 		...
+ 		compile('org.springframework.boot:spring-boot-starter-web')
+ 		providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
+ 		...
+ 	}
+ }
+
+warを作成するために追加したのは次。
+
+ 	apply plugin: 'war'
+
+ 	war {
+ 		archiveName 'web.war'
+ 	}
+
+ 		providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
+
+** Applicationクラスの修正 [#k7f47674]
+
+ @SpringBootApplication
+ public class WebApplication extends SpringBootServletInitializer {
+ 
+ 	public static void main(String[] args) {
+ 		SpringApplication.run(WebApplication.class, args);
+ 	}
+ 
+ 	@Override
+ 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+ 		return application.sources(WebApplication.class);
+ 	}
+ 
+ }
+
+- SpringBootServletInitializerをextendsして
+- configureメソッドをoverrideする
+- main関数は削除しなくていい
+
+** Gradleでビルド [#a3764322]
+
+ gradle build
+
+でもいいし、
+
+ gradle war
+
+でもいい。
+
+- /path/to/project/build/lib/web.war が作成される
+
+あとはTomcatに置いて実行するだけ。
+
+* ノート [#qa762890]
+
+warを作成するようにしてもSTSからは組み込みTomcatで起動できる。
+
+このとき、コンテキストパスを合わせるためにapplication.ymlを設定しておくと、テストしやすいかもしれない。
+
+ server:
+   contextPath: /web
+
+* 参考 [#p4f84561]
+- [[Spring Boot Reference Guide>http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#build-tool-plugins-gradle-packaging]]
+- [[Gradle War Plugin &#8211; Change output WAR filename>https://www.mkyong.com/gradle/gradle-war-plugin-change-output-war-filename/]]

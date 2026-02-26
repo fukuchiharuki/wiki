@@ -1,0 +1,33 @@
++#author("2017-12-13T06:11:54+00:00","default:haruki","haruki")
++* キーワード [#bb522797]
++- Kotlin
++- Spring Boot
+ 
++* 現象 [#b2e03d62]
++
++ unresolved reference: java
++
++次の箇所で上記のように怒られる。
++
++ fun main(args: Array<String>) {
++ 	SpringApplication.run(Application::class.java, *args)
++ }
++
++* 原因 [#uab74651]
++
++kotlin-stdlibが足りてない。
++
++* 対策 [#r6184336]
++
++dependencyに足す。
++
++ compile("org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}")
++
++* 備考 [#b34db5af]
++
++Springにjavaのクラスを渡すにはclass.javaとする。
++
++* 参考 [#ve1139f8]
++- [[Kotlin Foo::class.java &quot;Unresolved Reference: Java&quot; error - Stack Overflow>https://stackoverflow.com/questions/34144392/kotlin-fooclass-java-unresolved-reference-java-error]]
++- [[Spring Framework 5のKotlinサポート - BLOG.IK.AM>https://blog.ik.am/entries/407]]
++

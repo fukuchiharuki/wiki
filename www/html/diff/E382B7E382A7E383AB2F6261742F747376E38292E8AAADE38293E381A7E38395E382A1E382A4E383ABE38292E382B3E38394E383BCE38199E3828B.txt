@@ -1,0 +1,60 @@
+-#author("2017-12-07T04:56:18+00:00","default:haruki","haruki")
++#author("2017-12-07T04:59:53+00:00","default:haruki","haruki")
+ * キーワード [#h19c3c3c]
+ - Windows
+ - bat
+ - tsv
+ 
+ * したいこと [#scdd914d]
+ 
+ tsvを読んでファイルをコピーしたい、バッチで。
+ 
+ tsvには次のような感じでコピー元とコピー先が定義されているとする。
+ 
+- path\to\コピー元1	path\to\コピー先1
+- path\to\コピー元2	path\to\コピー先2
++ path\to\コピー元ファイル1	path\to\コピー先ファイル1
++ path\to\コピー元ファイル2	path\to\コピー先ファイル2
+  ...
+ 
+ * どうやって [#k2b02ec8]
+ 
+ こう書いた。
+ 
+  @cd /d %~dp0
+  @echo off
+  
+- set FOLDER_SRC=C:\path\to\コピー元ルート
+- set FOLDER_DST=C:\path\to\コピー先ルート
++ set FOLDER_SRC=C:\path\to\コピー元ルートフォルダ
++ set FOLDER_DST=C:\path\to\コピー先ルートフォルダ
+  
+  rem ### main
+  for /f "delims=	 tokens=1,2" %%i in (filelist.tsv) do (
+  	set FILE_SRC=%FOLDER_SRC%\%%i
+  	set FILE_DST=%FOLDER_DST%\%%j
+  	call :CopyFile
+  )
+  exit /b
+  
+  rem ### copy file
+  :CopyFile
+  if exist "%FILE_SRC%" (
+  	copy /y "%FILE_SRC%" "%FILE_DST%" > nul 2>&1
+  ) else (
+  	echo "%FILE_SRC%" 1>&2
+  )
+  exit /b
+ 
+ * ちなみに [#j9291ef7]
+ 
+-久しぶりにWindowsバッチなのでかなり手こずった。いろいろ脆いけど、ファイル収集用なので気にしない。
++久しぶりにWindowsバッチなのでかなり手こずった。。特に「@echo off」に気がつくまでは、なんで動かないでテキスト出力されるのかと戸惑った。
+ 
++いろいろ脆いけど、ファイル収集用なので気にしない。
+ 
++
+ * 参考 [#kabd6d3f]
+ - [[【bat】Windowsのバッチファイル(*.bat)の書き方自分用まとめ - Qiita>https://qiita.com/sksmnagisa/items/8c4c1788af44cc1dc63a]]
+ - [[batファイルでコマンドの実行結果を出力しないようにする方法 - Qiita>https://qiita.com/uhooi/items/b8b25761a5c4efe9025a]]
+ - [[echo の出力を標準エラー (stderr) に出力する | まくまく Windows ノート>http://maku77.github.io/windows/echo-to-stderr.html]]

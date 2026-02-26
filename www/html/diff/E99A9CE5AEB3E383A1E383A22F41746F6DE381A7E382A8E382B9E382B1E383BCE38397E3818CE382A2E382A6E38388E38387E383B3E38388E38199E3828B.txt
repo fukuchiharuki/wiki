@@ -1,0 +1,42 @@
+ * キーワード [#kf70069a]
+ - Atom
+ - ショートカット
+ - ctrl-[
+ - エスケープ
+ - アウトデント
+ 
+ * 現象 [#w95f82d1]
+ 
+ 「ctrl-[」で入力モードから抜けて、再度「ctrl-[」するとアウトデントしてしまう。連打する癖があるので結構辛い。
+ 
+ インデントの反対はアウトデントなの？
+ 
++**（2016-11-08追記） [#qf4d927a]
++
++逆に、入力モード中にインデントしてしまう＠Ubuntu。
++
++これについてはこちらの記事を参考にして解決できた。
++
++- [[欅樹雑記: Atomのvim-modeでCtrl+[が効かない&#65281;&#65288;keyboard-localizationプラグインと日本語キーマップのあれこれ&#65289;>http://blog.zelkova.cc/2016/02/atom-vim-mode.html]]
++
+ * 原因 [#tcf27e8f]
+ 
+ Atomにキーバインドが設定されているから。
+ 
+ * 対策 [#r6478add]
+ 
+ - File > Keymap...
+ 
+ で次を打ち込んでおく。
+ 
+  'atom-workspace atom-text-editor:not([mini])':
+    'ctrl-[': 'unset!'
+ 
+ * 備考 [#s5bf326a]
+ 
+ - File > Settings > Keybindings
+ 
+ で設定を見ることができる。
+ 
+ * 参考 [#s2f6af75]
+ - [[Atomのキーバインドを無効に(又は変更)する - Qiita>http://qiita.com/jue_no58/items/dd1aaa3415046c220781]]

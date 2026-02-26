@@ -1,0 +1,30 @@
++*キーワード [#bed590f3]
++-JBoss
++-日本語
+ 
++*概要 [#g063a226]
++
++JBossで日本語のパラメータをURIから(要はGETで)受け付けたい。
++
++*方法 [#s307ccd4]
++-(JBoss)/server/default/deploy/jbossweb.sar/server.xml
++ <!--
++       <Connector protocol="HTTP/1.1" port="8080" address="${jboss.bind.address}"
++                  connectionTimeout="20000" redirectPort="8443" />
++ -->
++       <Connector protocol="HTTP/1.1" port="8080" address="${jboss.bind.address}"
++                  connectionTimeout="20000" redirectPort="8443"
++                  useBodyEncodingForURI="true"  URIEncoding="UTF-8"/>
++
++*解説 [#q3b6dfc6]
++これをすると
++-URLに日本語をエンコードせずに指定することができる
++-従ってフォームからもエンコードせずにsubmitできる
++-Java側でデコードせずに日本語を取得することができる
++
++自前でエンコードしたりデコードしたりがんばろうとしてたー、うわー。
++
++*参考 [#m1584ac0]
++-http://d.hatena.ne.jp/ryoasai/20100925/1285414729
++
++

@@ -1,0 +1,23 @@
++*手順 [#t596b979]
++MySQLにログイン済みなら
++ mysql> SHOW STATUS LIKE 'Threads%';
++ +-------------------+--------+
++ | Variable_name     | Value  |
++ +-------------------+--------+
++ | Threads_cached    | 0      |
++ | Threads_connected | *      | < ここ
++ | Threads_created   | *      |
++ | Threads_running   | *      |
++ +-------------------+--------+
+ 
++MySQLにログインしていないなら
++ $ mysqladmin -uroot -p extended-status | grep Threads
++ | Threads_cached                    | 0         |
++ | Threads_connected                 | *         | < ここ
++ | Threads_created                   | *         |
++ | Threads_running                   | *         |
++
++*参考 [#qe45bad8]
++-http://dev.mysql.com/doc/refman/5.1/en/show-status.html
++-http://dev.mysql.com/doc/refman/4.1/ja/show-status.html
++-http://d.hatena.ne.jp/foosin/20081217/1229515671

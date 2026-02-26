@@ -1,0 +1,59 @@
+-[[../]]
+-
+ *キーワード [#aae7f615]
+ - Titanium Mobile
+ - Alloy
+ 
+ *目標 [#kf6851fa]
+ View を上から縦に並べます。
+ 
+ #ref(vertical.png,center,50%)
+ 
+ *方法 [#x9dc7ca3]
+ - Window.xml
+  <Alloy>
+  	<Window id="window">
+  		<View id="view1">
+  			<Label>View 1</Label>
+  		</View>
+  		<View id="view2">
+  			<Label>View 2</Label>
+  		</View>
+  		<View id="view3">
+  			<Label>View 3</Label>
+  		</View>
+  	</Window>
+  </Alloy>
+ 
+ - Window.tss
+  '#window': {
+  	layout: 'vertical',
+  	backgroundColor: '#90EE90',
+  },
+  '#view1': {
+  	height: Ti.UI.SIZE,
+  	top: 10,
+  	bottom: 10,
+  	backgroundColor: 'red',
+  },
+  '#view2': {
+  	height: Ti.UI.SIZE,
+  	left: 10,
+  	right: 10,
+  	backgroundColor: 'red',
+  },
+  '#view3': {
+  	height: Ti.UI.SIZE,
+  	backgroundColor: 'red',
+  }
+ 
+ *解説 [#lcbd5a73]
+ 縦に並べたい要素の''親''に「layout: 'vertical'」を指定します。HTML で「position: 'relative'」を指定するのとは少し違いますね。
+ 
+ ** tss 属性 [#ba2e9024]
+ :layout|子要素の並べ方を指定します(horizontal/vertical)
+ :top, bottom, left, right|CSS でいうところの margin-* です
+ :backgroundColor|CSS でいうところの background-color です
+ 
+ *参考 [#l73c4aec]
+ -[[Relative layout with Alloy - Possible ? &raquo; Community Questions &amp; Answers &raquo; Appcelerator Developer Center>http://developer.appcelerator.com/question/154887/relative-layout-with-alloy---possible-]]

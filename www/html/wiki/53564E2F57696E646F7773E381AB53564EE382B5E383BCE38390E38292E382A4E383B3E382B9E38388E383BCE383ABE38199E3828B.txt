@@ -1,0 +1,83 @@
+*目標 [#t20e90be]
+-WindowsにてSVNサーバを起動する
+
+*手順 [#d065bd82]
+
+**パッケージをダウンロードする [#jb060fa9]
++以下のサイトの Getting Subversion->Binary Packages を選択する
+--http://subversion.apache.org/
++Windows から Win32Svn を選択する
++Download をクリックしてmsiファイルをダウンロードする
+--Setup-Subversion-1.6.16.msi（2011-04-27時点）
+
+**パッケージをインストールする [#o11d243f]
++ダウンロードしたmsiファイルを実行する
++Next、Install、Finishをクリックしていく
+
+#ref(svnインストール00.JPG,center,60%)
+#ref(svnインストール01.JPG,center,60%)
+#ref(svnインストール02.JPG,center,60%)
+#ref(svnインストール03.JPG,center,60%)
+#ref(svnインストール04.JPG,center,60%)
+#ref(svnインストール05.JPG,center,60%)
+
+**リポジトリを作成する [#v6c0e400]
+
+***リポジトリ用のディレクトリを作成する [#sf865cb0]
+svnがリポジトリ管理するためのディレクトリを作成します。
+
+ >mkdir c:\var
+ >mkdir c:\var\svn
+ >mkdir c:\var\svn\documents
+
+ここでは次のようなディレクトリの役割を考えています。
+:var|Unix系OSの慣習として
+:svn|snvが管理する場所として（一箇所にしたい）
+:documents|ドキュメントのリポジトリ用として（カテゴリで分けたい）
+
+***リポジトリを作成する [#s62845a0]
+
+ >svnadmin create c:\var\svn\documents
+
+***リポジトリを設定する [#xe528dd5]
+
+-c:\var\svn\documents\conf\svnserve.conf
+ anon-access = none
+ auth-access = write
+ password-db = passwd
+
+上記はそれぞれ次のアクセスを設定します。
+:anon-access|匿名アクセス→none（なし）
+:auth-access|認証アクセス→wirte（読み書き）
+:password-db|パスワードファイル→passwd（ファイル名）
+
+-c:\var\svn\documents\conf\passwd
+ ユーザ名=パスワード
+
+**サーバを起動する [#k78177f3]
+***デーモンモードで実行する [#xc0b0fa5]
+ >start svnserve -d -r c:\var\svn
+
+ここでオプションは次の意味があります。
+:-d|デーモンモードで実行する（デフォルト 3690 番ポートで受け付ける）
+:-r|仮想ルートを設定する（上位ディレクトリにアクセスさせない）
+
+さすがにプロンプトから毎度実行するのはしんどいので、サービスと立ち上げるように別途設定するのがよろしいかと思います。
+
+***基本ディレクトリ構成を作成する [#lb9cf1eb]
+
+ >svn mkdir svn://localhost/documents/trunk -m "create"
+ >svn mkdir svn://localhost/documents/branches -m "create"
+ >svn mkdir svn://localhost/documents/tags -m "create"
+
+SVNでは慣習として次のようなディレクトリ構成をとります。
+:trunk|開発中の最新バージョン
+:branches|版（保守対象）
+:tags|リリース（保存用）
+
+このとき、一度ログインユーザのアカウント名でパスワードを聞かれますがEnterを押してスルーします。次にユーザ名とパスワードをそれぞれ聞いてきますで先に設定したユーザ名とパスワードを入力します。
+
+*参考 [#f44661f5]
+-http://www.hyuki.com/techinfo/svninit.html
+-http://www.caldron.jp/~nabetaro/svn/svnbook-1.4-final/svn.ref.svnserve.html
+-http://www.atmarkit.co.jp/fjava/rensai4/devtool02/devtool02_3.html

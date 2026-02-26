@@ -1,0 +1,44 @@
+#author("2017-04-20T07:59:00+00:00","default:haruki","haruki")
+* キーワード [#v505abd7]
+- Spring Boot
+- JUnit
+- STS
+- Eclipse
+
+* 現象 [#m227f3d8]
+STS(Eclipse)でJUnitのテストをするとき、プロフィールのプロパティが読めない。
+
+次を試したがだめだった。
+|項目|設定内容|h
+|Program arguments|--spring.profiles.active=dev|
+|Environment variables to set|(Variable,Value)=(SPRING_PROFILES_ACTIVE,dev)|
+
+* 原因 [#r35fd540]
+EclipseのJUnit test runnerがSpring Bootのようにやってくれないから？
+
+ the JUnit runner simply doesn't parse arguments the same way that a spring boot app does.
+
+* 対策 [#ada267ce]
+
+次のようにプロパティファイルを用意している場合、
+
+|プロパティファイル|内容|h
+|application.yml|環境依存の設定を除く|
+|application-dev.yml|環境依存の設定のみ|
+
+application.ymlに環境依存の設定も合わせて記述する。
+
+* 備考 [#s0de569f]
+
+Gradleからテストする場合、
+
+ export SPRING_PROFILES_ACTIVE=dev
+
+をすれば
+
+ gradle test
+
+できる。
+
+* 参考 [#y828e316]
+- [[Spring boot junit test cannot get command line argument (Eclipse - STS) - Stack Overflow>http://stackoverflow.com/questions/37500403/spring-boot-junit-test-cannot-get-command-line-argument-eclipse-sts]]

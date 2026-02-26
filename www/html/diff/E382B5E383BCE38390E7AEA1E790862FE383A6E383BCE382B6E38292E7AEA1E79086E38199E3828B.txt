@@ -1,0 +1,27 @@
+ *手順 [#e99a72f7]
++
+ **ユーザ管理 [#fb057af5]
+ ***ユーザを追加する [#t741b046]
+  # useradd <ユーザ名>
+ すぐさまユーザのパスワードを設定する。
+  # passwd <ユーザ名>
+  New UNIX password: （ここでパスワードを入力）
+  Retype new UNIX password: （ここでパスワードを再入力）
+  passwd: all authentication tokens updated successfully.
++***ユーザを削除する [#k800df19]
++ # userdel [ -r ] login
++rオプションはホームディレクトリの削除を指示する
++
+ **グループ管理 [#d45a6ef5]
++***グループを追加する [#u7087d6c]
++ # groupadd <グループ名>
+ ***ユーザの所属グループを確認する [#x792d29e]
+  $ id
+ ***グループを確認する [#ra8009a1]
+  $ groups
++***グループを変更する [#l90e7fbc]
++ # usermod -G <グループ名>[,<グループ名>] <ユーザ名>
++***デフォルトグループを変更する [#gcd483cd]
++ # usermod -g <グループ名> <ユーザ名>
++
+ *参考 [#d187cc32]

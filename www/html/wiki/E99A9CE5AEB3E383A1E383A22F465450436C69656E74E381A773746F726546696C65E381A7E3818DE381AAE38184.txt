@@ -1,0 +1,43 @@
+* キーワード [#md0d3ced]
+- FTPClient
+- PASV
+- パッシブモード
+
+* 現象 [#ob71b1f3]
+
+FTPClientでFTP/putできない。環境は、ファイアウォールの都合上パッシブモードでしか送信できない。
+
+エラーになるのは次のコード。
+
+ client.storeFile(remote, local)
+
+* 原因 [#s1b24cef]
+
+次のコードでパッシブモードにしたつもりだができていない。
+
+ client.pasv()
+
+* 対策 [#a765d3ef]
+
+こうすべきだったようです。
+
+ client.enterLocalPassiveMode()
+
+* 備考 [#ff4a8416]
+
+tcpdumpすると確かにPORTコマンドを発行してるようでした。
+
+ # tcpdump -i lo -A port ftp
+ tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
+ listening on lo, link-type EN10MB (Ethernet), capture size 96 bytes
+ ～省略～
+ <%.y<%.yPORT 127,0,0,1,231,155
+ ～省略～
+ <%.y<%.y200 PORT command successful. C
+ ～省略～
+ <%.y<%.ySTOR /path/to/file
+
+
+* 参考 [#t306c359]
+- [[【FTP】パッシブモードと見せかけてアクティブモード - せらぴんブログ>http://unohanat.hatenablog.com/entry/2014/02/07/222124]]
+- [[tcpdumpでパケットキャプチャ>http://linux-biyori.sakura.ne.jp/setting/st_tcpdump.php]]

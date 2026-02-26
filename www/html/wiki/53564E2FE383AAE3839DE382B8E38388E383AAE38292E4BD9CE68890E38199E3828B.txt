@@ -1,0 +1,35 @@
+*目標 [#r2d3848a]
+-リポジトリを作成する
+
+*手順 [#nb026548]
+
+**前提条件 [#mebae991]
+-SVNはインストール済み
+-ディレクトリ構成
+--<svn>はsvn用のディレクトリ (ex: /var/svn)
+---所有者はsvnserveを実行するユーザ
+--<repos>はカテゴリなど分類用のディレクトリ
+
+**リポジトリを作成する [#e2438407]
+ $ svnadmin create <svn>/<repos>
+
+**設定ファイルを編集する [#l1b8c3ae]
+-<svn>/<repos>/conf/svnserve.conf
+ anon-access = none
+ auth-access = write
+ password-db = passwd
+-<svn>/<repos>/conf/passwd
+ name=password
+
+**起動する [#ja1b69b3]
+ $ svnserve -d -r <svn>
+
+**基本ディレクトリを構成する [#u7e6769c]
+ $ svn mkdir svn://localhost/<category>/trunk -m "create"
+ $ svn mkdir svn://localhost/<category>/branches -m "create"
+ $ svn mkdir svn://localhost/<category>/tags -m "create"
+
+*参考 [#u584da0f]
+-http://wiki.minaco.net/index.php?Linux/Subversion/yum%E3%81%8B%E3%82%89%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB
+-http://www.nulab.co.jp/kousei/chapter2/01.html
+-http://icotfeels.blog66.fc2.com/blog-entry-2366.html

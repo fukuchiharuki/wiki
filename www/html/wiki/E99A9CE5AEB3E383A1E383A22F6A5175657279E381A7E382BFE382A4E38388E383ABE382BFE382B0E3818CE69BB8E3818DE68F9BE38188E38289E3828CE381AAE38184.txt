@@ -1,0 +1,19 @@
+*関連 [#u863892e]
+-jQuery
+
+*現象 [#m3a7ff31]
+jQueryでタイトルタグが書き換えられない（ただしIEのみ。）
+
+次のどちらもエラー「unexpected call to method or property access」になる
+ $('title').html('ほげ');
+ $('title').text('もげ');
+
+*原因 [#gb3d3e27]
+不明。
+
+*対策 [#z5d31f4e]
+仕方がないのでJavaScript生のメソッドを使う。
+ window.document.title = 'ふが';
+
+*参考 [#p6ddb556]
+-http://www.rachaelarnold.com/dev/archive/the-title-element-and-jquerys-text-function

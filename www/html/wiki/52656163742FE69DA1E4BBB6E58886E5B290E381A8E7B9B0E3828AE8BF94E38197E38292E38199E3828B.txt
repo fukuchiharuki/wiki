@@ -1,0 +1,55 @@
+#author("2017-12-07T01:50:09+00:00","default:haruki","haruki")
+* キーワード [#b6759ed7]
+- React
+- 条件分岐 (if)
+- 繰り返し (for)
+
+* したいこと [#d2883395]
+
+Reactで条件分岐や繰り返しをして描画したい。
+
+* どうやって [#r497525e]
+
+普通に条件分岐と繰り返しをする（！？）。
+
+** 条件分岐 [#a1e62471]
+
+ const ResultLabel = ({state}) => (
+     <div>
+         Result:
+         <span>
+             {
+                 state.showingResult
+                     ? state.resultValue
+                     : state.inputValue
+             }
+         </span>
+     </div>
+ )
+
+** 繰り返し [#uc873d85]
+
+ const HistoryList = ({state}) => (
+     <div>
+         <ul>
+             {
+                 state.resultHistory.map(result => (
+                     <li key={result.id}>{result.value}</li>
+                 ))
+             }
+         </ul>
+     </div>
+ )
+
+* ちなみに [#j6022032]
+
+「{}」の中で変数や配列を置いてやれば、その変数の値や配列の要素の値を書いてくれます。if文やfor文を使おうとすると即時関数でreturnする必要があるのでちょっと手間です。ので、三項演算子やArray.prototype.map()を使う方がシュッとします。
+
+「()」でJSX要素が返却できるのはなんでかっていうと、ラムダ式になっているからなだけですね。
+
+なお、繰り返し中に「key」を指定しないと「ユニークなkeyをもつべし」と[[怒られます>障害メモ/繰り返しでユニークなkeyがないと怒られる]]ので注意。
+
+* 参考 [#b8c13d97]
+- [[React.jsのJSXで条件分岐・繰り返しを記述する - Qiita>https://qiita.com/r7kamura/items/b16cb11b30a54d3c607d]]
+- [[ReactのJSXでifやforを使いたい場合 - Qiita>https://qiita.com/yuch_i/items/ec24579024c221979317]]
+- [[JSX | XML-like syntax extension to ECMAScript>https://facebook.github.io/jsx/]]

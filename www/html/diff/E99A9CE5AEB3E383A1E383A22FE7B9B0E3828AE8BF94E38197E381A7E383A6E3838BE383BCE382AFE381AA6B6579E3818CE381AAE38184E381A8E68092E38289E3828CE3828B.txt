@@ -1,0 +1,53 @@
++#author("2017-12-07T01:48:33+00:00","default:haruki","haruki")
++* キーワード [#rf3cd270]
++- React
++- 繰り返し
++- unique key
+ 
++* 現象 [#kbaa3def]
++
++次のような繰り返しで、
++
++ const HistoryList = ({state}) => (
++     <div>
++         <ul>
++             {
++                 state.resultHistory.map(result => (
++                     <li>{result.value}</li>
++                 ))
++             }
++         </ul>
++     </div>
++ )
++
++次のwarningが出力される。
++
++ Warning: Each child in an array or iterator should have a unique "key" prop.
++
++* 原因 [#tc9b8d5a]
++
++VirtualDOMのdiffから実際のDOMに反映させるのに最小限の変更にするためのkeyが要る、ということのようです。
++
++* 対策 [#se507bbb]
++
++ユニークなkeyをつけてあげる。
++
++ const HistoryList = ({state}) => (
++     <div>
++         <ul>
++             {
++                 state.resultHistory.map(result => (
++                     <li key={result.id}>{result.value}</li>
++                 ))
++             }
++         </ul>
++     </div>
++ )
++
++* 備考 [#kcd26bc7]
++
++AngularJSでもユニークでない要素を含む配列をngRepeatすると怒られましたね。
++
++* 参考 [#y7dfca65]
++- [[React.jsの地味だけど重要なkeyについて - Qiita>https://qiita.com/koba04/items/a4d23245d246c53cd49d]] 
++

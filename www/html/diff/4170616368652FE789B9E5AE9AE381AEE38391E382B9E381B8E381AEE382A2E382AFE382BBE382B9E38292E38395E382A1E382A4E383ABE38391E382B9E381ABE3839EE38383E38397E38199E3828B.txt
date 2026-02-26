@@ -1,0 +1,23 @@
+-[[../]]
+-
+ *キーワード [#nf862a09]
+ -Apache
+ 
+ *概要 [#s4153290]
+ 特定のパスへのアクセスをファイルパスにマップしたい。
+ 
+ *方法 [#a0115c59]
+ 例えば/images/〜へのアクセスを/var/images/〜にマップさせるには次のようにします。
+  Alias /images /var/images
+  <Directory "/var/images">
+  Order allow,deny
+  Allow from all
+  </Directory>
+ 
+ *解説 [#fb6de42b]
+ 後ろはワイルドカードの扱いです。
+ 
+ アプリケーションが直接wwwな領域を触りに行くのはなんなのでマップして、がいいのかなと思います。
+ 
+ *参考 [#wf355360]
+ -http://httpd.apache.org/docs/2.0/ja/mod/mod_alias.html

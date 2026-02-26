@@ -1,0 +1,20 @@
+*キーワード [#l140cbea]
+-php
+-SELinux
+-CentOS
+
+*現象 [#xf9c7e3e]
+パーミションの設定は間違っていないはずなのに php でファイルを開けない。
+ failed to open stream: Permission denied
+
+'''# しかも書き込みではなく ini ファイルを読みたいだけだった。'''
+
+*原因 [#z5ebb7dc]
+SELinux のはたらきで httpd がファイルを開けないから。
+
+*対策 [#jbe784a8]
+タイプを変更する。
+ $ chcon -R -t httpd_sys_script_rw_t (DIR_NAME)
+
+*参考 [#rce1e501]
+-[[php fopen failed to open stream: Permission denied - Stack Overflow>http://stackoverflow.com/questions/8138288/php-fopen-failed-to-open-stream-permission-denied]]

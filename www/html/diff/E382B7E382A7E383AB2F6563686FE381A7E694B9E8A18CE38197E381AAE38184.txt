@@ -1,0 +1,20 @@
++*関連 [#o1b39c52]
++-echo
+ 
++*概要 [#eaf64a08]
++改行せずにecho出力する。
++
++*方法 [#q07d551d]
++ $ echo -n -e 'hoge'
++
++*解説 [#a2ff5942]
++オプションの意味は以下の通り
++- -n
++-- 改行しない指定
++- -e
++-- 文字列指定
++
++*参考 [#pb1dae8d]
++-http://www.ksknet.net/cat24/echo.html
++-http://linuxjm.sourceforge.jp/html/GNU_sh-utils/man1/echo.1.html
++

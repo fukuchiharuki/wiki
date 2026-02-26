@@ -1,0 +1,37 @@
++*キーワード [#gacbaba2]
++-Linux
++-Tomcat
++-MySQL
++-Subversion
++-Redmine
+ 
++*概要 [#wf5d01ef]
++アプリケーションの起動方法と終了方法をよく忘れるのでメモ。
++
++*方法 [#cd1d022e]
++** Tomcat [#d614c553]
++-起動
++ $ /usr/local/tomcat/bin/startup.sh
++-終了
++ $ /usr/local/tomcat/bin/shutdown.sh
++
++** MySQL [#r36e2fee]
++-起動
++ $ nohup /usr/local/mysql/bin/mysqld_safe &
++-終了
++ $ /usr/local/mysql/bin/mysqladmin -uroot -p shutdown
++
++** Subversion [#ee6c8223]
++-起動
++ $ svnserve -d -r /var/svn
++-終了
++ $ kill (svnserveのプロセス番号)
++
++** Redmine [#lf237931]
++-起動
++ $ nohup /usr/local/redmine/script/server -e production &
++
++*解説 [#a6edf6cb]
++パスはインストールの仕方によるので適当に読み替えること。
++
++

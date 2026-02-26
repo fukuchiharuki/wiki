@@ -1,0 +1,98 @@
+-|[[0000-0FFF>Unicode/U+0000-U+0FFF]]|[[8000-8FFF>Unicode/U+8000-U+8FFF]]|
+-|[[1000-1FFF>Unicode/U+1000-U+1FFF]]|[[9000-9FFF>Unicode/U+9000-U+9FFF]]|
+-|[[2000-2FFF>Unicode/U+2000-U+2FFF]]|[[A000-AFFF>Unicode/U+A000-U+AFFF]]|
+-|[[3000-3FFF>Unicode/U+3000-U+3FFF]]|[[B000-BFFF>Unicode/U+B000-U+BFFF]]|
+-|[[4000-4FFF>Unicode/U+4000-U+4FFF]]|[[C000-CFFF>Unicode/U+C000-U+CFFF]]|
+-|[[5000-5FFF>Unicode/U+5000-U+5FFF]]|[[D000-DFFF>Unicode/U+D000-U+DFFF]]|
+-|[[6000-6FFF>Unicode/U+6000-U+6FFF]]|[[E000-EFFF>Unicode/U+E000-U+EFFF]]|
+-|[[7000-7FFF>Unicode/U+7000-U+7FFF]]|[[F000-FFFF>Unicode/U+F000-U+FFFF]]|
+-
+-*コードポイント-バージョン対一覧 [#ca874773]
+-基本多言語面について参考ページを基にコードポイントと対応する（文字が割り当たった）バージョンの対をリスト化しました。
+-
+-**背景 [#u1a49d32]
+-各コードポイントがどのバージョンのUnicodeに該当するかを知る必要がお仕事上でてきました。参考ページのリストでそれが分かるには分かるのですが色を目視しなければならず、データを突き合わせするのに不都合でした。とは言え、色としてデータ化されているのだからこれを無理矢理逆引きしてバージョンとの対データにすることだってできるだろうと、やってみました。
+-
+-**まとめ方 [#fbfa6513]
+-次のJavaScriptで背景色からバージョンを逆引きしました。
+- <html>
+- <head>
+- <script type="text/javascript" src="./jquery-min.js"></script>
+- <script type="text/javascript" src="./rgbcolor.js"></script>
+- <script type="text/javascript">
+- <!--
+- $(function(){
+- 	var out = $('#version-list');
+- 	$.each($('table:first').children('tbody').children('tr').children('td'), function(i) {
+- 		var background = $(this).css('background-color');
+- 		if (background == 'transparent') {
+- 			background = $(this).parent().css('background-color');
+- 		}
+- 		var color = new RGBColor(background);
+- 		var version;
+- 		switch (color.toHex()) {
+- 		case '#ff6666':
+- 			version = 'Unicode 1.0'; break;
+- 		case '#ff9966':
+- 			version = 'Unicode 1.1'; break;
+- 		case '#ffff66':
+- 			version = 'Unicode 2.0'; break;
+- 		case '#ccff66':
+- 			version = 'Unicode 2.1'; break;
+- 		case '#66ff66':
+- 			version = 'Unicode 3.0'; break;
+- 		case '#66ff99':
+- 			version = 'Unicode 3.1'; break;
+- 		case '#66ffcc':
+- 			version = 'Unicode 3.2'; break;
+- 		case '#66ffff':
+- 			version = 'Unicode 4.0'; break;
+- 		case '#66ccff':
+- 			version = 'Unicode 4.1'; break;
+- 		case '#6666ff':
+- 			version = 'Unicode 5.0'; break;
+- 		case '#9966ff':
+- 			version = 'Unicode 5.1'; break;
+- 		case '#cc66ff':
+- 			version = 'Unicode 5.2'; break;
+- 		case '#ff66ff':
+- 			version = 'Unicode 6.0'; break;
+- 		case '#000000':
+- 			version = 'Noncharacter'; break;
+- 		case '#666666':
+- 			version = 'Reserved'; break;
+- 		}
+- 		var codePoint =
+- 			$(this).parent().children('th:first').text().substr(0, 3)
+- 			+ (i%16).toString(16).toUpperCase();
+- 		if ('E000' <= codePoint && codePoint <= "F8FF") {
+- 			version = 'Private use';
+- 		}
+- 		out.append('U+');
+- 		out.append(codePoint);
+- 		out.append("\t");
+- 		out.append(version);
+- 		out.append("<br>");
+- 	});
+- });
+- // -->
+- </script>
+- </head>
+- <body>
+- 
+- <div id="version-list"></div>
+- 
+- <!-- ↓参考ページからテーブルを貼りつける -->
+- <table></table>
+- 
+- </body>
+- </html>
+-
++#author("2024-10-28T04:54:20+00:00;2013-08-17T09:07:15+00:00","default:haruki","haruki")
+ *参考 [#k2ce4649]
+ -[[Unicode/Character reference - Wikibooks>http://en.wikibooks.org/wiki/Unicode/Character_reference]]
+--[[jQuery: The Write Less, Do More, JavaScript Library>http://jquery.com/]]
+--[[RGB color parser in JavaScript / Stoyan's phpied.com>http://www.phpied.com/rgb-color-parser-in-javascript/]]
+--[[DerivedAge-6.0.0.txt>http://www.unicode.org/Public/UNIDATA/DerivedAge.txt]]（一覧あったのね...）
+-
++-[[DerivedAge-6.0.0.txt>http://www.unicode.org/Public/UNIDATA/DerivedAge.txt]]

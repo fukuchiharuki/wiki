@@ -1,0 +1,28 @@
++#author("2018-06-28T01:34:20+00:00","default:haruki","haruki")
++* キーワード [#bc128ce0]
++- Kotlin
++- generics, ジェネリクス
++- class, kclass
++- extends, 継承
+ 
++* したいこと [#bafc2453]
++
++Javaでいうとろころの
++
++ Class<? extends Hoge>
++
++を書きたい。
++
++* どうやって [#z6c10b84]
++
++ KClass<out Hoge>
++
++でした。
++
++* なお書き [#z0bcb2e1]
++
++これは想像できないかった＞＜
++
++* 参考 [#u83dc90f]
++- [[Kotlinチートシート: Generics編>https://qiita.com/alt_yamamoto/items/9ff0a7d9723b2c0171a0]]
++

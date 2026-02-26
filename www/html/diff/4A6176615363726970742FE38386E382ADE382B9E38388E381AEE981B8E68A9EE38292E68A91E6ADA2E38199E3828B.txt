@@ -1,0 +1,37 @@
++*キーワード [#hc9d1770]
++-JavaScript
++-jQuery
+ 
++*概要 [#q8b6ed6a]
++右クリックやテキストの選択を抑止したいというユーザーからの要望を抑えられなかったときのメモです。
++
++*方法 [#z2f1a814]
++** 右クリック禁止 [#xb26e080]
++ $(document).bind("contextmenu", function(e) {
++ 	return false;
++ });
++
++** テキストの選択禁止 [#od7ffebc]
++*** IE向け [#vf2b5a01]
++ $('html').on('selectstart dragstart', function(e) { 
++ 	e.preventDefault(); 
++ });
++
++*** IE以外向け [#l239618d]
++ $('html').css({
++ 	'user-select': 'none',
++ 	'-moz-user-select': 'none',
++ 	'-khtml-user-select': 'none',
++ 	'-webkit-user-select': 'none'
++ });
++
++
++*解説 [#eaf143b1]
++右クリックはイベント contextmenu を拾って false を返却すれば抑止できるようです。
++
++テキストの選択は IE とそれ以外で別の方法を採ります。IE ではイベント selectstart と dragstart を拾ってそのイベントをキャンセルすることで抑止できるようです。また IE 以外のブラウザではスタイルの指定で抑止できるようです。
++
++*参考 [#ef00678f]
++-[[jQueryを使って右クリックメニューを禁止する方法 | IDEA*IDEA>http://www.ideaxidea.com/archives/2009/03/how_to_disable_right_click_menu.html]]
++-[[ドラッグによるテキストの選択をキャンセルする【CSS, HTML, JavaScript】 - Programming Magic>http://www.programming-magic.com/20071217225449/]]
++

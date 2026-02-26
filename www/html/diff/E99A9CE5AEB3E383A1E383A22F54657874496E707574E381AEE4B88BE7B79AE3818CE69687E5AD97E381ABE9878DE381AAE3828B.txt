@@ -1,0 +1,29 @@
+-#author("2017-12-31T05:32:09+00:00","default:haruki","haruki")
++#author("2017-12-31T06:56:35+00:00","default:haruki","haruki")
+ * キーワード [#x714a696]
+ - React Native
+ - TextInput
+ - Android
+ 
+ * 現象 [#h0ce71d0]
+ 
+ TextInputのfontSizeを大きくすると下線が文字を乗り上げてきて気になりすぎる。
+ 
++#ref(TextInput.jpg,center,50%)
++
+ * 原因 [#r03fccef]
+ 
+ 分からない。そういうもの？
+ 
+ * 対策 [#uaa9d9e2]
+ 
+ 下線を消すことはできる。
+ 
+  <TextInput underlineColorAndroid="transparent" />
+ 
+ * 備考 [#a9120cff]
+ 
+ なし。
+ 
+ * 参考 [#mad2e655]
+ - [[[Android][TextInput] Remove underline option? · Issue #5424 · facebook/react-native>https://github.com/facebook/react-native/issues/5424]]

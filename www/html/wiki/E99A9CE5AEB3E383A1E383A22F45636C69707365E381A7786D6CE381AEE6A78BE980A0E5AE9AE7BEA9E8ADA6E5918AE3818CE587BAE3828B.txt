@@ -1,0 +1,16 @@
+*関連 [#ob0a1bea]
+-Tomcat
+-XML
+
+*現象 [#x1e0b2e4]
+XMLファイルについて次の警告が出る。
+ No grammer constraints (DTD or XML schema) detected for the document.
+
+*原因 [#h5f2586d]
+構造定義がないと言われている様子。
+
+*対策 [#ybe66d63]
+次のようにルートの要素だけ書くとこの警告を回避できる。
+ <!DOCTYPE hoge>
+
+*参考 [#qab8e7be]

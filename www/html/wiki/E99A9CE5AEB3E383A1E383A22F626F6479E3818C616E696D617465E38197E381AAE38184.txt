@@ -1,0 +1,22 @@
+*キーワード [#d89cb2d4]
+-JavaScript/jQuery
+-animate
+-scrollTop
+
+*現象 [#f3237d10]
+次のJavaScriptでページの先頭にスクロールしない。
+ jQuery('body:first').animate({
+   scrollTop: 0
+ }, 100);
+
+*原因 [#h8aacfc2]
+bodyを指定してそうできるのはChromeだけだとか？
+
+*対策 [#n066f4e1]
+こう書く。
+ jQuery('html:first, body:first').animate({
+   scrollTop: 0
+ }, 100);
+
+*参考 [#te39d2bc]
+-http://www.losttechnology.jp/WebDesign/2011/scrolltotop.html

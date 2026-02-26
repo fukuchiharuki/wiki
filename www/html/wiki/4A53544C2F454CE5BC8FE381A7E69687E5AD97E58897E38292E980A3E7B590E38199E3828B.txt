@@ -1,0 +1,18 @@
+*関連 [#q49ee419]
+-JSP
+-JSTL
+-Java
+
+*概要 [#ice72feb]
+JSP(EL式)で文字列を連結します。
+
+*方法 [#f27cafd6]
+演算子「+」では文字列を連結できないので次のようにします。
+ <c:set var="hoge">${moge},${fuga}</c:set>
+
+*解説 [#y5cd8a26]
+タグに囲まれた箇所がvalue属性値の扱いになるようです。
+
+*参考 [#qe19dd05]
+-http://yakinikunotare.boo.jp/orebase/index.php?JSP%2F%CA%B8%BB%FA%CE%F3%C1%E0%BA%EE
+-http://riwablo.blogspot.jp/2007/12/el.html

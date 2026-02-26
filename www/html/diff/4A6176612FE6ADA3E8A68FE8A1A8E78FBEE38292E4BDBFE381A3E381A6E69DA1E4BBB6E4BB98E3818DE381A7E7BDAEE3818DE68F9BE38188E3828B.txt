@@ -1,0 +1,62 @@
+ *キーワード [#oa421920]
+ -Java
+ -正規表現
+ 
++*関連 [#r8d20b73]
++-[[Java/正規表現で特定箇所をいくつか抜き出す]]
++
+ *概要 [#yc8b9d4f]
+ 「テキスト中のリンクのうち、外部サイトを参照するものを別ウィンドウに表示する」ケースを考える。つまり「テキスト中のアンカタグのうち、
+ 参照URLがある条件を満たす場合のみ target="_blank" を挿入する」と言い換えることができる。
+ 
+ 要件を抜き出すと、
+ -テキスト中からアンカタグを抜き出す
+ -抜き出した文字列のうち参照URL部分について条件を当てる
+ -条件を満たした場合抜き出したアンカタグに target="\blank" を挿入する
+ 
+ となる。
+ 
+ *方法 [#we3b012e]
+  String regex = "(<a .*?href=[\"'])(.*?)([\"'])(.*?>)"; // アンカタグを抜き出す正規表現
+  StringBuffer tunedText = new StringBuffer(); // 置き換え後のテキスト
+  Pattern pattern = Pattern.compile(regex);
+  Matcher matcher = pattern.matcher(text); // textは置き換え前のテキスト
+  while (matcher.find()) {
+    if (! matcher.group(2).matches("^(http|https|ftp)://([^\\./]+\\.)*foo\\.bar(/.*)?$")) {
+      matcher.appendReplacement(tunedText, 
+                                matcher.group(1)      // 「<a href="（アンカタグの先頭）」
+                              + matcher.group(2)      // 「（URL）」
+                              + matcher.group(3)      // 「"（hrefの閉じ）」
+                              + " target=\"_blank\" " // 「target="_blank"（固定）」
+                              + matcher.group(4));    // 「>（アンカタグの末尾）」
+    }
+  }
+  matcher.appendTail(tunedText);
+ 
+ *解説 [#n954455c]
+ **テキスト中からアンカタグを抜き出す [#r847afc6]
+ アンカタグを抜き出す正規表現を 
+  (<a .*?href=[\"'])(.*?)([\"'])(.*?>)
+ としている。
+ 
+ ここでは抜き出すアンカタグを次の要素に分割している。
+ -「<a href="（アンカタグの先頭）」
+ -「（URL）」
+ -「"（hrefの閉じ）」
+ -「>（アンカタグの末尾）」
+ 
+ **抜き出した文字列のうち参照URL部分について条件を当てる [#b68ad166]
+ 分割した要素「（URL）」について条件を当てる。ここでは、 
+  if (! matcher.group(2).matches("^(http|https|ftp)://([^\\./]+\\.)*foo\\.bar(/.*)?$"))
+ としている（条件は「foo.bar」をドメイン名とするURL以外の場合。）
+ 
+ **条件を満たした場合抜き出したアンカタグに target="_blank" を挿入する [#tedb0bc3]
+ 分割した要素「"（hrefの閉じ）」と「>（アンカタグの末尾）」の間に「target="_blank"（固定）」を挿入して
+  matcher.appendReplacement() 
+ している。
+ 
+ ここで appendReplacement() は''カーソルの先頭からマッチした文字列の末尾まで''を置き換え後のテキストにアペンドし、カーソルをマッチした文字列の末尾の次の文字に変更する。従って、appendReplacement() を繰り返すことでマッチした文字列の末尾までを次々置き換え後のテキストにアペンドできる。最後に appendTail() をコールすることで、''最後にマッチした文字列の次の文字から後ろ''を置き換え後のテキストにアペンドする。
+ 
+ 
+ *参考 [#k4fb1bc0]
+ -http://java.sun.com/j2se/1.5.0/ja/docs/ja/api/java/util/regex/Matcher.html

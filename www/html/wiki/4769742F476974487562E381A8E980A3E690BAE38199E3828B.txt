@@ -1,0 +1,45 @@
+*関連 [#va14f479]
+-Git
+-GitHub
+
+*概要 [#jf21a9d2]
+GitHub（リモート）と連携するためのメモ。
+
+* セッティング [#sba591c4]
+
+** ユーザー情報を設定する [#i7b77ca6]
+ $ git config --global user.name "<アカウント名>"
+ $ git config --global user.email "<メールアドレス>"
+
+* スタートアップ [#startup]
+
+** gitを初期化する [#pa8cc05c]
+ $ cd <プロジェクトのディレクトリ>
+ $ git init
+
+** コミットする [#lb007764]
+ $ git add *
+ $ git commit -m "first commit"
+
+** プッシュする [#q85cb405]
+ $ git remote add origin git@github.com:<username>/<Project>.git
+ $ git push -u origin master
+
+次回からは省略することができる。
+
+ $ git push
+
+* タグ [#tag]
+**タグをつける [#gdd8c110]
+ $ git tag -a tagname -m "message"
+ $ git push --tag
+tagnameとmessageは適宜。
+
+**タグを削除する [#ee7d3c49]
+ $ git tag -d tagname
+ $ git push origin :tagname
+
+*参考 [#t6feafa0]
+- http://help.github.com/create-a-repo/
+- http://kakakikikeke.blogspot.jp/2012/05/githubeclipsegithub.html
+- http://at-aka.blogspot.jp/2010/06/git.html

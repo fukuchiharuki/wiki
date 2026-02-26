@@ -1,0 +1,33 @@
+-*関連 [#r80cd672]
++*キーワード [#u0bdab7d]
+ -Java
+ -Tomcat
+ 
++*関連 [#r80cd672]
++-[[障害メモ/Tomcat関連]]
++
+ *現象 [#z31bb247]
+ Tomcatを終了させようとして。
+  Error occurred during initialization of VM
+  Could not reserve enough space for object heap
+  Could not create the Java virtual machine.
+ 
+ Tomcatではなく、Javaがメモリ不足を言っている様子。
+ 
+ *原因 [#c2668753]
+ メモリが足りてない。
+ 
+ *対策 [#z7a52cbd]
+ **とりあえず強制終了させる [#lba02bf1]
+  $ ps -ef | grep java
+ Tomcatに関わるプロセスを見つけたら、殺す。
+  $ kill プロセスID
+ 
+ **ヒープの最大を指定してTomcatを動かす [#z4f1d8d3]
+ 
+ Tomcatを起動させうユーザの環境変数CATALINA_OPTSに以下を設定する。
+  export CATALINA_OPTS='-server -Xmx64M'
+ -サイズはその時の環境によって
+ 
+ *参考 [#ieb114d8]
+ -http://hatirobei.at.webry.info/201003/article_4.html

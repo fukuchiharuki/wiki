@@ -1,0 +1,52 @@
+*キーワード [#u0b55c01]
+- Titanium Mobile
+- Alloy
+
+* 関連 [#e99f80b8]
+- [[../ソースコードを分離する(その2)]]
+
+*目標 [#e2beedfc]
+ソースコードを分離します。ここでは index.xml から Window.xml を抽出分離します。
+
+*方法 [#jd7daa8a]
+** コントローラを追加する [#rb1173af]
+右クリック > New > Alloy Controller からコントローラを追加します。
+
+#ref(new.png,center,50%)
+
+ここでは Tab 直下の Window を分離させたいので名前を Window にしました。
+
+** 抽出分離する分を抜き出す [#fb54a138]
+- Window.xml (抜き出す方)
+ <Alloy>
+ 	<Window id="window">
+ 		<Label id="label">I am a Window</Label>
+ 	</Window>
+ </Alloy>
+
+- index.xml (抜き出される方)
+ <Alloy>
+ 	<TabGroup>
+ 		<Tab title="Tab 1" icon="KS_nav_ui.png">
+ 			<Require src="Window"></Require>
+ 		</Tab>
+ 		<Tab title="Tab 2" icon="KS_nav_views.png">
+ 			<Require src="Window"></Require>
+ 		</Tab>
+ 	</TabGroup>
+ </Alloy>
+
+*解説 [#ia469293]
+** Require タグ [#z370793b]
+Tab と Window の関連づけは Tab から Require タグで Window を読み込むようにします。
+
+** id 属性 [#id3c6436]
+抜き出した方の Window はアプリ上ふたつ存在することになるのですが id を指定することができます。この id に対してイベントハンドラを取りつけるとそれぞれ要素にイベントを張ることができます。すごく便利。
+- Window.js
+ var args = arguments[0] || {};
+ $.label.addEventListener('click', function() {
+ 	Ti.UI.createAlertDialog({title:'Click', message:'You clicked it.'}).show();
+ });
+
+*参考 [#b2861a19]
+- [[小さな Titanium Mobile の読み物 | The Little Book on Titanium (Appcelerator Titanium)>http://ti.imthinker.net/page4.html]]

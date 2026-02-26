@@ -1,0 +1,32 @@
+-#author("2018-03-07T00:55:21+00:00","default:haruki","haruki")
++#author("2022-11-18T03:00:23+00:00","default:haruki","haruki")
+ * プロフィール [#d1873094]
+ 
++#ref(2015-05-17 photo（ろくろ）.jpg)
++
+ フリーランスのソフトウェアエンジニア。
+ 
+-- [[自己紹介>http://blog.fukuchiharuki.me/about/]]（ブログ）
+-- [[経歴など>http://resume.fukuchiharuki.me/]]（レジュメ）
++情報資源管理としてのデータベース・コンテンツ設計に関心があります。数学や哲学、認知言語学など対象の捉え方に係る考え方に興味があります。
++システム開発の傍ら、それを推進するチームの体制やプロセス・仕組みづくりの支援もしています。
+ 
+-* Webサイト [#u845751b]
+-- [[福地春喜のホームページ>http://fukuchiharuki.me/]]
+-- [[福地春喜のレジュメ>http://resume.fukuchiharuki.me/]]
+-- [[ふくちはるきのブログ>http://blog.fukuchiharuki.me/]]
++- [[ホームページ>http://fukuchiharuki.me/]]
+ 
+-* YouTube [#o5350f71]
+-- [[【JOYSOUND】「ふざけるな！ボクはザフトの船なんかにいかない！！」／機動戦士ガンダムSEED【アフレコ】>https://www.youtube.com/watch?v=keZi8IA3lBA]]
+-- [[【JOYSOUND】「人は、独りじゃ飛べない」／マクロスFRONTIER【アフレコ】>https://www.youtube.com/watch?v=PQtkix3X_MA]]
+-- [[【JOYSOUND】「ハッピーバースデー！アルト君！」／マクロスF【アフレコ】>https://www.youtube.com/watch?v=D7skYSHzZgI]]
+ 
+-* ツール [#y06bfac9]
+-:[[LuLu: a skin for PukiWiki>https://github.com/fukuchiharuki/LuLu-a-skin-for-PukiWiki]]|
+-シンプルでレスポンシブなPukiWiki用スキン。~
+-このWikiで利用しています。
+-:[[talk.css>https://fukuchiharuki.github.io/talk.css/]]|
+-talk.cssは会話形式の吹き出しを作成するCSS。~
+-アニメのセリフをブログに載せたくて作ってみたものです。
+-

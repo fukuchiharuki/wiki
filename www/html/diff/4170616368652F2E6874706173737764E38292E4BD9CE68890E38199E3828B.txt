@@ -1,0 +1,24 @@
+-[[../]]
+-
+ *キーワード [#p2f331ae]
+ -Apache
+ -.htaccess
+ -.htpasswd
+ 
+ *概要 [#t884176f]
+ .htpasswdを作成します。Apacheにはhtpasswdというコマンドが用意されているのでここではそれを利用します。
+ 
+ *方法 [#o6f17936]
+  htpasswd -nb guest guest | grep -E '.' >> .htpasswd
+ 
+ *解説 [#zfd09326]
+ htpasswdのオプションはそれぞれ次の意味があります。
+ |n|出力を標準出力にします。|
+ |b|コマンドの引数でパスワードを設定します。|
+ 
+ grepをかましているのは空行を作らないようにしているだけです。
+ 
+ *参考 [#s0e98130]
+ -http://www.shtml.jp/htaccess/
+ -http://www.yunayuna.net/server/apache2htaccess.html
+ -http://www.atmarkit.co.jp/flinux/rensai/apache10/apache10b.html

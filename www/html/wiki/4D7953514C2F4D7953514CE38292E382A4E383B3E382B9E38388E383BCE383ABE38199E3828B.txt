@@ -1,0 +1,4 @@
+まとめ。
+
+-[[Windowsにインストールする>MySQL/WindowsにMySQLをインストールする]]
+-[[Unix系OSにインストールする>MySQL/Unix系OSにMySQLをインストールする]]

@@ -1,0 +1,28 @@
+-*関連 [#d584897a]
++*キーワード [#cdb8995a]
+ -MySQL
+ -tsv
+ 
++*関連 [#d584897a]
++-[[MySQL/csvファイルを出力する]]
++
+ *概要 [#c2a08536]
+ タブ区切りのデータを出力します。
+ 
+ *方法 [#q09fdb71]
+  $ mysql -u(username) -p(password) (database) -B -N -e 'select * from (table);' > data.tsv
+ 
+ *解説 [#la97e8f9]
+ 各オプションは以下のとおり。
+ - -B
+ --セパレータとしてタブを使う
+ - -N
+ --カラム名を出力しない
+ - -e
+ --クエリ指定
+ 
+ *参考 [#w8087af8]
+--http://mysqlmemo.blog86.fc2.com/blog-entry-7.html
+--http://dev.mysql.com/doc/refman/5.1/ja/mysql-command-options.html
++-[[俺のMySQLメモ |タブ区切りでファイル出力>http://mysqlmemo.blog86.fc2.com/blog-entry-7.html]]
++-[[MySQL ::   MySQL 5.1 リファレンスマニュアル :: 7.7.1 mysql オプション>http://dev.mysql.com/doc/refman/5.1/ja/mysql-command-options.html]]

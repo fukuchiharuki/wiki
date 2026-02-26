@@ -1,0 +1,37 @@
+*キーワード [#a7520fc2]
+-MySQL
+-InnoDB
+-ib_logfile0
+
+*関連 [#a29a6aac]
+-[[障害メモ/MySQL関連]]
+
+*現象 [#r45faac4]
+mysqldが立ちあがらない。
+-mysql-error.log (設定にもよるが /etc/log/ あたり)
+ InnoDB: Unable to lock /opt/OpenStandia/mysql-5.5/data/ib_logfile0, error: 11
+ InnoDB: Check that you do not already have another mysqld process
+ InnoDB: using the same InnoDB data or log files.
+ InnoDB: Error in opening /opt/OpenStandia/mysql-5.5/data/ib_logfile0
+ 130811 23:47:01 [ERROR] Plugin 'InnoDB' init function returned error.
+ 130811 23:47:01 [ERROR] Plugin 'InnoDB' registration as a STORAGE ENGINE failed.
+ 130811 23:47:01 [ERROR] Unknown/unsupported storage engine: InnoDB
+ 130811 23:47:01 [ERROR] Aborting
+
+*原因 [#a789f5e9]
+
+他の mysqld プロセスを動かしていないかチェックしてください。同じ InnoDB データまたはログファイルを使おうとしていますよ。
+
+ということらしい。
+
+*対策 [#iaaf373c]
+ファイルをコピーして無理やりロックできるようにします。
+
+ $ cd (MYSQL_HOME)/data/
+ $ mv ib_logfile0 ib_logfile0.bak
+ $ cp -a ib_logfile0.bak ib_logfile0
+
+ib_logfile1 や ib_logfile2 もあれば同じように。
+
+*参考 [#y35988d3]
+-[[Fix &#8220;InnoDB: Unable to lock ./ib_logfile0, error: 11&#8243; | Dbhk&#039;s Blog>http://dbhk.wordpress.com/2012/02/27/fix-innodb-unable-to-lock-ib_logfile0-error-11/]]

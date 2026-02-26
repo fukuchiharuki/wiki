@@ -1,0 +1,36 @@
+*キーワード [#bc8ae9d3]
+-MySQL
+-trigger
+
+*概要 [#i9db9033]
+レコードに管理用カラムとして作成日時と更新日時を設けることがありますね。
+アプリケーションでこれをセットするは少し面倒なので自動化したいです。
+アプリケーションの実装は作成日時と更新日時を忘れることができます。
+
+*方法 [#g7040032]
+作成日時と更新日時用のカラムを用意します。
+ CREATED_AT datetime,
+ UPDATED_AT timestamp default current_timestamp on update current_timestamp
+
+更新日時は timestamp が勝手にやってくれるので、作成日時分のセットをトリガで実装します。
+ mysql> DELIMITER ;;
+ mysql> 
+ mysql> create trigger HOGE_CREATION before insert on HOGE
+ mysql>   for each row begin
+ mysql>     set NEW.CREATED_AT = now();
+ mysql>   end;
+ mysql> ;;
+ mysql> 
+ mysql> DELIMITER ;
+
+*解説 [#xbad7b89]
+current_timestamp に関する属性はひとつのカラムにしか与えられません。従って、次のようにはできません。
+ CREATED_AT timestamp default current_timestamp
+ UPDATED_AT timestamp on update current_timestamp
+
+このように timestamp について MySQL の縛りがあるので作成日時は datetime にしてしまいます。
+両方を timestamp にすることもできますが、そのための属性を与えるのがそれはそれで煩雑なのでいっそやめます。
+
+*参考 [#r0d9228f]
+-[[timestamp - MySQL CURRENT_TIMESTAMP on create and on update - Stack Overflow>http://stackoverflow.com/questions/4897002/mysql-current-timestamp-on-create-and-on-update]]
+-[[トリガーを駆使して登録日時と更新日時を両方管理する - HHeLiBeXの日記 正道編>http://d.hatena.ne.jp/hhelibex/20120416/1334590011]]

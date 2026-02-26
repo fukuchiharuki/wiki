@@ -1,0 +1,13 @@
+ *手順 [#s398c1de]
+ **GUIで設定する [#mb093d29]
+  # setup
+ ***操作方法 [#e4d381a7]
+ -十字でSystem servicesを選択する
+ -tab
+ -Run toolでreturn
+ **設定を確認する [#pee5eebd]
+  # chkconfig --list
+ 
+ *参考 [#eec261be]
++-http://www.jitaku-server.net/service.html
+ -http://www.turbolinux.com/products/server/11s/user_guide/chkconfig.html

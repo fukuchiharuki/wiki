@@ -1,0 +1,13 @@
++*目標 [#o94a5acc]
++-Unix系OSにMySQLをインストールする
+ 
++*手順 [#ybe341b4]
++**パッケージをインストールする [#sd79d75d]
++というか解凍して置く。それだけ。
++**データベースをインストーする [#te776456]
++ここが重要。
++ $ ./scripts/mysql_install_db
++
++*参考 [#q7e04984]
++-http://dev.mysql.com/doc/refman/5.1/ja/installing-binary.html
++

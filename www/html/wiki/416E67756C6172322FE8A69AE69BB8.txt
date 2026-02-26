@@ -1,0 +1,51 @@
+* バインディング [#e32cdd04]
+
+** 単方向 [#qa8d79f7]
+
+ {{hero.name}}
+
+表示させたいところに書くだけ。
+
+** 双方向 [#xaa0be75]
+
+ [(ngModel)]="hero.name"
+
+inputのvalue属性の代わりにする。
+
+* 制御 [#i8599816]
+
+** 条件 [#r0bf6dff]
+
+ <div *ngIf="selectedHero"></div>
+
+selectedHeroが定義されると現れる。
+
+** 繰り返し [#n1a1b778]
+
+ <li *ngFor="let hero of heroes"></li>
+
+「let 変数 of コレクション」は決まり文句。
+
+* イベント [#pad529a4]
+
+** クリック [#b3369335]
+
+ <li .. (click)="onSelect(hero)">
+
+「onSelect()」は任意のメソッド。「hero」は引数（*ngForしている変数など）。
+
+* コンポーネント [#vd262d97]
+
+** プロパティ・インプット [#a1b8d703]
+
+渡す側。
+
+ <my-hero-detail [hero]="selectedHero"></my-hero-detail>
+
+受ける側。
+
+ @Input()
+ hero: Hero;
+
+「=」を書いているが代入ではない。~
+ので、my-hero-detail側で書き換えればmy-appでも書き換わる。

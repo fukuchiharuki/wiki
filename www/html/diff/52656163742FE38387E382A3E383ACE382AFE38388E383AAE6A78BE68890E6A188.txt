@@ -1,0 +1,60 @@
+-#author("2017-12-19T07:59:42+00:00","default:haruki","haruki")
++#author("2017-12-19T08:00:25+00:00","default:haruki","haruki")
+ まだ実業務で書いたことがないのでなんとも。そうそうStateを小さくできるものなのかどうか。。
+ 
+ #contents
+ 
+ * 1. コンポーネントのまとまりで分ける [#t363a684]
+ 
+ たとえば計算機を作ってみるとしたら、「ディスプレイ」や「ボタン」がコンポーネントになる。コンポーネントを取りまとめる大本のコンポーネントをつくる。この例ならまさに「計算機」ということになる。
+ 
+ どうやら、コンポーネントのまとまりのことをコンテナと呼ぶらしい。
+ 
+  src/
+    calculator/
+      Calculator.js
+      NumberButton.js
+      ResultLabel.js
+ 
+ * 2. アプリケーション構成で分ける [#nadd7f51]
+ 
+ ActionやReducerはコンポーネントと1対1対応するわけではないので、それぞれ分けた方が見やすくなる。ここでActionやReducerはコンテナに閉じたもの。そのようにできるのがコンテナになる、と言った方がいいかも。
+ 
+-アプリケーションに共通的なActionやReducerなんかは別。上手に区別しないとごちゃごちゃになりそう。
++アプリケーションに共通的なActionやReducerなんかは別の話。そういうのはコンテナに閉じない。上手に区別しないとごちゃごちゃになりそう。
+ 
+  src/
+    calculator/
+      actions/
+        ActionTypes.js
+        index.js
+      components/
+        Calculator.js
+        NumberButton.js
+        ResultLabel.js
+      reducers/
+        Calculator.js
+ 
+ * 3. アプリケーションとして必要なコード [#c8d7d080]
+ 
+ 複数のReducerを合併するためのコードが必要なので、これを分ける。src直下でもよいかもしれないが、create-react-appで作成した構成から追加する分が明確になるようにしたい。
+ 
+  src/
+    app/
+      reducers/
+        index.js
+    calculator/
+ 
+ * つまりこう [#b48de692]
+ 
+ src直下にファイルは追加しないが、App.jsに変更（Storeの作成）を加える。
+ 
+  src/
+    app/
+      reducers/
+    <container>/
+      actions/
+      components/
+      reducers/
+    App.js
+    index.js

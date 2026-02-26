@@ -1,0 +1,36 @@
+ *関連 [#f020b8a0]
+ -jQuery
+ 
+ *現象 [#y4bbee52]
++次のコードではtrオブジェクトを取得できない。
+  $("table > tr")
+-上記でtrのオブジェクトが取得されない。
++マークアップで次のように書いていても。
++ <table>
++   <tr>
++     <td>セル</td>
++     <td>セル</td>
++   </tr>
++ </table>
+ 
+ *原因 [#d99e8d20]
+-tableの子にtbodyが挿入されるため。
++DOM上、tableの子にtbodyを挿入するため。
+ 
++マークアップで次のように書いたのと同じ。
++ <table>
++   <tbody>
++     <tr>
++       <td>セル</td>
++       <td>セル</td>
++     </tr>
++   </tbody>
++ </table>
++
+ *対策 [#vf751886]
++tbodyを挟んで次のようにして取得する。
+  $("table > tbody > tr")
+-tbodyを挟んで取得する。
+ 
+ *参考 [#c23ac9db]
+ -[[【jQuery】tableのtrを取得したいのに。>http://gecko.hp2.jp/2010/06/11/%E3%80%90jquery%E3%80%91table%E3%81%AEtr%E3%82%92%E5%8F%96%E5%BE%97%E3%81%97%E3%81%9F%E3%81%84%E3%81%AE%E3%81%AB%E3%80%82/]]

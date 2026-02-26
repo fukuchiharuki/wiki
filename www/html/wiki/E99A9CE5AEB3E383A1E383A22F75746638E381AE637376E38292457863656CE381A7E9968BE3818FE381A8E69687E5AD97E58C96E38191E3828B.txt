@@ -1,0 +1,21 @@
+*キーワード [#p4d7e18a]
+-Excel
+-Unicode
+-utf8
+-bomb
+
+*現象 [#n324138a]
+utf8 で保存した csv ファイルを Excel で開くと文字化ける。
+
+*原因 [#z138f850]
+Excel は csv を Shift_JIS で開こうとするから。
+
+*対策 [#g34df2e8]
+ボムつき utf8 にすると正常に読み込めます。
+ $ vi hoge.csv
+ :set fileencoding=utf8 bomb
+ :wq
+
+*参考 [#jc297855]
+-[[ExcelでUTF-8エンコーディングされたCSVファイルを開く方法 - 大人になったら肺呼吸>http://d.hatena.ne.jp/replication/20100211/1266232291]]
+-[[vimにBOM付きuft-8を設定 : 凡人の無駄な足掻き>http://blog.livedoor.jp/bonjin_kenkyu/archives/52119610.html]]

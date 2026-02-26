@@ -1,0 +1,32 @@
+ * キーワード [#s062761f]
+ - awk
+ - 変数
+ - 置換
+ 
+ * したいこと [#h79f23d7]
+ 
+ シェルスクリプトの中でawkを使い、シェルスクリプト中の変数をawkで利用したい。
+ 
+ * どうやって [#y3ce62b5]
+ 
+  awk '{
+          gsub("{USER_ID}", "'$USER_ID'");
+          print $0;
+  }' $TEMPLATE
+ 
+ * ノート [#ia911a01]
+ 
+ gsubの$USER_IDのところ、
+ 
+  gsub("{USER_ID}", "'
+ 
+  $USER_ID
+ 
+  '");
+ 
+ とシングルコートでawk分を分割する。
+ 
++awk文の中で改行のエスケープは要らない。
++
+ * 参考 [#i1cc4e96]
+ - [[shellスクリプトから呼ぶawkでシェル変数を使う - WhiteAnthrax>https://whiteanthrax.pkf.jp/%E6%9C%AA%E5%88%86%E9%A1%9E/9/]]

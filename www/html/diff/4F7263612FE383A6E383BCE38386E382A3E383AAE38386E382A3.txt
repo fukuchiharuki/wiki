@@ -1,0 +1,65 @@
+-&color(red){ここはもう古いです。};~
+-&color(red){[[Orca>https://github.com/fukuchiharuki/Orca/]] および [[OrcaSample>https://github.com/fukuchiharuki/OrcaSample/]] を見てください。};
+-----
+ 
+-[[Orca]]
+-
+-#contents
+-
+-OrcaにはWebアプリケーションに必要そうなちょっとした部品がちょっとだけあります。
+-
+-*戻り値型 [#q51cae72]
+-
+-私はJavaでも業務エラーは戻り値で対処する派です。
+-
+-Orcaには戻り値用の型MethodReturn<T>があります。
+- /**
+-  * ユーザ情報を取得して認証チェックします.
+-  * @return 認証結果（ユーザ情報）
+-  */
+- private MethodReturn<Manager> isAbleToLogin() {
+-     MethodReturn<User> result = new MethodReturn<User>(true);
+- 
+-     // ユーザ情報を取得する
+-     // 取得できない場合結果を失敗として返却する
+-     User user = new UserDao().getUser(this.userID);
+-         if (manager == null) {
+-             result.setMessageResource(new MessageResource().setResourceKey("MessageID"));
+-             return result.setSuccess(false);
+-     }
+- 
+-     // パスワードが一致しない場合結果を失敗として返却する
+-     if (! user.getPassword().equals(HashUtil.hash(this.password, "SHA1"))) {
+-         result.setMessageResource(new MessageResource().setResourceKey("MessageID"));
+-         return result.setSuccess(false);			
+-     }
+- 
+-     // ユーザ情報を結果に保存する
+-     result.setValue(user);
+- 
+-     return result;
+- }
+-
+-戻り値用の型MethodReturn<T>が保有する情報は次の3つです。
+--処理結果（成功／失敗）
+--××情報（テンプレートTの部分）
+--メッセージ（エラー内容）
+-
+-また、この戻り値用の型MethodReturn<T>は連結することができます。
+- MethodReturn<String> stringResult = new MethodReturn<String>();
+- MethodReturn<Integer> integerResult = new MethodReturn<Integer>();
+- ・・・
+- stringResult.chain(integerResult);
+-
+-ここで連結する情報は上記3つのうち次のふたつです。
+--処理結果（成功／失敗）
+--メッセージ（エラー内容）
+-
+-連結する処理結果のうちひとつでも失敗がある場合失敗扱いします。メッセージは単純にリストとして連結します。××情報は連結しません。その代わり、××情報の型に寄らず連結することができます。
+-
+-*バリデーションチェック [#n4cfa842]
+-
+-*プロパティファイル [#c517d275]
+-
+-*辞書（コードリスト） [#w02feb35]
+-

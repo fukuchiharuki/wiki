@@ -1,0 +1,61 @@
+-#author("2018-01-18T08:48:06+00:00","default:haruki","haruki")
++#author("2018-01-18T08:53:12+00:00","default:haruki","haruki")
+ * キーワード [#vc2ae9e6]
+ - React
+ - react-router
+ - Query string
+ - URLSearchParams
+ 
+ * したいこと [#pbe1e17f]
+ 
+ - クエリストリングを受け取って状態を初期化する
+ - ボタンクリックなどで状態を変更してURL（クエリストリング）も変更する
+ 
+ * どうやって [#p8530152]
+ 
+ 最終的には次のような形にできる。
+ 
+  class Hoge extends React.Component {
+  
++   // this.update()で状態を初期化する
+    componentDidMount() {
+      this.update(this.props)
+    }
+  
++   // ボタンクリックなどで
++   // 新しいクエリストリングを作成してURLを変更する
++   // ここでは状態を変更しない
+    refresh() {
+      const { location, history } = this.props
+      const { search } = location
+  
+      const reconstructedSearch = ※ 新しいクエリストリング（search）を作成する
+  
+      history.push({
+        search: reconstructedSearch
+      })
+    }
+  
++   // 新しいpropsを受け取ったとき
++   // this.update()で状態を変更する
++   // ただし、クエリストリングの変更があったときだけ
+    componentWillReceiveProps(nextProps) {
+      if (nextProps.location.search === this.props.location.search) return
+      this.update(nextProps)
+    }
+  
++   // 状態を初期化（または変更）する
+    update(props) {
+      ※ props（this.propsかnextProps）を使って状態を初期化・変更する
+    }
+  
+  }
+ 
+ * ちなみに [#w5c7ad19]
+ 
+ searchの分解や再構成はURLSearchParamsを使えば楽にできる。
+ 
+ * 参考 [#o6befa26]
+ - [[react-routerでquery stringを扱う - Qiita>https://qiita.com/shora_kujira16/items/3720c5468fc7f095cf50]]
+ - [[ReactのcomponentWillReceiveProps内ではまだpropsは反映されていない - 脳汁portal>http://portaltan.hatenablog.com/entry/2015/08/19/193732]]
+ - [[URLSearchParams - Web API インターフェイス | MDN>https://developer.mozilla.org/ja/docs/Web/API/URLSearchParams]]

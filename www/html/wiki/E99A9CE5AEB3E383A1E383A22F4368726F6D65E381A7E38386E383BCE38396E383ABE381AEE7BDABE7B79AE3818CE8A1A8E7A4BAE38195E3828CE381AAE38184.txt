@@ -1,0 +1,43 @@
+* キーワード [#y3ffc896]
+- WebKit
+- Google Charome
+- Safari
+- table
+- border
+
+* 現象 [#cd5bc69b]
+
+
+* 原因 [#wfce8e1b]
+
+
+* 対策 [#ia023bb9]
+
+ $(function() {
+     if (window.navigator.userAgent.toLowerCase().indexOf('webkit') != -1) {
+         $('table').css({
+             'border-collapse': 'separate',
+             'border-spacing': '0',
+             'cellspacing': '0'
+         });
+         $('table').children('tbody').children('tr:not(:last-child)').children('td:not(:last-child)').css({
+             'border-right': '0',
+             'border-bottom': '0'
+         });
+         $('table').children('tbody').children('tr:not(:last-child)').children('td:last-child').css({
+             'border-bottom': '0'
+         });
+         $('table').children('tbody').children('tr:last-child').children('td:not(:last-child)').css({
+             'border-right': '0'
+         });
+         $('table').children('tbody').children('tr:last-child').children('td:last-child').css({
+         });
+     }
+ });
+
+* 備考 [#uf454174]
+
+
+* 参考 [#oddf14d9]
+- [[Chromeでテーブルのボーダーがおかしい | memopad>http://memopad.noor.jp/html-css/post-617/]]
+- [[Webkitで罫線が正しく表示されない - undefined>http://eichisanden.hateblo.jp/entry/2014/07/28/120537]]

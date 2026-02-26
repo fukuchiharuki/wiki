@@ -1,0 +1,62 @@
+#author("2017-05-24T02:40:13+00:00","default:haruki","haruki")
+* キーワード [#i006efe6]
+- Spring Boot
+- Spring Security
+
+* したいこと [#r7a75f42]
+
+特定のログインエラー時に画面遷移したい(ログイン画面には戻らずに)。
+
+* どうやって [#b134fd8d]
+
+** 認証失敗したときのハンドラを用意する [#h3a76cd1]
+
+ public class SecurityConfigAuthenticationFailureHandler 
+   extends ExceptionMappingAuthenticationFailureHandler{
+ 
+ 	public SecurityConfigAuthenticationFailureHandler() {
+ 		this.setDefaultFailureUrl("/");
+ 		this.setExceptionMappings(getFailureUrlMap());
+ 	}
+ 	
+ 	private Map<String, String> getFailureUrlMap() {
+ 		Map<String, String> map = new HashMap<>();
+ 		map.put(CredentialsExpiredException.class.getName(), "/password_reset");
+ 		return map;
+ 	}
+ 
+ }
+
+- Mapは<String,String>
+-- 例外のクラス名
+-- リダイレクト先(コンテキストパスは補ってくれる)
+
+** ハンドラをセットする [#y7624398]
+
+ http.formLogin()
+   .loginPage("/")
+   .loginProcessingUrl("/login")
+   .failureHandler(new SecurityConfigAuthenticationFailureHandler())
+   // あといろいろ
+
+** リダイレクト先を認証不要にする [#u7c0dbd2]
+
+ http.authorizeRequests()
+   // 認証不要
+   .antMatchers(
+       // ログインフォーム
+       "/",
+       // パスワードリセット
+       "/password_reset"
+   )
+   .permitAll()
+   // あといろいろ
+
+* ノート [#jbe39217]
+
+こうだよとバシッと書いてくれてる記事が見つからなくて少してこずった。
+
+いやいや、これだとパスワードリセット画面でもログインIDを入力してもらわないといけなくなる。CredentialsExpiredExceptionしてるときはログインができていないので。controllerの処理としてリダイレクトするしかないのかなあ。→[[Spring Boot/パスワードの有効期限切れでリダイレクトする]]
+
+* 参考 [#yd4963bd]
+- [[6.3. 認証 &mdash; TERASOLUNA Global Framework Development Guideline 1.0.0.publicreview documentation>https://terasolunaorg.github.io/guideline/public_review/Security/Authentication.html]]

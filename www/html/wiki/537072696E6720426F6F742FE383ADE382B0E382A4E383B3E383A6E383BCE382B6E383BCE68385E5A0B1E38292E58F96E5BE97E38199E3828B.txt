@@ -1,0 +1,44 @@
+#author("2017-05-30T01:35:43+00:00","default:haruki","haruki")
+* キーワード [#rd7a845e]
+- Spring Boot
+- Spring Security
+
+* したいこと [#m4c2fb16]
+
+Spring Securityでログインしたログインユーザーの情報(LoggedInUser implements UserDetails)を取得したい。
+
+* どうやって [#hc0bf03a]
+
+ControllerAdviceで@ModelAttributeをセットしておくのが楽だと思う。
+
+ @ControllerAdvice
+ public class PrincipalControllerAdvice {
+ 
+ 	@ModelAttribute
+ 	public LoggedInUser getLoggedInUser(Principal principal) {
+ 		return
+ 		Optional.ofNullable(principal)
+ 		.filter(p -> p instanceof Authentication).map(p -> (Authentication) p)
+ 		.map(a -> a.getPrincipal())
+ 		.filter(p -> p instanceof LoggedInUser).map(p -> (LoggedInUser) p)
+ 		.orElse(null);
+ 	}
+ 
+ }
+
+リクエストハンドラでは@ModelAttributeで取得できる。
+
+ @RequestMapping("/nanika")
+ public String nanika(
+     @ModelAttribute LoggedInUser loggedInUser,
+     Model model
+ ) { /* 処理 */ }
+
+* ノート [#eef66099]
+
+- 定形処理はアスペクトにしておくのが吉
+- 毎リクエストごとにデータベースから取得するなら、~
+ここで取得できるusernameを使ってLoadServiceを呼べばいい
+
+* 参考 [#q8ee6def]
+- [[java - How to get active user&#39;s UserDetails - Stack Overflow>https://stackoverflow.com/questions/8764545/how-to-get-active-users-userdetails]]

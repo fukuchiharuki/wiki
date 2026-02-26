@@ -1,0 +1,47 @@
+#author("2017-03-30T07:19:34+00:00","default:haruki","haruki")
+* キーワード [#za8ef406]
+- Gradle
+- SonarQube
+
+* したいこと [#z38423eb]
+
+複数モジュールで構成するプロジェクトをGradleを利用してSonarQubeにプットする。
+
+ hoge/
+ ├ domain/
+ │ └ src/main/
+ ├ adapter/
+ │ └ src/main/
+ └ web/
+   └ src/main/
+
+* どうやって [#g2f05ef8]
+
+sonar.modulesを設定する。
+
+ plugins {
+ 	id "org.sonarqube" version "2.0.1"
+ }
+   
+ sonarqube {
+ 	properties {
+ 		property "sonar.host.url", "http://***"
+ 		property "sonar.sourceEncoding", "UTF-8"
+ 		property "sonar.language", "java"
+ 		property "sonar.projectKey", "***"
+ 		property "sonar.projectName", "***"
+ 		property "sonar.projectVersion", "1.0"
+ 		property "sonar.modules", "domain,adapter,web"
+ 		property "sonar.sources", "src/main"
+ 		property "sonar.exclusions", "src/main/java/***/mybatis/mapper/*"
+ 		property "sonar.login", "***"
+ 		property "sonar.password", "***"
+ 	}
+ }
+
+* ノート [#u925e3a3]
+
+自動生成するコードはひっかかると面倒なので除外(sonar.exclusions)する。
+
+* 参考 [#qfd92fb4]
+- [[GitHub - SonarSource/sonar-examples: SonarQube Examples>https://github.com/SonarSource/sonar-examples]]

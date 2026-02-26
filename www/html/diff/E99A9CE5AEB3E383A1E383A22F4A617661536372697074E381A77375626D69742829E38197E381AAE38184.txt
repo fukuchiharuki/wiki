@@ -1,0 +1,19 @@
++*関連 [#w3719ee2]
++-JavaScript
+ 
++*現象 [#y744031e]
++ JavaScript: this.form.submit();
++上記が走らない。
++
++*原因 [#ib34ae7b]
++ name="submit"
++とかしてるのがいけない。（JavaScriptの予約語）
++
++*対策 [#ab9846f9]
++ name="submit"
++とかを消す。
++
++*参照 [#ga560f4d]
++-http://chaichan.web.infoseek.co.jp/qa2000/qa2057.htm
++
++

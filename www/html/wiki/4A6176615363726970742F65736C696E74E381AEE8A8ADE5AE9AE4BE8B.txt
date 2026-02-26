@@ -1,0 +1,46 @@
+#author("2018-03-15T02:21:17+00:00","default:haruki","haruki")
+- ES6
+- React
+- セミコロンあり
+- 使わない変数なし
+
+くらいのチェックができるまでで仮作成したもの。覚書。
+
+ {
+         "extends": [
+                 "eslint:recommended",
+                 "plugin:react/recommended"
+         ],
+         "env": {
+                 "es6": true,
+                 "node": true,
+                 "browser": true
+         },
+         "parser": "babel-eslint",
+         "parserOptions": {
+                 "sourceType": "module",
+                 "ecmaVersion": 6,
+                 "ecmaFeatures": {
+                         "experimentalObjectRestSpread": true,
+                         "jsx": true
+                 }
+         },
+         "rules": {
+                 "strict": [
+                         0
+                 ],
+                 "react/jsx-uses-react": [
+                         1
+                 ],
+                 "no-console": [
+                         0
+                 ],
+                 "semi": [
+                         2,
+                         "always"
+                 ],
+                 "no-unused-vars": [
+                         2
+                 ]
+         }
+ }

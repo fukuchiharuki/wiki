@@ -1,0 +1,116 @@
+-[[../]]
+-
+ *キーワード [#e70e4f5a]
+ - Titanium Mobile
+ - Alloy
+ 
+ *目標 [#ed4468c7]
+ モデルの事始めです。要するに SQLite を使う、です。
+ 
+ + モデルを用意する
+ + モデルを保存する (save)
+ + モデルを取得する (fetch)
+ + モデルを削除する (destroy)
+ 
+ *方法 [#o99a4983]
+ 
+ ** モデルを用意する [#yfae1b82]
+ ウィザード「(プロジェクトで)右クリック > New > Alloy Model」からモデルを新規作成します。
+ 
+ #ref(new_model.png,center,50%)
+ 
+ 永続化するモデルの名前と属性を設定します。つまりテーブル名とカラムです。ここで SQLite にない Type を選択すると実行時にコンソールで警告がでますが、いい感じに吸収してくれるようです。
+ 
+ #ref(config_model.png,center,50%)
+ 
+ すると次のコードを自動生成します。(基本このままでOK)
+ 
+ - /app/models/User.js
+  exports.definition = {
+  	config: {
+  		columns: {
+  		    "name": "text",
+  		    "isActive": "integer"
+  		},
+  		adapter: {
+  			type: "sql",
+  			collection_name: "User"
+  		}
+  	},
+  	extendModel: function(Model) {
+  		_.extend(Model.prototype, {
+  			// extended functions and properties go here
+  		});
+  
+  		return Model;
+  	},
+  	extendCollection: function(Collection) {
+  		_.extend(Collection.prototype, {
+  			// extended functions and properties go here
+  		});
+  
+  		return Collection;
+  	}
+  };
+ 
+ ** モデルを保存する [#xd5c7fc9]
+ 
+ モデルはコントローラから操作します。
+ 
+ + モデルを生成して (Alloy.createModel(モデル名))
+ + 属性を与えて (Model.set(属性オブジェクト))
+ + 保存します (Model.save())
+ 
+ - Window.js
+  $.save.addEventListener('touchstart', function() {
+  	var user = Alloy.createModel("User");
+  	user.set({
+  		name: "NAME",
+  		isActive: 1
+  	});
+  	user.save();
+  	alert('saved');
+  });
+ 
+ ** モデルを取得する [#ud2114f3]
+ 
+ + コレクション(モデル集合)を生成して (Alloy.createCollection(モデル名))
+ + DBMS からフェッチ (Collection.fetch(クエリオブジェクト))
+ + コレクションを操作します (Collection.map(function() {}))
+ 
+ - Window.js
+  $.find.addEventListener('touchstart', function() {
+  	var users = Alloy.createCollection('User');
+  	users.fetch({
+  		query: 'SELECT * FROM User WHERE isActive = 1'
+  	});
+  	alert(users.length);
+  	users.map(function(user) {
+  		alert(
+  			'id:' + user.id + ', ' +
+  			'name:' + user.get('name') + ', ' +
+  			'isActive:' + user.get('isActive')
+  		);
+  	});
+  });
+ 
+ ** モデルを削除する [#j74fbeed]
+ 
+ + モデルを生成して (Alloy.createModel(モデル名))
+ + DBMS からフェッチ (Model.fetch({id:識別子}))
+ + モデルを削除します (Model.destroy())
+ 
+ - Window.js
+  $.del.addEventListener('touchstart', function() {
+  	var user = Alloy.createModel('User');
+  	user.fetch({id: "'f9fb6556-e763-6740-1621-b956bbdafe60'"});
+  	user.destroy();
+  	alert('deleted');
+  });
+ 
+ *解説 [#he776385]
+ 
+ レコードをユニークに識別する id は alloy_id として Alloy が自動で付与してくれるようです。文字列な識別子なので Model.fetch({id:識別子}) で指定する識別子はシングルコーテーションをダブルコーテーションで囲う形で書いてみました。
+ 
+ *参考 [#ae0c1b95]
+ - [[AlloyのModelにはじめの一歩を踏み込んだのでメモ。generateから基本まで | メモ帳代わりのブログ>http://www.absolute-keitarou.net/blog/?p=354]]

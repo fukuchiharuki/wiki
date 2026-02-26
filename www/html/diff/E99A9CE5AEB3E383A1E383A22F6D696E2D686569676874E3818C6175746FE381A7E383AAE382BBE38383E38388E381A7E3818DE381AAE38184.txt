@@ -1,0 +1,34 @@
+ * キーワード [#c39dbd25]
+ - css 
+ - min-height
+ - リセット
+ 
+ * 現象 [#wd8667e3]
+ 
+  min-height: auto !important;
+ 
+ で min-height がリセットできない（ブラウザがある）。
+ 
+ * 原因 [#m0751095]
+ 
+-そのブラウザが対応してくれていないから。
++auto がそもそも正しくないのか、対応してくれないブラウザがある。
+ 
+ * 対策 [#eeca8861]
+ 
+ モダンな書き方なら次が正しいそう。
+ 
+  min-height: initial !important;
+ 
+ あるいは、
+ 
+  min-height: 0 !important;
+ 
+ にする。
+ 
+  min-height: 100% !important;
+ 
+ でもなぜか期待どおりの動作をする。
+ 
+ * 参考 [#z25c7519]
+ - [[initialとautoでmin-width,max-width(height)をリセット &#8211; wevdev>http://webdev.jp.net/css-max-min-width-height-reset/]]

@@ -1,0 +1,29 @@
+#author("2023-06-02T09:48:43+00:00","default:haruki","haruki")
+* Configurations [#z6c6c120]
+
+「システム環境設定 > セキュリティとプライバシー > プライバシー > 入力監視」に次を追加。
+
+- karabiner_grabber
+- karabiner_observer
+
+リストに挙がっていないときは端末で次を開いてドラッグ＆ドロップする。
+
+ open /Library/Application\ Support/org.pqrs/Karabiner-Elements/bin
+
+* Preferences [#t3d4223a]
+
+「Simple Modifications > 該当のデバイス」に次を追加（好みに応じて）。
+
+- left_option -> left_command
+- left_command -> left_option
+- left_control -> caps_lock
+- caps_lock -> left_control
+- right_control -> right_command
+- PCキーボードの無変換キー -> 英数キー
+- PCキーボードの変換キー -> かなキー
+
+* 参考 [#v340dd4f]
+
+- [[MacOS Catalina で Karabiner-Elements を有効にする - Qiita:https://qiita.com/Naturalclar/items/84213a9bf54d2e3992ae]]
+- [[MacでWindowsキーボードを使う！Karabinar-Elementsの設定法 - ビビーノ・ワイン:https://www.tarura.com/karabiner-elements-how-to/]]
+- [[Macで変換や無変換キーによる日本語入力切り替え - Qiita:https://qiita.com/seki-moto/items/7bfd1db53691bb53165d]]

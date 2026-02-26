@@ -1,0 +1,16 @@
+ *キーワード [#ef13db3c]
+ - sed
+ 
+ *やりたいこと [#zc0b8786]
+-行数を指定して行を抜き出します。
++ファイルから行数を指定して行を抜き出します。
+ 
+ *方法 [#s2ff2999]
+  $ cat {ファイル名} | sed -n '2,4p'
+ 
+ *詳細 [#sd76740d]
+ 2 行目から 4 行目を p プリントする、ということのようです。
+ 
+ *参考 [#lbdb959f]
+ - [[Man page of SED>http://linuxjm.sourceforge.jp/html/GNU_sed/man1/sed.1.html]]
+ - [[sed に関するメモ>http://www.ishilab.net/~ishihara/tips/sed.txt]]

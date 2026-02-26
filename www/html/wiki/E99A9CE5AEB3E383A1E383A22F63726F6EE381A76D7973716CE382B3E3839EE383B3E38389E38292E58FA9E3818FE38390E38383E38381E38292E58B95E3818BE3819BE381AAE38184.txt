@@ -1,0 +1,30 @@
+* キーワード [#q5acccce]
+- cron
+- mysql
+
+* 現象 [#t754afbf]
+
+mysqlを叩くバッチ（シェルスクリプト）をcronでキックするようにしたが動いてないように見える。
+
+* 原因 [#x0c4aeb0]
+
+mysqlコマンドのパスが通っていないからだった。
+
+** cronログを確認 [#n8f0b818]
+
+ # cat /var/log/cron
+
+キックしたことは確認できる。
+
+** エラーを（ファイルに書き出すようにして）確認 [#vb32128c]
+
+ ./bin/maintenance.sh: line 20: mysql: command not found
+
+mysqlは関係なかった。
+
+* 対策 [#c9019051]
+
+フルパスでコマンドを書いてあげる。
+
+* 参考 [#l429cd56]
+- [[crontabがどうしても動かないときに確認すべき3つの点+α - ドキッ！はてなブログに移転しました！>http://d.hatena.ne.jp/natsumesouxx/20100313/1268479064]]

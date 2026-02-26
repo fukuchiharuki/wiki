@@ -1,0 +1,34 @@
+*関連 [#u4420367]
+-iPhone
+-Xcode
+-Titanium Mobile
+
+*現象 [#h6d44aa1]
+XcodeにてiPhoneアプリ申請のためのValidateをパスすることができない。
+ iPhone/iPod Touch: application executable is missing architecture.
+ At least one of the following architecture(s) must be present: armv6
+
+*原因 [#t8dee586]
+アプリケーションの実行にアーキテクチャが足りないよ、armv6というアーキテクチャがないとダメだよ。と言われています。iPhoneアプリはターゲット（3Gや4Sなど）によってアーキテクチャ（armv6やarmv7）が決まっているようです。
+:armv6|iPhone, iPhone 3G, 1st & 2nd Generation iPod Touch
+:armv7|iPhone 3GS, iPhone 4, iPhone 4S, iPad, iPad2, 3rd & 4th Generation iPod Touch
+
+*対策 [#yb26b77b]
+調べてみると次のふたつの対策があるようです。
++ アーキテクチャarmv6をビルドに含める
++ minimam iOSのバージョンを4.3以降にする
+
+参考の1.と2.のようにしてアーキテクチャarmv6をビルドに含めようとしましたがなぜだかダメでした。ので、minimam iOSのバージョンを4.3以降にしてみます。Titanium Mobileにはminimam iOSのバージョンを設定する項目があります。
+
+tiapp.xmlに次を追記します。
+ <ios>
+     <min-ios-ver>4.3</min-ios-ver>
+ </ios>
+
+これで先のissueを回避することができます。
+ただしこれをするときっとiOS 4.3以降でないと動作しなくなるのだと思います。
+
+*参考 [#z320c3ff]
++ http://d.hatena.ne.jp/paraches/20111029
++ http://d.hatena.ne.jp/towerofl/20111216/1324049590
++ http://bencoding.com/2012/09/04/setting-the-minimum-ios-version-for-your-titanium-project/

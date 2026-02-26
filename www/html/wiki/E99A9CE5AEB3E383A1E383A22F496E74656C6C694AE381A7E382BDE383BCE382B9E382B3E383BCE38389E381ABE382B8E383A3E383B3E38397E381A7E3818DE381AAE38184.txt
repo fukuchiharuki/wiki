@@ -1,0 +1,24 @@
+#author("2024-04-02T04:00:29+00:00","default:haruki","haruki")
+* キーワード [#j7030a70]
+- IntelliJ
+- Kotlin
+
+* 現象 [#i51c82b9]
+
+IntelliJでKotlinに備付けの実装にジャンプしようとしてもdecompiledなclassファイルを開いてしまう。
+
+* 原因 [#qb6e6909]
+
+IntelliJのインデックスが壊れている？
+
+* 対策 [#qdacd42d]
+
+Gradle Projectsをリロードする。Gradleペインの環状矢印。
+
+* 備考 [#ma3dbb87]
+
+壊れやすいの？
+
+* 参考 [#jfa43218]
+- [[IntelliJ IDEAのインデックスが壊れた時にやること #IntelliJ - Qiita>https://qiita.com/k0kubun/items/382ea57bdf0e965f51ce]]
+-

@@ -1,0 +1,59 @@
+ *関連 [#ce07ff0b]
+ -Java
+ -JSP
+ -JSTL
+ 
+ *概要 [#q3a2b7c3]
+-パラメータ一覧を出力するだけのJSPページを作成する。
++パラメータ一覧を出力するだけのJSPページを作成する。~
++（ちょっと必要になったから書いただけでTipsでもなんでもないです。）
+ 
+-ちょっと必要になったから書いただけでTipsでもなんでもないです。
+-
+ *方法 [#m127ccca]
+  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
+  	"http://www.w3.org/TR/html4/loose.dtd">
+  <%@ page language="java" contentType="text/html; charset=Shift-JIS" pageEncoding="Shift-JIS" session="false" %>
+  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+  <html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=Shift-JIS">
+  <title>パラメータダンプ</title>
+  </head>
+  <body>
+  
+  <table>
+  <%
+  	request.setCharacterEncoding("Windows-31J");
+  	pageContext.setAttribute("request", request); 
+  %>
+  <c:forEach var="key" items="${request.parameterNames}">
+  	<tr>
+  		<th style="text-align: right;">
+  			<c:out value="${key}" />
+  		</th>
+  		<td>
+  			<c:out value="${param[key]}" />
+  		</td>
+  	</tr>
+  </c:forEach>
+  </table>
+  
+  </body>
+  </html>
+ 
+ *解説 [#q652e6b9]
+ スコープがちょっと厄介ですね。
+ -request
+ --「<%%>」内では暗黙オブジェクト
+ --EL式にはデフォルト存在しない（のでpageContextにセットしてあげてる）
+ -requestScope
+ --リクエスト属性を扱うためのEL式暗黙オブジェクト
+ -param
+ --パラメータを扱うためのEL式暗黙オブジェクト
+ 
+ Shift-JISなのはお仕事の都合上だっただけです（utf-8が一般的かと。）
+ 
+ *参考 [#j1ff173e]
+ -http://struts.wasureppoi.com/jsp/04_param.html
+ -http://download.oracle.com/javaee/6/api/javax/servlet/http/HttpServletRequest.html

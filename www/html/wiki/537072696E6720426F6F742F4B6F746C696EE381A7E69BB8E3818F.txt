@@ -1,0 +1,80 @@
+#author("2017-12-13T08:08:46+00:00","default:haruki","haruki")
+* キーワード [#b7cd7fd4]
+- Spring Boot
+- Kotlin
+- Gradle
+
+* したいこと [#hb8859f1]
+
+Spring BootをKotlinで書きたい。そのためのGradleを設定したい。
+
+とりあえず動かせたのでそのメモ。
+
+* どうやって [#ue382668]
+
+複数プロジェクトじゃなくても一段掘っておきたいのでそうしてます。不要な場合はいい感じに読み替えてください。
+
+** settings.gradle [#kf64bcca]
+
+ rootProject.name = 'hello-kotlin'
+ include 'web'
+
+** build.gradle [#p5159c93]
+
+ buildscript {
+         ext {
+                 springBootVersion = '1.5.9.RELEASE'
+                 kotlinVersion = '1.2.0'
+         }
+         repositories {
+                 mavenCentral()
+                 maven {
+                   url "https://plugins.gradle.org/m2/"
+                 }
+         }
+         dependencies {
+                 classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
+                 classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
+                 classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+         }
+ }
+ 
+ subprojects {
+         apply plugin: 'kotlin'
+         apply plugin: 'eclipse'
+         sourceCompatibility = 1.8
+         repositories {
+                 mavenCentral()
+         }
+ }
+ 
+ project(':web') {
+         apply plugin: 'kotlin-spring'
+         apply plugin: 'org.springframework.boot'
+         jar {
+                 baseName = 'demo'
+                 version = '0.0.1-SNAPSHOT'
+         }
+         dependencies {
+                 compile("org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}")
+                 compile('org.springframework.boot:spring-boot-starter-web')
+                 compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+                 testCompile('org.springframework.boot:spring-boot-starter-test')
+         }
+ }
+
+* ちなみに [#n0790f43]
+
+Kotlinのために書いているのは次の箇所。
+
+ classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
+ classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
+
+ apply plugin: 'kotlin'
+ apply plugin: 'kotlin-spring'
+
+ compile("org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}")
+
+
+* 参考 [#t6131cff]
+- [[Creating a RESTful Web Service with Spring Boot - Kotlin Programming Language>https://kotlinlang.org/docs/tutorials/spring-boot-restful.html]]

@@ -1,0 +1,31 @@
+ * キーワード [#ve5dd2c3]
+ - Angular2
+ - グローバル変数
+ - service
+ - singleton
+ 
+ * したいこと [#mbadad7b]
+ 
+ Angular2でグローバル変数を使いたい。
+ 
+ * どうやって [#s22a9728]
+ 
+ singletonのserviceをinjectするようにする。
+ 
+ ルートになるmoduleのprovidersに書く。injectしたいところには書かない。
+ 
+ - app.module.ts
+  @NgModule({
+    ...
+-   providers: [GlobalStateService],
++   providers: [MyGlobalService],
+    ...
+  })
+  export class AppModule {}
+ 
+ * ノート [#e3a5641c]
+ 
+ ng g serviceしてもapp.module.tsに追記しない。injectしたいところでprovidersに書くのが基本。
+ 
+ * 参考 [#i71c696a]
+ - [[javascript - Angular 2 - Whats the best way to store global variables like authentication token so all classes have access to them? - Stack Overflow>http://stackoverflow.com/questions/33598153/angular-2-whats-the-best-way-to-store-global-variables-like-authentication-tok]]

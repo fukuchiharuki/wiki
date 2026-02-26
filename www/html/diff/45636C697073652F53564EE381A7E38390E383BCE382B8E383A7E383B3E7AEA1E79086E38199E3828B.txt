@@ -1,0 +1,86 @@
+ *目標 [#xbfa6eb5]
+ -EclipseにSubclipseをインストールする
+ -プロジェクトをバージョン管理する
+ -プロジェクトをチェックアウトする
+ 
+ *手順 [#ae5848f6]
+ **EclipseにSubclipseをインストールする [#c0a974e1]
+ 
+ +メニューから Help->Install New Software を選択する
+ +Work with に次のURLを記入して Add... を選択する
+ ++リポジトリ情報を入力して OK を選択する
+ ---Name：subclipse（任意）
+ ---Location：http://subclipse.tigris.org/update_1.6.x
+ +Subclipse にチェックを入れて Next を選択する
+ +そのまま Next を選択する
+ +ライセンス情報の確認で「I accept the terms of the license agreements」を選択する
+ +セキュリティ警告が出るが OK を選択する
+ +Restart Now を選択してEclipseを再起動する
+ 
+ #ref(subclipseインストール00.jpg,center,70%)
+ #ref(subclipseインストール01.JPG,center,70%)
+ #ref(subclipseインストール02.JPG,center,70%)
+ #ref(subclipseインストール03.JPG,center,70%)
+ #ref(subclipseインストール04.JPG,center,70%)
+ #ref(subclipseインストール05.JPG,center,70%)
+ #ref(subclipseインストール06.JPG,center,70%)
+ #ref(subclipseインストール07.JPG,center,70%)
+ 
+ **プロジェクトをバージョン管理する [#o6412d9c]
+ 
+ ***プロジェクトをSVNに追加する [#a21d2216]
+ +プロジェクトの上で 右クリック->Team->Share Project... を選択する
+ +repository type に SVN を選択する
+ +ロケーションの Url に svn://localhost/webapps/trunk/ を入力して Next を選択する
+ +「プロジェクト名をフォルダ名として使用」を選択する
+ +コミット・コメントを入力して Finish を選択する
+ 
+ #ref(バージョン管理する08.jpg,center,70%)
+ #ref(バージョン管理する09.JPG,center,70%)
+ #ref(バージョン管理する10.JPG,center,70%)
+ #ref(バージョン管理する11.JPG,center,70%)
+ #ref(バージョン管理する12.JPG,center,70%)
+ 
+ ***プロジェクトをコミットする [#j6ad3e02]
+ +プロジェクトの上で 右クリック->Team->コミット を選択する
+ +コミット・コメントを入力して OK を選択する
+ 
+ #ref(バージョン管理する13.jpg,center,70%)
+ #ref(バージョン管理する14.JPG,center,70%)
+ 
+ ***buildディレクトリをバージョン管理から外す [#x28649d1]
+ 
+ buildディレクトリ下はバイナリが配置されますし、コンパイルの度に更新してしまうのでバージョン管理から外してしまいましょう。
+ 
+ +build ディレクトリの上で 右クリック->Team->svn:ignoreに追加 を選択する
+ +svn:ignoreプロパティに追加するものとして「名前別リソース」を選択する
+ +プロジェクトをコミットする
+ --上記手順を参照
+ 
+ #ref(buildを管理から外す00.jpg,center,70%)
+ #ref(buildを管理から外す01.JPG,center,70%)
+ #ref(buildを管理から外す02.jpg,center,70%)
+ #ref(buildを管理から外す03.JPG,center,70%)
+ 
+ **プロジェクトをチェックアウトする [#m45260a6]
+ 
+ ***リポジトリを追加する [#o68aecd8]
+ +SVNリポジトリビューの追加アイコン（＋マークつき）を選択する
+ +ロケーションの Url に svn://localhost/webapps を入力して Finish を選択する
+ 
++#ref(チェックアウトする15.JPG,center,70%)
++#ref(チェックアウトする16.JPG,center,70%)
++
+ ***リポジトリからチェックアウトする [#jb3a62f7]
+ +SVNリポジトリビューからプロジェクトを選択する
+ +右クリック->チェックアウト を選択する
+ ++そのまま Next を選択する
+ ++そのまま Finish を選択する
+ 
+-#ref(チェックアウトする15.JPG,center,70%)
+-#ref(チェックアウトする16.JPG,center,70%)
+ #ref(チェックアウトする17.JPG,center,70%)
+ #ref(チェックアウトする18.JPG,center,70%)
+ #ref(チェックアウトする19.JPG,center,70%)
+ 
+ *参考 [#v77d503e]

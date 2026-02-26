@@ -1,0 +1,65 @@
++*キーワード [#v8105b47]
++-JavaScript
++-jQuery
+ 
++*概要 [#x9096a36]
++Ctrl+Cなどのキー入力を抑止したいというユーザーからの要望を抑えられなかったときのメモです。
++
++*方法 [#s389e1ed]
++ document.onkeydown = function(e) {
++ 	var keycode;
++ 	var ctrl;
++ 	var shift;
++ 	var prevent = null;
++ 
++ 	// for something else IE
++ 	if (e != null) {
++ 		keycode = e.which;
++ 		ctrl    = typeof e.modifiers == 'undefined' ? e.ctrlKey : e.modifiers & Event.CONTROL_MASK;
++ 		shift   = typeof e.modifiers == 'undefined' ? e.shiftKey : e.modifiers & Event.SHIFT_MASK;
++ 		prevent = function() {
++ 			e.which = 0;
++ 			e.preventDefault();
++ 			e.stopPropagation();
++ 		};
++ 	}
++ 	// for IE
++ 	else {
++ 		keycode = window.event.keyCode;
++ 		ctrl    = window.event.ctrlKey;
++ 		shift   = window.event.shiftKey;
++ 		prevent = function() {
++ 			window.event.keyCode = 0;
++ 			window.event.returnValue = false;
++ 			window.event.cancelBubble = true;
++ 		};
++ 	}
++ 
++ 	// prevent
++ 	var keychar = String.fromCharCode(keycode).toUpperCase();
++ 	if (
++ 			(ctrl && keychar == 'C') ||
++ 			(ctrl && keychar == 'X') ||
++ 			(ctrl && keychar == 'P')
++ 	) {
++ 		prevent();
++ 		return false;
++ 	} else {
++ 		return true;
++ 	}
++ };
++
++
++*解説 [#q9715cfc]
++キーイベント取得の仕方が IE とそれ以外で別の方法を採るようです。
++
++イベントをなかったことにする記述はいろいろやってとにかくダメになるようにしました。
++- キーコードに0を当てる
++- イベントを操作する
++- falseを返却する
++
++*参考 [#jb36d053]
++- [[クロスブラウザでのJavaScriptキーボードイベントの扱い方 - JavaScriptist>http://javascriptist.net/docs/pract_keyboard_event.html]]
++- [[JavaScript によるキーイベントの禁止　(修正): LifeLicene>http://homepage3.moe-nifty.com/lifelicene/2011/02/javascript-2634.html]]
++- [[JavaScriptでキーを無効にする方法 - JavaScript入門>http://www.syboos.jp/webjs/doc/disable-key-event.html]]
++

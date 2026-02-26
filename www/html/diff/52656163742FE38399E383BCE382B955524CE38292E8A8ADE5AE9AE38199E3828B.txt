@@ -1,0 +1,38 @@
+-#author("2017-12-14T05:34:15+00:00","default:haruki","haruki")
++#author("2017-12-14T05:34:35+00:00","default:haruki","haruki")
+ * キーワード [#y70405d9]
+ - React
+ - create-react-app
+ - PUBLIC_URL
+ - cross-env
+ 
+ * したいこと [#y20bbae1]
+ 
+ ベースURLを設定したい。
+ 
+ たとえば、GitHubを使って次のようなURLで公開するためのビルドをしたい。
+ 
+  https://<username>.github.io/<repository>/<subdirectory>/build/
+ 
+ * どうやって [#qbc2fea8]
+ 
+ 環境変数「PUBLIC_URL」を設定する。cross-envを使って次のように設定できる。
+ 
+ package.json:
+  {
+    "scripts": {
+      "build": "cross-env PUBLIC_URL=/<repository>/<subdirectory>/build/ react-scripts build",
+    }
+  }
+ 
+ * ちなみに [#fa2e1a5a]
+ 
+ cross-envは備えつけではないのでインストールが必要。
+ 
+  $ npm install --save-dev cross-env
+ 
+ * 参考 [#e78a80d6]
+ - [[create-react-app build with PUBLIC_URL - Stack Overflow>https://stackoverflow.com/questions/42686149/create-react-app-build-with-public-url]]
++
++* 関連 [#le8c922a]
+ - [[障害メモ/react-router-domでベースURLが抜ける]]

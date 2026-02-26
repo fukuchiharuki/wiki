@@ -1,0 +1,59 @@
+-前提から整わないんだよって人は「[[WindowsでWebアプリケーションを作ってみる]]」も参考にしてみてくださいね。Tomcatのインストールなどについてメモしています。
++*キーワード [#f286f7b1]
++-Tomcat
++-WAR
++-デプロイ
+ 
+-*前提 [#n2032fce]
++*関連 [#ab68cc28]
++-[[WindowsでWebアプリケーションを作ってみる]]
++
++*概要 [#n2032fce]
++TomcatにWARファイル(webアプリケーション)をデプロイします。
++
++**前提 [#q39786e9]
+ -Tomcatはインストール済み
+ -Tomcatは動作確認済み
+ 
++
+ *WARファイルを配置する [#h384db5e]
+ **ディレクトリ構成を確認する [#db8e2564]
+ Tomcatをインストールしたディレクトリを /usr/local/tomcat/ とする。
+ 
+ この /usr/local/tomcat/ 下は次の構成になっている。
+ -/usr/local/tomcat/
+ --LICENSE
+ --NOTICE
+ --RELEASE-NOTES
+ --RUNNING.txt
+ --bin/
+ --conf/
+ --lib/
+ --logs/
+ --temp/
+ --webapps/
+ --work/
+ 
+ **WARファイルをコピーする [#u762e6f2]
+ このうち、webapps/ 下に作成したWARファイルをコピーする（WARファイルを作成する方法はここでは述べないが、Eclipseを使っているのであればプロジェクトからエクスポートするのがおそらくは最も簡単。）
+ -/usr/local/tomcat/
+ --webapps/
+ ---Hoge.war
+ 
+ *動作確認 [#te88783b]
+ **Tomcatを起動する [#c3f2cd27]
+  $ /usr/local/tomcat/bin/startup.sh
+ 
+ 先にコピーしたWARファイルの名前が Hoge.war であれば webapps/ 下に Hoge/ が作成されているはずである。
+ -/usr/local/tomcat/
+ --webapps/
+ ---Hoge.war
+ ---Hoge/
+ 
+ **ブラウザで次のURIにアクセスする [#tea1eb59]
+  http://localhost:8080/Hoge/
+ 
++*参考 [#scebe773]
++-[[eclipseでwarファイルを作成。tomcatにdeploy>http://d.hatena.ne.jp/uyaji/20110604/1307140687]]
++-[[Eclipseで.warファイルを作成する>http://www.atmarkit.co.jp/fjava/javatips/043eclipse016.html]]
++

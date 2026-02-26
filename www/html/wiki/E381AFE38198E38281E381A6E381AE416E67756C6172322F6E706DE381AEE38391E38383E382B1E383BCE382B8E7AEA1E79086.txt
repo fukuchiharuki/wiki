@@ -1,0 +1,17 @@
+* グローバルにインストール [#i8eba6f1]
+
+ npm install -g <package>
+
+グローバルにパッケージをインストールする。どのプロジェクトでも利用するときに。
+
+* プロジェクトに閉じてインストール [#la3d787e]
+
+ npm install --save <package>
+
+パッケージの情報をpackage.jsonに書いてインストールする。
+
+* package.jsonに基づいてインストールする [#mbfef725]
+
+ npm install
+
+package.jsonに従ってパッケージをインストールする。

@@ -1,0 +1,14 @@
++#author("2023-05-31T00:48:07+00:00","default:haruki","haruki")
++自分用。
+ 
++* Preferences [#x9b92880]
++
++** Keymap [#gd642c43]
++
++*** Main Menu [#x381dc87]
++
++- Window
++-- Editor Tabs
++--- Select Next Tab: Control+N
++--- Select Previous Tab: Control+P
++

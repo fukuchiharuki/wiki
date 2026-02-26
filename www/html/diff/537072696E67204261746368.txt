@@ -1,0 +1,6 @@
+ +[[準備する>Spring Batch/準備する]]
+ 
+ *参考 [#q1053c87]
+-Spring Batchの概要、機能、仕組みなどは次のサイトが大変参考になります。
++Spring Batchの概要、機能、考え方などは次のサイトが大変参考になります。
+ -https://sites.google.com/site/soracane/home/springnitsuite/spring-batch

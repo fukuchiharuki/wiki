@@ -1,0 +1,50 @@
+-#author("2018-05-14T01:10:19+00:00","default:haruki","haruki")
+- function FirstClassCollection() {
+-   this.__content;
+- }
+- FirstClassCollection.prototype.size = function () {
+-   return this.__content.length;
+- };
+- FirstClassCollection.prototype.map = function (...args) {
+-   const newCollection = Object.create(Object.getPrototypeOf(this));
+-   newCollection.__content = this.__content.map(...args);
+-   return newCollection;
+- };
+- 
+- function asFirstClassCollection(target) {
+-   Object.setPrototypeOf(target, FirstClassCollection.prototype);
+-   return target;
+- }
++#author("2018-05-14T01:27:10+00:00","default:haruki","haruki")
+ 
+- function RaisableCollection() {
+-   this.__content;
+- }
+- Object.setPrototypeOf(RaisableCollection.prototype, FirstClassCollection.prototype);
+- RaisableCollection.prototype.raise = function() {
+-   return this.map(value => value * value)
+- };
+- 
+- function asRaisableCollection(target) {
+-   Object.setPrototypeOf(target, RaisableCollection.prototype);
+-   return target;
+- }
+-
+-* フィールドにもたなくても [#q3f63349]
+-
+-表示データとしてはわざわざコレクションをフィールドにもつファーストクラスコレクションの形にしないかもしれない。
+-
+- function RaisableCollection() {
+- }
+- Object.setPrototypeOf(RaisableCollection.prototype, Array.prototype);
+- RaisableCollection.prototype.raise = function() {
+-   return asRaisableCollection(
+-     this.map(value => value * value)
+-   );
+- };
+- 
+- function asRaisableCollection(target) {
+-   Object.setPrototypeOf(target, RaisableCollection.prototype);
+-   return target;
+- }
+-

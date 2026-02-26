@@ -1,0 +1,32 @@
+#author("2024-08-14T13:23:19+00:00","default:haruki","haruki")
+* キーワード [#baf1a5a5]
+- Lubuntu
+- Google Chrome
+
+* したいこと [#ca0b8974]
+
+LubuntuにGoogle Chromeをインストールしたい。
+
+Lubuntuをインストールしたままの状態にはFirefoxがインストールされている。
+なお、アプリケーションをミニマムでLubuntuをインストールするとFirefoxもインストールされていない。
+アプリケーションは標準にしてLubuntuをインストールするのが手間なくていい。
+
+* どうやって [#c759b650]
+
+はじめにGoogle Chromeをオフィシャルサイトからパッケージをダウンロードしておく。
+
+- google-chrome-stable_current_amd64.deb
+
+パッケージをインストールするにはgdebiを利用する。
+
+ $ sudo apt update
+ $ sudo apt install -y gdebi
+ $ cd /path/to/Downloads
+ $ sudo gdebi google-chrome-stable_current_amd64.deb
+
+// * ちなみに 
+
+
+* 参考 [#ob9f8ecb]
+- [[第5回　Chromeブラウザを導入する «  shell-mag>https://shell-mag.com/rensai-linuxpc-05/]]
+-

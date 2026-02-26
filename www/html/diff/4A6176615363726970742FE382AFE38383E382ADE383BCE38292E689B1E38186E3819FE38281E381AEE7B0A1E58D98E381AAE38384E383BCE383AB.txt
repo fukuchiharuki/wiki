@@ -1,0 +1,130 @@
+ *関連 [#f6cce633]
+ -JavaScript/Cookie
+ -jQuery
+ 
+ *概要 [#cfedd4db]
+ JavaScriptでクッキーを扱うための簡単なツールです。
+ Javaライクなインタフェースにしてみました。
+ 
+ こんなものは探せばもっといいものがありそうだけど、せっかく作ってみたので公開します。
+ 
+ *JavaScriptコード [#xe9f61f3]
+  var myUtil = {};
+  
+  // ------------------------------ [ Utility: 空判定 ] ------------------------------
+  myUtil.empty = function(o) {
+ 	 return (! o || o.length == 0);
+  };
+  
+  // ------------------------------ [ Utility: トリム ] ------------------------------
+  myUtil.trim = function(o) {
+ 	 return o.replace(/(^\s+)|(\s+$)/g, '');
+  };
+ 
+  var myTool = {};
+  
+  // ------------------------------ [ Tool: クッキー ] ------------------------------
+  myTool.cookie = {};
+  
+  /**
+   * クッキーのエンティティ.
+   */
+  myTool.cookie.Cookie = function(name, value) {
+ 	 if (! name) {
+ 		 name = null;
+ 	 }
+ 	 if (! value) {
+ 		 value = null;
+ 	 }
+  
+ 	 var self = this;
+ 	 self.name = name;
+ 	 self.value = value;
+ 	 self.expires = null;
+ 	 self.domain = null;
+ 	 self.path = null;
+ 	 self.secure = true;
+  
+ 	 self.generateRawFormatString = function() {
+ 		 var raw =
+-			 ((self.name)? encodeURI(self.name): '') + "=" + ((self.value)? encodeURI(self.value): '') + ";" +
++			 ((self.name)? encodeURIComponent(self.name): '') + "=" + ((self.value)? encodeURIComponent(self.value): '') + ";" +
+ 			 ((self.expires)? " expires=" + self.expires + ";": "") +
+ 			 ((self.domain)?  " domain="  + self.domain  + ";": "") +
+ 			 ((self.path)?    " path="    + self.path    + ";": "") +
+ 			 ((self.secure)?  " secure": "");
+ 		 return raw;
+ 	 };
+  };
+  
+  /**
+   * クッキーを取得します.
+   * <p>取得できるクッキーが存在しない場合nullを返却します。</p>
+   * @return クッキーのエンティティ配列
+   */
+  myTool.cookie.getCookies = function() {
+ 	 var cookie = document.cookie;
+ 	 if (myUtil.empty(cookie)) {
+ 		 return null;
+ 	 }
+ 	 var cookies = [];
+ 	 jQuery.each(cookie.split(';'), function() {
+ 		 var keyValue = myUtil.trim(this).split('=');
+-		 var key = (keyValue[0])? decodeURI(keyValue[0]): null;
+-		 var value = (keyValue[1])? decodeURI(keyValue[1]): null;
++		 var key = (keyValue[0])? decodeURIComponent(keyValue[0]): null;
++		 var value = (keyValue[1])? decodeURIComponent(keyValue[1]): null;
+ 		 if (! myUtil.empty(key)) {
+ 			 cookies.push(new myTool.cookie.Cookie(key, value));
+ 		 }
+ 	 });
+ 	 return (cookies.length > 0)? cookies: null;
+  };
+  
+  /**
+   * 名前を指定してクッキーを取得します.
+   * @param name クッキーの名前
+   * @return 指定の名前に該当するクッキーのエンティティ
+   */
+  myTool.cookie.getCookie = function(name) {
+ 	 if (! name) {
+ 		 return null;
+ 	 }
+ 	 var ret = null;
+ 	 var cookies = myTool.cookie.getCookies();
+ 	 if (cookies) {
+ 		 jQuery.each(cookies, function() {
+ 			 if (name == this.name) {
+ 				 ret = this;
+ 			 }
+ 		 });
+ 	 }
+ 	 return ret;
+  };
+  
+  /**
+   * クッキーを保存します.
+   * @param cookie 保存するクッキーのエンティティ
+   */
+  myTool.cookie.addCookie = function(cookie) {
+ 	 document.cookie = cookie.generateRawFormatString();
+  };
+ 
+ 
+ *使い方 [#q8c842b0]
+  // ログインIDをクッキーから復元する
+  jQuery('#login-id').val(function() {
+  	var cookie = myTool.cookie.getCookie('login-id');
+  	return (cookie)? cookie.value: '';
+  });
+ 
+  // submit前にログインIDをクッキーに保存する
+  jQuery('#login-form-button').click(function() {
+  	var cookie = new myTool.cookie.Cookie('login-id', jQuery('#login-id').val());
+  	myTool.cookie.addCookie(cookie);
+  	jQuery('#login-form').submit();
+  });
+ 
+ 
+ *参考 [#t009a449]
+ -http://www.tohoho-web.com/wwwcook.htm

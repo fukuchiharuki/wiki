@@ -1,0 +1,14 @@
+*目標 [#uc4c6978]
+-表題のとおり
+
+*手順 [#j4c3539c]
+**文字コードのデフォルトをUTF-8にする [#r0644565]
++Eclipseを立ち上げて Window->Preference を選択する
++General->Workspace を選択する
+++右の Text file encoding に UTF-8 を指定する
+
+#ref(Eclipse諸設定00.JPG,center,70%)
+#ref(Eclipse諸設定01.JPG,center,70%)
+
+*参考 [#sfaeb38c]
+-http://www.javadrive.jp/eclipse3/setup/index1.html

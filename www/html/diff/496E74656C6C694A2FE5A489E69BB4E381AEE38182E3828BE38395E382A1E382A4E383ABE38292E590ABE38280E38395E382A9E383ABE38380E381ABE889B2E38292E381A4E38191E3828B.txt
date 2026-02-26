@@ -1,0 +1,26 @@
++#author("2018-02-20T06:32:03+00:00","default:haruki","haruki")
++* キーワード [#pd2f7003]
++- IntelliJ
++- Git
++- ファイル
++- フォルダ
+ 
++* したいこと [#jd2b21b6]
++
++Gitなどのバージョン管理は当然使うものとして、ファイル一覧で変更のあるファイルには色がつく。しかしこれを含むディレクトリには色がつかない。すごく困っている。Eclipseでは色がつくのに。なんとかしてください。
++
++* どうやって [#h45e0ac6]
++
++次にチェックを入れる。
++
++- Prefferences.. > Version Control > Show directories with changed descendants
++
++* ちなみに [#meff0cf5]
++
++cogアイコン下にある Flatten Packages を有効にするとEclipseのパッケージ・エクスプローラみたいにできる。
++
++ああ、これでやっと。
++
++* 参考 [#nbad2a21]
++- [[View VCS folder status &ndash; IDEs Support (IntelliJ Platform) | JetBrains>https://intellij-support.jetbrains.com/hc/en-us/community/posts/207002455-View-VCS-folder-status]]
++

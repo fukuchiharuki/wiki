@@ -1,0 +1,32 @@
+-#author("2017-04-21T09:28:50+00:00","default:haruki","haruki")
++#author("2017-04-21T09:28:58+00:00","default:haruki","haruki")
+ * キーワード [#iffd03b1]
+ - DBUnit
+ - ExpectedDatabase
+ 
+ * 現象 [#tc2ef0d8]
+ 
+ CSVを用意して@DatabaseSetupで事前条件と@ExpectedDatabaseで事後条件をセットすると、次の失敗になる。
+ 
+  junit.framework.ComparisonFailure: table count expected:<[3]> but was:<[47]>
+ 
+ ここのexpected:<[3]>はCSVで用意したテーブル数。was:<[47]>は実際のテーブル数。
+ 
+ * 原因 [#ka940e99]
+ 
+ 実際のテーブル数がみられている。
+ 
+ * 対策 [#o4f574e9]
+ 
+ @ExpectedDatabaseに検査対象のテーブルを指定する。
+ 
+  @ExpectedDatabase(value="/path/to/csv/", table="your_table_name")
+ 
+ * 備考 [#y7d92d2c]
+ 
+-%%複数のテーブルを検査したいときにやっぱり困る。%%
++%%複数のテーブルを検査したいときにやっぱり困る。%%~
+ →複数行@ExpectedDatabaseを書けばいいのかな？
+ 
+ * 参考 [#r98b9de7]
+ - [[java - DBUnit Test Comparison Failure - Stack Overflow>http://stackoverflow.com/questions/21909399/dbunit-test-comparison-failure]]

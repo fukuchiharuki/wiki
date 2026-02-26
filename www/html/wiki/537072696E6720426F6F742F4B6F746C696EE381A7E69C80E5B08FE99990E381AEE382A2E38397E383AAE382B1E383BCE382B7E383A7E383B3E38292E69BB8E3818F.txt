@@ -1,0 +1,46 @@
+#author("2017-12-13T08:43:44+00:00","default:haruki","haruki")
+* キーワード [#y18df67d]
+- Spring Boot
+- Kotlin
+
+* したいこと [#q2b3588e]
+
+KotlinでSpring Bootを、最低限とにかく動くものを書きたい。
+
+* どうやって [#p445e9d8]
+
+- GreetingController.kt
+
+ @RestController
+ class GreetingController {
+ 	
+ 	@GetMapping("/greeting")
+ 	fun greeting(
+ 			@RequestParam(value="name", defaultValue="unknown") name: String
+ 	) = Greeting(name)
+ 
+ 	data class Greeting (
+ 		val name: String
+ 	)
+ 
+ }
+
+- Application.kt
+
+ @SpringBootApplication
+ class Application
+ 
+ fun main(args: Array<String>) {
+ 	SpringApplication.run(Application::class.java, *args)
+ }
+
+で、次のURLにアクセス！
+
+ http://localhost:8080/greeting?name=test
+
+* ちなみに [#ke65952a]
+
+STSで書くなら「Kotlin Plugin for Eclipse」を入れよう。Kotlinのクラスを追加することができるぞ。
+
+* 参考 [#m576d0eb]
+- [[Creating a RESTful Web Service with Spring Boot - Kotlin Programming Language>https://kotlinlang.org/docs/tutorials/spring-boot-restful.html]]

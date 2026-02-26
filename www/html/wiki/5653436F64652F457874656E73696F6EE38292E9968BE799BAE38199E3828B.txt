@@ -1,0 +1,49 @@
+#author("2024-03-15T07:07:08+00:00","default:haruki","haruki")
+* キーワード [#v4e5e7cb]
+- Visual Studio Code
+- Extensions
+
+* したいこと [#a5950e18]
+
+Visual Studio CodeのExtensionを開発したい。 
+
+
+* どうやって [#y8fa0a14]
+
+** WSL導入 [#sc24db9f]
+
+管理者権限でterminalを開いてWSLを導入する。
+
+ >wsl --install
+ >wsl --update
+ >wsl -l -v
+   NAME                   STATE           VERSION
+ * Ubuntu                 Running         2
+
+** node導入 [#l602417b]
+
+Ubuntuを開いてnodeのバージョン管理ツールを導入して、動かせるnodeのバージョンをインストールする。
+
+ $ curl https://get.volta.sh/ | bash
+ $ volta --version
+ 1.1.1
+ $ volta 
+ $ volta install node@16
+ $ node --version
+ v16.20.2
+
+** yo導入 [#fe319635]
+
+nodeのバージョンが18以上でないので警告が出るが、導入はできる。
+
+ $ npm install -g yo generator-code
+ $ yo code
+
+ダイアログを道なりに進むとプロジェクトを作成できる。
+
+* ちなみに [#kd8b4f1c]
+
+
+* 参考 [#l44614ee]
+- [[WSL2とVoltaによるnode.js/pnpm開発環境構築:https://zenn.dev/claustra01/articles/0a484d414a8ba4]]
+- [[VSCode Extensions(拡張機能) 自作入門 〜VSCodeにおみくじ機能を追加する〜 #VSCode - Qiita:https://qiita.com/HelloRusk/items/073b58c1605de224e67e]]

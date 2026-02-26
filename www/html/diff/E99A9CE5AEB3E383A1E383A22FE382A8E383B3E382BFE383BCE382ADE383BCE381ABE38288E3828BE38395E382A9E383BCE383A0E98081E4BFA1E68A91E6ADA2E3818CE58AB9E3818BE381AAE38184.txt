@@ -1,0 +1,17 @@
+ *関連 [#xf5c1be6]
+ -JavaScript
+ -HTML
+ 
+ *現象 [#qae892da]
+ input[type="button"]にしてもエンターキーでフォーム送信する。
+ 
+ *原因 [#z1bece84]
+ input[type="text"]がひとつだけの場合そうなる。
+ 
+ *対策 [#x0c247d7]
+ input[type="text"]をdisplay:none;で隠して置く。
+- <input type="text" name="dummy" style="display: none">
++ <input type="text" name="dummy" style="display: none;">
+ 
+ *参考 [#c60bd61e]
+ -http://www.nslabs.jp/enter-submit.rhtml

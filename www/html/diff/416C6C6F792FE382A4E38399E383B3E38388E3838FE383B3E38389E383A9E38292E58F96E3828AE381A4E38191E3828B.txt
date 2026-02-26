@@ -1,0 +1,28 @@
+-[[../]]
+-
+ *キーワード [#yb737c53]
+ - Titanium Mobile
+ - Alloy
+ 
+ *目標 [#y8ca614d]
+ コントロールにイベントハンドラを取りつけます。
+ 
+ #ref(event01.png,center,50%)
+ #ref(event02.png,center,50%)
+ 
+ *方法 [#e1e86c56]
+ - index.xml
+  <Label id="label1">I am Window 1</Label>
+ 
+ - index.js
+  $.label1.addEventListener('click', function() {
+  	Ti.UI.createAlertDialog({title:'Click', message:'You clicked it.'}).show();
+  });
+ 
+ *解説 [#ue1ca936]
+ index.xml のタグ中に onclick 属性を書くこともできるようですが、分離の観点から index.js に書くのがよいでしょう。
+ 
+ index.js 中では id 属性に書いた名前でコントロールを取得できます。(例では $.label1)
+ 
+ *参考 [#t17fd539]
+ - [[Titanium 3.X - Appcelerator Docs>http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.Proxy-method-addEventListener]]

@@ -1,0 +1,58 @@
+ * キーワード [#gae867ec]
+ - MySQL 
+ - PreparedStatement
+ - ResultSet
+ - OutOfMemoryError
+ 
+ * 現象 [#u465d824]
+ 
+ 一行ずつResultSetからデータ取得しているはずなのにOutOfMemoryErrorになる。
+ 
+  Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
+  	at com.mysql.jdbc.MysqlIO.nextRowFast(MysqlIO.java:1649)
+  	at com.mysql.jdbc.MysqlIO.nextRow(MysqlIO.java:1426)
+  	at com.mysql.jdbc.MysqlIO.readSingleRowSet(MysqlIO.java:2924)
+  	at com.mysql.jdbc.MysqlIO.getResultSet(MysqlIO.java:477)
+  	at com.mysql.jdbc.MysqlIO.readResultsForQueryOrUpdate(MysqlIO.java:2619)
+  	at com.mysql.jdbc.MysqlIO.readAllResults(MysqlIO.java:1788)
+  	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2209)
+  	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2625)
+  	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:2119)
+  	at com.mysql.jdbc.PreparedStatement.executeQuery(PreparedStatement.java:2281)
+ 
+ * 原因 [#u0c975fb]
+ 
+ すべての行をfetchしてResultSetを生成しようとするようです。なので、取得対象が膨大になるとすぐにOutOfMemoryErrorを起こします。
+ 
+ 一行ずつ取得するようにした実装が泣くね。
+ 
+ * 対策 [#l85799df]
+ 
+ 一定行ずつfetchするようにMySQLを設定します。
+ 
+ ** 接続プロパティで指定する方法 [#bc1e7393]
+ 
+ 次のクエリストリングを接続プロパティに加えます。
+ 
+  useCursorFetch=true&defaultFetchSize=100
+ 
+-100は一度にfetchする行数のよう。
++100は一度にfetchする行数のよう。なので様子みて適宜。
+ 
+ ** コードで指定する方法 [#a153f6e9]
+ 
+  stmt = conn.createStatement(
+           java.sql.ResultSet.TYPE_FORWARD_ONLY, 
+           java.sql.ResultSet.CONCUR_READ_ONLY
+         );
+  stmt.setFetchSize(Integer.MIN_VALUE);
+ 
+ * 備考 [#o02ff04d]
+ 
++PreparedStetementもデフォルトではPreparedしてないというとんでも罠があったりするの注意。
+ 
+ * 参考 [#oa2bd815]
+ - [[Connector/J でOutOfMemoryError | ビズリーチラボ>http://lab.bizreach.co.jp/63/]]
+ - [[sqoopでOutOfMemoryError - wyukawa’s blog>http://d.hatena.ne.jp/wyukawa/20140730/1406719449]]
+ - [[exception - Java Heap Memory error - Stack Overflow>http://stackoverflow.com/questions/3443937/java-heap-memory-error]]
+ - [[OutOfMemoryError: Java heap space [Archive]  - Lavastorm Forums>http://community.lavastorm.com/archive/index.php/t-746.html]]

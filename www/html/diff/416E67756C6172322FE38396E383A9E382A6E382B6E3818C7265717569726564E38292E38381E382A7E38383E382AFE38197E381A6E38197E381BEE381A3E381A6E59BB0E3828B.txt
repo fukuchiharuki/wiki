@@ -1,0 +1,23 @@
++* キーワード [#l2bfe1fc]
++- Angular2
++- required
++- ngForm
++- ngModel
+ 
++* したいこと [#t3b56411]
++
++inputにrequiredをつけたvalidationをAngular2で実装したいが、ブラウザがhtml5の枠組みでrequiredをチェックしてしまい、ブラウザのメッセージが邪魔。Angular2だけでvalidationしたい。
++
++* どうやって [#oe736cce]
++
++ <form novalidate>
++
++novalidateはAngular2ではなくて、html5の記述。
++
++* ノート [#ma50344c]
++
++NgFormに関する公式のドキュメントでもnovalidateを書いている。validateしてるはずなのにnovalidateとはどういうことかと思ったが、html5でやってくれなくていいよ、ということのようだ。
++
++* 参考 [#w2651dee]
++- [[NgForm - ts - API>https://angular.io/docs/ts/latest/api/forms/index/NgForm-directive.html]]
++

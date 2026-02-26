@@ -1,0 +1,106 @@
+*目標 [#ndba763d]
+-Webアプリケーションプロジェクトを作成する
+-ServletとJSPを使ってWebアプリケーションを作成する
+-ブラウザでWebページの表示を確認する
+
+*手順 [#ya23924d]
+
+**Webアプリケーションプロジェクトを作成する [#d94fd4a2]
+
++メニューから File->New->Dynamic Web Project を選択する
+++該当項目がない場合、Other... から探す
++Project name に好きな名前をつける
++Target runtime の New Runtime を選択してアプリケーションサーバを追加する
+++一覧から Apache Tomcat v7.0 を選択する
+++Create a new local server にチェックを入れる
+++Tomcat installation directory の Browse... を選択してTomcatのディレクトリを選択する
+---ここでは C:\opt\tomcat\apache-tomcat-7.0.12 とした
+++JRE の選択項目から jdk1.6.0_24 を選択する（インストールしたJDK次第で）
++Next、Next と続ける
++Web Module の Generate web.xml deployment descriptor にチェックを入れる
+
+#ref(Webアプリケーション作成00.JPG,center,70%)
+#ref(Webアプリケーション作成01.JPG,center,70%)
+#ref(Webアプリケーション作成02.JPG,center,70%)
+#ref(Webアプリケーション作成03.JPG,center,70%)
+#ref(Webアプリケーション作成04.JPG,center,70%)
+#ref(Webアプリケーション作成05.JPG,center,70%)
+#ref(Webアプリケーション作成06.JPG,center,70%)
+
+**ServletとJSPを使ってWebアプリケーションを作成する [#z0a01428]
+
+***パッケージを作成する [#pef97d7f]
+
++Package Explore ビューから 右クリック->New->Package を選択する
+--src の上で右クリックする
+--該当項目がない場合、Other... から探す
++folder's corresponding の Name に任意のパッケージ名を入力する
+
+#ref(パッケージを作成する00.JPG,center,60%)
+#ref(パッケージを作成する01.JPG,center,70%)
+#ref(パッケージを作成する02.jpg,center,70%)
+
+***Servletを作成する [#g2c5ef92]
+
++Packege Explore ビューから 右クリック->New->Servlet を選択する
+--先に作成したパッケージの上で右クリックする
++Class name に任意のクラス名を入力する
++作成したクラスのメソッドをすべて削除し、下記のメソッドを追記する
+
+#ref(Servletを作成する00.jpg,center,60%)
+#ref(Servletを作成する01.jpg,center,70%)
+
+ @Override
+ protected void service(HttpServletRequest request, HttpServletResponse response) 
+ throws ServletException, IOException {
+     ServletContext sc = getServletContext();
+     RequestDispatcher rd = sc.getRequestDispatcher("/WEB-INF/jsp/Sample.jsp");
+     rd.forward(request, response);
+ }
+
+***JSPを作成する [#o44880d6]
+
++右クリック->New->Folder を選択する
+--WebContent->WEB-INF の上で右クリックする
++Folder name に「jsp」を入力する
++Package Explore ビューから 右クリック->New->JSP File を選択する
+--先に作成したディレクトリの上で右クリックする
++File name に「Sample」を入力する
+
+#ref(JSPを作成する00.jpg,center,60%)
+#ref(JSPを作成する01.JPG,center,70%)
+#ref(JSPを作成する02.jpg,center,60%)
+#ref(JSPを作成する03.JPG,center,70%)
+#ref(JSPを作成する04.JPG,center,70%)
+
+作成したJSPファイルはsjisになってしまっているのでUTF-8に直しましょう。
++JSPファイル上のエンコードに関する記述を修正する
+--「windows-31j」→「UTF-8」
++Package Explore ビューから右クリック->Properties を選択する
+++Text file en
+coding の Other を選択して UTF-8 を設定する
+
+#ref(JSPの文字コード修正00.JPG,center,70%)
+
+**ブラウザでWebページの表示を確認する [#nd69efa1]
+
+***Webアプリケーションをサーバに登録する [#j145b3b1]
++Sample プロジェクトを「Tomcat v7.0 Server at localhost」にドラッグする
+--Package Explore ビューから Servers ビュー
+
+#ref(Webアプリケーション登録00.jpg,center,70%)
+
+***Tomcatを起動する [#ie55db4d]
++Servers ビューの虫アイコンをクリックする
+--「Tomcat ...」に [Debugging, Synchronized] が表示される
+--「Sample」に [Synchronized] が表示される
+
+#ref(デバグ実行01.jpg,center,70%)
+
+***ブラウザで表示を確認する [#ed8fa68b]
++アドレス欄に次を入力してアクセスする
+--http://localhost:8080/Sample/SampleServlet
+
+「Insert title here」というタイトルで白い画面が表示されたらOKです。
+
+*参考 [#tacb3384]

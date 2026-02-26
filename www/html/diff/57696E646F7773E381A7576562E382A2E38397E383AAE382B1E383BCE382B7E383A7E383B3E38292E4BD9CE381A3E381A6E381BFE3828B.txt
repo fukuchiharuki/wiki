@@ -1,0 +1,21 @@
+ まとめ。
+ 
+ *準備 [#e8896fca]
+ **アプリケーションサーバ [#abf0a0e5]
+ -[[Java/WindowsにJDKをインストールする]]
+ -[[Tomcat/WindowsにTomcatをインストールする]]
+ 
+ **バージョン管理 [#zf35c902]
+ -[[SVN/WindowsにSVNサーバをインストールする]]
+ -[[SVN/TortoiseSVNをインストールする]]
+ 
+ **データベース [#p4bf222d]
+ -[[MySQL/WindowsにMySQLをインストールする]]
+ 
+ **開発環境 [#f9794abf]
+ -[[Eclipse/WindowsにEclipseをインストールする]]
+ -[[Eclipse/使用する文字コードをUTF-8にする]]
+ 
+ *作ってみる [#pcf9c914]
+ -[[Eclipse/Webアプリケーションを作成する]]
++-[[Eclipse/SVNでバージョン管理する]]

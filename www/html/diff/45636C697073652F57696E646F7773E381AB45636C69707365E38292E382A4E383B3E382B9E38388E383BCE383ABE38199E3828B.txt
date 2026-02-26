@@ -1,0 +1,35 @@
+ *目標 [#w67c026e]
+ -Eclipseをインストールする
+ -Eclipseを起動する
+ 
+ *手順 [#y3dff427]
+ **アーカイブファイルをダウンロードする [#v8f04206]
+ +次のサイトの Downloads を選択する
++--http://www.eclipse.org/
+ +「Eclipse IDE for Java EE Developers」右の「Windows 32 Bit」を選択する
+ +下向き矢印を選択してダウンロードする
+ --eclipse-jee-helios-SR2-win32.zip（2011-04-28時点）
+ 
+ **エクリプスをインストールする [#y5f665f0]
+ +ダウンロードしたアーカイブファイルを適当なディレクトリに解凍する
+ 
+ #ref(Eclipseインストール00.JPG,center,70%)
+ 
+ ***初期化ファイルを編集する [#k6e07aa2]
+ eclipse.exeを実行すると次のエラーに遭遇することがあります。
+ -Failed to create The Java Virtual Machine
+ 
+ このとき、eclipse.ini に次の2行を追記します。※
+  -vm
+  C:/Program Files/Java/jdk1.6.0_24/bin/javaw.exe
+ 
+ 追記したら再度eclipse.exeを実行してください。
+ 
+ ※次の行の上に追記してください。
+  -vmargs
+ 
+ **便利なプラグイン [#l573edd6]
+ |propedit|http://sourceforge.jp/projects/propedit/|
+ 
+ *参考 [#z2ef23bc]
+ -http://d.hatena.ne.jp/hirokan55/20100726/p1

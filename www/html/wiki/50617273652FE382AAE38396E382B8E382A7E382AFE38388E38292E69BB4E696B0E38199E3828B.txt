@@ -1,0 +1,70 @@
+*キーワード [#rcc8e75e]
+-JavaScript
+-Object
+-get
+-save
+
+*概要 [#cdfa1296]
+アプリケーションに定義したクラスのオブジェクトを更新します。
+
+今回のサンプルは次のクラスを定義したものとしています(※Parse規定のカラムを除く)。
+
+-Post
+|CENTER:BGCOLOR(#EEEEEE):カラム|CENTER:BGCOLOR(#EEEEEE):型|
+|title|String|
+|body|String|
+
+*サンプル [#yc564568]
+ // オブジェクトを更新する
+ var update = function(id, title, body) {
+ 
+ 	// クラス
+ 	var Post = Parse.Object.extend('Post');
+ 
+ 	// クエリ
+ 	var query = new Parse.Query(Post);
+ 
+ 	// 取得
+ 	query.get(id, {
+ 		success: function(post) {
+ 
+ 			// 属性
+ 			post.set('title', title);
+ 			post.set('body', body);
+ 
+ 			// 保存(更新)
+ 			post.save();
+ 
+ 			jQuery('#message').text('ポスト更新: ' + post.id);
+ 		},
+ 		error: function(post, error) {
+ 			jQuery('#message').text('ERROR: ' + error.description);
+ 		}
+ 	});
+ };
+ 
+ // イベント処理(Parseとは直接関係ないところ)
+ jQuery('input[name=object-update-post]').click(function() {
+ 	var id = jQuery('input[name=object-update-id]').val();
+ 	var title = jQuery('input[name=object-update-title]').val();
+ 	var body = jQuery('textarea[name=object-update-body]').val();
+ 	if (id.length > 0 && title.length > 0 && body.length > 0) {
+ 		update(id, title, body);
+ 	} else {
+ 		jQuery('#message').text('WARN: ' + 'idとtitleとbodyを入力してからfixしてね。');
+ 	}
+ });
+
+
+*解説 [#i59a98e4]
+[[Parse/オブジェクトを取得する]] と [[Parse/オブジェクトを保存する]] の合わせ技です。
+
+**object.save() [#b0632318]
+-https://www.parse.com/docs/js/symbols/Parse.Object.html#save
+
+引数なしでコールすると単に保存(更新)するだけです。
+
+これは、 [[query.get(id, options)>https://www.parse.com/docs/js/symbols/Parse.Object.html#save]] したオブジェクトでなくても''新規にインスタンス生成したオブジェクトに id を指定する''ことで、その id に該当するオブジェクトを更新することができます。
+
+*参考 [#ie32548b]
+-[[Parse.Object - Parse JavaScript SDK Reference>https://www.parse.com/docs/js/symbols/Parse.Object.html]]

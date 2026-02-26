@@ -1,0 +1,19 @@
+ -/etc/sysconfig/iptables
++
+  # ポリシー
+  *filter
+  :INPUT DROP [0:0]
+  :FORWARD DROP [0:0]
+  :OUTPUT ACCEPT [0:0]
+  
+  # ループバックをアクセプト
+  -A INPUT -i lo -j ACCEPT
+  
+  # 指定のポート番号をアクセプト
+  -A INPUT -p tcp --dport ポート番号 --syn -j ACCEPT
+  
+  # レスポンスをアクセプト
+  -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+  
+  # コミット
+  COMMIT

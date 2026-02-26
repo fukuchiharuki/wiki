@@ -1,0 +1,21 @@
+*キーワード [#keefcaf1]
+-MySQL
+-grant
+
+*関連 [#o5cbf5bf]
+-[[MySQL/データベースを作成する]]
+
+*概要 [#ke8a4612]
+ユーザを作成する。
+
+*方法 [#o980b570]
+ mysql> GRANT ALL PRIVILEGES ON データベース名.* TO 'ユーザー名'@'ホスト名' IDENTIFIED BY 'パスワード';
+ mysql> flush privileges;
+
+*解説 [#bce85a94]
+-「ALL PRIVILEGES」はfull権限を与える場合の設定
+-どのホストからでも接続できるようにするには「'ユーザー名'@'%'」にする
+--「'ユーザー名'@'localhost'」も忘れずに ← めんどくさいね
+
+*参考 [#u5d2d0c9]
+-http://dev.mysql.com/doc/refman/5.1/ja/grant.html

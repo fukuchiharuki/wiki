@@ -1,0 +1,40 @@
+-#author("2017-12-13T03:37:55+00:00","default:haruki","haruki")
++#author("2017-12-13T04:42:06+00:00","default:haruki","haruki")
+ * キーワード [#b1d148b3]
+ - STS
+ - Eclipse
+ - java
+ - 64bit
+ 
+ * 現象 [#a2cb3b6a]
+ 
+ ダウンロードしたSTSが上がらない。
+ 
+  Java was started but returned exit code=13
+ 
+ STSもJDKもそれぞれベーシックにしているものをダウンロードした。
+ 
+ - STS
+ -- [[Spring Tool Suite&trade; (STS)>https://spring.io/tools/sts]] の「Download STS (3.9.1.RELEASE for Windows)」
+ - JDK
+ -- [[Java SE Development Kit 9 - Downloads>http://www.oracle.com/technetwork/java/javase/downloads/jdk9-downloads-3848520.html]] の「jdk-9.0.1_windows-x64_bin.exe」
+ 
+ * 原因 [#ie9d2130]
+ 
+-あとで
++64bit用か32bit用かで間違えてる。
+ 
+ * 対策 [#ded81709]
+ 
++STSからベーシックにダウンロードできるパッケージは32bit用なので、[[ダウンロードページ>https://spring.io/tools/sts/all]]から64bit用のパッケージをダウンロードする。
+ 
++あるいはSTS.ini (eclipse.iniにあたるもの)でどうにかする方法もあるみたいだが、素直に環境に合わせて用意すればいいと思う。
++
+ * 備考 [#f3cf26cc]
+ 
++JDKはベーシックにダウンロードできるものが64bit用のもの。
+ 
+ * 参考 [#v76f836a]
+-- 
++- [[Eclipse: Java was started but returned error code=13 - Stack Overflow>https://stackoverflow.com/questions/27019786/eclipse-java-was-started-but-returned-error-code-13]]
+ -

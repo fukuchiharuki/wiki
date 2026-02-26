@@ -1,0 +1,30 @@
+-#author("2017-07-04T02:38:30+00:00","default:haruki","haruki")
++#author("2017-07-13T01:18:41+00:00","default:haruki","haruki")
+ * キーワード [#l5fdad85]
+ - npm
+ - install
+ - HTTP_PROXY
+ 
+ * 現象 [#bdbbbbab]
+ 
+  npm install -g bower
+ 
+ などができない。読みにも行っていない感じ。
+ 
+ * 原因 [#i79413b2]
+ 
+ プロキシ設定できてないから。
+ 
+ * 対策 [#z892c29e]
+ 
+ .bash_profileにHTTP_PROXYを設定しておく。
+ 
+  export HTTP_PROXY=http://プロキシサーバー:ポート番号
+ 
+ * 備考 [#af1c65bb]
+ 
++EclipseとかAtomでも個別に設定してあげる必要があったかと思う。
+ 
+ * 参考 [#j79fa4a0]
+ - [[proxy環境下でのnpm config設定 - Qiita>http://qiita.com/tenten0213/items/7ca15ce8b54acc3b5719]]
+ - [[Linux,Windowsのプロキシ設定あれこれ - Qiita>http://qiita.com/chroju/items/752eaba0fc0e1b11c524]]

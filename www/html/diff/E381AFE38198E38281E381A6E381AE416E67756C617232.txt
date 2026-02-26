@@ -1,0 +1,9 @@
++&color(red){※ 別ページ「[[Angular2]]」にまとめだしています。};
++
++----
++
+ Angular2のお勉強メモです。
+ 
+ 気がついたらAngularJS、Angular2、React、Vueなどが台頭していて。。これは大変だ！時代がどんどん進んでいる！！で、結局Angular2を勉強することにしました。
+ 
+ #navi

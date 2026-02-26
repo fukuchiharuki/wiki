@@ -1,0 +1,45 @@
+-#author("2018-02-20T06:52:03+00:00","default:haruki","haruki")
++#author("2018-02-21T05:16:48+00:00","default:haruki","haruki")
+ * キーワード [#a7e0ec70]
+ - Spring Boot
+ - Spring Security
+ - PreAuthorize
+ 
+ * したいこと [#a41ee807]
+ 
+ ロール（roles）に紐づける権限（authorities）に応じて、特定の処理をガードしたい。権限があるユーザーだけが処理できるように。
+ 
+ * どうやって [#t17e13d7]
+ 
+ URLを拾ってガードすることもできるようだけど、権限の分だけURLの名前をつけ分けることは難しいので、サービスのメソッドにガードをかけるようにする。
+ 
+ - Some情報を追加するメソッドを
+ - ADD_SOME_DATA権限をもつユーザーだけ実行できる
+ 
+ ようにする。
+ 
+  @PreAuthorize("hasAuthority('ADD_SOME_DATA')")
+  @Transactional(readOnly = false)
+  fun add(someData: SomeData) {
+    /* ガードがかかる追加処理 */
+  }
+ 
+ 文字列で設定するのが少し気持ち悪い。開発初期の段階で、権限の名称を変えるときなんかに注意。
+ 
+ * ちなみに [#q6fc5429]
+ 
++** 有効化 [#c47dbb83]
++
+ @PreAuthorizeによる権限チェックをするにはSecurityConfigで次の設定をする必要がある。
+ 
+  @EnableGlobalMethodSecurity(prePostEnabled = true) // <-- これ
+  @Configration
+  class SecurityConfig: WebSecurityConfigurerAdapter {
+    ...
+ 
++** 範囲 [#ea57f86a]
++
++@PreAuthorizeをクラスにつければどのメソッドでも権限チェックできる。
++
+ * 参考 [#v2ed1692]
+ - [[java - Spring security - @PreAuthorize not working - Stack Overflow>https://stackoverflow.com/questions/29643183/spring-security-preauthorize-not-working]]

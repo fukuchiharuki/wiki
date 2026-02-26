@@ -1,0 +1,46 @@
++* キーワード [#q514f14c]
++- Redmine
++- 再起動
+ 
++* 現象 [#j263d56a]
++
++Redmineを再起動したら立ち上がらなくなった。
++
+++ Redmineを再起動
++ $ touch /path/to/redmine/apps/redmine/htdocs/tmp/restart.txt
+++ ブラウザからRedmineにアクセス
++ We're sorry, but something went wrong.
++
++* 原因 [#sa0fd3a7]
++
++- /path/to/redmine/apache2/logs/error_log
++ undefined method `log_path' for #<Rails::Application::Configuration:0x00000001e5edd0> (NoMethodError)
++
++参考サイトによるとconfig.log_pathはもはやもうない、ということらしい。
++ Documentation fixed. Rails' config.log_path is no longer available, you have to explicitly set the path to your logfile.
++
++* 対策 [#i752be6e]
++
++ログファイルの指定を固定値にしました。
++
+++ 修正候補ファイルを探す
++ $ find /path/to/redmine -name '*.rb' -exec grep -q log_path {} \; -print
+++ (いっぱいでたが)次のファイルだけ修正
++ $ vim /path/to/redmine/apps/redmine/htdocs/config/environments/production.rb
++-- 修正内容
++ #config.logger = Logger.new(config.log_path)
++ config.logger = Logger.new('/path/to/redmine/apps/redmine/htdocs/log/production.log')
+++ Redmineを再起動
++ $ cd /path/to/redmine
++ $ ./ctlscript.sh restart apache
+++ 直った
++
++* 備考 [#meb709d7]
++- なぜ再起動のときにだけ作用するのかまでは見てない
++- そもそもしたかったことは担当者のデフォルト値設定(参考サイト)
++- 再起動の方法を変えたのはビビってたから
++
++* 参考 [#x3e7411d]
++- [[Defect #11603: log file rotation is broken: undefined method `log_path&#x27; for #&lt;Rails::Application::Configuration:0xb60966d4&gt; - Redmine>http://www.redmine.org/issues/11603]]
++- [[新規チケット作成時、デフォルトの担当者をチケット作成者にする &mdash; Redmine.JP>http://redmine.jp/faq/issue/set_current_user_to_assigned_to_field/]]
++

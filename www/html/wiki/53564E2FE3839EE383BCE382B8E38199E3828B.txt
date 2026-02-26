@@ -1,0 +1,53 @@
+* キーワード [#y2fcd81d]
+- Subversion
+- マージ
+
+* やりたいこと [#j86b8ad7]
+
+CUI上でマージします。
+
+* どうやって [#abb66b27]
+
+** チェックアウトまはたスイッチする [#ia99dcb2]
+
+マージ先をカレントにします。マージ先がマージ対象の変更を受け取るイメージです。チェックアウトしていなければチェックアウト、チェックアウトしているが別のブランチがカレントになっていればスイッチします。
+
+*** チェックアウト [#le476ce7]
+ [~/work]$ svn checkout (リポジトリ)/trunk/target ./target
+
+*** スイッチ [#t1b8d559]
+ [~/work/target]$ svn switch (リポジトリ)/trunk/target .
+
+** マージする [#t587bff5]
+
+いきなりマージ対象の変更を受け取らずに、まずは受け取ることができるかを検査します。変更の競合があると何かと手間です(ここでは述べません)。最初に競合がないことを確認して(安心してから)実際にマージします。
+
+*** 検査 [#g9913062]
+ [~/work/target]$ svn merge --dry-run -r (リビジョン前):(リビジョン後) (リポジトリ)/branches/target-fix
+
+リビジョン前とリビジョン後でマージ対象の(時間軸的な)スコープを指定します。リビジョン前として指定したリビジョン番号に該当する変更はマージの対象になりません。リビジョン後として指定したリビジョン番号に該当する変更はマージの対象になります。
+ リビジョン前　リビジョン後
+ ↓            ↓
+ ○------------●
+
+なお、リビジョン後は HEAD にして最新を指定することができます。
+
+*** マージ [#l74d86f9]
+
+ [~/work/target]$ svn merge -r (リビジョン前):(リビジョン後) (リポジトリ)/branches/target-fix
+
+検査からオプション指定 --dry-run を消して実行します。
+
+** コミットする [#ad876960]
+
+最後にマージした変更をコミットします。
+
+ [~/work/target]$ svn commit -m '/branches/target-fix から /trunk/target に変更をマージ'
+
+//* 備考 
+
+
+* 参考 [#a9b6b9a2]
+- [[svn checkout>http://www.caldron.jp/~nabetaro/svn/svnbook-1.4-final/svn.ref.svn.c.checkout.html]]
+- [[svn switch>http://www.caldron.jp/~nabetaro/svn/svnbook-1.4-final/svn.ref.svn.c.switch.html]]
+- [[Subversionでtrunkの内容をbranchにmergeまたはその逆 - 常水商会::よしなしごと>http://cockatiel-cage.hateblo.jp/entry/2012/12/14/122449]]

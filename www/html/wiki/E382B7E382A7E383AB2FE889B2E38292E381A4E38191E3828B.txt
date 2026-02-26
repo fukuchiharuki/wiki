@@ -1,0 +1,26 @@
+* キーワード [#sd947b6d]
+- echo
+- 色
+
+* やりたいこと [#jb0b873a]
+[ OK ] や [ NG ] に色をつけて(echo)出力したい。
+
+* 方法 [#a5b61a89]
+ #!/bin/bash
+ 
+ OK="\e[32mOK\e[m"
+ NG="\e[31mNG\e[m"
+ WARNING="\e[33mWARNING\e[m"
+ 
+ echo -e [ $OK ]
+ echo -e [ $NG ]
+ echo -e [ $WARNING ]
+ 
+* 詳細 [#k146a1be]
+:COLOR_BEGIN_RED|\e[31m
+:COLOR_BEGIN_GREEN|\e[32m
+:COLOR_BEGIN_YELLOW|\e[33m
+:COLOR_END|\e[m
+
+* 参考 [#q1d72b60]
+- [[シェル - echoで文字に色をつける その1 - Miuran Business Systems>http://www.m-bsys.com/linux/echo-color-1]]

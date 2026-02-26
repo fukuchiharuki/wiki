@@ -1,0 +1,4 @@
++ iptables-save > /etc/sysconfig/iptables
+ 
++
++

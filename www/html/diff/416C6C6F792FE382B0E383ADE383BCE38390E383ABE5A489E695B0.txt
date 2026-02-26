@@ -1,0 +1,22 @@
+-[[../]]
+-
+ *キーワード [#pecfbd8b]
+ - Titanium Mobile
+ - Alloy
+ 
+ *目標 [#w061d061]
+ Alloy でグローバル変数を使います。
+ 
+ *方法 [#dacd353a]
+ - alloy.js
+  Alloy.Globals.Env = {}
+  Alloy.Globals.Env.version = '1.0';
+ 
+ *解説 [#q68a7256]
+ 
+ alloy.js にコメントがありますね。Alloy.Globals に取り付ければよいようです。
+ 
+ Ti.App を使う方法はダメになったのかな？
+ 
+ *参考 [#ae3f389d]
+ - [[Safariでウェブページのソースコードを見る方法。（HTML ＆ CSS） | 和洋風KAI>http://support.titanium-mobile.jp/questions/3464]]

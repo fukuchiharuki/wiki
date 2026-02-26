@@ -1,0 +1,17 @@
+ *関連 [#q46f7478]
+ -JSP
+ -JSTL
+ 
+ *概要 [#f334f367]
+ JSPで一文字ずつsplitする方法です。
+-ついでに&shy;を挟みます。
++ついでに&amp;shy;を挟みます。
+ 
+ *方法 [#t480a252]
+  <c:set var="text" value="${longtext}" />
+  <c:forEach var="str" items="<%=((String)pageContext.getAttribute(\"text\")).toCharArray() %>" ><c:out value="${str}" />&shy;</c:forEach>
+ 
+ *解説 [#gb438c7b]
+ 各ブラウザで折り返しがどうのとかいう、見栄えが優先されるときに。
+ 逆にそうでなければ一文字ずつ処理するとその文字列が情報でなくなる恐れもあります。
+ ので、お勧めはしないです。

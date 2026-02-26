@@ -1,0 +1,26 @@
+#author("2017-04-18T05:58:55+00:00","default:haruki","haruki")
+* キーワード [#p4b88880]
+- JUnit
+- 例外
+- ExpectedException
+
+* 現象 [#k5dff98e]
+JUnitの例外テストでExpectedExceptionを使うとテストの初期化でエラーになる。
+
+ initializationError
+
+* 原因 [#n596267e]
+ExpectedExceptionをpublicにしていなかった。
+
+ @Rule ExpectedException thrown = ExpectedException.none();
+
+* 対策 [#q226a42a]
+ExpectedExceptionをpublicにする。
+
+ @Rule public ExpectedException thrown = ExpectedException.none();
+
+* 備考 [#s728e3e8]
+ここpublicなの？と思ったら、必要だったようです。
+
+* 参考 [#bb7807fa]
+- [[JUnitでの例外テストの書き方 - Qiita>http://qiita.com/su-kun1899/items/5c9f0294a7de1986e542]]

@@ -1,0 +1,40 @@
+ * npmをインストールする [#g1734f16]
+ 
+ nodeをインストールするとnpmもその一部としてインストールできる。
+ 
+ - https://nodejs.org/en/
+ 
+  Our examples require node v4.x.x or higher and npm 3.x.x or higher.
+ 
+ 上記のバージョンが必要なようで、npmのバージョンが足りないので、v4.6.0 LTS（Recommended For Most Users）ではなくv6.8.0 Current（Latest Features）をインストールする。（2016-10-13時点）
+ 
+- >node -v
++ $ node -v
+  v6.8.0
+  
+- npm -v
++ $ npm -v
+  3.10.8
+ 
+ * Angular CLIをインストールする [#xa16b6dc]
+ 
+ プロジェクトやコンポーネントの作成を自動でやってくれるAngular CLIがないと立ち上がりがきつい。
+ 
+ - https://cli.angular.io/
+ 
+  npm install -g angular-cli
+ 
+ * Angular CLIでAngular2を動かす [#u24cd640]
+ 
+ まずは動かしたい。
+ 
+  ng new my-new-app
+  cd my-new-app
+  ng server
+ 
+ * Angular CLIでAngular2をビルドする [#b1011b69]
+ 
+ ビルドも一発。
+ 
+  cd my-new-app
+  ng build --prod

@@ -1,0 +1,26 @@
+-*関連 [#t10a2183]
++*キーワード [#t10a2183]
+ -Java
+ -正規表現
+ 
++*関連 [#k533fe8b]
++-[[Java/正規表現を使って条件付きで置き換える]]
++
+ *概要 [#c64da657]
+ 正規表現で特定箇所をいくつか抜き出したい。
+ 
+ *方法 [#e3483c44]
+  Matcher matcher = 
+    Pattern.compile("([0-9][0-9][0-9][0-9])-([0-9][0-9])-([0-9][0-9])").matcher("1984-03-12");
+  if (matcher.find()) {
+    year = matcher.group(1); // "1984"
+    month = matcher.group(2); // "03"
+    day = matcher.group(3); // "12"
+  }
+ 
+ *解説 [#nd591392]
+ Matcherクラスを使用すると特定箇所を抜き出すことができます。
+ 
+ *参考 [#s23599aa]
+ -http://java.sun.com/j2se/1.5.0/ja/docs/ja/api/java/util/regex/Matcher.html
+ -http://www.javaroad.jp/java_character7.htm

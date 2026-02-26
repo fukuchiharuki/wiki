@@ -1,0 +1,41 @@
+* キーワード [#g1c550e0]
+- Angular2
+- ngFor
+- table
+- tr
+
+* したいこと [#e2e95807]
+
+tableを置いていて、ひとつの要素が複数のtrで成るときngForをどう書くか。
+
+ <table>
+ 
+   <tr>...</tr><!-- item1 -->
+   <tr>...</tr><!-- item1 -->
+ 
+   <tr>...</tr><!-- item2 -->
+   <tr>...</tr><!-- item2 -->
+ 
+ </table>
+
+* どうやって [#vcc9355b]
+
+templateを使います。
+
+ <table>
+ 
+   <template ngFor let-item [ngForOf]="list">
+     <tr>...</tr>
+     <tr>...</tr>
+   </template>
+ 
+ </table>
+
+* ノート [#mc8a18e5]
+
+ *ngFor
+
+とする書き方と結構違うから知らないと書けないよね。
+
+* 参考 [#s05b0988]
+- [[Template Syntax - ts>https://angular.io/docs/ts/latest/guide/template-syntax.html#!#star-template]]

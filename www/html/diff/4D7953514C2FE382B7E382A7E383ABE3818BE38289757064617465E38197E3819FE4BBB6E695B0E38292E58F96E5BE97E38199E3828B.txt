@@ -1,0 +1,25 @@
+ *キーワード [#aa5f29c5]
+ -MySQL
+ -シェル
+ 
+ *概要 [#t3d3f40d]
+ e オプションやリダイレクションで実行する update 文が更新した件数を取得します。
+ 
+ *方法 [#b9e9cbfe]
+  $ mysql ... -vvv -e 'update ...' |\
+  > grep Changed |\
+  > sed -e 's/.*Changed: \([0-9]*\) .*/\1/'
+ 
+ '''※ ...のところはやりたい環境ややりたいことに合わせてね。'''
+ 
+ *解説 [#la857aee]
+ + vvv オプションをつけると SQL 文の実行結果を標準出力に得ることができます
+ + grep で更新した件数が現れている行を抜いて
+ + sed で更新した件数の箇所を抜きます
+ 
+ sed の命令文中でカッコにエスケープが要るのがちょっとした罠。
+ 
+ *参考 [#r14713fe]
+ -[[MySQL ::   MySQL 5.1 リファレンスマニュアル (オンラインヘルプ) :: 1.5 バッチモードでの mysql の使用>http://dev.mysql.com/doc/refman/5.1-olh/ja/batch-mode.html]]
+--[[>sedで正規表現を使って数字を抜き出す - Ryoの開発日記>http://d.hatena.ne.jp/kanbayashi/20071012/p1]]
++-[[sedで正規表現を使って数字を抜き出す - Ryoの開発日記>http://d.hatena.ne.jp/kanbayashi/20071012/p1]]

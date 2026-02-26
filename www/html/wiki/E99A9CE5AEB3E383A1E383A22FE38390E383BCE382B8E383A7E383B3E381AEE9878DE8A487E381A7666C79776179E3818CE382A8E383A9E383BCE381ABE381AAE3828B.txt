@@ -1,0 +1,20 @@
+#author("2018-06-30T06:36:22+00:00","default:haruki","haruki")
+* キーワード [#vb48c459]
+- flyway
+- IntelliJ
+
+* 現象 [#a4b1500d]
+
+IntelliJでSpring Boot + flywayを動かしているがflywayが次のエラーになる。
+
+ Found more than one migration with version 1
+
+* 原因 [#sf981d2b]
+
+マイグレーションファイルを整理してversion 1は重複していないが、buildに吐かれるものが残っていて衝突したっぽい。
+
+* 対策 [#u3cf5d64]
+
+cleanする。
+
+gradleタスクでcleanした。

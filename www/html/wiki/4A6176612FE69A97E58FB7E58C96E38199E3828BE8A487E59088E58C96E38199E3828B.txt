@@ -1,0 +1,89 @@
+*キーワード [#dbb65e51]
+-暗号化
+-複合化 
+-Java
+-Cipher (javax.crypto.Cipher)
+-Base64 (org.apache.commons.codec.binary.Base64)
+
+*概要 [#a4c92633]
+文字列を暗号化して、文字列(テキスト)で送信、文字列に複合化する方法です。
+
+*方法 [#cf1e1104]
+
+** 秘密鍵を作成する [#t20c1f2d]
+
+秘密鍵をランダムに作成します。ランダムでなくていいです。とにかく暗号する側と複合する側で同じ鍵を秘密にしてもちます。
+
+この例示では同じ鍵(バイト列)を変数 key で共有します(実際は手渡しして読み込むなどします)。
+
+ // make key (only once)
+ byte[] key = null;
+ {
+   KeyGenerator generator = KeyGenerator.getInstance("AES");
+   SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
+   generator.init(128, random);
+   key = generator.generateKey().getEncoded();
+ }
+
+この例示で暗号化対象の変数 src と複合化先の変数 dst です。
+ // target
+ String src = "暗号化したい文字列";
+ String dst = null;
+
+** エンコードする [#w5c746c3]
+
+鍵を使って暗号化した後 Base64 でテキストにします。
+ // encode
+ byte[] iv = null;
+ byte[] tv = null;
+ {
+   SecretKeySpec keySpec = new SecretKeySpec(key, "AES");
+   Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+   cipher.init(Cipher.ENCRYPT_MODE, keySpec);
+   iv = cipher.getIV();
+   tv = cipher.doFinal(src.getBytes("UTF-16"));
+ }
+ 
+ // encode for parameter
+ String i = null;
+ String t = null;
+ {
+   i = new String(new Base64().encode(iv)).replaceAll("[+]", "-").replaceAll("[/]", "_").replaceAll("[=]+", "").replaceAll("(\r\n)|\r|\n", "");
+   t = new String(new Base64().encode(tv)).replaceAll("[+]", "-").replaceAll("[/]", "_").replaceAll("[=]+", "").replaceAll("(\r\n)|\r|\n", "");
+ }
+
+** デコードする [#sd9b4199]
+
+テキストをデコードして複合化します。
+ // decode for parameter
+ byte[] iv2 = null;
+ byte[] tv2 = null;
+ {
+   iv2 = new Base64().decode(i.replaceAll("[-]","+").replaceAll("[_]", "/").getBytes());
+   tv2 = new Base64().decode(t.replaceAll("[-]","+").replaceAll("[_]", "/").getBytes());
+ }
+ 
+ // decode
+ {
+   SecretKeySpec keySpec = new SecretKeySpec(key, "AES");
+   IvParameterSpec ivSpec = new IvParameterSpec(iv2);
+   Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+   cipher.init(Cipher.DECRYPT_MODE, keySpec, ivSpec);
+   dst = new String(cipher.doFinal(tv2), "UTF-16");
+ }
+
+*解説 [#oe42976c]
+
+バイト列は Base64 でテキストにして、パラメータ向けに変換します(base64url encoding)。
+
+%%Initial Value%% Initialization Vector(IV) を使うのは暗号化出力の傾向をなくすため。
+
+&color(LightGray){何を隠そう実はよく分っていない！};
+
+** 追記 [#gf2d4563]
+i と t は「=」でのパディングを元に戻さないといけない。
+
+*参考 [#e86b6aac]
+-[[Java「AES暗号」メモ(Hishidama's AES Sample)>http://www.ne.jp/asahi/hishidama/home/tech/java/aes.html]]
+-[[簡単な暗号化 - Java編>http://www.trustss.co.jp/Java/JEncrypt100.html]]
+-[[5. Base 64 Encoding with URL and Filename Safe Alphabet - RFC 4648 - The Base16, Base32, and Base64 Data Encodings>http://tools.ietf.org/html/rfc4648#section-5]]

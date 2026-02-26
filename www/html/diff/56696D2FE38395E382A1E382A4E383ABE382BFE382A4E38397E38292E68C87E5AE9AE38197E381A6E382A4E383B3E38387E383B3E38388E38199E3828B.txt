@@ -1,0 +1,21 @@
+ * キーワード [#k6d84051]
+ - Vim
+ 
+ * やりたいこと [#b34d1fdc]
+ ファイルタイプを自動認識してくれないときに自動インデントを有効にしたい。
+ 
+ # 設定に書いとけって話ではある
+ 
+ * 方法 [#ocd45659]
+ - インデントを有効にする
+  :filetype indent on
+ 
+ - ファイルタイプをhtmlにする
+  :set filetype=html
+ 
+ * 詳細 [#ge6e42d7]
++同じ filetype なのに別の書き方をしたりして混乱するね。
+ 
+-
+ * 参考 [#ld0e09e7]
+ - [[Vim documentation: filetype>http://vim-jp.org/vimdoc-ja/filetype.html]]

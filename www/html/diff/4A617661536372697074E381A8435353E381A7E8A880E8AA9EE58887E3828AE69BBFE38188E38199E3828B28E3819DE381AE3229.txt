@@ -1,0 +1,137 @@
+ *関連 [#odb24f4b]
+ -HTML
+ -JavaScript/jQuery
+ -CSS
+ 
+ *概要 [#af28e4a4]
+ JavaScriptとCSSで言語切り替えをする方法のメモです(後日きれいにまとめるかも)。
+ 
+ Webアプリケーションのフレームワークが多言語対応しているケースが多いと思いますが、ここではあえてJavaScriptとCSSだけで実現する方法を考えてみます。多言語対応した静的なページをWebサーバで、なんてときに。
+ 
+ [[その1>JavaScriptとCSSで言語切り替えする]]もどうぞ。
+ 
+ *方法 [#n3424d9b]
+ -index.html
+  <!DOCTYPE html>
+  <html>
+  	<head>
+  		<meta charset="utf-8">
+  		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  		<title>多言語対応テスト</title>
+  		<link rel="stylesheet" type="text/css" href="css/initialize.css">
+  		<noscript>
+  			<link rel="stylesheet" href="css/noscript.css">
+  		</noscript>
+  		<script type="text/javascript" src="js/jquery.js"></script>
+  		<script type="text/javascript" src="js/multilingual.js"></script>
+  		<script type="text/javascript">
+  <!--
+  jQuery(function() {
+  	jQuery('#multilingual').multilingual();
+  });
+  // -->
+  		</script>
+  	</head>
+  	<body class="ja">
+  			<div id="multilingual"></div>
+  			<div id="header">
+  				<span class="multilingual en">English Header</span>
+- 				<span class="multilingual ja">日本語ヘッダ</span>
++ 				<span class="multilingual ja sub">日本語ヘッダ</span>
+  			</div>
+  			<div id="content">
+  				<span class="multilingual en">English Content</span>
+- 				<span class="multilingual ja">日本語コンテント</span>
++ 				<span class="multilingual ja sub">日本語コンテント</span>
+  			</div>
+  			<div id="footer">
+  				<span class="multilingual en">English Footer</span>
+- 				<span class="multilingual ja">日本語フッタ</span>
++ 				<span class="multilingual ja sub">日本語フッタ</span>
+  			</div>
+  	</body>
+  </html>
+ 
+ 
+ 
+ -css/initialize.css
+  @charset "UTF-8"
+  
+  body {
+   	display: none;
+  }
+ 
+ -css/noscript.css
+  @charset "UTF-8";
+  
+  body {
+  	display: block;
+  }
+  
+  .multilingual.sub {
+   	display: none;
+  }
+ 
+ -js/multilingual.js
+  (function() {
+  
+  	var langs = [
+  		{lang: 'ja', name: '日本語'},
+  		{lang: 'en', name: 'English'}
+  	];
+  
+  	var setLang = function(lang) {
+  		if (! lang) {
+  			lang = langs[0].lang;
+  		}
+  		jQuery.each(langs, function() {
+  			jQuery('body').removeClass(this.lang);
+  		});
+  		jQuery('body').addClass(lang);
+  		var toHide = '.multilingual';
+  		jQuery(toHide).hide();
+  		var toShow = '.multilingual.' + lang;
+  		jQuery(toShow).show();
+  	};
+  
+  	jQuery.fn.extend({
+  		multilingual: function(callback) {
+  			var target = jQuery('<ul />').appendTo(this);
+  			jQuery.each(langs, function() {
+  				jQuery(target).append(
+  					jQuery('<li />').append(
+  						jQuery('<a />')
+  						.attr('rel', this.lang)
+  						.text(this.name)
+  						.click(function() {
+  							var lang = jQuery(this).attr('rel');
+  							setLang(lang);
+  							if (callback) {
+  								callback(lang);
+  							}
+  						})
+  					)
+  				);
+  			});
+  		}
+  	});
+  
+  	jQuery(function() {
+  		setLang(langs[1].lang);
+  		jQuery('body').css('display', 'block');
+  	});
+  
+  })();
+ 
+ 
+ *解説 [#z72447c4]
+ -日本語と英語を全部書いて全体を非表示(css/initialize.css)
+ --JavaScript有効の場合言語を設定して全体を表示(js/multilingual.js)
+ --JavaScript無効の場合全体を表示してサブ言語を非表示(css/noscript.css)
+ ---linkをnoscriptでheadの中に書くためhtml5
+ 
+ **非表示言語分のパラメータが送れてしまう [#a1143b93]
+ はい。disabled などしてあげないといけないと思います。
+ 
+ *参考 [#l4492db0]
+ -http://terkel.jp/archives/2012/07/styles-for-noscript/

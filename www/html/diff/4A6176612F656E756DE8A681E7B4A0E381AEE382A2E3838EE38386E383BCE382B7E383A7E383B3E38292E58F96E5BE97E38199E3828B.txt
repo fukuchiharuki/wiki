@@ -1,0 +1,47 @@
+ *関連 [#bf313f6a]
+ - Java
+ - enum
+ 
+ *概要 [#f2163e11]
+ enum要素のアノテーションをenumのメソッドで取得します。
+ 
+ 次のようにenum Testを定義しているとき
+  enum Test {
+    @Foo
+    HOGE,
+  }
+ 
+ 次のように取得したい。
+  Foo foo = Test.HOGE.getFoo(); 
+ 
+ *方法 [#qc92e618]
+  enum Test {
+    @Foo
+    HOGE,
+  
+    Foo getFoo() {
+      return this.getClass().getField(this.name()).getAnnotation(Foo.class);
+    }
+  }
+  
+ '''※実際にはもっとスコープの指定とか例外処理とかが必要です'''
+ 
++ちなみにアノテーションは次のようにしてフィールドに紐づけられるようにします。
++
++ @Retention(RetentionPolicy.RUNTIME)
++ @Target({ElementType.FIELD})
++ public @interface Foo {
++ }
++
+ *解説 [#vd1a4215]
+ アノテーションは静的な定義なのでオブジェクトからではなくクラスから取得することができます。
+ さらに今回取得したい対象のenum要素はフィールドなのでクラスからフィールドをたどる必要があります。
+ 
+ : this.getClass() | インスタンスなフィールド(this)から静的なクラス(Test)を取得します
+ : .getField(this.name()) | 静的なクラス(Test)から静的なフィールド(HOGE)を取得します
+ : .getAnnotation(Foo.class) | 静的なフィールド(HOGE)からアノテーション(Foo)を取得します
+ 
+ 少し面倒ですね。
+ 
+ *参考 [#j7d18e19]
+ - http://d.hatena.ne.jp/skirnir/20090630/1246327421

@@ -1,0 +1,16 @@
+*ライブラリを手に入れる [#e7ab340e]
+以下から最新版を手に入れる。
+|Wicket|http://wicket.apache.org/|
+|SLF4J|http://www.slf4j.org/|
+
+このうち必要なJARは以下。ビルドパスに追加する。
+|Wicket|wicket-*.*.*.jar|
+|SLF4J|slf4j-api-*.*.*.jar&br();slf4j-nop-*.*.*.jar|
+
+*コンパイル出力を設定する [#s5b8841d]
+-Java Compiler > Building > Output folder Filtered resources
+
+上記から*.htmlを削除する。（[[参考>http://sourceforge.jp/projects/wicket-ja/wiki/html%E3%81%8C%E8%A6%8B%E3%81%A4%E3%81%8B%E3%82%89%E3%81%AA%E3%81%84%E3%82%A8%E3%83%A9%E3%83%BC]]）
+
+*参考 [#t3be2cf9]
+-[[ウィキっとく？ Wicket &gt; eclipseで開発環境を作る>http://www19.atwiki.jp/wikittoku/pages/26.html]]

@@ -1,0 +1,223 @@
+-&color(red){ここはもう古いです。};~
+-&color(red){[[Orca>https://github.com/fukuchiharuki/Orca/]] および [[OrcaSample>https://github.com/fukuchiharuki/OrcaSample/]] を見てください。};
+-----
+ 
+-[[Orca]]
+-
+-#contents
+-
+-*初期表示する [#l29e5baf]
+-Orcaでは1ページ＝1クラス＋1JSPです。セットアップは次のようにページクラスを記述しました。
+-
+--HomePage.java
+- public class HomePage implements Serializable {
+-     private static final long serialVersionUID = 1L;
+- 
+-     @Index
+-     public PageTransition index() {
+-         return new PageTransition().showJsp("/WEB-INF/jsp/HomePage.jsp");
+-     }
+- }
+-
+-Orcaではページの初期表示時にアノテーション「@Index」のついたメソッドをコールする決まりです。このメソッドは引数がなく、戻り値がPageTransition型のインスタンスである必要があります。
+-
+-*フォームをサブミットする [#oe3da953]
+-
+-次のようにページ出力をしたとしましょう。
+--HomePage.jsp
+- <form method="post" action="#">
+-     <input type="submit" name="action" value="フォーム送信">
+- </form>
+-
+-ここで「フォーム送信」ボタンをクリックしたときのリクエストは次のようにして処理することができます。
+--HomePage.java
+- public class HomePage implements Serializable {
+-     private static final long serialVersionUID = 1L;
+- 
+-     ・・・
+- 
+-     @Action
+-     public PageTransition action() {
+-         return new PageTransition().showJsp("/WEB-INF/jsp/HomePage.jsp");
+-     }
+- }
+-
+-Orcaではフォームサブミット時にアノテーション「@Action」がついたメソッドをコールする決まりです。このメソッドは（初期表示のメソッドと同じく）引数がなく、戻り値がPageTransition型のインスタンスである必要があります。また、''メソッド名はinput[type="submit"]タグのname属性と同じ''である必要があります。
+-
+-上記について別の言い方をすれば、同一のフォームでも複数のサブミットボタンから別々のメソッドを呼び出すことができます。サブミットボタンのname属性とメソッド名を合わせることで任意のメソッドを呼び出すことができます。
+-
+-*パラメータを受け取る [#o10e99b6]
+-
+-次のようにページ出力をして、パラメータを入力するとしましょう。
+--HomePage.jsp
+- <form method="post" action="#">
+-     <input type="text" name="id" value="${boundary.id}">
+-     <input type="text" name="password" value="${boundary.password}">
+-     <input type="submit" name="action" value="フォーム送信">
+- </form>
+-
+-ここでパラメータは次のようにして受け取ることができます。
+--HomePage.java
+- public class HomePage implements Serializable {
+-     private static final long serialVersionUID = 1L;
+- 
+-     ・・・
+- 
+-     @Parameter
+-     public String id;
+- 
+-     @Parameter
+-     public String password;
+- 
+-     @Action
+-     public PageTransition action() {
+-         return new PageTransition().showJsp("/WEB-INF/jsp/HomePage.jsp");
+-     }
+- }
+-
+-Orcaではアノテーション「@Parameter」がついたインスタンスフィールドでパラメータを受け取ることができます。パラメータにするインスタンスフィールドはString型かString[]型である必要があります。また、パラメータは同時に出力項目にもなります。上記例のように「${boundary.'''パラメータ名'''}」で値を得ることができます。
+-
+-*動的項目を表示する [#f600512d]
+-
+-パラメータではない項目を出力するにはアノテーション「@Boundary」を使います。
+--HomePage.java
+- public class HomePage implements Serializable {
+-     private static final long serialVersionUID = 1L;
+- 
+-     ・・・
+- 
+-     @Boundary
+-     public String now;
+- 
+-     @Index
+-     public PageTransition index() {
+-         this.now = new Date().toString();
+-         return new PageTransition().showJsp("/WEB-INF/jsp/HomePage.jsp");
+-     }
+- }
+--HomePage.jsp
+- ${boundary.now}
+-
+-パラメータと同様に出力項目として値を得るには「${boundary.'''パラメータ名'''}」とします。
+-
+-*ページ遷移する [#c3cf13c6]
+-
+-Orcaではページ遷移するのに3つの方法があります。
+--ページ名を指定する（HomePage.java）
+-     @Action
+-     public PageTransition action() {
+-         return new PageTransition().redirect("next");
+-     }
+--ページクラスを指定する（HomePage.java）
+-     @Action
+-     public PageTransition action() {
+-         return new PageTransition().redirect(NextPage.class);
+-     }
+--ページインスタンスを指定する（HomePage.java）
+-     @Action
+-     public PageTransition action() {
+-         return new PageTransition().redirect(new NextPage());
+-     }
+-
+-''ページ名を指定する''にはページを名前登録する必要があります（後述します。）これはURLからページ名を指定して直接アクセスするのと同じです。''ページクラスを指定する''場合、ページを名前登録しているかしていないかで動作が異なります。名前登録している場合、ページ名を指定するのと同じです。名前登録していない場合、一時的なURLを使って指定のクラスからインスタンスを生成してページ遷移します。''ページインスタンスを指定する''場合、一時的なURLを使って指定のインスタンスにページ遷移します。
+-
+-従って、ページを名前登録している場合ページ名指定とページクラス指定は等価です。また、ページを名前登録していない場合ページクラス指定とページインスタンス指定はほぼ等価です。これは前者が''ブックマーカブル（bookmark-able=ブックマークできる）''であるのに対して後者がブックマーカブルでないことを意味しています。ここで、ブックマーカブルであるかどうかは''URL（クエリストリング）によるアクセスで状態を再現させたいかどうか''です。たとえば××確認ページは××入力ページから遷移されるべきであって、ブックマークされる（また直接アクセスされる）べき性質のものではありません。ですから、その場限り（その時の入力値による）のインスタンスで一時的なURLにページ遷移するのが妥当です。
+-
+-**ページを名前登録する [#v30c816b]
+-
+-ページを名前登録するのはアプリケーション内に唯一存在するサーブレットの役割です。
+--RequestProcessor.java
+- public class RequestProcessor extends AbstractRequestProcessor {
+-     private static final long serialVersionUID = 1L;
+- 
+-     public RequestProcessor() {
+-         super();
+-         this.registerBookmarkablePage("home", HomePage.class);
+-     }
+- 
+-     ・・・
+- }
+-
+-サーブレットのコンストラクタにてregisterBookmarkablePage()をコールしてページを名前登録します。第一引数がページ名、第二引数がページクラスです。
+-
+-*セッションに保存する [#o7461c14]
+-
+-セッションに値を保存するにはアノテーション「@Session」を使います。
+--HomePage.java
+- public class HomePage implements Serializable {
+-     private static final long serialVersionUID = 1L;
+- 
+-     @Session
+-     public String name;
+- 
+-     ・・・
+- }
+-
+-アノテーション「@Session」がついたインスタンスフィールドは、リクエスト応答メソッド（アノテーション「@Index」または「@Action」がついたメソッド）実行後、セッションに保存されます。また、セッションから値を取得するにも同様の記述をします。リクエスト応答メソッド実行前にセッションから取得しインスタンスフィールドにセットされます。
+--NextPage.java
+- public class NextPage implements Serializable {
+-     private static final long serialVersionUID = 1L;
+- 
+-     @Session
+-     public String name;
+- 
+-     ・・・
+- }
+-
+-''セッションデータの紐づけはフィールド名''です。たとえば「public String '''name''';」で保存したセッションデータは「public String '''name''';」で取得することができます。
+-
+-*メッセージをフィードバックする [#z57fa93a]
+-
+-入力画面でユーザが入力ミスした内容などをメッセージとしてフィードバックするには次のようにします。メッセージのフィードバックにはちょっとした段階があるため、分けて見ていきましょう。
+-
+-**メッセージをフィードバックする [#oe3fe054]
+-
+--HomePage.java
+-     PageTransition pageTransition = new PageTransition();
+-     pageTransition.error(new MessageResource().setResourceKey("MessageID"));
+-     return pageTransition.showJsp("/WEB-INF/jsp/HomePage.jsp");
+-
+-リクエスト応答メソッドの戻り値であるPageTransition型のインスタンスのメソッドerror()をコールしてフィードバックするメッセージを保存します。メッセージはMessageResource型のインスタンスとして指定します。上記例ではMessageResource型のインスタンスのメソッドsetResourceKey()をコールしてメッセージID'''"MessageID"'''を設定しています。
+-
+-**メッセージIDとメッセージ内容を紐づける [#pd4fc657]
+-
+-ページインスタンスで設定するメッセージは実際のところメッセージID（と動的項目）です。このメッセージIDとメッセージ内容を紐づけるのはプロパティファイルです。メッセージ用のプロパティファイルは''ページクラスと同じパッケージにページクラスと同じ名前''（.properties）で用意します。
+--HomePage.properties
+- MessageID=フィードバックメッセージ
+-
+-**フィードバックしたメッセージを出力する [#w628c8b5]
+-
+-ページインスタンスで保存したメッセージをJSPにて表示するには次のようにします。
+--HomePage.jsp
+- <%@ taglib uri="http://fukuchiharuki.me/orca/app/customtag" prefix="o" %>
+- ・・・
+- <o:feedback />
+-
+-メッセージは箇条書きで出力されます。
+--出力結果
+- <ul>
+- <li>
+- フィードバックメッセージ
+- </li>
+- </ul>
+-
+-*静的コンテンツを表示する [#d928e1b0]
+-
+-セットアップのweb.xmlのままでは静的コンテンツを表示することができません。これはすべてのリクエストをOrcaのサーブレットに回してしまっているからです。静的コンテンツがWebContent下に存在する場合は、静的コンテンツへのリクエストをOrcaのサーブレットに回さずデフォルトのサーブレットに処理させるため、web.xmlを次のように設定します。((URLパターン周りの制御は（そもそものサーブレット呼び出しを含めて）もっと上手にできるのかもしれません。フィルタの仕組みなどを調査するよりも前に解決案を挙げてしまったので、現状は時間がないことを理由にこの手段をそのまま採用しました。))
+--web.xml
+- <web-app ・・・>
+- 
+-     <servlet>
+-         <servlet-name>Resources</servlet-name>
+-         <servlet-class>org.apache.catalina.servlets.DefaultServlet</servlet-class>
+-     </servlet>
+-     <servlet-mapping>
+-         <servlet-name>Resources</servlet-name>
+-         <url-pattern>/css/*</url-pattern>
+-         <url-pattern>/images/*</url-pattern>
+-     </servlet-mapping>
+- 
+-     ・・・
+- 
+- </web-app>
+-

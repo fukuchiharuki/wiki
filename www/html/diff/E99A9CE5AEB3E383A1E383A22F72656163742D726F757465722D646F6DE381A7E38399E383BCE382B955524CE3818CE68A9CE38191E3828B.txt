@@ -1,0 +1,73 @@
+-#author("2017-12-14T05:36:06+00:00","default:haruki","haruki")
++#author("2017-12-14T05:36:26+00:00","default:haruki","haruki")
+ * キーワード [#c542fc3b]
+ - react
+ - react-router-dom
++- PUBLIC_URL
++- axios
++- http
+ 
+ * 現象 [#v702a333]
+ 
+ react-router-domでルーティングしたところベースURLが抜ける。
+ 
+ ベースURLは cross-env で PUBLIC_URL に設定している。
+ 
+ また、次のようにルーティングを定義している。
+ 
+  <div>
+    <ul>
+      <li><Link to="/">Home</Link></li>
+      <li><Link to="/calc">Calculator</Link></li>
+      <li><Link to="/manif">Manifest</Link></li>
+    </ul>
+    <Switch>
+      <Route path="/calc" component={Calculator} />
+      <Route path="/manif" component={ManifestDetail} />
+      <Route exact path="/" component={() => (
+        <p>Select a page from the menus.</p>
+      )} />
+      <Route component={() => (
+        <p>404 NOT FOUND</p>
+      )} />
+    </Switch>
+  </div>
+ 
+ 
+ * 原因 [#z04fb350]
+ 
+ PUBLIC_URLに設定するだけではいい感じにやってくれないから（本当？）。
+ 
+ * 対策 [#re4cc7a9]
+ 
+ サブパスも含めて書く。
+ 
+  <div>
+    <ul>
+      <li><Link to={`${process.env.PUBLIC_URL}/`}>Home</Link></li>
+      <li><Link to={`${process.env.PUBLIC_URL}/calc`}>Calculator</Link></li>
+      <li><Link to={`${process.env.PUBLIC_URL}/manif`}>Manifest</Link></li>
+    </ul>
+    <Switch>
+      <Route path={`${process.env.PUBLIC_URL}/calc`} component={Calculator} />
+      <Route path={`${process.env.PUBLIC_URL}/manif`} component={ManifestDetail} />
+      <Route exact path={`${process.env.PUBLIC_URL}/`} component={() => (
+        <p>Select a page from the menus.</p>
+      )} />
+      <Route component={() => (
+        <p>404 NOT FOUND</p>
+      )} />
+    </Switch>
+  </div>
+ 
+ * 備考 [#e364a7ad]
+ 
+ httpするときのリソースパスにも注意。次のように書ける。
+ 
+  Axios.get(process.env.PUBLIC_URL + '/manifest.json')
+ 
+ * 参考 [#eb51c50b]
+ - [[React Router paths don’t match after deploying to GitHub Pages with hashHistory · Issue #2218 · facebookincubator/create-react-app>https://github.com/facebookincubator/create-react-app/issues/2218]]
+ 
+ * 関連 [#v92b6de2]
+ - [[React/ベースURLを設定する]]

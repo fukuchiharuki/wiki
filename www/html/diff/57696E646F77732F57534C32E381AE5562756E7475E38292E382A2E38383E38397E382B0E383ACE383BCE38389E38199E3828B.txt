@@ -1,0 +1,59 @@
+-#author("2024-05-05T13:14:20+00:00","default:haruki","haruki")
++#author("2024-05-05T13:19:45+00:00","default:haruki","haruki")
+ * キーワード [#oc6f451d]
+ - WSL2
+ - Ubuntu
+ - アップグレード
+ 
+ * したいこと [#g21ef5e9]
+ 
+ WSL2のUbuntuが18系のため、主にnodeで不都合がある。UbuntuからVS Codeが立ち上げられないなど。
+ 
+ WSL2のUbuntuを20系にアップグレードしたい。
+ 
+ 
+ * どうやって [#a0b9a32a]
+ 
+ ** 事前確認 [#r93c649a]
+-
+  cat /etc/issue
+ 
+ ** 準備 [#x282bfd2]
+ 
+ *** インストール済みパッケージの最新化 [#s64fc7e4]
+  sudo apt update
+  sudo apt upgrade
+ 
+ *** クリーンアップ [#v293519d]
+  sudo apt --purge autoremove
+ 
+ *** アップグレードに必要なパッケージのインストール [#x9523478]
+  sudo apt install update-manager-core
+ 
+ ** アップグレード [#t98afecc]
+ 
+ *** 躓く原因になるパッケージの削除（環境依存？） [#lb7e4caf]
+-
+  sudo apt remove snapd
+ 
+ *** アップグレード [#d50645a7]
+-
+  sudo do-release-upgrade
+ 
++** 事後確認 [#rbf6a929]
++ cat /etc/issue
++
+ * ちなみに [#r8df946f]
+ 
+-** 事後確認 [#rbf6a929]
++アップグレード時に -d オプションをつける例も見る。このオプションをつけると development release にアップグレードするようなので、そのつもりがないなら -d オプションはつけない方がよさそう。
+ 
+- cat /etc/issue
++       -d, --devel-release
++              If using the latest supported release, upgrade to the development release
+ 
++
+ * 参考 [#f1b26e90]
+-- 
++- [[WSL2のUbuntu18.04LTSを、20.04LTSにアップグレード - SE_BOKUのまとめノート的ブログ>https://arakan-pgm-ai.hatenablog.com/entry/2022/11/28/090000]] 
+ -

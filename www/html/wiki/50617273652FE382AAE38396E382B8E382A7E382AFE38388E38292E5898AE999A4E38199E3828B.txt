@@ -1,0 +1,58 @@
+*キーワード [#w4d5e3e7]
+-Parse
+-JavaScript
+-Object
+-destroy
+
+*概要 [#ob188bf7]
+アプリケーションに定義したクラスのオブジェクトを削除します。
+
+今回のサンプルは次のクラスを定義したものとしています(※Parse規定のカラムを除く)。
+
+-Post
+|CENTER:BGCOLOR(#EEEEEE):カラム|CENTER:BGCOLOR(#EEEEEE):型|
+|title|String|
+|body|String|
+
+*サンプル [#jcbe5bdb]
+ // オブジェクトを削除する
+ var destroy = function(id) {
+ 
+ 	// クラス
+ 	var Post = Parse.Object.extend('Post');
+ 
+ 	// インスタンス
+ 	var post = new Post();
+ 		
+ 	// 属性
+ 	post.set('id', id);
+ 
+ 	// 削除
+ 	post.destroy({
+ 		success: function(post) {
+ 			jQuery('#message').text('ポスト削除: ' + post.id);
+ 		},
+ 		error: function(post, error) {
+ 			jQuery('#message').text('ERROR: ' + error.description);
+ 		}
+ 	});
+ };
+ 
+ // イベント処理(Parseとは直接関係ないところ)
+ jQuery('input[name=object-destroy-post]').click(function() {
+ 	var id = jQuery('input[name=object-destroy-id]').val();
+ 	if (id.length > 0) {
+  		destroy(id);
+ 	} else {
+ 		jQuery('#message').text('WARN: ' + 'idを入力してからdeleteしてね。');
+ 	}
+ });
+
+
+
+*解説 [#q48c342f]
+あとで。
+
+*参考 [#j04a8de0]
+-[[Parse.Object - Parse JavaScript SDK Reference>https://www.parse.com/docs/js/symbols/Parse.Object.html]]
+-[[Parse.Query - Parse JavaScript SDK Reference>https://www.parse.com/docs/js/symbols/Parse.Query.html]]

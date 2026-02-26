@@ -1,0 +1,281 @@
+-#author("2023-01-27T03:11:59+00:00","default:haruki","haruki")
++#author("2023-02-07T10:31:34+00:00","default:haruki","haruki")
+ * キーワード [#hc7c5f18]
+ - JPA
+ - Spring Boot
+ - Kotlin
+ 
+ * 目次 [#u3ea0b4d]
+ 
+ #contents
+ 
+ * したいこと [#ya88d2e3]
+ 
+ ひとまず最小でありがちな関連と永続化処理を実装したい。
+ 
+ * エンティティ（単体） [#u812d77a]
+ 
+ まずはただIDで識別できる単独の実体。
+ 
+ ** モデル [#dda697ef]
+ 
+  @Entity
+- @Table
+  class User(
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id: Long = -1,
+  
+    var name: String = "",
+  
+    @Version
+    var version: Long = -1
+  )
+ 
+ *** エンティティにはIDが必要 [#c49b023b]
+ 
+ JPAのエンティティはID（プライマリキー）を持つ、のが基本。
+ 
+ *** @Versionを設定 [#a003cc9e]
+ 
+ エンティティを楽観ロックするならバージョンを設ける。
+ 
+ ** 永続化処理 [#tf12ecc5]
+ 
+  User(name = "山田太郎")
+    .also { entityManager.persist(it) }
+ 
+ *** Kotlinで実装する場合デフォルト値の定義が必要 [#l1e04d92]
+ 
+ Kotlinでエンティティを実装する場合、デフォルト値を定義しておく必要がある。デフォルト値を定義しておかないと、エンティティ永続化時にエラーが発生する。永続化時に値があるかどうかではないことに注意。エラーメッセージからだと原因がなんとも想像つかない。
+ 
+  detached entity passed to persist spring jpa
+ 
+ * 伝票・明細、集約等（１対多）の関係 [#g2c10fb2]
+ 
+ 伝票・明細の関係。伝票単位で明細も含めて一式保存するものとして。
+ 
+ ** モデル [#x0512dff]
+ 
+ Slipを伝票、Detailを明細として。
+ 
+  @Entity
+- @Table
+  class Slip(
+    @OneToMany(mappedBy = "slip", cascade = [CascadeType.ALL], orphanRemoval = true)
+    var details: MutableList<Detail> = emptyList<Detail>().toMutableList()
+  
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id: Long = -1,
+  
+    var name: String = "",
+  
+    @Version
+    var version: Long = -1
+  )
+ 
+  @Entity
+- @Table
+  class Detail(
+    @ManyToOne
+    @JoinColumn(name = "slip_id", referencedColumnName = "id")
+    var slip: Slip? = null,
+  
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id: Long = -1,
+  
+    var name: String = ""
+  )
+ 
+ *** @OneToManyの設定 [#e05bb408]
+ 
+ : mappedBy | 伝票側エンティティが明細側エンティティから何として関連しているか
+ : cascade | 明細側エンティティにカスケードする永続化オペレーション
+ : orphanRemoval | リレーションから削除した明細側エンティティに削除操作を適用する
+ 
+ *** @ManyToOne (@JoinColumn)の設定 [#y0268b0d]
+ 
+ : name | 伝票側エンティティを指定する明細側エンティティ上の外部キー
+ : referencedColumnName | その外部キーに該当する伝票側エンティティの主キー
+ 
+ *** 伝票側に@Versionを設定 [#tf9cd8f0]
+ 
+ 伝票側エンティティに楽観ロック用のバージョンを設ける。
+ 
+ ** 永続化処理 [#y27fae2b]
+ 
+  Slip(name = "伝票")
+    .apply { detils.add(Detail(slip = this, name = "明細")) }
+    .also { entityManager.persist(it) }
+ 
+ *** 明細側エンティティの永続化処理は不要 [#vb186a99]
+ 
+ 永続化オペレーションをカスケードするのでpersistするのは伝票側エンティティだけでいい。
+ 
+ * イベントやログ、ジョブ等（多対１）の関係 [#w9a9673b]
+ 
+ ある実体に紐づくイベントやログ、ジョブ等の関係。親側エンティティの単位で子側エンティティ（イベントやログ、ジョブ等）を保存しないものとして。
+ 
+ ** モデル [#b1701098]
+ 
+ Dealを取引、DealEventを取引イベントとして。
+ 
+  @Entity
+- @Table
+  class Deal(
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id: Long = -1,
+  
+    @Version
+    var version: Long = -1
+  )
+ 
+  @Entity
+- @Table
+  class DealEvent(
+    @ManyToOne
+    @JoinColumn(name = "foo_id", referencedColumnName = "id")
+    var deal: Deal? = null,
+  
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id: Long = -1,
+  
+    var name: String = "",
+  
+    var raisedAt: LocalDateTime = LocalDateTime.now()
+  )
+ 
+ *** @ManyToOne (@JoinColumn)の設定 [#r7579c63]
+ 
+ 伝票・明細、集約等（１対多）の関係、明細側のエンティティと同じ。
+ 
+ : name | 親側エンティティを指定する子側エンティティ上の外部キー
+ : referencedColumnName | その外部キーに該当する伝票側エンティティの主キー
+ 
+ ** 永続化処理 [#xe866e76]
+ 
+  entityManager.find(Deal::class.java, dealId)
+    ?.let { DealEvent(deal = it, name = "取引イベント") }
+    ?.also { entityManager.persist(it) }
+ 
+ *** managedな親側エンティティが必要 [#f8f37fe5]
+ 
+ 子側エンティティにセットする親側エンティティはmanagedである必要がある（はず）。
+ 
+ * カーソルとスナップショット等（１対１）の関係 [#k9483d82]
+ 
+ ある実体を指すカーソルとしての関係。カーソルはすでに存在するスナップショット等を指すものとして。
+ 
+ ** モデル [#ta5a72c8]
+ 
+  @Entity
+- @Table
+  class Cursor(
+    @OneToOne
+    @JoinColumn(name = "details_id", referencedColumnName = "id")
+    var details: Details? = null,
+  
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id: Long = -1,
+  
+    @Version
+    var version: Long = -1
+  )
+ 
+  @Entity
+- @Table
+  class Details(
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id: Long = -1,
+  
+    var name: String = "",
+   
+    @Version
+    var version: Long = -1   
+  )
+ 
+ *** @OneToOne (@JoinColumn)の設定 [#j5b60b10]
+ 
+ イベントやログ、ジョブ等（多対１）の関係、子側のエンティティと同じ。
+ 
+ : name | ターゲット側エンティティを指定するカーソル側エンティティ上の外部キー
+ : referencedColumnName | その外部キーに該当するターゲット側エンティティの主キー
+ 
+ ** 永続化処理 [#y24c2c65]
+ 
+  Details(name = "スナップショット等")
+    .also { entityManager.persist(it) }
+    .let { Cursor(details = it) }
+    .also { entityManager.persist(it) }
+ 
+ *** カーソル側エンティティは子として処理する [#s457845f]
+ 
+ ターゲット側のエンティティはmanagedである必要があり、カーソル側のエンティティは子として処理する。
+ 
+ * 任意の関連をもつ（１対０，１）関係 [#nb058329]
+ 
+ ユーザーについて固定の記事など、任意の関連をもつ関係。関連は関連テーブルにして、存在しない場合も許すものとして。
+ 
+ ** モデル [#n0f4cbaa]
+ 
+  @Entity
+- @Table
+  class User(
+    @OneToOne
+    @JoinTable(
+      name = "user_fixed_post",
+      joinColumns = [JoinColumn(name = "user_id", referencedColumnName = "id")],
+      inverseJoinColumns = [JoinColumn(name = "post_id", referencedColumnName = "id")]
+    )
+    var fixedPost: Post? = null,
+  
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id: Long = -1,
+  
+    var name: String = "",
+  
+    @Version
+    var version: Long = -1
+  )
+ 
+  @Entity
+- @Table
+  class Post(
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id: Long = -1,
+  
+    var name: String = "",
+  
+    @Version
+    var version: Long = -1
+  )
+ 
+ *** @OneToOne (@JoinTable, JoinColumn)の設定 [#z0a3b6db]
+ 
+ : joinColumns | ユーザー側エンティティを指定する関連テーブルの外部キー（name）と、ユーザー側エンティティの主キー（referencedColumnName）
+ : inverseJoinColumns | 記事側エンティティを指定する関連テーブルの外部キー（name）と、記事側エンティティの主キー（referencedColumnName）
+ 
+ ** 永続化処理 [#m01d54ce]
+ 
+  User(name = "ユーザー")
+    .apply { fixedPost = entityManager.find(Post::class.java, postId) }
+    .also { entityManager.persist(it) }
+ 
+ *** 記事側エンティティは子のようであるがmanaged [#q8f3dfbe]
+ 
+ 伝票・明細、集約等（１対多）の関係のように、記事側エンティティをフィールドにセットしてユーザー側エンティティを保存する。このとき、記事側エンティティはmanagedである必要がある（はず）。
+ 
+ * 参考 [#sf4400b4]
+ - [[java - How to use spring Repository without @Id? - Stack Overflow:https://stackoverflow.com/a/29561919]]
+ - [[エンティティの状態遷移:http://itdoc.hitachi.co.jp/manuals/link/cosmi_v0870/APKC/EU070301.HTM]]
+ - [[@OneToMany:http://itdoc.hitachi.co.jp/manuals/link/cosmi_v0870/APR4/EU260088.HTM]]
+ - [[OneToMany (Jakarta EE 仕様 API) - Javadoc:https://spring.pleiades.io/specifications/platform/8/apidocs/javax/persistence/onetomany]]
+ - [[OneToManyのリストフィールドの削除・更新の仕方 - Qiita:https://qiita.com/yukihigasi/items/14eac33cc2043fcdbddb]]

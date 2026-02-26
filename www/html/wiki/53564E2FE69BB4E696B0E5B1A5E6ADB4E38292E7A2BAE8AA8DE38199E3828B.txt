@@ -1,0 +1,18 @@
+*関連 [#w3cf03fd]
+-SVN
+
+*概要 [#h723e7ce]
+リビジョン番号を指定してコミットしたファイルの一覧を取得します。
+
+*方法 [#v602db61]
+こんなシェルを書いて
+ #!/bin/sh
+ svn log -r ${1} -v svn://svnサーバ/リポジトリ/ > ${1}.log
+こう実行します。
+ $ ./log.sh リビジョン番号
+
+*解説 [#n73f870c]
+svn logです。
+
+*参考 [#s8002f4f]
+-http://www.caldron.jp/~nabetaro/svn/svnbook-1.4-final/svn.tour.history.html#svn.tour.history.log

@@ -1,0 +1,5 @@
+-ブログにまとめました。
+-:[[RDBで階層構造を表現する方法(の考え方)>http://fukuchiharuki.blogspot.com/2011/10/rdb.html]]|
+-「関係データモデル」と「入れ子集合モデル」について考え方の比較
+-:[[RDBで階層構造を表現する方法(の実装)>http://fukuchiharuki.blogspot.jp/2011/10/rdb_15.html]]|
+-「入れ子集合モデル」についてSQLの実装例

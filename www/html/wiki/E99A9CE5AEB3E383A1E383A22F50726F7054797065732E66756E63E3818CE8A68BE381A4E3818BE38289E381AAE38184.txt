@@ -1,0 +1,37 @@
+#author("2017-12-06T08:44:01+00:00","default:haruki","haruki")
+* キーワード [#dbb78215]
+- React
+- PropTypes
+- func
+
+* 現象 [#h0b2df4b]
+
+プロパティを定義するところでエラーになる。 
+
+ TypeError: Cannot read property 'func' of undefined
+
+* 原因 [#k886cb04]
+
+React.PropTypesは非推奨になった。
+
+* 対策 [#sd8c2b46]
+
+> Please use the prop-types library instead.
+
+prop-typesを使え、ということのようです。
+
+ import React, { PropTypes } from 'react'
+
+などとしていたところを次のようにする。
+
+ import PropTypes from 'prop-types'
+
+* 備考 [#a51e242a]
+
+インストールも忘れずに。
+
+ $ npm install --save prop-types
+
+* 参考 [#ad9eeef3]
+- [[Typechecking With PropTypes - React>https://reactjs.org/docs/typechecking-with-proptypes.html]]
+- [[電卓アプリで学ぶReact/Redux入門(実装編) - Qiita>https://qiita.com/nishina555/items/9ff744a897af8ed1679b]]

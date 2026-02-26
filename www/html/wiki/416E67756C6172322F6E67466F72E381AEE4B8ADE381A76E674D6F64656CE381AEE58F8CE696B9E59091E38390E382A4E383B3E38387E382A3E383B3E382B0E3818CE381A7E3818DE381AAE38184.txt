@@ -1,0 +1,73 @@
+* キーワード [#x4a9c72d]
+- Angular2
+- ngFor
+- ngModel
+- 双方向バインディング
+
+* 現象 [#g5f4a05b]
+
+次のように、foreachしている変数itemを双方向バインドできない。
+
+ <div *ngFor="let item of list">
+   <input [(ngModel)]="item">
+ </div>
+
+次のエラー。
+
+ Unhandled Promise rejection: Cannot assign to a reference or variable! ; Zone: <root> ; Task: Promise.then ; Value: Error: Cannot assign to a reference or variable!
+    at _AstToIrVisitor.visitPropertyWrite (http://localhost:4200/main.bundle.js:40987:23)
+    at PropertyWrite.visit (http://localhost:4200/main.bundle.js:24973:24)
+    at ASTWithSource.visit (http://localhost:4200/main.bundle.js:25159:25)
+    at convertCdStatementToIr (http://localhost:4200/main.bundle.js:40784:28)
+    at CompileEventListener.addAction (http://localhost:4200/main.bundle.js:59420:135)
+    at http://localhost:4200/main.bundle.js:59490:18
+    at Array.forEach (native)
+    at collectEventListeners (http://localhost:4200/main.bundle.js:59487:16)
+    at ViewBinderVisitor.visitElement (http://localhost:4200/main.bundle.js:59907:108)
+    at ElementAst.visit (http://localhost:4200/main.bundle.js:8912:24)
+    at http://localhost:4200/main.bundle.js:9042:29 Error: Cannot assign to a reference or variable!
+    at _AstToIrVisitor.visitPropertyWrite (http://localhost:4200/main.bundle.js:40987:23)
+    at PropertyWrite.visit (http://localhost:4200/main.bundle.js:24973:24)
+    at ASTWithSource.visit (http://localhost:4200/main.bundle.js:25159:25)
+    at convertCdStatementToIr (http://localhost:4200/main.bundle.js:40784:28)
+    at CompileEventListener.addAction (http://localhost:4200/main.bundle.js:59420:135)
+    at http://localhost:4200/main.bundle.js:59490:18
+    at Array.forEach (native)
+    at collectEventListeners (http://localhost:4200/main.bundle.js:59487:16)
+    at ViewBinderVisitor.visitElement (http://localhost:4200/main.bundle.js:59907:108)
+    at ElementAst.visit (http://localhost:4200/main.bundle.js:8912:24)
+    at http://localhost:4200/main.bundle.js:9042:29
+
+* 原因 [#f4737c11]
+
+分からないが、次の見解がある。
+
+> I think ngFor don't like tracking array elements
+
+* 対策 [#g6e7baa6]
+
+** インデックスを利用して配列の要素をバインドする [#d77a61c4]
+
+foreachしている変数をバインドすることはできないが、コレクションにインデックスを指定して得られる要素はバインドすることができる。
+
+ <div *ngFor="let item of list; let i = index">
+   <input [(ngModel)]="list[i]">
+ </div>
+
+** または、配列の要素をオブジェクトにしてプロパティをバインドする [#nab5f240]
+
+foreachしている変数をバインドすることはできないが、その変数（オブジェクト）のプロパティはバインドすることができる。
+
+ this.list = [
+   {data: 'xxx'},
+   {data: 'yyy'},
+   {data: 'zzz'}
+ ];
+
+ <div *ngFor="let item of list">
+   <input [(ngModel)]="item.data">
+ </div>
+
+* 参考 [#k978c6c1]
+- [[angular2 - Angular 2 ngModel bind in nested ngFor - Stack Overflow>http://stackoverflow.com/questions/36469710/angular-2-ngmodel-bind-in-nested-ngfor]]
+- [[javascript - Angular2 ngModel against ngFor variables - Stack Overflow>http://stackoverflow.com/questions/33346677/angular2-ngmodel-against-ngfor-variables]]

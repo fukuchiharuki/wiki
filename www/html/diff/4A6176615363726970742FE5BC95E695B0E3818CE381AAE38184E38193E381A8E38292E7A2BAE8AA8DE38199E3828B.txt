@@ -1,0 +1,24 @@
++*関連 [#rbe0c46f]
++-JavaScript
+ 
++*概要 [#w6a1b4b8]
++JavaScriptで、関数の引数が与えられなかったことを判定したい。
++
++*方法 [#p4f3bf1b]
++ function func(arg) {
++   if (typeof arg == 'undefined') {
++     // 引数が与えられなかったときの処理
++   }
++ }
++
++*解説 [#b062f6b7]
++関数の引数が与えられないとき引数はundefinedになる。従って、
++ if (typeof arg == 'undefined')
++を書くことができる。
++
++ここで、次の場合ではnullや0と判断がつかなくなるので注意。
++ if (arg == undefined)
++
++*参考 [#z3e7b35e]
++-http://chaichan.web.infoseek.co.jp/qa4000/qa4183.htm
++

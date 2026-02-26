@@ -1,0 +1,40 @@
+#author("2018-11-04T11:49:47+00:00","default:haruki","haruki")
+* キーワード [#c80e78d0]
+- React
+- JavaScript
+- import
+- VisualStudio Code, VS Code
+
+* したいこと [#gd1f165b]
+
+絶対パスでimportを書きたい。
+
+相対パスでimportが並ぶと単純に見通しが悪いだけでなく、リファクタリングしづらい。
+
+* どうやって [#w1894658]
+
+** webpackの設定 [#c1e56d0b]
+
+ resolve: {
+     modules: ['node_modules', 'src'],
+     extensions: ['.js', '.jsx']
+ },
+
+** VisualStudio Codeの設定 [#f33bdd06]
+
+プロジェクトのルートディレクトリに jsconfig.json を作成して次を書く。 
+
+ {
+     "compilerOptions": {
+         "target": "es2015",
+         "baseUrl": "./src/"
+     }
+ }
+
+//* ちなみに [#n87e0748]
+
+* 参考 [#p22e2bb8]
+- [[大規模でスケールするReactアプリケーション開発のための実践的アドバイス - WPJ>https://www.webprofessional.jp/organize-large-react-application/]]
+- [[[React]絶対パスでimportできるようにする with vscode and eslint - Qiita>https://qiita.com/ozaki25/items/03e1a229123293241ab8]]
+- [[Resolve>https://webpack.js.org/configuration/resolve/#resolve-modules]]
+- [[jsconfig.json Reference>https://code.visualstudio.com/docs/languages/jsconfig]]

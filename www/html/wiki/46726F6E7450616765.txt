@@ -1,0 +1,12 @@
+#author("2024-03-28T08:27:23+00:00;2023-05-24T01:48:06+00:00","default:haruki","haruki")
+* wiki.fukuchiharuki.me [#yf0faa28]
+
+このサイトは[[福地春喜]]がちょっとしたメモを残しておくためのwikiです。
+
+- [[すべてのページ>http://wiki.fukuchiharuki.me/index.php?cmd=list]]
+
+**コンセプト [#oa80c988]
+とりあえず入れておく、私的なINBOX（受信箱）です。
+
+仕事柄ソフトウェア開発に関係するTipsが多いです :)~
+書きかけのものや情報が古いものもままあります :p

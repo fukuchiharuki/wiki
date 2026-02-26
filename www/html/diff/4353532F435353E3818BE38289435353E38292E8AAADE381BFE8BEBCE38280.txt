@@ -1,0 +1,5 @@
++*コード [#x48ecc13]
++ @import url("読み込まれる.css");
+ 
++*参照 [#saf9be95]
++-http://www.nishishi.com/css/import-css.html

@@ -1,0 +1,38 @@
+#author("2017-05-22T07:11:02+00:00","default:haruki","haruki")
+* キーワード [#s1e8c613]
+- Spring Boot
+- Spring Security
+
+* したいこと [#rc251a52]
+
+Spring Securityを使ったログインをするとき、ログインエラー時のメッセージをカスタマイズしたい。
+
+* どうやって [#f709eb5c]
+
+Thymeleafでエラーメッセージを表示したい箇所に次のように記述し、
+
+ <p th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null" 
+    th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}">
+ ログインIDまはたパスワードが間違っています。
+ </p>
+
+messages.propertiesに次のようにメッセージを定義する。
+
+ AbstractUserDetailsAuthenticationProvider.locked=アカウントはロックされています。
+ AbstractUserDetailsAuthenticationProvider.disabled=アカウントは使用できません。
+ AbstractUserDetailsAuthenticationProvider.expired=アカウントの有効期限が切れています。
+ AbstractUserDetailsAuthenticationProvider.credentialsExpired=パスワードの有効期限が切れています。
+ AbstractUserDetailsAuthenticationProvider.badCredentials=ログインIDまはたパスワードが間違っています。
+
+* ノート [#bb97e59b]
+
+次はログインエラーがあったときだけ表示する条件。
+
+ th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null" 
+
+次はメッセージ定義の内容を表示するアクセサ。
+
+ th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"
+
+* 参考 [#q4a56b9e]
+- [[java - how to display custom error message in jsp for spring security auth exception - Stack Overflow>http://stackoverflow.com/questions/1373407/how-to-display-custom-error-message-in-jsp-for-spring-security-auth-exception]]

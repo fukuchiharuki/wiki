@@ -1,0 +1,25 @@
+#author("2024-08-27T05:56:26+00:00","default:haruki","haruki")
+* キーワード [#j14e5f29]
+- grep
+- tail
+
+* したいこと [#f3559a87]
+
+標準出力に出力されつづけるテキストをパイプしてリアルタイムにgrepして表示したい。
+
+* どうやって [#cc76fca0]
+
+ (標準出力に出力しつづけるコマンド) | grep --line-buffered 'something'
+
+たとえばtail -fなどが標準出力に出力しつづけるコマンド。
+
+* ちなみに [#u53b09d7]
+
+ $ man grep 
+      --line-buffered
+              Force output to be line buffered.  By default, output is line buffered when standard output is a terminal and block buffered otherwise.
+
+
+* 参考 [#l40edb59]
+- [[リアルタイムに「tail -f」をgrepする方法 #Linux - Qiita>https://qiita.com/naotarou/items/ee2afc15804e37129c2d]]
+-

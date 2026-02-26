@@ -1,0 +1,39 @@
+*キーワード [#h71bd1a4]
+-IE9(Internet Explore 9)
+-HTML/CSS
+-float
+-clear
+-overflow
+
+*現象 [#zf0fb3c3]
+ありがちな「clear: both;」がIE9でなぜか効かない。
+正確には片方の下側にしか回らない。
+
+ .left {
+   float: left;
+ }
+ 
+ .right {
+   float: right;
+ }
+ 
+ .container:after {
+   content: "";
+   display: block;
+   clear: both;
+ }
+
+
+*原因 [#nca65129]
+分からん。
+
+*対策 [#o00cc2d2]
+ .container {
+   overflow: auto;
+ }
+
+もしかしたら width も入れてあげないとだめかも。
+詳しくは参考のサイトを見て。
+
+*参考 [#se09bd40]
+-http://www.quirksmode.org/css/clearing.html

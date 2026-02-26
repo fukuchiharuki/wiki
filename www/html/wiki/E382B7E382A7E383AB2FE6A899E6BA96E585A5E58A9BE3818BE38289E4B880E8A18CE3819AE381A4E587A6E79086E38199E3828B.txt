@@ -1,0 +1,27 @@
+*関連 [#u8023b82]
+-sh
+-awk
+
+*概要 [#mb6be8e9]
+次のように実行するときにファイルを一行ずつ処理したい。
+
+ ./test.sh < file.txt
+
+*方法 [#zff23f9f]
+こう書きます。
+
+ #!/bin/sh
+ 
+ while read LINE
+ do
+     # ここに $LINE を使った処理
+ done
+
+*解説 [#y384d03a]
+一行ずつ処理をするなら
+ awk '{print $1+1}' < /dev/stdin
+した方がいいよ、という見方もあるようです。詳しくは参考サイトをご覧になってください。
+
+*参考 [#h9674282]
+-http://shellscript.sunone.me/input_output.html
+-http://www.usptomonokai.jp/TOMONOKAI_CMS/CGI/TOMONOKAI_CMS.CGI?PAGE=20120212

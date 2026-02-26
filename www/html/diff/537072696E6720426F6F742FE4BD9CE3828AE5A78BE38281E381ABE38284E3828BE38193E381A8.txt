@@ -1,0 +1,51 @@
+-#author("2017-03-23T03:48:03+00:00","default:haruki","haruki")
++#author("2017-03-23T03:49:51+00:00","default:haruki","haruki")
+ Spring Bootに限った話ではないけど、作り始めに整えておいた方がいいこと。
+ 
+ *** ビルド [#ic5d7ab6]
+ - [[プロジェクト分割>Spring Boot/プロジェクトを分割してGradleでビルドする]]
+ -- Gradle
+ -- 依存関係
+ - DB接続
+ -- データソース設定
+ -- 自動化ツール(MyBatis Generator)
+ - DI
+ -- Mapper(MyBatis)
+ 
+ *** 動作確認 [#qbb2ebd9]
+ - STSで(for development)
+ - jarをキックして(for production)
+ 
+ *** 開発環境 [#xae902e6]
+ - ソースコードリポジトリ
+ - インポート手順
+ 
+ *** IDE [#md32b8d3]
+ - STSプラグイン
+ -- Buildship
+ -- EGit
+ -- Properteis Editor
+ -- Vrapper
+ - 設定
+ -- 文字コード
+ 
+ *** 実装方式 [#if99d623]
+ - 配置
+ -- テンプレート
+ -- リソース
+ -- Mapper(MyBatis)
+ - 定数
++-- domainの定数(Springに頼らない実装)
++-- application.yml(Springに頼る実装)
++-- staticな定数(リクエストマッピング名やテンプレート名)
+ 
+ *** 例外処理 [#o06f8749]
+ - システムエラー
+ -- すべてのエラーの受け皿として
+ - 画面遷移
+ -- どこが入力チェックの役割をもつか
+ - フィードバック
+ -- 検査例外 or NOT
+ -- メッセージ
+ 
+ ぜんぜん途中

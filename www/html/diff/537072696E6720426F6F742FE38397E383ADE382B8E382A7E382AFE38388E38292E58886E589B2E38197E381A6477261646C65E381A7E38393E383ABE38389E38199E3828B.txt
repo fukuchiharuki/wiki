@@ -1,0 +1,126 @@
+-#author("2017-03-23T02:32:34+00:00","default:haruki","haruki")
++#author("2017-03-23T03:56:06+00:00","default:haruki","haruki")
+ * Gradleをインストールする [#ed1f3822]
+ 
+ - https://gradle.org/
+ 
+ * Gradleを設定する [#e8d2cb56]
+ 
+  cd /path/to/multiproject
+  gradle init
+ 
+ ** サブプロジェクトを定義する [#rf7e11c4]
+ 
+ - settings.gradle
+ 
+  rootProject.name = 'multiproject'
+  include 'domain'
+  include 'persistence'
+  include 'web'
+ 
+ ** 依存関係を定義する [#d9cef332]
+ 
+ - build.gradle
+ 
+ 次を想定しています。
+ 
+ - 依存関係
+ -- domain
+ -- persistence -> domain
+ -- web -> domain
+ -- web -> persistence
+ - domainはLombokしか使わない
+ - persistenceはMyBatisでMySQLに接続する
+ - persistanceはMyBatis Generatorでマッパーを作成できる
+ - webはThymeleafを使う
+ - Eclipseで開発する
+ 
+  buildscript {
+  	ext {
+  		springBootVersion = '1.5.1.RELEASE'
+  	}
+  	repositories {
+  		mavenCentral()
+  		maven {
+  		  url "https://plugins.gradle.org/m2/"
+  		}
+  	}
+  	dependencies {
+  		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+  		classpath("gradle.plugin.com.arenagod.gradle:mybatis-generator-plugin:1.3")
+  	}
+  }
+  
+  subprojects {
+  	apply plugin: 'java'
+  	apply plugin: 'eclipse'
+  	sourceCompatibility = 1.8
+  	repositories {
+  		mavenCentral()
+  	}
+  	dependencies {
+  		compileOnly("org.projectlombok:lombok:1.16.12")
+  	}
+  }
+  
+  project(':domain') {
+  }
+  
+  project(':persistence') {
+  	apply plugin: "com.arenagod.gradle.MybatisGenerator"
+  	dependencies {
+  		compile project(':domain')
+  		compile('org.mybatis.spring.boot:mybatis-spring-boot-starter:1.2.0')
+  	}
+  	configurations {
+  		mybatisGenerator
+  	}
+  	mybatisGenerator {
+  		verbose = true
+  		configFile = "${projectDir}/src/main/resources/autogen/generatorConfig.xml"
+  	}
+  }
+  
+  project(':web') {
+  	apply plugin: 'org.springframework.boot'
+  	jar {
+  		baseName = 'demo'
+  		version = '0.0.1-SNAPSHOT'
+  	}
+  	dependencies {
+  		compile project(':domain')
+  		compile project(':persistence')
+  		compile('org.springframework.boot:spring-boot-starter-web')
+  		compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+  		runtime('mysql:mysql-connector-java')
+  		testCompile('org.springframework.boot:spring-boot-starter-test')
+  	}
+  }
+ 
+ * プロジェクト雛形を作成する [#xb4d8003]
+ 
+ ** GradleでEclipse(STS)のプロジェクト雛形を作成する [#o4d04d4d]
+ 
+  $ gradle eclipse
+ 
+ ** STSでプロジェクトをimportする [#bc65127a]
+ 
+ + File > Import...
+ + Gradle / Existing Gradle Project ※ Buildship Gradle Integration要？
++-- Next >
+ + Project root directory: /path/to/multiproject
+-++ Next >
+-++ Next >
+-++ Finish
++-- Next >
+++ Gradle distribution: Gradle wrapper
++-- Next >
+++ Finish
+ 
+ ** それぞれのプロジェクトでSource Folderを作成する [#ldb7e6f9]
+ 
+ + File > New > Source Folder
+ -- Folder name: src/main/java
+ -- Folder name: src/main/resources
+ -- Folder name: src/test/java
+ -- Folder name: src/test/resources

@@ -1,0 +1,37 @@
++#author("2017-12-30T04:01:28+00:00","default:haruki","haruki")
++* キーワード [#t48c7883]
++- React Native
++- React Navigation
+ 
++* 現象 [#w012904c]
++
++React Nativeにて、React Navigationで作るヘッダがステータスバーに被ってしまう。
++- expo経由・Android実機で被る
++- iOSのシミュレータでは問題ない
++- ビルドしてデプロイしたときにどうかは見てない
++
++* 原因 [#k5dba5b0]
++
++分からない。
++
++* 対策 [#l7cfe322]
++
++StackNavigator()の第2引数に次を追加する。
++
++ {
++   cardStyle: {
++     paddingTop: (Platform.OS === 'ios')? 0: StatusBar.currentHeight
++   }
++ }
++
++なお、次のimportが必要。
++
++ import { Platform, StatusBar } from 'react-native'
++
++* 備考 [#f71120fa]
++
++なし。
++
++* 参考 [#p407e324]
++- [[Android header is overlapped · Issue #1478 · react-navigation/react-navigation>https://github.com/react-navigation/react-navigation/issues/1478]]
++

@@ -1,0 +1,22 @@
+*キーワード [#ie3544bc]
+-Linux
+-.bash_logout
+-コマンド
+-実行履歴
+
+*概要 [#w2e86613]
+ログアウト時にコマンドの実行履歴をクリアします。
+
+*方法 [#a3ab1b51]
+.bash_logout に
+ $ vi ~/.bash_logout
+
+次の行を追加します。
+ history -c
+
+*解説 [#aa6e2273]
+:.bach_logout|ログアウト時に実行するスクリプト
+:history -c|コマンドの実行履歴をクリアする
+
+*参考 [#jbbcc768]
+-http://itpro.nikkeibp.co.jp/article/COLUMN/20060227/230795/

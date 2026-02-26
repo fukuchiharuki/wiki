@@ -1,0 +1,29 @@
+-*目標 [#q18052bc]
+--基本的なユーザ管理操作をする
++*関連 [#e943eef5]
++-MySQL
+ 
+-*手順 [#ze484296]
++*概要 [#l528dc31]
++ユーザ情報を参照する方法などです。
++
++*方法 [#i29e63a0]
+ **ユーザを表示する [#hbb830c9]
+  mysql> select user,host,password from mysql.user;
+ 
++**ユーザの権限を確認する [#b687889c]
++ mysql> show grants for 'ユーザ名'@'ホスト名';
++
+ **パスワードを設定する [#od655d58]
+  mysql> update mysql.user set password=password('<ここにパスワード>') where <条件>;
+  mysql> flush privileges;
+ 
+ **ユーザを削除する [#yfdaebcf]
+  mysql> delete from mysql.user where <条件>;
+  mysql> flush privileges;
+ 
+-**ユーザの権限を確認する [#b687889c]
+- mysql> show grants for 'ユーザ名'@'ホスト名';
+-
+ *参考 [#f305ad6b]
+ -http://centossrv.com/mysql.shtml

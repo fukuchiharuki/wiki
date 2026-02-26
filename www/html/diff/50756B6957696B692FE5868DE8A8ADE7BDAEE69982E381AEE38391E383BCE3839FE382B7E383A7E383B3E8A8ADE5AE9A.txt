@@ -1,0 +1,31 @@
+ *はじめに [#c1b3f33f]
+ PukiWiki運用後にこれを別サーバなどに再設置する際のメモです。
+ 
+ *パーミション設定 [#f441dcd6]
+ PukiWiki運用時に作成されるファイルのパーミションを変更する。
+ 
+ [[公式アナウンスのパーミション設定>http://pukiwiki.sourceforge.jp/?PukiWiki%2FInstall%2F%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E6%96%B9%E6%B3%95#s94ea60b]]に加えて、次のように追加でパーミションを変更する。
+  $ chmod 666 backup/*.gz
+  $ chmod 666 cache/pkwk_chown.lock
+  $ chmod 666 diff/*.txt
+  $ chmod 666 wiki/*.txt
+ 
+ *あるいは所有者変更 [#r135b82c]
+ そもそもPukiWiki一式をhttpdの所有にしてしまう手もある。
+  # chown -R apache:apache （PukiWikiディレクトリ）
+ 
++**もっと考えるなら [#r9f3c4fe]
++次のグループがあって、
++-operator
++-apache
++
++次のユーザがいるとする。
++-operator
++-apache
++
++運用する人とhttpdがPukiWiki一式を write できればいいのだから、
++ # chown -R operator:operator （PukiWikiディレクトリ）
++ # chmod u+w （PukiWikiディレクトリ）
++ # chmod g+w （PukiWikiディレクトリ）
++ # usermod -G apache,operator apache
++とすることができる。

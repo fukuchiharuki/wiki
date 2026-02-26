@@ -1,0 +1,69 @@
+-#author("2018-01-16T05:54:37+00:00","default:haruki","haruki")
++#author("2018-01-26T03:05:39+00:00","default:haruki","haruki")
+ * キーワード [#t89b7da1]
+ - Git
+ - GitHub
+ - プルリクエスト
+ - rebase
+ 
+ * したいこと [#wf6f72b8]
+ 
+ プルリクエストを作成したい。
+ 
+ ブルリクエスト作成用にブランチを作成していて、リモートのmasterには別のコミットがすでにマージされているものとする。
+ 
+ * どうやって [#l879fef9]
+ 
+ ** ローカルのmasterを最新にする [#xf0f74f2]
+ 
+  $ git checkout master
+  $ git fetch
++ $ git rebase
+ 
+ ** ローカルのブランチに切り替えてローカルのmasterからrebaseする [#s204c058]
+ 
+  $ git checkout <feature-branch>
+  $ git rebase master
+ 
+ *** コンフリクトが発生したら？ [#ida973f5]
+ 
+ コンフリクトが発生したファイルを修正してaddしてからrebaseを続ける。
+ 
+  $ git add <conflicting-files>
+  $ git rebase --continue
+ 
+ ** ローカルのブランチをpushする [#bd4e2f9d]
+ 
+  $ git push origin <feature-branch> -f
+ 
+ ** GitHubでプルリクエストを作成する [#y796a80c]
+ 
+ 画面から作成するだけ。
+ 
+ * ちなみに [#pf1cfda4]
+ 
+ ** コンフリクトしても慌てない [#a70d4987]
+ 
+ コンフリクトが発生すると次のように知らせてもらえている。
+ 
+  When you have resolved this problem, run "git rebase --continue".
+  If you prefer to skip this patch, run "git rebase --skip" instead.
+  To check out the original branch and stop rebasing, run "git rebase --abort".
+ 
+ addのくだりがないが、addしていないと次のように忘れていないか？と確認が入る。
+ 
+  No changes - did you forget to use 'git add'?
+  If there is nothing left to stage, chances are that something else
+  already introduced the same changes; you might want to skip this patch.
+ 
+ ** プッシュするのに強制するのは？ [#a2220d0f]
+ 
+ rebaseすると、そのブランチはリモートとローカルでコミットログが一致しない。
+ 
+ ブランチはプルリクエストを作成するためのものなので構わない。ということはこのブランチは常に個人だけが触るように運用するということ？？
+ 
+ * 参考 [#h37129f8]
+ - [[初心者向けGithubへのPullRequest方法 - Qiita>https://qiita.com/samurairunner/items/7442521bce2d6ac9330b]]
+ - [[PullRequestベースの開発ではGit Rebase使った方がいい - Qiita>https://qiita.com/ganezasan/items/f7ca66f47bc8067988cf]]
+ - [[gitでいろいろ取り消したい - Qiita>https://qiita.com/tani-shi/items/3419600447292abf6c79]]
+ - [[Git で不要になったローカルブランチ・リモートブランチを削除する方法 - Qiita>https://qiita.com/iorionda/items/c7e0aca399371068a9b8]]

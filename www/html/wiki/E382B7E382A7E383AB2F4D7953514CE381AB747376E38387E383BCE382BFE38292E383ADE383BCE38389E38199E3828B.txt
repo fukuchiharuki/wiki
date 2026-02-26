@@ -1,0 +1,57 @@
+*関連 [#te333771]
+-sh
+-MySQL
+
+*概要 [#l29565aa]
+テストでデータをこちょこちょ触るのが面倒だったので作りました。
+
+要件は以下。
+-データはtsvファイル
+-該当テーブルのレコードを全削除してデータをロードする
+
+制限事項は以下。
+-データはひとつのディレクトリにまとめて置く
+-データのファイル名は「*.dat」
+
+*スクリプト [#g285a6ca]
+-reset.sh
+
+ #!/bin/sh
+ 
+ directory=`./abstpath.sh $1`
+ if [ ! -d ${directory} ]
+ then
+     echo "the directory does not exist."
+     exit
+ fi
+ 
+ files=`find ${directory} -maxdepth 1 -name "*.dat"`
+ for file in ${files}
+ do
+     table=`basename ${file} .dat`
+     mysql -u<ユーザ> -p<パスワード> <データベース> -e "DELETE FROM ${table};"
+     mysql -u<ユーザ> -p<パスワード> <データベース> -e "LOAD DATA LOCAL INFILE '${file}' INTO  TABLE ${table} FIELDS TERMINATED BY '\t';"
+     echo "${table} < ${file}"
+ done
+
+-abstpath.sh
+
+ #!/bin/sh
+ 
+ echo $(cd $(dirname $0) && pwd)/$1
+
+
+*操作手順 [#y9af4f9b]
+ ┣ reset.sh
+ ┗ data/
+ 　　┣ hoge.dat
+ 　　┗ moge.dat
+こんなディレクトリ構成になっているとして、
+
+ $ ./reset.sh data/
+こうするとわーっとなります。
+
+*参考 [#s01a9d8d]
+-http://blog.hansode.org/archives/51481467.html
+-http://blog.livedoor.jp/akf0/archives/51638961.html
+-http://www.atmarkit.co.jp/flinux/rensai/linuxtips/437delfileext.html

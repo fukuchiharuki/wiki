@@ -1,0 +1,31 @@
++#author("2017-10-28T06:23:56+00:00","default:haruki","haruki")
++* キーワード [#mfa94ffc]
++- Homebrew
++- brew
++- ruby
++- version
+ 
++* 現象 [#u866f7b6]
++
++次のエラーが出てインストールができない。
++
++ Homebrew must be run under Ruby 2.3! You're running 2.0.0. (RuntimeError)
++
++* 原因 [#u7a3dab0]
++
++Ruby 2.3で動かしなさいということらしい。
++
++* 対策 [#c0f716a4]
++
++Homebrewをアップデートしたら直った。
++
++ $ brew update
++ Already up-to-date.
++
++* 備考 [#mdbfcdc6]
++
++なし。
++
++* 参考 [#ic11ab42]
++- [[brew install failed one time with &quot;Homebrew must be run under Ruby 2.3!&quot; on Ruby 2.4, now works fine · Issue #3299 · Homebrew/brew>https://github.com/Homebrew/brew/issues/3299]]
++

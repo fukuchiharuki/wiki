@@ -1,0 +1,28 @@
+* キーワード [#rdcd83c9]
+- Angular2
+- window.resize
+- HostListener
+
+* したいこと [#yad61d10]
+
+Angular2でブラウザをリサイズしたときに処理をしたい。Google Chartsの大きさを調整するのに必要だった。
+
+* どうやって [#rd494341]
+
+デコレータHostListenerで拾う。
+
+ import { Component, HostListener } from '@angular/core';
+ 
+ ...
+ 
+   @HostListener('window:resize', ['$event'])
+   onResize(event) {
+   }
+
+* ノート [#ae52fa6d]
+
+ディレクティブを利用する方法もあるけど、デコレータの方が楽だしキレイだと思う。
+
+* 参考 [#x5ec22e5]
+- [[javascript - Angular2 window resize event - Stack Overflow>http://stackoverflow.com/questions/35527456/angular2-window-resize-event]]
+- [[Angular2でWindowイベントを設定する | Yuhiisk>http://blog.yuhiisk.com/archive/2016/05/12/angular2-window-event.html]]

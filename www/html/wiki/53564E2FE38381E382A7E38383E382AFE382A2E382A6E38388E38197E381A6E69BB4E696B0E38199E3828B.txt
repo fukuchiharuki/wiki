@@ -1,0 +1,29 @@
+*関連 [#dedf4cac]
+-SVN
+
+*概要 [#x6604077]
+コマンドラインからリポジトリをチェックアウトして更新する。
+
+※正直、書き残すようなことでないのですが単にメモとして
+
+*方法 [#xafa135b]
+**チェックアウトする [#b631cd90]
+ [hoge]$ svn checkout svn://サーバー/リポジトリ/ブランチ/dir dir
+左のdirがsvn上のディレクトリで右のdirがローカル上のチェックアウト先。
+ [hoge]$ ls
+ dir
+svnクライアントはチェックアウト先としてローカル上に新しいディレクトリを作成する。
+
+**更新する [#z22e11cf]
+作成したディレクトリをカレントディレクトリにして次のコマンドを実行する。
+ [hoge]$ cd dir
+ [dir]$ svn update
+
+*解説 [#t9d118e3]
+参考ページを参照してください。
+
+他基本的なコマンドは「[[SVN/コマンドラインの基本操作]]」を参照してください。
+
+*参考 [#t2ec07eb]
+-http://www.caldron.jp/~nabetaro/svn/svnbook-1.4-final/svn.ref.svn.c.checkout.html
+-http://www.caldron.jp/~nabetaro/svn/svnbook-1.4-final/svn.ref.svn.c.update.html

@@ -1,0 +1,7 @@
+*目標 [#ve117aa3]
+-表題のとおり
+
+*手順 [#g6508e12]
+ > REVOKE ALL PRIVILEGES, GRANT OPTION FROM ユーザー名@ホスト名;
+ > DROP USER ユーザー名@ホスト名;
+ > flush privileges;

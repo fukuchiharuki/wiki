@@ -1,0 +1,44 @@
+#author("2017-09-02T02:43:02+00:00","default:haruki","haruki")
+* キーワード [#y2240606]
+- AngularJS
+- service
+
+* したいこと [#sf8d18d1]
+
+サービスに状態を持たせて、この状態に応じてビューの表示を切り替える。また、ビューのクリックイベントによってサービスの状態を更新する。もちろんこれをビューに反映させる。
+
+* どうやって [#tbd4f5f4]
+
+&color(red){思い違いがありました（ノートにて）。};
+
+サービスに状態を取得する関数と変更する関数を定義する。
+
+:fooService#isBar()|状態を取得する。
+:fooService#toggleBar()|状態を変更する。
+
+コントローラにこの関数をオブジェクトで保持する。
+
+ this.state = {
+   isBar: fooService.isBar
+ };
+
+ng-clickでコントローラからサービスの状態を変更する。
+
+ this.toggleBar = function() {
+   fooService.toggleBar();
+ };
+
+* ノート [#f035a45e]
+
+ng-ifなどで$ctrl.state.isBar()を監視しておけば、ng-clickで状態を変更したタイミングでビューに反映でき(て)る。
+
+** &color(red){思い違い}; [#k832b88b]
+
+サービスの関数の中でthis.別の関数()を使っていると、コントローラ側のオブジェクトでその関数を探しにいってしまってエラーになる。関数の代入がよくわかっていなかったようだ。。単純に、
+
+ this.state = fooService;
+
+としてしまうのがいいと思う。
+
+* 参考 [#aadae9ce]
+- [[Angularのservice, factory, providerの使い分け #scripty01 - pirosikick&#39;s diary>http://pirosikick.hateblo.jp/entry/2014/09/17/064939]]

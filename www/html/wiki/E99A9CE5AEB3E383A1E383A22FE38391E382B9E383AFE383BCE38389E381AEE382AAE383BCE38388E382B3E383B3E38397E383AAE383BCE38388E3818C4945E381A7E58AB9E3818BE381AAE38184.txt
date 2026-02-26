@@ -1,0 +1,42 @@
+*キーワード [#z07ae1b3]
+-IE (Internet Explore)
+-パスワードのオートコンプリート
+
+*現象 [#i2bc61ab]
+パスワードのオートコンプリートができない。
+
+フォームは次のような感じ。
+ <form method="post" action="(どこがし)">
+ 	<div class="layout-form">
+ 		ユーザーID (メールアドレス)<br>
+ 		<input type="text" name="loginID"><br>
+ 		パスワード<br>
+ 		<input type="password" name="loginPassword"><br>
+ 		<input type="button" value="ログイン">
+ 	</div>
+ </form>
+
+ボタンを 
+-input[type=submit] ではなく
+-input[type=button] にして
+-JavaScriptでフォームを submit() する
+ようにしている。
+
+*原因 [#ga86a331]
+IEでパスワードのオートコンプリートがはたらくのは
+>"INPUT TYPE=SUBMIT"を使用し FORM をサブミットした場合のみ
+
+だそうです。
+
+*対策 [#g9564f10]
+どうしてもなら上記の仕様に従うしかない(のかな)。
+
+JavaScriptが有効なときのみ submit() したいなら、
+-JavaScriptで input[type=submit] を書いて
+-noscript でダミーの何かを置く
+
+でいいはず。
+
+*参考 [#z4f5e67f]
+-http://support.microsoft.com/kb/917458/ja
+-http://cocky.exblog.jp/10948603

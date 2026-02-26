@@ -1,0 +1,30 @@
+ *キーワード [#z0998167]
+ - Java
+ - Collection
+ 
+ *compareTo() とequals() の一貫性 [#zd7b845b]
+ Collectionの要素にしたいオブジェクトのクラスを自作するとき、次のことに気をつけなければいけません。
+ 
+ - compareTo() とequals() に一貫性をもたせる
+ 
+ このことは [[Comparable (Java Platform SE 6)>http://docs.oracle.com/javase/jp/6/api/java/lang/Comparable.html]] に次のように記述されています。
+ 
+- The natural ordering for a class C is said to be consistent with equals if and only if e1.compareTo(e2) == 0 has the same boolean value as e1.equals(e2) for every e1 and e2 of class C.
++> The natural ordering for a class C is said to be consistent with equals if and only if e1.compareTo(e2) == 0 has the same boolean value as e1.equals(e2) for every e1 and e2 of class C.
+ 
+ たとえば Collection の実装である [[TreeSet (Java Platform SE 6)>http://docs.oracle.com/javase/jp/6/api/java/util/TreeSet.html]] にもこう記述があります。
+ 
+- そのセットによって維持される順序付けが「equals との一貫性」のあるものでなければいけないことに注意してください。
++> そのセットによって維持される順序付けが「equals との一貫性」のあるものでなければいけないことに注意してください。
+ 
+ *hashCode() と equals() の一貫性 [#eed21d40]
+ 
+ Hash* を使用する場合には次のことも気をつけなければいけません。
+ 
+ - hashCode() と equals() に一貫性をもたせる
+ 
+ [[HashSet (Java Platform SE 6)>http://docs.oracle.com/javase/jp/6/api/java/util/HashSet.html]] はその名のとおり要素のハッシュ関数を利用するコレクションです。その実装は [[HashMap (Java Platform SE 6)>http://docs.oracle.com/javase/jp/6/api/java/util/HashMap.html]] のキーに要素を追加するもので(値にはダミーのオブジェクトを追加する)、キーの比較に hashCode() と equals() を利用します。
+ 
+ *参考 [#h691f7fb]
+ -[[TreeSetのComparatorではまったのでメモ（初心者向け） - s-ishigamiの日記>http://d.hatena.ne.jp/s-ishigami/20110615/p1]]
+ -[[java - Hashcode() Vs Equals() - Stack Overflow>http://stackoverflow.com/questions/11850929/hashcode-vs-equals]]

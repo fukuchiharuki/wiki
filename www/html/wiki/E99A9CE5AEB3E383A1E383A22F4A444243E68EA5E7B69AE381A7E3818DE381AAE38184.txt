@@ -1,0 +1,18 @@
+*関連 [#qb8e79e6]
+-Tomcat
+-MySQL
+-JDBC
+
+*現象 [#aebb594b]
+Tomcatに配置したアプリケーションからJDBC接続できない。
+
+*原因 [#gc4e0e82]
+コネクタがない。
+
+*対策 [#b0b76616]
+/(Tomcatのディレクトリ)/lib/
+に
+mysql-connector-java-*.*.*-bin.jar
+を置く。
+
+*参考 [#j5a8fad4]

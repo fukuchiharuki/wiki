@@ -1,0 +1,31 @@
+-&color(red){ここはもう古いです。};~
+-&color(red){[[Orca>https://github.com/fukuchiharuki/Orca/]] および [[OrcaSample>https://github.com/fukuchiharuki/OrcaSample/]] を見てください。};
+-----
+ 
+-[[Orca]]
+-
+-#contents
+-
+-*ダウンロード [#kf118796]
+-[[GitHub>https://github.com/fukuchiharuki/Orca]]に公開しています。
+-
+-*リリースノート [#b70db137]
+-**最新版 [#beda74ee]
+-
+-***Orca-1.1-beta-1 [#a8b7ecba]
+-リファクタリングしました。特にページインスタンスをセッションにキューイングする箇所をシンプルにしました。
+-|Refactoring|内部構造を大幅にリファクタリングしました|
+-
+-
+-**過去のリリース [#h7ec95b1]
+-
+-***Orca-1.0-beta-3 [#n51b0671]
+-|Bug fix|メソッド結果クラスのメッセージセッタが内部的にはアダーである不具合を修正しました|
+-
+-***Orca-1.0-beta-2 [#m40864c0]
+-|Bug fix|ページインスタンスをリクエスト毎に生成してしまう不具合を修正しました|
+-|~|フィードバックが1件もない状態でulタグを出力してしまう不具合を修正しました|
+-|Improvement|辞書（コードリスト）のキー選択をJSPとページ処理双方からできるようにしました|
+-
+-***Orca-1.0-beta-1 [#j04448c3]
+-

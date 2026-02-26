@@ -1,0 +1,56 @@
+#author("2017-03-31T11:50:39+00:00","default:haruki","haruki")
+* キーワード [#fdab39d7]
+- gradle
+- SonarQube
+
+* 現象 [#l9e028f3]
+
+gradle sonarqubeすると次のエラーになる。
+
+ :sonarqube
+ FAILURE: Build failed with an exception.
+ 
+ * What went wrong:
+ org.gradle.internal.jvm.Jvm.getRuntimeJar()Ljava/io/File;
+ 
+ * Try:
+ Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output.
+ 
+ 
+ BUILD FAILED
+
+
+* 原因 [#dd844e55]
+
+Gradleのバージョンが3だとだめらしい&color(red){(sonarqubeのプラグインが2.0.1の場合は)};。
+
+* 対策 [#q87304ff]
+
+** sonarqubeの新しいプラグインを使う [#d5bb86be]
+
+ buildscript {
+   repositories {
+     maven {
+       url "https://plugins.gradle.org/m2/"
+     }
+   }
+   dependencies {
+     classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.3"
+   }
+ }
+ 
+ apply plugin: "org.sonarqube"
+
+** 2.0.1を使い続けたい場合 [#j11187a9]
+バージョン2のGradleを利用する&color(red){(sonarqubeのプラグインが2.0.1の場合は)};。
+
+ /path/to/v2gradle/bin/gradle snarqube
+
+* 備考 [#ofb2cd6e]
+
+Gradleが3になったのは Aug 15, 2016 からみたい。
+
+* 参考 [#t5e43fa0]
+- [[[SONARGRADL-16] Support Gradle 3.X - SonarSource>https://jira.sonarsource.com/browse/SONARGRADL-16]]
+- [[SonarQube for Android Projects - Sogilis>http://sogilis.com/blog/sonarqube-android-projects/]]
+- [[Gradle - Plugin: org.sonarqube>https://plugins.gradle.org/plugin/org.sonarqube/2.3]]

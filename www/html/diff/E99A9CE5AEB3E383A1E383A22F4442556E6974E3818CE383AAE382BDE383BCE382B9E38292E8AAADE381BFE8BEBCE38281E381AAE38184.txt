@@ -1,0 +1,56 @@
+-#author("2017-04-10T09:35:50+00:00","default:haruki","haruki")
++#author("2017-04-21T09:02:17+00:00","default:haruki","haruki")
+ * キーワード [#yc315cba]
+ - DBUtil
+ - gradle build
+ 
+ * 関連 [#o37743a9]
+-- [[障害メモ/DBUtilがCSVを読み込めていない]]
++- [[障害メモ/DBUnitがCSVを読み込めていない]]
+ 
+ * 現象 [#f2429ca2]
+ 
+ gradle buildしたときのテストで、DBUnitがリソースを読み込めない。
+ 
+  org.dbunit.dataset.DataSetException: error getting list of tables
+  	at org.dbunit.dataset.csv.CsvURLProducer.produce(CsvURLProducer.java:115)
+  	at org.dbunit.dataset.CachedDataSet.<init>(CachedDataSet.java:97)
+  	at org.dbunit.dataset.CachedDataSet.<init>(CachedDataSet.java:81)
+  	at org.dbunit.dataset.csv.CsvURLDataSet.<init>(CsvURLDataSet.java:49)
+  (中略)
+  Caused by: java.io.FileNotFoundException: C:\path\to\project\build\classes\test\path\to\resouces\table-ordering.txt (指定されたファイルが見つかりません。)
+  	at java.io.FileInputStream.open0(Native Method)
+  	at java.io.FileInputStream.open(FileInputStream.java:195)
+  	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+  	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+  	at sun.net.www.protocol.file.FileURLConnection.connect(FileURLConnection.java:90)
+  	at sun.net.www.protocol.file.FileURLConnection.getInputStream(FileURLConnection.java:188)
+  	at java.net.URL.openStream(URL.java:1045)
+  	at org.dbunit.dataset.csv.CsvProducer.getTables(CsvProducer.java:152)
+  	at org.dbunit.dataset.csv.CsvURLProducer.produce(CsvURLProducer.java:103)
+ 
+ * 原因 [#h6175010]
+ 
+ gradleがリソースを出力する先とDBUnitがリソースを入力する元が違う。
+ 
+ |gradleの出力先|DBUnitの入力元|h
+ |build/resources/test|build/classes/test|
+ 
+ * 対策 [#r56a1267]
+ 
+ gradleがリソースを出力する先を変更する。
+ 
+  sourceSets {
+  	test {
+  		output.resourcesDir = output.classesDir
+  	}
+  }
+ 
+ dependencies{}の下にでも書いてあげるとよい。
+ 
+ * 備考 [#rf4ce026]
+ 
+ STS(Eclipse)で開発しているときでも、まめに端末からビルドしてあげないと後で焦る。
+ 
+ * 参考 [#e2e6894f]
+ - [[Gradleでリソースファイルの出力先を変更 - なんとなくな Developer のメモ>http://fits.hatenablog.com/entry/2013/09/11/013938]]

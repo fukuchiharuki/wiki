@@ -1,0 +1,32 @@
+#author("2017-05-12T03:56:39+00:00","default:haruki","haruki")
+* キーワード [#de0201c4]
+- JUnit
+- FAILED
+- IllegalStateException
+- BeanDefinitionStoreException
+- ConflictingBeanDefinitionException
+
+* 現象 [#p6af6dee]
+
+すべてのテストが次の例外で失敗する。
+
+     java.lang.IllegalStateException
+         Caused by: org.springframework.beans.factory.BeanDefinitionStoreException
+             Caused by: org.springframework.context.annotation.ConflictingBeanDefinitionException
+
+* 原因 [#b690cb0c]
+
+分からない。分からないがこれが起こる前にプロジェクトのフォルダ名をrenameした。
+
+* 対策 [#t7813a9a]
+
+ gradle clean
+
+したら直った。
+
+* 備考 [#sdf81752]
+
+こういうの困る。
+
+* 参考 [#c1e369f7]
+- [[java - Spring Boot ConflictingBeanDefinitionException: Annotation-specified bean name for @Controller class - Stack Overflow>http://stackoverflow.com/questions/28498295/spring-boot-conflictingbeandefinitionexception-annotation-specified-bean-name-f]]

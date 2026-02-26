@@ -1,0 +1,37 @@
+-#author("2017-12-13T07:28:18+00:00","default:haruki","haruki")
++#author("2017-12-13T07:31:31+00:00","default:haruki","haruki")
+ * キーワード [#h00bc4a3]
+ - STS
+ - Kotlin
+ - Spring Boot
+ 
+ * 現象 [#qd1465fd]
+ 
+ STSでKotlinを使ってSpring Bootを立ち上げようとするができない。
+ 
+  class 'Application' may not be final. Remove the final modifier to continue.
+ 
+ * 原因 [#xd0c2759]
+ 
+ classをopenしてないから。final classじゃだめよということ。
+ 
+-ただ、これはkotlin-allopenがkotlin-springによって解決してくれるはず。だが、STSの「Spring Boot App」としての実行ではうまくいかない。
++ただ、これは kotlin-allopen が kotlin-spring によって解決してくれるはず。だが、STSの「Spring Boot App」としての実行ではうまくいかない。
+ 
+ * 対策 [#p9c4e104]
+ 
+-IntelliJでなら大丈夫とのことだが試してない。また、gradleタスクとして実行するのでも大丈夫。BuildshipのGradle Tasksから実行するか、コンソールで次のようにして実行する。
++gradleタスクとして実行すると大丈夫。Buildshipの「Gradle Tasks」から実行するか、コンソールで次のようにして実行する。
+ 
+  $ gradle bootRun
+ 
++IntelliJでなら大丈夫とのことだが試してない。
++
+ * 備考 [#be30750e]
+ 
+ IntelliJに乗り換えかなあ。。Vimのキーバインド使える？？
+ 
+ * 参考 [#ca9c149e]
+ - [[Spring Boot + Gradle + Kotlin の開発環境を構築してみた（結構ハマった） - IT探検記>http://itexplorer.hateblo.jp/entry/20170724-create-spring-boot-gradle-kotlin-env]]
+ - [[Kotlin+Spring Bootにて「@Configuration class may not be final」的なエラーが出たとき - Qiita>https://qiita.com/n_morioka/items/7b4f8f96c85223cdb176]]
+ - [[Compiler Plugins - Kotlin Programming Language>https://kotlinlang.org/docs/reference/compiler-plugins.html]]

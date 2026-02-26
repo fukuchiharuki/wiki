@@ -1,0 +1,8 @@
+ *目的 [#n412c769]
+ EeePCを使うにあたってはSSD（Solid State Drive）に優しくすると嬉しいらしいです。
+ *tmpディレクトリにメモリ空間をあてる [#aafe35c8]
+ /etc/fstabを次のように編集します。
+- tmpfs   /tmp    defaults,noatime        0       0
++ tmpfs   /tmp    tmpfs   defaults,noatime        0       0
+ *参考 [#g9c50539]
+ -http://unixlife.jp/unixlife/linux/sys-fstab.jsp

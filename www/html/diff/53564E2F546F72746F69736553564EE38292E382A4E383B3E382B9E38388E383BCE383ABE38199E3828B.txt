@@ -1,0 +1,86 @@
+ *目標 [#f0609b9a]
+ -TortoiseSNVをインストールする
+ -リポジトリにデータをインポートする
+ -リポジトリからデータをチェックアウトする
+ 
+ *手順 [#l4edf917]
+ **TortoiseSVNをダウンロードする [#t0257448]
+ +以下のサイトから プロジェクトツール->Download を選択する
+ --http://tortoisesvn.tigris.org/
+ +TortoiseSVN 32-Bit を選択してmsiファイルをダウンロードする
+ --TortoiseSVN-1.6.15.21042-win32-svn-1.6.16.msi（2011-04-27時点）
+ 
+ **TortoiseSVNをインストールする [#i43e4306]
+ +ダウンロードしたmsiファイルを実行する
+ +Next、Install、Finishをクリックしていく
+ ++途中、License Agreement で「I accept the terms in the License Agreement」を選択する（もちろんライセンスに同意する場合のみ）
+ +最後の restart 要求は状況に応じてYes、Noを選択する
+ 
+ #ref(TortoiseSVNインストール00.JPG,center,70%)
+-
+ #ref(TortoiseSVNインストール01.JPG,center,70%)
+-
+ #ref(TortoiseSVNインストール02.JPG,center,70%)
+-
+ #ref(TortoiseSVNインストール03.JPG,center,70%)
+-
+ #ref(TortoiseSVNインストール04.JPG,center,70%)
+-
+ #ref(TortoiseSVNインストール05.JPG,center,70%)
+-
+ #ref(TortoiseSVNインストール06.JPG,center,70%)
+ 
+ **リポジトリにデータをインポートする [#z5a61969]
+ バージョン管理下にないデータをリポジトリに登録します。
+ 
+ ここでは、次のディレクトリ構成のうちディレクトリ Sample\ をリポジトリ '''SVNルート'''/documents/trunk/ に登録します。
+ -c:\Users\fukuchi\Documents\Sample\Sample.txt
+ 
+ +登録したいディレクトリの''一階層上のディレクトリ''で右クリック後 TortoiseSVN->Import を選択する
+ --ここではc:\Users\fukuchi\Documents\
+ +URL of repository に「svn://localhost/documents/trunk」を設定する
+ --「localhost」部は別端末からアクセスする場合ホスト名やIPアドレス
+ +念のため ... を選択して Repository Browser を確認する
+ ++OK を選択して元に戻る
+ +Import message に適当なコメントを入力して OK を選択する
+ +登録したいディレクトリ以下がAddingされたのを確認して OK を選択する
+ 
+ #ref(svnインポート00.JPG,center,70%)
+-
+ #ref(svnインポート01.JPG,center,70%)
+-
+ #ref(svnインポート02.JPG,center,70%)
+-
+ #ref(svnインポート03.JPG,center,70%)
+-
+ #ref(svnインポート04.JPG,center,70%)
+ 
+ **リポジトリからデータをチェックアウトする [#d7ffe80c]
+ 
+ リポジトリに登録したデータをバージョン管理下のデータとしてチェックアウトします。
+ 
+ ここでは次のディレクトリに先に登録した Sample\ ディレクトリをチェックアウトします（ので、インポート済みのディレクトリは一度削除してください。）
+ -c:\Users\fukuchi\Documents\
+ 
+ +エクスプロラの Documents\ で右クリックする
+ +URL of repository 右の ... を選択する
+ ++先にインポートした '''SNVルート'''/documents/trunk/Sample をクリックして OK を選択する
+ +Checkout directory を確認して OK を選択する
+ +先にインポートしたデータがAddedされたのを確認して OK を選択する
+ 
+ #ref(svnチェックアウト00.JPG,center,70%)
+-
+ #ref(svnチェックアウト01.JPG,center,70%)
+-
+ #ref(svnチェックアウト02.JPG,center,70%)
+-
+ #ref(svnチェックアウト03.JPG,center,70%)
+-
+ #ref(svnチェックアウト04.JPG,center,70%)
+ 
+ すると c:\Users\fukuchi\Documents\Sample\Sample.txt が作成されます。
+ 
+ #ref(svnチェックアウト05.JPG,center,70%)
+ 
+ *参考 [#g04e4a6a]
+ -http://www.gside.org/Gentoo/subversion/subversion_client2.html

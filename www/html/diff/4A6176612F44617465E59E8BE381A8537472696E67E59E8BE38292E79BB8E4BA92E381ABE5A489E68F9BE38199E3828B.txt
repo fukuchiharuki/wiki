@@ -1,0 +1,39 @@
+-*関連 [#w3482d5e]
++*キーワード [#w3482d5e]
+ -Java
+ -java.util.Date
++
++*関連 [#r5e9dc92]
+ -[[Java/前週や前月の開始日と終了日を計算する]]
+ 
+ *概要 [#x84f4395]
+ Date型のオブジェクトをString型に、またString型のオブジェクトをDate型に変換したい。
+ 
+ *方法 [#pba408d8]
+  /** フォーマット */
+  static public final String DATE_PATTERN ="yyyy-MM-dd'T'HH:mm:ss";
+  
+  /**
+   * Date型のオブジェクトをString型に変換します.
+   */
+  public String convertDate2String(java.util.Date date) {
+    return (new SimpleDateFormat(DATE_PATTERN)).format(date);
+  }
+  	
+  /**
+   * String型のオブジェクトをDate型に変換します.
+   */
+  public java.util.Date convertString2Date(String source) {
+    try {
+      return (new SimpleDateFormat(DATE_PATTERN)).parse(source);
+    } catch (ParseException e) {
+      return null;
+    }
+  }
+ 
+ *解説 [#v89a4da0]
+ SimpleDateFormatを使うとサクッと変換することができます。
+ 
+ *参考 [#b3f2566f]
+ -http://java.sun.com/javase/ja/6/docs/ja/api/java/text/SimpleDateFormat.html
+ -http://www.syboos.jp/java/doc/convert-string-date-by-simpledateformat.html

@@ -1,0 +1,34 @@
+#author("2017-04-13T03:40:04+00:00","default:haruki","haruki")
+* キーワード [#xf15266e]
+- Docker for Windows
+- volume
+- mount
+
+* 関連 [#r6f04915]
+- [[Docker/Dockerで立ち上げたMySQLサーバーに接続する]]
+
+* 現象 [#u45d215a]
+
+Git Bash上でDockerコンテナを上げるときにボリュームをマウントしたい。ができない。
+
+ $ winpty docker run -it -v /c/path/to/dir:/path/to/dir --rm --link mysqld:dbserver mysql bash
+ docker: Error response from daemon: invalid bind mount spec "/C/path/to/dir;C:\\Program Files\\Git\\path\\to\\dir": invalid volume specification: '/C/path/to/dir;C:\Program Files\Git\path\to\dir': invalid mount config for type "bind": invalid mount path: '\Program Files\Git\path\to\dir' mount path must be absolute.
+ See 'docker run --help'.
+
+* 原因 [#d221f4ea]
+
+Git Bash(MSYS)から実行しているからか、パスの指定が正しくできていない。
+
+* 対策 [#qb986666]
+
+パスの指定を『//』からはじめる。
+
+ $ winpty docker run -it -v //c/path/to/dir://path/to/dir --rm --link mysqld:dbserver mysql bash
+
+* 備考 [#f59dd4a3]
+
+なお、Docker for WindowsでCドライブをマウントできるように設定しておかないといけない。
+
+* 参考 [#r5e2ee74]
+- [[Basic volume mount fails with windows docker client against boot2docker  · Issue #12751 · docker/docker · GitHub>https://github.com/docker/docker/issues/12751]]
+- [[Can&#39;t share host drive (D) with Docker in Windows with a user with or without password · Issue #125 · docker/for-win · GitHub>https://github.com/docker/for-win/issues/125]]

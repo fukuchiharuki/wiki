@@ -1,0 +1,26 @@
+-*関連 [#af0e5dd2]
++*キーワード [#yf89266c]
+ -Tomcat
+ 
++*関連 [#af0e5dd2]
++-[[障害メモ/Tomcat関連]]
++
+ *現象 [#l4bf0adc]
+ Tomcatがいつの間にか停止してService Temporarily Unavailable.
+ 
+ *原因 [#bf8e26fe]
+ %%メモリが足りてないんじゃないかと思う。%%
+ 
+ サーバーメンテナンスがあったようで、おそらくリブートされました。
+ 
+ なので、MySQLも起動していなかった。
+ 
+ *対策 [#ebc4f15b]
+ MySQLとTomcatを立ち上げ直す。
+ 
+ ちなみにServersMan＠VPSではswaponできない。
+ 
+ *参考 [#e5e51c0b]
+ -http://www.gs.sjts.co.jp/v3/support/tuning_tomcat.html
+ -http://www.jajakarta.org/tomcat/faq/memory.html
+ -http://www.math.kobe-u.ac.jp/~kodama/tips-free-memory.html

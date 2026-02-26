@@ -1,0 +1,38 @@
+-*関連 [#sdcce41a]
++*キーワード [#fce9742f]
+ -Tomcat
+ 
++*関連 [#sdcce41a]
++-[[障害メモ/Tomcat関連]]
++
+ *現象 [#fb7401ec]
+ パラメータ数が512を超えると例外が起こる。
+  java.lang.IllegalStateException: Parameter count exceeded allowed maximum: 512
+ 
+ *原因 [#rbad0636]
+ Tomcatのそういう設定のため。
+ 
+ JavaのhashCode()の脆弱性を突いた攻撃を受けないように上限値を設定しているとのこと。
+  It was found that the Java hashCode() method implementation was susceptible
+  to predictable hash collisions. A remote attacker could use this flaw to
+  cause Tomcat to use an excessive amount of CPU time by sending an HTTP
+  request with a large number of parameters whose names map to the same hash
+  value. This update introduces a limit on the number of parameters processed
+  per request to mitigate this issue. The default limit is 512 for
+  parameters and 128 for headers. These defaults can be changed by setting
+  the org.apache.tomcat.util.http.Parameters.MAX_COUNT and
+  org.apache.tomcat.util.http.MimeHeaders.MAX_COUNT system properties.
+  (CVE-2011-4858)
+ 
+ *対策 [#l2f7d56d]
+ standalone.xmlのプロパティで上限値を設定できる(らしいです、試してません)。
+  Add the following system property to the configuration file(eg standalone.xml).
+  <property name="org.apache.tomcat.util.http.Parameters.MAX_COUNT" value="10000"/>
+ 
+ 参考ページの引用なので、詳しくはそちらを参照してください。~
+ (古い実装にはstandalone.xmlがないみたいね、どこに書いたらいいのかしら)
+ 
+ *参考 [#b93bfae0]
+ -https://rhn.redhat.com/errata/RHSA-2012-0475.html
+ -http://www.nanajo.com/blog/hogex/?p=333
+ -https://community.jboss.org/message/727096

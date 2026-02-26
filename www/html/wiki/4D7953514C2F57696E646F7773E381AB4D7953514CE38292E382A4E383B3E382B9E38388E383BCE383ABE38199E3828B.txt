@@ -1,0 +1,110 @@
+*目標 [#af33e7d8]
+-MySQLをインストールする
+-サーバを起動する
+-サーバ環境を整える
+
+*手順 [#j599c75c]
+
+**インストールファイルをダウンロードする [#d5ddfb7e]
++次のサイトのダウンロード（GA）を選択する
+--http://www-jp.mysql.com/
++「MySQL Community Server」のDOWNLOADを選択する
++「Windows (x86, 32-bit), MSI Installer」のDownloadを選択する
++どこかのミラーの HTTP か FTP を選択してダウンロードする
+
+**MySQLをインストールする [#h5a5ea2c]
++ダウンロードしたインストールファイルを実行する
++Next、Install を選択していく
+++End-User License Agreement で「I accept the terms in the License Agreement」にチェックを入れる
+++Choose Setup Type で「Typical」を選択する
+++最後、「Launch the MySQL Instance Configuration Wizard」のチェックを外す
+
+#ref(MySQLインストール00.JPG,center,70%)
+#ref(MySQLインストール01.JPG,center,70%)
+#ref(MySQLインストール02.JPG,center,70%)
+#ref(MySQLインストール03.JPG,center,70%)
+#ref(MySQLインストール04.JPG,center,70%)
+#ref(MySQLインストール05.JPG,center,70%)
+#ref(MySQLインストール06.JPG,center,70%)
+#ref(MySQLインストール07.JPG,center,70%)
+
+***環境変数を追加する [#s4327132]
+次の環境変数を追加します（デフォルト設定のままインストールした場合。）
+:変数名|PATH
+:変数値|C:\Program Files\MySQL\MySQL Server 5.5\bin
+
+**サーバ設定する [#u587c824]
+
+端末をMySQLサーバとして使用する場合次の設定を続けます。
+
++次のexeファイルを実行する
+--C:\Program Files\MySQL\MySQL Server 5.5\bin\MySQLInstanceConfig.exe
++Next、Execute、Finishを選択していく
+++configuration type に「Detailed Configuration」を選択する
+++server type に「Developer Machine」を選択する
+---メモリ使用量の選択→小さくする
+++database usage に「Multifunctional Database」を選択する
+---データベースエンジンへの最適化→いろいろ使う
+++InnoDB Tablespace Settings はデフォルトのまま Next を選択する
+++approximate number に「Decision Support(DSS)/OLAP」を選択する
+---接続量の見積もり→少ない
+++networking options の「Enable TCP/IP Networking」にチェックを入れる
++++外部端末から接続する場合「Add firewall exception for this port」にチェックを入れる
+++default character set に「Best Support For Multilingualism」を選択する
+---日本語を使いたいのでUnicodeを選択する
+++Windows options の「Install As Windows Service」にチェックを入れる
+---サービスとしてインストールするか→自動起動する
+++security options の「Modify Security Setting」にチェックを入れる
++++rootのパスワードを2箇所に入力する
+
+#ref(MySQL設定00.JPG,center,70%)
+#ref(MySQL設定01.JPG,center,70%)
+#ref(MySQL設定02.JPG,center,70%)
+#ref(MySQL設定03.JPG,center,70%)
+#ref(MySQL設定04.JPG,center,70%)
+#ref(MySQL設定05.JPG,center,70%)
+#ref(MySQL設定06.JPG,center,70%)
+#ref(MySQL設定07.JPG,center,70%)
+#ref(MySQL設定08.JPG,center,70%)
+#ref(MySQL設定09.JPG,center,70%)
+#ref(MySQL設定10.JPG,center,70%)
+#ref(MySQL設定11.JPG,center,70%)
+
+***サーバを起動する [#p7cd2f0d]
+先の手順で既に起動してしまいますのでここでは起動確認してみましょう。
+ >mysqladmin -u root -p ping
+ Enter password: ****
+ mysqld is alive
+上記のように表示されたらOKです。
+
+**サーバ環境を整える [#c928bfc4]
+外部端末から接続するためのデータベースとユーザを追加します。
+
+***データベースを作成する [#gadb50a2]
+MySQLに接続します（ローカルで。）
+ >mysql -u root -p 
+ Enter password: ****
+データベース（テーブルのセット）を作成します。
+ mysql> CREATE DATABASE SandBox; 
+ここでは練習用のデータベースとして「SandBox」と名前をつけました。
+
+***ユーザを追加する [#pc8735b8]
+外部端末から接続するためのユーザを追加します。
+ mysql> GRANT ALL PRIVILEGES ON SandBox.* TO 'fukuchi'@'%' IDENTIFIED BY 'fukuchi';
+ mysql> flush privileges;
+
+いちどMySQLからログアウトしてユーザが有効か確認してみましょう。
+ mysql> quit;
+ Bye
+ 
+ >mysql -h 127.0.0.1 -u fukuchi -p SandBox
+ Enter password: *******
+ mysql>
+
+**おまけ [#v5ddda1d]
+プロンプトからMySQLにログインする際には文字コードを指定する必要があります。
+ >mysql -h 127.0.0.1 -u fukuchi -p SandBox --default-character-set=sjis
+インタフェースは sjis を使っていますよ、の合図です。
+
+*参考 [#bc8e8f1f]
+-http://linuxserver.jp/%E3%82%B5%E3%83%BC%E3%83%90%E6%A7%8B%E7%AF%89/DB/MySQL/%E5%A4%96%E9%83%A8%E6%8E%A5%E7%B6%9A%E8%A8%B1%E5%8F%AF%E8%A8%AD%E5%AE%9A.php

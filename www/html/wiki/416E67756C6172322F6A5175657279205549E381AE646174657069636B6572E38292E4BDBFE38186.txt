@@ -1,0 +1,104 @@
+* キーワード [#zdd5284f]
+- Angular2
+- jQuery UI
+- datepicker
+
+* したいこと [#sad4a558]
+
+Angular2で作るページにjQuery UIのdatepickerを置きたい。
+
+* どうやって [#z7a636d5]
+
+** 用意するもの [#pc788845]
+
+- index.html
+- datepicker用のDirective
+- 使う側のテンプレート
+
+** index.html [#f365dc90]
+
+   <script src="assets/bracket/js/jquery.min.js"></script>
+   <script src="assets/bracket/js/jquery-ui.min.js"></script>
+
+あとたぶん、.cssも要るような気がする。
+
+** datepicker用のDirective [#j32971ea]
+
+ import {
+   Directive, OnInit, Output,
+   EventEmitter, ElementRef
+ } from '@angular/core';
+ 
+ declare var $: any;
+ 
+ @Directive({
+   selector: '[datepicker]'
+ })
+ export class DatepickerDirective {
+ 
+   @Output()
+   change: EventEmitter<string> = new EventEmitter<string>();
+ 
+   constructor(
+     private el: ElementRef
+   ) { }
+ 
+   ngOnInit() {
+     $(this.el.nativeElement).datepicker({
+       closeText: "閉じる",
+       currentText: "今日",
+       monthNames: [ "1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月" ],
+       monthNamesShort: [ "1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月" ],
+       dayNamesShort: [ "日","月","火","水","木","金","土" ],
+       dayNamesMin: [ "日","月","火","水","木","金","土" ],
+       weekHeader: "週",
+       dateFormat: "yy/mm/dd",
+       firstDay: 0, // Sunday will be first of weeks
+       isRTL: false,
+       showMonthAfterYear: true,
+       yearSuffix: "年",
+       showButtonPanel: true,
+       onSelect: (dateText) => {
+         this.change.emit(dateText);
+       }
+     });
+   }
+ 
+ }
+
+大事なところは次。
+
+*** 外部ライブラリを使う [#f3d83ecf]
+
+ declare var $: any;
+
+jQueryでもいい。
+
+*** コンストラクタで要素を取得する [#a9825d58]
+
+   constructor(
+     private el: ElementRef
+   ) { }
+
+Directiveをつけた要素を取得できる。
+
+*** $(element).datepicker()を呼ぶ [#d3124e2e]
+
+   ngOnInit() {
+     $(this.el.nativeElement).datepicker({
+
+生エレメントをjQueryに食わせて.datepicker()する。~
+index.htmlに書くだけだと、要素の後出しでdatepicker()が効いてないことになる。
+
+** 使う側のテンプレート [#ub4353a1]
+
+ <input datepicker type="text" placeholder="yyyy/MM/dd">
+
+inputにDirective（「datepicker」）をくっつける。
+
+* ノート [#ta9a79aa]
+
+datepickerに限らず、この方法でjQueryのいろいろができる。
+
+* 参考 [#v5eca831]
+- [[jQuery in Angular2 not working - Stack Overflow>http://stackoverflow.com/questions/36869659/jquery-in-angular2-not-working]]

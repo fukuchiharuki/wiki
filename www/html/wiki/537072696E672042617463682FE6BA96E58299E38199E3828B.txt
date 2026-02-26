@@ -1,0 +1,31 @@
+*目標 [#u111e4f8]
+-開発環境を整える
+-テンプレートプログラムを実行する
+
+*手順 [#s315ded5]
+**STSを手に入れる [#f7946417]
+下記サイトからSTSを入手します。
+-http://www.springsource.com/developer/sts
+
+**テンプレートプロジェクトを作成する [#cecd42a1]
+下記サイトの Documentation->Getting Started を参考にします。
+-http://static.springsource.org/spring-batch/getting-started.html
+
++File->New->Other... からプロジェクトを作成します
+++SpringSource Tool Suite->Spring Template Project から
++++Simple Spring batch Project を選択します
+++適当な Project name をつけてプロジェクトを作成します
+
+**テンプレートプロジェクトを実行する [#df3ea958]
++Run->Run Configurations... から実行環境を設定します
+++左側 Java Application をダブルクリックして
+++右側 Main タブの Main class に次のクラスを設定します
+ org.springframework.batch.core.launch.support.CommandLineJobRunner
+++右側 Arguments タブの Program arguments に次を設定します
+ launch-context.xml job1
+++そのまま右下の Run してみます
++Console ビューで次の表示を確認します
+ <Job execution complete: ...
+
+*参考 [#jd591c6e]
+-[[概説 Springプロダクト(12) - Spring Batchで簡単にバッチを作る>http://journal.mycom.co.jp/articles/2010/07/14/spring12/002.html]]

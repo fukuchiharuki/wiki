@@ -1,0 +1,3 @@
+ちょっととりあえずメモ
+-http://gihyo.jp/dev/feature/01/wicket/0008
+-http://blog.eni.co.jp/tech/2009/09/wicket_02_confirm.html
