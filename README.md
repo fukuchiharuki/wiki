@@ -8,13 +8,13 @@ The primary goal is **structural correctness and semantic fidelity**,
 not perfect visual reproduction.
 
 ## Jekyll Runtime Environment (jekyll-now base)
-- `jekyll-now` is placed under `jekyll_site/`
-- Converted pages should be generated into `jekyll_site/_posts/`
-- Converted wiki images should be placed into `jekyll_site/images/wiki/`
+- This repository root is the Jekyll site home
+- Converted pages should be generated into `_posts/`
+- Converted wiki images should be placed into `images/wiki/`
 - Local setup script:
   - `./scripts/setup_jekyll_env.sh`
 - Local preview:
-  - `cd jekyll_site`
+  - `cd .`
   - `bundle exec jekyll serve --livereload`
 
 ## Scope
@@ -22,6 +22,7 @@ not perfect visual reproduction.
 - Output: Markdown files suitable for Jekyll
 - One Markdown file per PukiWiki page
 - Built-in PukiWiki pages are excluded from conversion targets
+- Pages whose names start with `:` are excluded from conversion targets
 
 ## High-Level Rules
 - Do NOT invent content
