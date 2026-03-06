@@ -10,6 +10,7 @@ not perfect visual reproduction.
 ## Jekyll Runtime Environment (jekyll-now base)
 - `jekyll-now` is placed under `jekyll_site/`
 - Converted pages should be generated into `jekyll_site/_posts/`
+- Converted wiki images should be placed into `jekyll_site/images/wiki/`
 - Local setup script:
   - `./scripts/setup_jekyll_env.sh`
 - Local preview:
@@ -91,7 +92,8 @@ Content here
     `<!-- TODO: original plugin here -->`
 - Exception for image display:
   - `#ref(...)` and `&ref(...);` should be converted to image embeds when the referenced attachment exists
-  - Preserve obvious display hints when possible (e.g. percentage width)
+  - Output format for images must be unified to Markdown: `![alt](url)`
+  - Ensure one blank line before and after each image line
   - If image resolution fails, retry resolution considering Unicode normalization differences (NFC/NFD), especially for Japanese voiced/semi-voiced characters
   - If the attachment cannot be resolved, emit a TODO comment instead of dropping it
 - Exception for navigation:
