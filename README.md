@@ -7,6 +7,15 @@ into Markdown files compatible with Jekyll.
 The primary goal is **structural correctness and semantic fidelity**,
 not perfect visual reproduction.
 
+## Jekyll Runtime Environment (jekyll-now base)
+- `jekyll-now` is placed under `jekyll_site/`
+- Converted pages should be generated into `jekyll_site/_posts/`
+- Local setup script:
+  - `./scripts/setup_jekyll_env.sh`
+- Local preview:
+  - `cd jekyll_site`
+  - `bundle exec jekyll serve --livereload`
+
 ## Scope
 - Input: Local PukiWiki pages written in PukiWiki markup
 - Output: Markdown files suitable for Jekyll
