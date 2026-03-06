@@ -21,6 +21,7 @@ not perfect visual reproduction.
 - Input: Local PukiWiki pages written in PukiWiki markup
 - Output: Markdown files suitable for Jekyll
 - One Markdown file per PukiWiki page
+- Built-in PukiWiki pages are excluded from conversion targets
 
 ## High-Level Rules
 - Do NOT invent content
@@ -116,6 +117,7 @@ Content here
 - Ask questions if assumptions are required
 - Do not optimize prematurely
 - For a fresh workspace, first generate `pukiwiki_page_inventory.csv`, then perform page conversion based on that inventory
+- Use `pukiwiki_builtin_pages.txt` to mark built-in pages, and exclude rows with `convert_target=false`
 
 ## Non-Goals
 - Perfect visual parity
