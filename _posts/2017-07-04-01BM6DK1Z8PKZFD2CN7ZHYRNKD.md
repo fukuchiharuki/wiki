@@ -1,0 +1,54 @@
+---
+title: "障害メモ/Visual Studio Codeでエスケープがアウトデントする"
+date: 2017-07-04T18:06:09+09:00
+last_modified_at: 2017-07-04T18:06:09+09:00
+---
+
+# キーワード
+- Visual Studio Code
+- ショートカット
+- ctrl-[
+- エスケープ
+- アウトデント
+
+# 現象
+
+&color(red){※ 2017-07-04時点では解決済みか？};
+
+拡張機能Vimを入れても「ctrl-[」でアウトデントしてしまう。
+
+Atomに続きお前もか！と思った。
+
+# 原因
+
+useCtrlKeysが無効になっているから。公式にちゃんと書いてありました。
+
+# 対策
+
+- ファイル > 基本設定 > ユーザー設定
+
+で次を打ち込んでおく。
+
+```
+// 既定の設定を上書きするには、このファイル内に設定を挿入します
+{
+  // 1 つのタブに相当するスペースの数。`editor.detectIndentation` がオンの場合、この設定はファイル コンテンツに基づいて上書きされます。
+  "editor.tabSize": 2,
+  // 有効にすると、ファイルの保存時に末尾の空白をトリミングします。
+  "files.trimTrailingWhitespace": true,
+  // Enable some vim ctrl key commands that override otherwise common operations, like ctrl+c
+  "vim.useCtrlKeys": true,
+  "editor.cursorStyle": "block"
+}
+```
+
+必要なのは次だけです。
+- vim.useCtrlKeys
+- editor.cursorStyle
+
+# 備考
+
+一番下のeditor.cursorStyleは動的に入力モードに応じて動的に切り替わる。これがないと表示がずっとブロックのままになってしまうみたいで、気持ち悪いけど残す。
+
+# 参考
+- [GitHub - VSCodeVim/Vim: Vim for Visual Studio Code](https://github.com/VSCodeVim/Vim)
