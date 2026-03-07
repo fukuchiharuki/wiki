@@ -159,19 +159,33 @@ def table_lines(table_rows: List[Tuple[List[str], bool]], inventory: Dict[str, D
     return out
 
 
-def parse_definition_row(line: str) -> List[str]:
+def parse_definition_row(line: str) -> Tuple[str, str]:
     stripped = line.strip()
     if not stripped.startswith(":") or "|" not in stripped:
-        return []
+        return "", ""
     term, desc = stripped[1:].split("|", 1)
-    return [term.strip(), desc.strip()]
+    return term.strip(), desc.strip()
 
 
-def definition_lines(rows: List[List[str]], inventory: Dict[str, Dict[str, str]]) -> List[str]:
+def convert_definition_desc(desc: str, inventory: Dict[str, Dict[str, str]]) -> str:
+    if not desc:
+        return ""
+    parts = desc.split("\n")
+    converted = []
+    for idx, part in enumerate(parts):
+        line = convert_inline(part, inventory)
+        # 複数行説明は改行が潰れないように明示的に繋ぐ
+        if idx < len(parts) - 1 and line and not line.endswith("<br>"):
+            line += "<br>"
+        converted.append(line)
+    return "".join(converted)
+
+
+def definition_lines(rows: List[Tuple[str, str]], inventory: Dict[str, Dict[str, str]]) -> List[str]:
     out = ["<dl>"]
     for term, desc in rows:
         out.append("<dt>{}</dt>".format(convert_inline(term, inventory)))
-        out.append("<dd>{}</dd>".format(convert_inline(desc, inventory)))
+        out.append("<dd>{}</dd>".format(convert_definition_desc(desc, inventory)))
     out.append("</dl>")
     return out
 
@@ -274,16 +288,40 @@ def convert_page(page: str, inventory: Dict[str, Dict[str, str]], image_dir: pat
             ensure_blank_after(out)
             in_code = False
 
-        def_row = parse_definition_row(stripped)
-        if def_row:
-            rows = [def_row]
+        def_term, def_desc = parse_definition_row(stripped)
+        if def_term:
+            rows: List[Tuple[str, str]] = []
             j = i + 1
+            desc_lines = [def_desc] if def_desc else []
             while j < len(lines):
-                next_row = parse_definition_row(lines[j].rstrip("\n"))
-                if not next_row:
+                next_line = lines[j].rstrip("\n")
+                next_term, next_desc = parse_definition_row(next_line)
+                if next_term:
+                    rows.append((def_term, "\n".join(desc_lines)))
+                    def_term, def_desc = next_term, next_desc
+                    desc_lines = [def_desc] if def_desc else []
+                    j += 1
+                    continue
+                if next_line.strip() == "":
                     break
-                rows.append(next_row)
+                if next_line.startswith((" ", "\t")):
+                    break
+                if parse_table_row(next_line)[0]:
+                    break
+                if re.match(r"^#\S", next_line):
+                    break
+                if re.match(r"^&[A-Za-z0-9_]+\(.*\);$", next_line):
+                    break
+                heading = re.match(r"^(\*{1,3})\s*(.*?)\s*(\[#.*\])?\s*$", next_line)
+                if heading and heading.group(2):
+                    break
+                if re.match(r"^(-+)\s*(.*)$", next_line):
+                    break
+                if re.match(r"^(\++)\s*(.*)$", next_line):
+                    break
+                desc_lines.append(next_line.strip())
                 j += 1
+            rows.append((def_term, "\n".join(desc_lines)))
             ensure_blank_before(out)
             out.extend(definition_lines(rows, inventory))
             ensure_blank_after(out)
