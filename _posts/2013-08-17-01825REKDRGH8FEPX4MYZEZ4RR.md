@@ -43,8 +43,13 @@ last_modified_at: 2013-08-17T18:07:15+09:00
 
 ### 環境変数を追加する
 次の環境変数を追加します（デフォルト設定のままインストールした場合。）
-:変数名|PATH
-:変数値|C:\Program Files\MySQL\MySQL Server 5.5\bin
+
+<dl>
+<dt>変数名</dt>
+<dd>PATH</dd>
+<dt>変数値</dt>
+<dd>C:\Program Files\MySQL\MySQL Server 5.5\bin</dd>
+</dl>
 
 ## サーバ設定する
 

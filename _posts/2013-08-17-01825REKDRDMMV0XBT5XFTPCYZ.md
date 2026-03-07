@@ -27,8 +27,13 @@ history -c
 ```
 
 # 解説
-:.bach_logout|ログアウト時に実行するスクリプト
-:history -c|コマンドの実行履歴をクリアする
+
+<dl>
+<dt>.bach_logout</dt>
+<dd>ログアウト時に実行するスクリプト</dd>
+<dt>history -c</dt>
+<dd>コマンドの実行履歴をクリアする</dd>
+</dl>
 
 # 参考
 - http://itpro.nikkeibp.co.jp/article/COLUMN/20060227/230795/

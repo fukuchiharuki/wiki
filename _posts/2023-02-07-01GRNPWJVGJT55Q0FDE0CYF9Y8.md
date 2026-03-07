@@ -102,14 +102,23 @@ class Detail(
 
 ### @OneToManyの設定
 
-: mappedBy | 伝票側エンティティが明細側エンティティから何として関連しているか
-: cascade | 明細側エンティティにカスケードする永続化オペレーション
-: orphanRemoval | リレーションから削除した明細側エンティティに削除操作を適用する
+<dl>
+<dt>mappedBy</dt>
+<dd>伝票側エンティティが明細側エンティティから何として関連しているか</dd>
+<dt>cascade</dt>
+<dd>明細側エンティティにカスケードする永続化オペレーション</dd>
+<dt>orphanRemoval</dt>
+<dd>リレーションから削除した明細側エンティティに削除操作を適用する</dd>
+</dl>
 
 ### @ManyToOne (@JoinColumn)の設定
 
-: name | 伝票側エンティティを指定する明細側エンティティ上の外部キー
-: referencedColumnName | その外部キーに該当する伝票側エンティティの主キー
+<dl>
+<dt>name</dt>
+<dd>伝票側エンティティを指定する明細側エンティティ上の外部キー</dd>
+<dt>referencedColumnName</dt>
+<dd>その外部キーに該当する伝票側エンティティの主キー</dd>
+</dl>
 
 ### 伝票側に@Versionを設定
 
@@ -168,8 +177,12 @@ class DealEvent(
 
 伝票・明細、集約等（１対多）の関係、明細側のエンティティと同じ。
 
-: name | 親側エンティティを指定する子側エンティティ上の外部キー
-: referencedColumnName | その外部キーに該当する伝票側エンティティの主キー
+<dl>
+<dt>name</dt>
+<dd>親側エンティティを指定する子側エンティティ上の外部キー</dd>
+<dt>referencedColumnName</dt>
+<dd>その外部キーに該当する伝票側エンティティの主キー</dd>
+</dl>
 
 ## 永続化処理
 
@@ -223,8 +236,12 @@ class Details(
 
 イベントやログ、ジョブ等（多対１）の関係、子側のエンティティと同じ。
 
-: name | ターゲット側エンティティを指定するカーソル側エンティティ上の外部キー
-: referencedColumnName | その外部キーに該当するターゲット側エンティティの主キー
+<dl>
+<dt>name</dt>
+<dd>ターゲット側エンティティを指定するカーソル側エンティティ上の外部キー</dd>
+<dt>referencedColumnName</dt>
+<dd>その外部キーに該当するターゲット側エンティティの主キー</dd>
+</dl>
 
 ## 永続化処理
 
@@ -283,8 +300,12 @@ class Post(
 
 ### @OneToOne (@JoinTable, JoinColumn)の設定
 
-: joinColumns | ユーザー側エンティティを指定する関連テーブルの外部キー（name）と、ユーザー側エンティティの主キー（referencedColumnName）
-: inverseJoinColumns | 記事側エンティティを指定する関連テーブルの外部キー（name）と、記事側エンティティの主キー（referencedColumnName）
+<dl>
+<dt>joinColumns</dt>
+<dd>ユーザー側エンティティを指定する関連テーブルの外部キー（name）と、ユーザー側エンティティの主キー（referencedColumnName）</dd>
+<dt>inverseJoinColumns</dt>
+<dd>記事側エンティティを指定する関連テーブルの外部キー（name）と、記事側エンティティの主キー（referencedColumnName）</dd>
+</dl>
 
 ## 永続化処理
 

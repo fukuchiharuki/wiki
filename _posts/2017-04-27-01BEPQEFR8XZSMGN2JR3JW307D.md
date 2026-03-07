@@ -12,10 +12,12 @@ last_modified_at: 2017-04-27T12:32:05+09:00
 
 実行環境ごと(本番、ステージング、開発)にログファイルの出力先を変えたい。
 
-|環境|ログファイル|h
-|本番|/home/hoge/log/application.log|
-|ステージング|/home/hogestg/log/stg.application.log|
-|開発|/home/hogedev/log/dev.application.log|
+| 環境 | ログファイル |
+| --- | --- |
+| 本番 | /home/hoge/log/application.log |
+| ステージング | /home/hogestg/log/stg.application.log |
+| 開発 | /home/hogedev/log/dev.application.log |
+
 など。
 
 せっかく同じ構成の環境を用意するのにディレクトリ名を変えなくてもよくないかな。と思ったりもするけど、なぜかそう求められたりすることは多い。
