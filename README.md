@@ -76,6 +76,7 @@ Content here
 ### Inline Formatting
 - `''italic''`     → `*italic*`
 - `'''bold'''`     → `**bold**`
+- `&br;` / `&br` / `&br()` / `&br();` → `<br>`
 - `%%%` or similar inline styles → preserve text, drop styling if unclear
 
 ### Code Blocks
