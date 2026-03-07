@@ -1,0 +1,49 @@
+# PukiWiki Built-in Pages
+## English bundle baseline (from wiki.en.tgz) - Present in current data
+:config
+:config/plugin/attach/mime-type
+:config/plugin/tracker/default
+:config/plugin/tracker/default/form
+:config/plugin/tracker/default/list
+:config/plugin/tracker/default/page
+BracketName
+FrontPage
+Help
+InterWiki
+InterWikiName
+InterWikiSandBox
+MenuBar
+PHP
+PukiWiki
+RecentChanges
+SandBox
+WikiEngines
+WikiName
+WikiWikiWeb
+YukiWiki
+
+## English bundle baseline (from wiki.en.tgz) - Missing from current data
+:config/plugin/referer/config
+About
+InterWikiTechnical
+PluginHelp
+
+## Likely Japanese-edition specific built-in pages (heuristic)
+:config/PageReading
+:config/PageReading/dict
+:config/plugin
+:config/plugin/tracker
+AutoTicketLinkName
+FormattingRules
+PukiWiki/1.4
+PukiWiki/1.4/Manual
+PukiWiki/1.4/Manual/Plugin
+PukiWiki/1.4/Manual/Plugin/A-D
+PukiWiki/1.4/Manual/Plugin/E-G
+PukiWiki/1.4/Manual/Plugin/H-K
+PukiWiki/1.4/Manual/Plugin/L-N
+PukiWiki/1.4/Manual/Plugin/O-R
+PukiWiki/1.4/Manual/Plugin/S-U
+PukiWiki/1.4/Manual/Plugin/V-Z
+PukiWiki/再設置時のパーミション設定
+RecentDeleted
