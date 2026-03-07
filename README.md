@@ -86,7 +86,19 @@ Content here
 
 ### Tables
 - Convert simple tables to Markdown tables
+- For table-like rows (`|...|`), always prepend an empty header row and a separator row
+  - Example:
+    - `| a | b |` becomes:
+      - `|  |  |`
+      - `| --- | --- |`
+      - `| a | b |`
 - If table structure is complex, preserve as-is using fenced blocks
+
+### Definition Terms
+- Convert definition rows (`:term|description`) to HTML definition lists
+  - Consecutive definition rows must be grouped in one `<dl>`
+  - Output format:
+    - `<dl><dt>term</dt><dd>description</dd>...</dl>`
 
 ### Plugins / Macros
 - PukiWiki plugins (e.g. `#ref`, `#include`, `#ls`)
