@@ -12,7 +12,6 @@ Angular2のお勉強メモです。
 
 気がついたらAngularJS、Angular2、React、Vueなどが台頭していて。。これは大変だ！時代がどんどん進んでいる！！で、結局Angular2を勉強することにしました。
 
-## はじめてのAngular2 配下ページ
 - [はじめてのAngular2/AtomでTypeScript]({% post_url 2016-07-02-01APNBASPRBTHJV7KK04M7JZF4 %})
 - [はじめてのAngular2/Componentを作る・利用する]({% post_url 2016-07-14-01AQM5J44RGTQQMRBQNT8THQWR %})
 - [はじめてのAngular2/EclipseでTypeScript]({% post_url 2016-07-02-01APNBDHK83JZZKSS77MAE6EJ8 %})

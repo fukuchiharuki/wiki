@@ -6,7 +6,6 @@ last_modified_at: 2017-08-03T11:41:42+09:00
 
 [AngularJS]({% post_url 2017-08-03-01BPJZGYCR5S6RSJEMZ0B4FVEM %})もあるよ。
 
-## Angular2 配下ページ
 - [Angular2/Google Chartsを使う]({% post_url 2016-10-26-01AZZYE0J0SBME1FJADN3JSTJK %})
 - [Angular2/Windowsに開発環境を作る]({% post_url 2016-11-04-01B0PDFEA861TYSJM9MX8V6EBA %})
 - [Angular2/jQuery UIのdatepickerを使う]({% post_url 2016-10-26-01B006EEKRT6YQ15WC607FKY7Z %})

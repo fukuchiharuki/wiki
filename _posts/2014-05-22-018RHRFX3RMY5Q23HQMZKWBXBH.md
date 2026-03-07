@@ -4,7 +4,6 @@ date: 2014-05-22T19:44:11+09:00
 last_modified_at: 2014-05-22T19:44:11+09:00
 ---
 
-## 設計パターン 配下ページ
 - [設計パターン/イミュータブル]({% post_url 2015-06-26-019RPM47V86E5DHZDD4CXKN9CV %})
 - [設計パターン/スタティックファクトリメソッド]({% post_url 2014-05-26-018RVBGNP839YZFXNFXCAFWDQM %})
 - [設計パターン/ビルダー]({% post_url 2014-05-27-018RXJBHQGBM4SCF0RJPXYEH1D %})
