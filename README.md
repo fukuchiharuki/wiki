@@ -81,12 +81,15 @@ Content here
 ### Code Blocks
 - PukiWiki preformatted blocks
   → fenced code blocks using triple backticks
-- Preserve original indentation and content
+- Preserve content exactly as written (no syntax conversion inside code blocks)
 - Ensure one blank line before and after each fenced code block
+- Once a line is treated as code-block content, do not apply any conversion rules in this document to that line
 
 ### Tables
 - Convert simple tables to Markdown tables
-- For table-like rows (`|...|`), always prepend an empty header row and a separator row
+- For table-like rows (`|...|`), if a row ends with `|h` (or `|h|`), treat that row as the header row
+  - The trailing `h` marker is not part of header cell content
+- If no header marker row exists, prepend an empty header row and a separator row
   - Example:
     - `| a | b |` becomes:
       - `|  |  |`
