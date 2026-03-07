@@ -82,6 +82,7 @@ Content here
 - PukiWiki preformatted blocks
   → fenced code blocks using triple backticks
 - Preserve original indentation and content
+- Ensure one blank line before and after each fenced code block
 
 ### Tables
 - Convert simple tables to Markdown tables
