@@ -100,6 +100,7 @@ Content here
 ### Definition Terms
 - Convert definition rows (`:term|description`) to HTML definition lists
   - Consecutive definition rows must be grouped in one `<dl>`
+  - If description continues on following lines, include those lines in the same `<dd>` until the next definition row or a block boundary
   - Output format:
     - `<dl><dt>term</dt><dd>description</dd>...</dl>`
 
