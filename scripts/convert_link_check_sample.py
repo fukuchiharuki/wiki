@@ -212,6 +212,8 @@ def navi_lines(page: str, inventory: Dict[str, Dict[str, str]]) -> List[str]:
 def convert_inline(text: str, inventory: Dict[str, Dict[str, str]]) -> str:
     text = re.sub(r"'''(.*?)'''", r"**\1**", text)
     text = re.sub(r"''(.*?)''", r"*\1*", text)
+    # PukiWiki line break plugin
+    text = re.sub(r"&br\(\);?|&br;|&br(?=[^A-Za-z0-9_]|$)", "<br>", text, flags=re.IGNORECASE)
     if text.endswith("~"):
         text = text[:-1] + "<br>"
 
