@@ -112,7 +112,7 @@ def navi_lines(page: str, inventory: Dict[str, Dict[str, str]]) -> List[str]:
     children.sort()
     if not children:
         return ["<!-- TODO: #navi (no child pages found) -->"]
-    out = ["## " + page + " 配下ページ"]
+    out = []
     for child in children:
         out.append("- [{}]({})".format(child, post_url_expr(inventory[child]["converted_filename"])))
     return out
