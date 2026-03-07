@@ -13,6 +13,7 @@ JSPで一文字ずつsplitする方法です。
 ついでに&amp;shy;を挟みます。
 
 # 方法
+
 ```
 <c:set var="text" value="${longtext}" />
 <c:forEach var="str" items="<%=((String)pageContext.getAttribute(\"text\")).toCharArray() %>" ><c:out value="${str}" />&shy;</c:forEach>

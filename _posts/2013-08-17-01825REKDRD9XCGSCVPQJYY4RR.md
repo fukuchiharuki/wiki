@@ -14,10 +14,13 @@ last_modified_at: 2013-08-17T18:07:15+09:00
 
 # 方法
 ## インポート
+
 ```
 $ mysql --local-infile=1 -u ${user} -p${passwd} ${database} -e "LOAD DATA LOCAL INFILE '${file}' REPLACE INTO TABLE ${table} FIELDS TERMINATED BY '\t'
 ```
+
 ## エクスポート
+
 ```
 $ mysql -u ${user} -p${passwd} ${database} -e "SELECT * FROM ${table} INTO OUTFILE '${file}' FIELDS TERMINATED BY '\t'
 ```

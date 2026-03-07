@@ -10,6 +10,7 @@ last_modified_at: 2013-08-17T18:07:15+09:00
 
 # 現象
 JBoss (Tomcat)を起動しようとすると次のエラーになる。
+
 ```
 ERROR [AbstractKernelController] Error installing to Start: （どうのこうの）
 java.rmi.server.ExportException: Port already in use: 1090; nested exception is: 
@@ -20,6 +21,7 @@ java.rmi.server.ExportException: Port already in use: 1090; nested exception is:
 
 # 対策
 まずnetstatでポート番号を使っているプロセスを特定する。
+
 ```
 > netstat -no
 

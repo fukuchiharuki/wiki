@@ -64,16 +64,19 @@ stash@{0}: WIP on master: 554699c refactor: 分かりづらいメソッド名を
 
 ## 適用
 いくつか退避した場合、退避した変更を指定することができる。
+
 ```
 $ git stash pop stash@{N}
 ```
 
 退避した変更を適用したときに、これを消さないでおくことができる。
+
 ```
 $ git stash apply stash@{N}
 ```
 
 退避した変更を適用せずに、これを消すことができる。
+
 ```
 $ git stash drop stash@{N}
 ```

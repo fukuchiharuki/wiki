@@ -15,11 +15,13 @@ last_modified_at: 2013-08-17T18:07:15+09:00
 
 # 方法
 .bash_logout に
+
 ```
 $ vi ~/.bash_logout
 ```
 
 次の行を追加します。
+
 ```
 history -c
 ```

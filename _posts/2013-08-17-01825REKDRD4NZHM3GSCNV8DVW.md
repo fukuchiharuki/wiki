@@ -15,6 +15,7 @@ last_modified_at: 2013-08-17T18:07:15+09:00
 Date型のオブジェクトをString型に、またString型のオブジェクトをDate型に変換したい。
 
 # 方法
+
 ```
 /** フォーマット */
 static public final String DATE_PATTERN ="yyyy-MM-dd'T'HH:mm:ss";

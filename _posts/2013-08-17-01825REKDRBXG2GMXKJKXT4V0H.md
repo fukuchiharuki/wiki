@@ -11,6 +11,7 @@ last_modified_at: 2013-08-17T18:07:15+09:00
 
 # 現象
 php で mb_strlen() が使えない。
+
 ```
 Fatal error: Call to undefined function mb_strlen() in どこどこ on line どこどこ
 ```
@@ -20,6 +21,7 @@ php-mbstring のインストールができていない。
 
 # 対策
 yum でサクッとインストールする。
+
 ```
 # yum install php-mbstring
 ```

@@ -96,11 +96,13 @@ last_modified_at: 2013-08-17T18:07:15+09:00
 
 ### サーバを起動する
 先の手順で既に起動してしまいますのでここでは起動確認してみましょう。
+
 ```
 >mysqladmin -u root -p ping
 Enter password: ****
 mysqld is alive
 ```
+
 上記のように表示されたらOKです。
 
 ## サーバ環境を整える
@@ -108,24 +110,30 @@ mysqld is alive
 
 ### データベースを作成する
 MySQLに接続します（ローカルで。）
+
 ```
 >mysql -u root -p 
 Enter password: ****
 ```
+
 データベース（テーブルのセット）を作成します。
+
 ```
 mysql> CREATE DATABASE SandBox; 
 ```
+
 ここでは練習用のデータベースとして「SandBox」と名前をつけました。
 
 ### ユーザを追加する
 外部端末から接続するためのユーザを追加します。
+
 ```
 mysql> GRANT ALL PRIVILEGES ON SandBox.* TO 'fukuchi'@'%' IDENTIFIED BY 'fukuchi';
 mysql> flush privileges;
 ```
 
 いちどMySQLからログアウトしてユーザが有効か確認してみましょう。
+
 ```
 mysql> quit;
 Bye
@@ -137,9 +145,11 @@ mysql>
 
 ## おまけ
 プロンプトからMySQLにログインする際には文字コードを指定する必要があります。
+
 ```
 >mysql -h 127.0.0.1 -u fukuchi -p SandBox --default-character-set=sjis
 ```
+
 インタフェースは sjis を使っていますよ、の合図です。
 
 # 参考

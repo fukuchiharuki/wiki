@@ -19,12 +19,14 @@ qmail の smtp 接続がめっちゃ遅くて困る。
 # 対策
 DNS の設定をする
 - /etc/resolv.conf
+
 ```
 nameserver (DNSサーバー)
 ```
 
 とにかくタイムアウトするようにしちゃうこともできる(1秒の試行を1回であきらめる)？
 - /etc/resolv.conf
+
 ```
 nameserver (なにか適当に)
 options timeout:1

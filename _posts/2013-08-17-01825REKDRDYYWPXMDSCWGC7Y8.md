@@ -14,6 +14,7 @@ last_modified_at: 2013-08-17T18:07:15+09:00
 
 # 現象
 mysqldが立ちあがらない。
+
 ```
 Starting MySQL..The server quit without updating PID file(***.pid).
 ```
@@ -23,6 +24,7 @@ Starting MySQL..The server quit without updating PID file(***.pid).
 
 ログを見ます。
 - mysql-error.log (設定にもよるが /etc/log/ あたりかと)
+
 ```
 130703  0:16:23 InnoDB: The InnoDB memory heap is disabled
 130703  0:16:23 InnoDB: Mutexes and rw_locks use GCC atomic builtins
@@ -45,6 +47,7 @@ InnoDB: mmap(4395630592 bytes) failed; errno 12
 メモリサイズ指定を小さくします。
 
 - /etc/my.cnf
+
 ```
 #innodb_buffer_pool_size = 4096M
 innodb_buffer_pool_size = 1024M

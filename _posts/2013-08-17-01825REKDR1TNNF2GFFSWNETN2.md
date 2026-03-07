@@ -13,9 +13,11 @@ AJP（Apache JServ Protocol）はクライアントがApacheを中継してAPサ
 
 ## 何が嬉しいのか
 クライアントがAPサーバにアクセスするとき通常次のようなURIを指定する。
+
 ```
 http://localhost:8080/Hoge/
 ```
+
 このうち「:8080」がポート番号を指定していて、APサーバは8080番ポートでクライアントからのアクセスを待ち受けていると分かる。
 
 このままサービスを公開するとどうなるか。
@@ -38,12 +40,14 @@ ProxyPass /Hoge/ ajp://localhost:8009/Hoge/
 ```
 
 httpdをリスタートする。
+
 ```
 # /etc/init.d/httpd restart
 ```
 
 ## 動作確認
 ブラウザで次のURIにアクセスする。
+
 ```
 http://（ドメイン名）/Hoge/
 ```

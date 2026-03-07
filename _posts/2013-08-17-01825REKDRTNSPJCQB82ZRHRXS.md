@@ -12,6 +12,7 @@ last_modified_at: 2013-08-17T18:07:15+09:00
 class属性やid属性からjQueryオブジェクトを引いたとき、そのオブジェクトが何者であるか調べたい。
 
 # 方法
+
 ```
 if ($(this).is('input')) {
   $(this).val('ほげ');

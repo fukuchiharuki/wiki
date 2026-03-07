@@ -13,16 +13,20 @@ last_modified_at: 2013-12-04T17:53:26+09:00
 
 # 方法
 - dir/sample.sh
+
 ```
 cd `dirname $0`
 ./echo.sh
 ```
+
 - dir/echo.sh
+
 ```
 echo echo
 ```
 
 次の実行結果を得ます。
+
 ```
 $./dir/sample.sh
 echo
@@ -35,4 +39,4 @@ $
 :$0|実行中のコマンド名(シェルスクリプト名)です。
 
 # 参考
-- [[[Shell] $(cd $(dirname $0) &amp;&amp; pwd) を理解する | それなりブログ>http://blog.kjirou.net/p/506]]
+- [[Shell] $(cd $(dirname $0) &amp;&amp; pwd) を理解する | それなりブログ](http://blog.kjirou.net/p/506)

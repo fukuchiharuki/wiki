@@ -10,6 +10,7 @@ last_modified_at: 2013-08-17T18:07:15+09:00
 
 # 現象
 jQueryにて次のコードでチェックボックスをオンにできない。
+
 ```
 $('#hoge').attr('checked', 'checked');
 ```
@@ -19,6 +20,7 @@ HTMLのチェックボックスタグに名前がないから。
 
 # 対策
 HTMLのチェックボックスタグに名前をつけてあげる。
+
 ```
 <input type="checkbox" name="hoge" id="hoge"></input>
 ```

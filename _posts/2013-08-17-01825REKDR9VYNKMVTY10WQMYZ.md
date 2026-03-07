@@ -15,6 +15,7 @@ last_modified_at: 2013-08-17T18:07:15+09:00
 ユーザを作成する。
 
 # 方法
+
 ```
 mysql> GRANT ALL PRIVILEGES ON データベース名.* TO 'ユーザー名'@'ホスト名' IDENTIFIED BY 'パスワード';
 mysql> flush privileges;

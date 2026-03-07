@@ -17,11 +17,13 @@ last_modified_at: 2015-08-29T15:27:43+09:00
 
 # 方法
 - index.xml
+
 ```
 <Label id="label1">I am Window 1</Label>
 ```
 
 - index.js
+
 ```
 $.label1.addEventListener('click', function() {
 	Ti.UI.createAlertDialog({title:'Click', message:'You clicked it.'}).show();

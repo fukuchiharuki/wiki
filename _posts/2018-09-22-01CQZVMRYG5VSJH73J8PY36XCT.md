@@ -13,6 +13,7 @@ last_modified_at: 2018-09-22T14:22:10+09:00
 
 # 方法
 sample.sh: 
+
 ```
 set -- `echo i1 i2 i3`
 while [ $# -ne 0 ]
@@ -23,6 +24,7 @@ done
 ```
 
 次の実行結果を得ます。
+
 ```
 $ ./sample.sh
 i1

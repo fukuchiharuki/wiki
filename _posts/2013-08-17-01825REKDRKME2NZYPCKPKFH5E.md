@@ -18,6 +18,7 @@ last_modified_at: 2013-08-17T18:07:15+09:00
 
 # 方法
 まずはこれだけ用意して、
+
 ```
 Calendar today = Calendar.getInstance();
 Calendar start = Calendar.getInstance();
@@ -26,6 +27,7 @@ today.setTime(new java.util.Date());
 ```
 
 ## 今週
+
 ```
 int diff = (today.get(Calendar.DAY_OF_WEEK) + 5) % 7;
 start.setTime(today.getTime());
@@ -35,6 +37,7 @@ end.add(Calendar.DATE, 6);
 ```
 
 ## 前週
+
 ```
 int diff = (today.get(Calendar.DAY_OF_WEEK) + 5) % 7 + 7;
 start.setTime(today.getTime());
@@ -44,6 +47,7 @@ end.add(Calendar.DATE, 6);
 ```
 
 ## 前々週
+
 ```
 int diff = (today.get(Calendar.DAY_OF_WEEK) + 5) % 7 + 7*2;
 start.setTime(today.getTime());
@@ -53,6 +57,7 @@ end.add(Calendar.DATE, 6);
 ```
 
 ## 今月
+
 ```
 int diff = (today.get(Calendar.DATE)) - 1;
 start.setTime(today.getTime());
@@ -63,6 +68,7 @@ end.add(Calendar.DATE, -1);
 ```
 
 ## 前月
+
 ```
 int diff = (today.get(Calendar.DATE)) - 1;
 start.setTime(today.getTime());
@@ -74,6 +80,7 @@ end.add(Calendar.DATE, -1);
 ```
 
 ## 前々月
+
 ```
 int diff = (today.get(Calendar.DATE)) - 1;
 start.setTime(today.getTime());
@@ -86,6 +93,7 @@ end.add(Calendar.DATE, -1);
 
 <br>
 最後に、
+
 ```
 start.set(Calendar.HOUR_OF_DAY, 0);
 start.set(Calendar.MINUTE, 0);

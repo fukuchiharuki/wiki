@@ -17,11 +17,13 @@ IEがIE7モードでページを表示してしまう。
 
 # 対策
 最新のモードで表示するように次のmetaタグを仕込んであげる。
+
 ```
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 ```
 
 JavaのWebアプリケーションならServletやJSPで次のように書ける。
+
 ```
 <% response.addHeader("X-UA-Compatible", "IE=edge,chrome=1"); %>
 ```

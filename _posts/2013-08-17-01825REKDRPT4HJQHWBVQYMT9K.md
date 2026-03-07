@@ -6,6 +6,7 @@ last_modified_at: 2013-08-17T18:07:15+09:00
 
 # 手順
 MySQLにログイン済みなら
+
 ```
 mysql> SHOW STATUS LIKE 'Threads%';
 +-------------------+--------+
@@ -19,6 +20,7 @@ mysql> SHOW STATUS LIKE 'Threads%';
 ```
 
 MySQLにログインしていないなら
+
 ```
 $ mysqladmin -uroot -p extended-status | grep Threads
 | Threads_cached                    | 0         |

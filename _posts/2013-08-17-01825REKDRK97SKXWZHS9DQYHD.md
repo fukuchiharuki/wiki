@@ -45,6 +45,7 @@ Tomcatをインストールしたディレクトリを /usr/local/tomcat/ とす
 
 # 動作確認
 ## Tomcatを起動する
+
 ```
 $ /usr/local/tomcat/bin/startup.sh
 ```
@@ -56,6 +57,7 @@ $ /usr/local/tomcat/bin/startup.sh
     - Hoge/
 
 ## ブラウザで次のURIにアクセスする
+
 ```
 http://localhost:8080/Hoge/
 ```

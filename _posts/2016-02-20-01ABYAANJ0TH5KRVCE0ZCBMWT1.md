@@ -14,6 +14,7 @@ GitHub（リモート）と連携するためのメモ。
 # セッティング
 
 ## ユーザー情報を設定する
+
 ```
 $ git config --global user.name "<アカウント名>"
 $ git config --global user.email "<メールアドレス>"
@@ -22,18 +23,21 @@ $ git config --global user.email "<メールアドレス>"
 # スタートアップ
 
 ## gitを初期化する
+
 ```
 $ cd <プロジェクトのディレクトリ>
 $ git init
 ```
 
 ## コミットする
+
 ```
 $ git add *
 $ git commit -m "first commit"
 ```
 
 ## プッシュする
+
 ```
 $ git remote add origin git@github.com:<username>/<Project>.git
 $ git push -u origin master
@@ -47,13 +51,16 @@ $ git push
 
 # タグ
 ## タグをつける
+
 ```
 $ git tag -a tagname -m "message"
 $ git push --tag
 ```
+
 tagnameとmessageは適宜。
 
 ## タグを削除する
+
 ```
 $ git tag -d tagname
 $ git push origin :tagname

@@ -19,6 +19,7 @@ IE10のバグかな？とかっていう噂。
 
 # 対策
 IE9モードで動かすという強引な手で解決するらしい(試してない)。
+
 ```
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9" >
 ```

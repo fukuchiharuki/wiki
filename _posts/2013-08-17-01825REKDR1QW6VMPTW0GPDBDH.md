@@ -20,6 +20,7 @@ Xcodeのバージョンによる？
 - OSをLionにする
 - AppStoreからXcodeの最新をインストールする
 - 次のコマンドを叩く（[Titaniumのドキュメントに解説あり](http://docs.appcelerator.com/titanium/release-notes/?version=2.0.1.GA#xcode43)）
+
 ```
 sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer
 ```

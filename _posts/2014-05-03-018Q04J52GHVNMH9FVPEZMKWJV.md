@@ -14,11 +14,13 @@ last_modified_at: 2014-05-03T13:13:06+09:00
 
 # 方法
 - インデントを有効にする
+
 ```
 :filetype indent on
 ```
 
 - ファイルタイプをhtmlにする
+
 ```
 :set filetype=html
 ```

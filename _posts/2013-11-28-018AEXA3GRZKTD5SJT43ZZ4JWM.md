@@ -13,6 +13,7 @@ last_modified_at: 2013-11-28T17:30:55+09:00
 
 # 方法
 ## 右クリック禁止
+
 ```
 $(document).bind("contextmenu", function(e) {
 	return false;
@@ -21,6 +22,7 @@ $(document).bind("contextmenu", function(e) {
 
 ## テキストの選択禁止
 ### IE向け
+
 ```
 $('html').on('selectstart dragstart', function(e) { 
 	e.preventDefault(); 
@@ -28,6 +30,7 @@ $('html').on('selectstart dragstart', function(e) {
 ```
 
 ### IE以外向け
+
 ```
 $('html').css({
 	'user-select': 'none',

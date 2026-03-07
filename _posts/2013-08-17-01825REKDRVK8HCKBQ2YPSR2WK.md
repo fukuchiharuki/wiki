@@ -8,16 +8,19 @@ last_modified_at: 2013-08-17T18:07:15+09:00
 
 ## コンテキスト内
 公開ディレクトリに配置しているコンテキスト内の静的ファイルならば、src属性に画像の相対パス（またはURL）を指定したほうが無駄な処理がない。
+
 ```
 item.add(
   new WebMarkupContainer("hoge")
   .add(new SimpleAttributeModifier("src", "moge.jpg"))
 );
 ```
+
 URLでアクセスできる画像ならば、そのURLを指定することで表示させることができる（src属性値を書くのと同じだから。）
 
 ## コンテキスト外
 非公開ディレクトに配置した画像をアプリケーションを介して表示させるたいとき、Imageコンポーネントにバイナリを読み込んで渡してあげる。
+
 ```
 final String imagePath = <ファイルパス>;
 Resource image = new DynamicImageResource() {
@@ -29,6 +32,7 @@ Resource image = new DynamicImageResource() {
 };
 item.add(new Image("hoge", image));
 ```
+
 注意しなければならないのは、アプリケーションがgetImageData()をコールするのはブラウザが画像を取得するときだということ。つまり、ページをレンダリングした後、になる。リソースのファイルパスをLoadableDetachableModelに保持していると、アプリケーションはファイルパスを取得できなくなる。
 
 # 参照

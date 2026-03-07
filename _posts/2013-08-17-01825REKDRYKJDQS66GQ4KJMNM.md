@@ -13,6 +13,7 @@ JavaでサーバーサイドPreparedStatementします。
 
 # 方法
 接続URLに次のパラメータを足します。
+
 ```
 useServerPrepStmts=true
 ```

@@ -8,16 +8,21 @@ last_modified_at: 2013-08-17T18:07:15+09:00
 ## sshdを設定する
 - /etc/ssh/sshd_config
   - RSA公開鍵認証を有効化する
+
 ```
 RSAAuthentication yes 
 PubkeyAuthentication yes
 AuthorizedKeysFile .ssh/authorized_keys
 ```
+
   - rootでのログインを不可にする
+
 ```
 PermitRootLogin no
 ```
+
   - パスワード認証を不可にする
+
 ```
 RhostsRSAAuthentication no
 PasswordAuthentication no
@@ -26,11 +31,13 @@ ChallengeResponseAuthentication no
 ```
 
 ## sshdをリブートする
+
 ```
 # /etc/init.d/sshd restart
 ```
 
 ## 鍵を作成する
+
 ```
 $ cd
 $ mkdir .ssh
