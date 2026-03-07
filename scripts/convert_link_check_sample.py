@@ -8,7 +8,7 @@ import unicodedata
 from typing import Dict, List
 
 
-ROOT = pathlib.Path("/home/haruki/Workspace")
+ROOT = pathlib.Path(__file__).resolve().parent.parent
 WIKI_DIR = ROOT / "www/html/wiki"
 ATTACH_DIR = ROOT / "www/html/attach"
 INVENTORY_CSV = ROOT / "pukiwiki_page_inventory.csv"

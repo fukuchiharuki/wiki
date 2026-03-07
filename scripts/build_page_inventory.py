@@ -7,7 +7,7 @@ import re
 from typing import Optional
 
 
-ROOT = pathlib.Path("/home/haruki/Workspace")
+ROOT = pathlib.Path(__file__).resolve().parent.parent
 WIKI_DIR = ROOT / "www/html/wiki"
 OUT_CSV = ROOT / "pukiwiki_page_inventory.csv"
 BUILTIN_PAGES = ROOT / "pukiwiki_builtin_pages.txt"
