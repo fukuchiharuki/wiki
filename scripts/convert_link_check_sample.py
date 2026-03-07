@@ -81,13 +81,21 @@ def image_line(page: str, ref_expr: str, image_dir: pathlib.Path) -> str:
     return "![{}]({})".format(target, web_path)
 
 
-def append_block_line(lines: List[str], line: str) -> None:
-    # 画像行の前後に空行を置いて Markdown として見やすくする
+def ensure_blank_before(lines: List[str]) -> None:
     if lines and lines[-1] != "":
         lines.append("")
-    lines.append(line)
+
+
+def ensure_blank_after(lines: List[str]) -> None:
     if not lines or lines[-1] != "":
         lines.append("")
+
+
+def append_block_line(lines: List[str], line: str) -> None:
+    # 画像行の前後に空行を置いて Markdown として見やすくする
+    ensure_blank_before(lines)
+    lines.append(line)
+    ensure_blank_after(lines)
 
 
 def squeeze_blank_lines(lines: List[str]) -> List[str]:
@@ -185,6 +193,7 @@ def convert_page(page: str, inventory: Dict[str, Dict[str, str]], image_dir: pat
 
         if stripped.startswith((" ", "\t")):
             if not in_code:
+                ensure_blank_before(out)
                 out.append("```")
                 in_code = True
             out.append(stripped[1:] if stripped else "")
@@ -192,6 +201,7 @@ def convert_page(page: str, inventory: Dict[str, Dict[str, str]], image_dir: pat
             continue
         elif in_code:
             out.append("```")
+            ensure_blank_after(out)
             in_code = False
 
         if re.match(r"^#\S", stripped):
@@ -230,6 +240,7 @@ def convert_page(page: str, inventory: Dict[str, Dict[str, str]], image_dir: pat
 
     if in_code:
         out.append("```")
+        ensure_blank_after(out)
     out = squeeze_blank_lines(out)
 
     # サブページでもディレクトリ情報が分かるようページ名をそのまま title に使う
