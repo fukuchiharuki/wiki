@@ -43,4 +43,4 @@ $
 </dl>
 
 # 参考
-- [[Shell] $(cd $(dirname $0) &amp;&amp; pwd) を理解する | それなりブログ](http://blog.kjirou.net/p/506)
+- [[Shell] $(cd $(dirname $0) &amp;&amp; pwd) を理解する \| それなりブログ](http://blog.kjirou.net/p/506)

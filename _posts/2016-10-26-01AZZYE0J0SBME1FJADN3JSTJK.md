@@ -149,4 +149,4 @@ declareで外部のJavaScriptコードがなんでも呼べる。jQueryだって
 
 # 参考
 - [Angular2 + Google Charts. How to integrate Google Charts in Angular2? - Stack Overflow](http://stackoverflow.com/questions/37542408/angular2-google-charts-how-to-integrate-google-charts-in-angular2)
-- [Quick Start &nbsp;|&nbsp; Charts &nbsp;|&nbsp; Google Developers](https://developers.google.com/chart/interactive/docs/quick_start)
+- [Quick Start  \|  Charts  \|  Google Developers](https://developers.google.com/chart/interactive/docs/quick_start)

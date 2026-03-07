@@ -320,8 +320,8 @@ User(name = "ユーザー")
 伝票・明細、集約等（１対多）の関係のように、記事側エンティティをフィールドにセットしてユーザー側エンティティを保存する。このとき、記事側エンティティはmanagedである必要がある（はず）。
 
 # 参考
-- [java - How to use spring Repository without @Id? - Stack Overflow:https://stackoverflow.com/a/29561919](java - How to use spring Repository without @Id? - Stack Overflow:https://stackoverflow.com/a/29561919.md)
-- [エンティティの状態遷移:http://itdoc.hitachi.co.jp/manuals/link/cosmi_v0870/APKC/EU070301.HTM](エンティティの状態遷移:http://itdoc.hitachi.co.jp/manuals/link/cosmi_v0870/APKC/EU070301.HTM.md)
-- [@OneToMany:http://itdoc.hitachi.co.jp/manuals/link/cosmi_v0870/APR4/EU260088.HTM](@OneToMany:http://itdoc.hitachi.co.jp/manuals/link/cosmi_v0870/APR4/EU260088.HTM.md)
-- [OneToMany (Jakarta EE 仕様 API) - Javadoc:https://spring.pleiades.io/specifications/platform/8/apidocs/javax/persistence/onetomany](OneToMany (Jakarta EE 仕様 API) - Javadoc:https://spring.pleiades.io/specifications/platform/8/apidocs/javax/persistence/onetomany.md)
-- [OneToManyのリストフィールドの削除・更新の仕方 - Qiita:https://qiita.com/yukihigasi/items/14eac33cc2043fcdbddb](OneToManyのリストフィールドの削除・更新の仕方 - Qiita:https://qiita.com/yukihigasi/items/14eac33cc2043fcdbddb.md)
+- [java - How to use spring Repository without @Id? - Stack Overflow](https://stackoverflow.com/a/29561919)
+- [エンティティの状態遷移](http://itdoc.hitachi.co.jp/manuals/link/cosmi_v0870/APKC/EU070301.HTM)
+- [@OneToMany](http://itdoc.hitachi.co.jp/manuals/link/cosmi_v0870/APR4/EU260088.HTM)
+- [OneToMany (Jakarta EE 仕様 API) - Javadoc](https://spring.pleiades.io/specifications/platform/8/apidocs/javax/persistence/onetomany)
+- [OneToManyのリストフィールドの削除・更新の仕方 - Qiita](https://qiita.com/yukihigasi/items/14eac33cc2043fcdbddb)

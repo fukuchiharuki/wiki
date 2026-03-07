@@ -54,5 +54,5 @@ window.location.hash = ""
 としているのは、JavaScriptで二度続けて同じページ内リンクをできるようにするため。hash値のリセットがないと二度目にスクロールしてくれない。ただしこれだと履歴が汚れる。が、気にしないならこれで済む。
 
 # 参考
-- [window.location - Web API インターフェイス | MDN](https://developer.mozilla.org/ja/docs/Web/API/Window/location)
-- [scroll-behavior - CSS: カスケーディングスタイルシート | MDN](https://developer.mozilla.org/ja/docs/Web/CSS/scroll-behavior)
+- [window.location - Web API インターフェイス \| MDN](https://developer.mozilla.org/ja/docs/Web/API/Window/location)
+- [scroll-behavior - CSS: カスケーディングスタイルシート \| MDN](https://developer.mozilla.org/ja/docs/Web/CSS/scroll-behavior)

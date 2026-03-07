@@ -65,4 +65,4 @@ Componentはselectorで名前がついているので、使う側はその名前
 
 # 参考
 
-- [Angular2のコンポーネント、bootstrap関数の概要 | VPSサーバーでWebサイト公開　備忘録　~Linux、MySQLからAJAXまで](http://wordpress.honobono-life.info/code/angular2のコンポーネント、bootstrap関数の概要/)
+- [Angular2のコンポーネント、bootstrap関数の概要 \| VPSサーバーでWebサイト公開　備忘録　~Linux、MySQLからAJAXまで](http://wordpress.honobono-life.info/code/angular2のコンポーネント、bootstrap関数の概要/)

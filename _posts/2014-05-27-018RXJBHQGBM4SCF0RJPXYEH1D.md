@@ -93,8 +93,8 @@ Client {
 
 # 参考
 - Effective Javaのビルダーパターン
-  - [Item 2: Consider a builder when faced with many constructor parameters | Creating and Destroying Java Objects | InformIT](http://www.informit.com/articles/article.aspx?p=1216151&seqNum=2)
+  - [Item 2: Consider a builder when faced with many constructor parameters \| Creating and Destroying Java Objects \| InformIT](http://www.informit.com/articles/article.aspx?p=1216151&seqNum=2)
   - [Builderパターンについて考えてみる。 - 感謝のプログラミング 10000時間](http://programming-10000.hatenadiary.jp/entry/20130814/1376497461)
 - GoFが提唱するビルダーパターン
-  - [7. Builder パターン | TECHSCORE(テックスコア)](http://www.techscore.com/tech/DesignPattern/Builder.html/)
+  - [7. Builder パターン \| TECHSCORE(テックスコア)](http://www.techscore.com/tech/DesignPattern/Builder.html/)
   - [Builder - Strategic Choice](http://d.hatena.ne.jp/asakichy/20090306/1236344710)

@@ -104,4 +104,4 @@ KTuple(1, 1.0, "1", true)
 ```
 
 # 参考
-- [可変長タプル on Kotlin? | KisaragiEffective.github.io:https://kisaragieffective.github.io/blog/entry/10.html](可変長タプル on Kotlin? | KisaragiEffective.github.io:https://kisaragieffective.github.io/blog/entry/10.html.md)
+- [可変長タプル on Kotlin? \| KisaragiEffective.github.io](https://kisaragieffective.github.io/blog/entry/10.html)

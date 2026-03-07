@@ -31,5 +31,5 @@ timezone: Asia/Tokyo
 timezoneに何を設定できるのかは参考のリンクで。
 
 # 参考
-- [Configuration | Jekyll • Simple, blog-aware, static sites](https://jekyllrb.com/docs/configuration/)
+- [Configuration \| Jekyll • Simple, blog-aware, static sites](https://jekyllrb.com/docs/configuration/)
 - [List of tz database time zones - Wikipedia](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)

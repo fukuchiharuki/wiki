@@ -61,4 +61,4 @@ const HistoryList = ({state}) => (
 # 参考
 - [React.jsのJSXで条件分岐・繰り返しを記述する - Qiita](https://qiita.com/r7kamura/items/b16cb11b30a54d3c607d)
 - [ReactのJSXでifやforを使いたい場合 - Qiita](https://qiita.com/yuch_i/items/ec24579024c221979317)
-- [JSX | XML-like syntax extension to ECMAScript](https://facebook.github.io/jsx/)
+- [JSX \| XML-like syntax extension to ECMAScript](https://facebook.github.io/jsx/)
