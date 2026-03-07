@@ -69,7 +69,9 @@ Content here
 ### Links
 - `[[PageName]]` → `[PageName](PageName.md)`
 - `[[label>PageName]]` → `[label](PageName.md)`
+- `[[label:https://example.com]]` and `[[>label>https://example.com]]` should be treated as external links
 - External links should remain unchanged
+- Escape `|` in link labels as `\|` to avoid unintended table parsing in Markdown
 - Internal wiki links must be resolved using `pukiwiki_page_inventory.csv` (`page_name` -> `converted_filename`)
 - For Jekyll posts, output internal links with `{% post_url YYYY-MM-DD-ULID %}` derived from `converted_filename`
 
