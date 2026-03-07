@@ -220,12 +220,31 @@ def convert_inline(text: str, inventory: Dict[str, Dict[str, str]]) -> str:
     def repl(m):
         inner = m.group(1)
         if ">" in inner:
-            label, target = inner.split(">", 1)
+            # 末尾の '>' を区切りとして扱う。
+            # `[[>label>https://...]]` のように先頭に '>' がある記法もあるため。
+            label, target = inner.rsplit(">", 1)
             label = label.strip()
             target = target.strip()
+            if label.startswith(">"):
+                label = label[1:].strip()
+            if not label:
+                label = target
         else:
-            label = inner.strip()
-            target = inner.strip()
+            s = inner.strip()
+            # `[[label:https://example.com]]` のような記法に対応する
+            mm = re.match(r"^(.*?)([a-zA-Z][a-zA-Z0-9+.-]*://.+)$", s)
+            if mm:
+                label = re.sub(r"[:\s]+$", "", mm.group(1)).strip()
+                target = mm.group(2).strip()
+                if not label:
+                    label = target
+            else:
+                label = s
+                target = s
+
+        label = label.replace("&nbsp;", " ")
+        # kramdown で表セル区切りと誤解釈されるのを避ける
+        label = label.replace("|", r"\|")
 
         if re.match(r"^[a-zA-Z][a-zA-Z0-9+.-]*://", target):
             return "[{}]({})".format(label, target)
