@@ -5,7 +5,7 @@ import pathlib
 import re
 import shutil
 import unicodedata
-from typing import Dict, List
+from typing import Dict, List, Tuple
 
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -107,38 +107,49 @@ def squeeze_blank_lines(lines: List[str]) -> List[str]:
     return out
 
 
-def parse_table_row(line: str) -> List[str]:
+def parse_table_row(line: str) -> Tuple[List[str], bool]:
     stripped = line.strip()
     if not stripped:
-        return []
+        return [], False
 
     # PukiWiki table: |col1|col2|
     if stripped.startswith("|"):
         core = stripped[1:]
         if core.endswith("|"):
             core = core[:-1]
-        return [c.strip() for c in core.split("|")]
+        cells = [c.strip() for c in core.split("|")]
+        is_header = False
+        if cells and cells[-1].lower() == "h":
+            is_header = True
+            cells = cells[:-1]
+        return cells, is_header
 
-    return []
+    return [], False
 
 
-def table_lines(table_rows: List[List[str]], inventory: Dict[str, Dict[str, str]]) -> List[str]:
+def table_lines(table_rows: List[Tuple[List[str], bool]], inventory: Dict[str, Dict[str, str]]) -> List[str]:
     if not table_rows:
         return []
 
-    cols = max(len(r) for r in table_rows)
+    rows_only = [r for r, _ in table_rows]
+    cols = max(len(r) for r in rows_only)
 
     def normalize_row(row: List[str]) -> List[str]:
         return row + [""] * (cols - len(row))
 
-    # Always prepend an empty Markdown table header/separator.
-    # Also strip PukiWiki header marker "~" from cell heads when present.
-    body = []
-    for row in table_rows:
+    normalized_rows = []
+    for row in rows_only:
         normalized = normalize_row(row)
         cleaned = [c[1:].strip() if c.startswith("~") else c for c in normalized]
-        body.append(cleaned)
-    header = [""] * cols
+        normalized_rows.append(cleaned)
+
+    header_index = next((idx for idx, (_, is_header) in enumerate(table_rows) if is_header), -1)
+    if header_index >= 0:
+        header = normalized_rows[header_index]
+        body = [row for idx, row in enumerate(normalized_rows) if idx != header_index]
+    else:
+        header = [""] * cols
+        body = normalized_rows
 
     out = []
     out.append("| " + " | ".join(convert_inline(c, inventory) for c in header) + " |")
@@ -249,6 +260,20 @@ def convert_page(page: str, inventory: Dict[str, Dict[str, str]], image_dir: pat
             i += 1
             continue
 
+        # Preformatted blocks must be preserved as code fences before other line-level conversions.
+        if stripped.startswith((" ", "\t")):
+            if not in_code:
+                ensure_blank_before(out)
+                out.append("```")
+                in_code = True
+            out.append(stripped[1:] if stripped else "")
+            i += 1
+            continue
+        elif in_code:
+            out.append("```")
+            ensure_blank_after(out)
+            in_code = False
+
         def_row = parse_definition_row(stripped)
         if def_row:
             rows = [def_row]
@@ -265,34 +290,21 @@ def convert_page(page: str, inventory: Dict[str, Dict[str, str]], image_dir: pat
             i = j
             continue
 
-        row = parse_table_row(stripped)
+        row, is_header = parse_table_row(stripped)
         if row:
-            rows = [row]
+            rows = [(row, is_header)]
             j = i + 1
             while j < len(lines):
-                next_row = parse_table_row(lines[j].rstrip("\n"))
+                next_row, next_is_header = parse_table_row(lines[j].rstrip("\n"))
                 if not next_row:
                     break
-                rows.append(next_row)
+                rows.append((next_row, next_is_header))
                 j += 1
             ensure_blank_before(out)
             out.extend(table_lines(rows, inventory))
             ensure_blank_after(out)
             i = j
             continue
-
-        if stripped.startswith((" ", "\t")):
-            if not in_code:
-                ensure_blank_before(out)
-                out.append("```")
-                in_code = True
-            out.append(stripped[1:] if stripped else "")
-            i += 1
-            continue
-        elif in_code:
-            out.append("```")
-            ensure_blank_after(out)
-            in_code = False
 
         if re.match(r"^#\S", stripped):
             out.append("<!-- TODO: {} -->".format(stripped))
