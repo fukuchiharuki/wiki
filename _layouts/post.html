@@ -9,8 +9,10 @@ layout: default
     {{ content }}
   </div>
 
+  {% assign created_at = page.date | date: "%Y-%m-%d" %}
+  {% assign updated_at = page.last_modified_at | default: page.date | date: "%Y-%m-%d" %}
   <div class="date">
-    Written on {{ page.date | date: "%B %e, %Y" }}
+    作成日 {{ created_at }}{% if updated_at != created_at %} / 更新日 {{ updated_at }}{% endif %}
   </div>
 
   {% include disqus.html %}
