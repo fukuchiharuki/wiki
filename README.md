@@ -100,6 +100,7 @@ Content here
   - If the attachment cannot be resolved, emit a TODO comment instead of dropping it
 - Exception for navigation:
   - `#navi` / `#navi()` should be resolved as a list of child pages under the current page directory
+  - Do not add any heading text for `#navi` output; emit only the list
 
 ## Metadata Handling
 - Page title should be derived from:
