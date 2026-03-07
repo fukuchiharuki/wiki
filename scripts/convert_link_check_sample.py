@@ -107,6 +107,64 @@ def squeeze_blank_lines(lines: List[str]) -> List[str]:
     return out
 
 
+def parse_table_row(line: str) -> List[str]:
+    stripped = line.strip()
+    if not stripped:
+        return []
+
+    # PukiWiki table: |col1|col2|
+    if stripped.startswith("|"):
+        core = stripped[1:]
+        if core.endswith("|"):
+            core = core[:-1]
+        return [c.strip() for c in core.split("|")]
+
+    return []
+
+
+def table_lines(table_rows: List[List[str]], inventory: Dict[str, Dict[str, str]]) -> List[str]:
+    if not table_rows:
+        return []
+
+    cols = max(len(r) for r in table_rows)
+
+    def normalize_row(row: List[str]) -> List[str]:
+        return row + [""] * (cols - len(row))
+
+    # Always prepend an empty Markdown table header/separator.
+    # Also strip PukiWiki header marker "~" from cell heads when present.
+    body = []
+    for row in table_rows:
+        normalized = normalize_row(row)
+        cleaned = [c[1:].strip() if c.startswith("~") else c for c in normalized]
+        body.append(cleaned)
+    header = [""] * cols
+
+    out = []
+    out.append("| " + " | ".join(convert_inline(c, inventory) for c in header) + " |")
+    out.append("| " + " | ".join(["---"] * cols) + " |")
+    for row in body:
+        out.append("| " + " | ".join(convert_inline(c, inventory) for c in row) + " |")
+    return out
+
+
+def parse_definition_row(line: str) -> List[str]:
+    stripped = line.strip()
+    if not stripped.startswith(":") or "|" not in stripped:
+        return []
+    term, desc = stripped[1:].split("|", 1)
+    return [term.strip(), desc.strip()]
+
+
+def definition_lines(rows: List[List[str]], inventory: Dict[str, Dict[str, str]]) -> List[str]:
+    out = ["<dl>"]
+    for term, desc in rows:
+        out.append("<dt>{}</dt>".format(convert_inline(term, inventory)))
+        out.append("<dd>{}</dd>".format(convert_inline(desc, inventory)))
+    out.append("</dl>")
+    return out
+
+
 def navi_lines(page: str, inventory: Dict[str, Dict[str, str]]) -> List[str]:
     prefix = page + "/"
     children = []
@@ -189,6 +247,38 @@ def convert_page(page: str, inventory: Dict[str, Dict[str, str]], image_dir: pat
         if re.match(r"^#navi(?:\(\))?$", stripped):
             out.extend(navi_lines(page, inventory))
             i += 1
+            continue
+
+        def_row = parse_definition_row(stripped)
+        if def_row:
+            rows = [def_row]
+            j = i + 1
+            while j < len(lines):
+                next_row = parse_definition_row(lines[j].rstrip("\n"))
+                if not next_row:
+                    break
+                rows.append(next_row)
+                j += 1
+            ensure_blank_before(out)
+            out.extend(definition_lines(rows, inventory))
+            ensure_blank_after(out)
+            i = j
+            continue
+
+        row = parse_table_row(stripped)
+        if row:
+            rows = [row]
+            j = i + 1
+            while j < len(lines):
+                next_row = parse_table_row(lines[j].rstrip("\n"))
+                if not next_row:
+                    break
+                rows.append(next_row)
+                j += 1
+            ensure_blank_before(out)
+            out.extend(table_lines(rows, inventory))
+            ensure_blank_after(out)
+            i = j
             continue
 
         if stripped.startswith((" ", "\t")):
