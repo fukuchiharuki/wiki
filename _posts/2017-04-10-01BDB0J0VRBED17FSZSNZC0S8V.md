@@ -5,7 +5,7 @@ last_modified_at: 2017-04-10T13:04:43+09:00
 ---
 
 # キーワード
-- SpringApplicationConfiguration 
+- SpringApplicationConfiguration
 - SpringBootTest
 - Spring Boot
 - ユニットテスト

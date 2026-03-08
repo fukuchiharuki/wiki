@@ -30,8 +30,6 @@ last_modified_at: 2014-07-24T17:54:14+09:00
 Javaにおいてはweb.xmlにてすべてのURLパターンをひとつのサーブレットにマップします。PHPにおいては.htaccessにてすべてのURLパターンをひとつのphpファイルにマップすることができます。
 
 # 関連
-- 
-- 
 
 # 参考
 - [P of EAA: Front Controller](http://www.martinfowler.com/eaaCatalog/frontController.html)

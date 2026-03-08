@@ -6,8 +6,6 @@ last_modified_at: 2016-10-26T16:17:40+09:00
 
 &color(red){※ 別ページ「[Angular2]({{ site.baseurl }}{% post_url 2017-08-03-01BPJZGNKGDE0PRF97TD0DHX2Q %})」にまとめだしています。};
 
-      - 
-
 Angular2のお勉強メモです。
 
 気がついたらAngularJS、Angular2、React、Vueなどが台頭していて。。これは大変だ！時代がどんどん進んでいる！！で、結局Angular2を勉強することにしました。

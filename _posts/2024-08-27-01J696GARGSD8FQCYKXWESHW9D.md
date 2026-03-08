@@ -30,4 +30,3 @@ $ man grep
 
 # 参考
 - [リアルタイムに「tail -f」をgrepする方法 #Linux - Qiita](https://qiita.com/naotarou/items/ee2afc15804e37129c2d)
--

@@ -5,7 +5,7 @@ last_modified_at: 2013-08-17T18:07:15+09:00
 ---
 
 # キーワード
-- nohup 
+- nohup
 - ssh
 - MySQL
 

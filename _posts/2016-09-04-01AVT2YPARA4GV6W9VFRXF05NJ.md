@@ -48,4 +48,3 @@ EntityManagerFactoryに関わる設定が足りてないのか？と疑ったの
 
 # 参考
 - [Toshiaki Makiさんのツイート: &quot;@fukuchiharuki ソースコードどこかに上げてくれたら見ますよ？&quot;](https://twitter.com/making/status/771651420613337088)
--
