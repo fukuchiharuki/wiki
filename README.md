@@ -68,6 +68,7 @@ Content here
 - `- item`         → `- item`
 - `-- item`        → nested list
 - `+ item`         → ordered list if semantically appropriate
+- Empty list items (e.g. `-` only) should be dropped to avoid unintended Markdown rendering
 
 ### Links
 - `[[PageName]]` → `[PageName](PageName.md)`
