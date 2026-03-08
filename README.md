@@ -149,6 +149,12 @@ Content here
 - CSS or theme migration
 - Plugin behavior emulation
 
+## Redirect Site (PukiWiki Domain)
+- Redirect files for `wiki.fukuchiharuki.me` are placed in `www.redirect/html/`
+- `www.redirect/html/index.html` reads PukiWiki query parameters and redirects to `https://fukuchiharuki.me/wiki/<ULID>/`
+- Regenerate mapping after inventory updates:
+  - `python3 scripts/build_redirect_map.py`
+
 ---
 
 This README defines the **source of truth** for conversion.
