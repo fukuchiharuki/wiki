@@ -5,6 +5,7 @@ last_modified_at: 2016-11-14T16:13:42+09:00
 ---
 
 # キーワード
+
 - Angular2
 - required
 - ngForm
@@ -29,4 +30,5 @@ novalidateはAngular2ではなくて、html5の記述。
 NgFormに関する公式のドキュメントでもnovalidateを書いている。validateしてるはずなのにnovalidateとはどういうことかと思ったが、html5でやってくれなくていいよ、ということのようだ。
 
 # 参考
+
 - [NgForm - ts - API](https://angular.io/docs/ts/latest/api/forms/index/NgForm-directive.html)

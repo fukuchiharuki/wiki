@@ -5,11 +5,13 @@ last_modified_at: 2013-08-17T18:07:15+09:00
 ---
 
 # キーワード
+
 - MySQL
 - InnoDB
 - buffer pool
 
 # 関連
+
 - [障害メモ/MySQL関連]({{ site.baseurl }}{% post_url 2013-08-17-01825REKDRNWW3CSW9J45BYEPF %})
 
 # 現象
@@ -25,6 +27,7 @@ Starting MySQL..The server quit without updating PID file(***.pid).
 コマンド実行時のメッセージは罠。pidが作れないとかそんなことではない。
 
 ログを見ます。
+
 - mysql-error.log (設定にもよるが /etc/log/ あたりかと)
 
 {% raw %}
@@ -60,4 +63,5 @@ innodb_buffer_pool_size = 1024M
 {% endraw %}
 
 # 参考
+
 - [MySQLのメモリ関係](http://m97087yh.seesaa.net/archives/20090107-1.html)

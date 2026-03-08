@@ -5,12 +5,14 @@ last_modified_at: 2017-12-30T13:01:28+09:00
 ---
 
 # キーワード
+
 - React Native
 - React Navigation
 
 # 現象
 
 React Nativeにて、React Navigationで作るヘッダがステータスバーに被ってしまう。
+
 - expo経由・Android実機で被る
 - iOSのシミュレータでは問題ない
 - ビルドしてデプロイしたときにどうかは見てない
@@ -46,4 +48,5 @@ import { Platform, StatusBar } from 'react-native'
 なし。
 
 # 参考
+
 - [Android header is overlapped · Issue #1478 · react-navigation/react-navigation](https://github.com/react-navigation/react-navigation/issues/1478)

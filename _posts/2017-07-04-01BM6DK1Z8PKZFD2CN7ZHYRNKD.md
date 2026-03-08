@@ -5,6 +5,7 @@ last_modified_at: 2017-07-04T18:06:09+09:00
 ---
 
 # キーワード
+
 - Visual Studio Code
 - ショートカット
 - ctrl-[
@@ -45,6 +46,7 @@ useCtrlKeysが無効になっているから。公式にちゃんと書いてあ
 {% endraw %}
 
 必要なのは次だけです。
+
 - vim.useCtrlKeys
 - editor.cursorStyle
 
@@ -53,4 +55,5 @@ useCtrlKeysが無効になっているから。公式にちゃんと書いてあ
 一番下のeditor.cursorStyleは動的に入力モードに応じて動的に切り替わる。これがないと表示がずっとブロックのままになってしまうみたいで、気持ち悪いけど残す。
 
 # 参考
+
 - [GitHub - VSCodeVim/Vim: Vim for Visual Studio Code](https://github.com/VSCodeVim/Vim)

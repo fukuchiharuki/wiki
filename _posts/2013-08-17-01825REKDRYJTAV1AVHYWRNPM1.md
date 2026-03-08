@@ -5,6 +5,7 @@ last_modified_at: 2013-08-17T18:07:15+09:00
 ---
 
 # 目標
+
 - Webアプリケーションプロジェクトを作成する
 - ServletとJSPを使ってWebアプリケーションを作成する
 - ブラウザでWebページの表示を確認する
@@ -97,10 +98,12 @@ throws ServletException, IOException {
 ![JSPを作成する04.JPG]({{ '/images/wiki/45636C697073652F576562E382A2E38397E383AAE382B1E383BCE382B7E383A7E383B3E38292E4BD9CE68890E38199E3828B_4A5350E38292E4BD9CE68890E38199E3828B30342E4A5047' | relative_url }})
 
 作成したJSPファイルはsjisになってしまっているのでUTF-8に直しましょう。
+
 1. JSPファイル上のエンコードに関する記述を修正する
   - 「windows-31j」→「UTF-8」
 1. Package Explore ビューから右クリック->Properties を選択する
   1. Text file en
+
 coding の Other を選択して UTF-8 を設定する
 
 ![JSPの文字コード修正00.JPG]({{ '/images/wiki/45636C697073652F576562E382A2E38397E383AAE382B1E383BCE382B7E383A7E383B3E38292E4BD9CE68890E38199E3828B_4A5350E381AEE69687E5AD97E382B3E383BCE38389E4BFAEE6ADA330302E4A5047' | relative_url }})
@@ -108,12 +111,14 @@ coding の Other を選択して UTF-8 を設定する
 ## ブラウザでWebページの表示を確認する
 
 ### Webアプリケーションをサーバに登録する
+
 1. Sample プロジェクトを「Tomcat v7.0 Server at localhost」にドラッグする
   - Package Explore ビューから Servers ビュー
 
 ![Webアプリケーション登録00.jpg]({{ '/images/wiki/45636C697073652F576562E382A2E38397E383AAE382B1E383BCE382B7E383A7E383B3E38292E4BD9CE68890E38199E3828B_576562E382A2E38397E383AAE382B1E383BCE382B7E383A7E383B3E799BBE98CB230302E6A7067' | relative_url }})
 
 ### Tomcatを起動する
+
 1. Servers ビューの虫アイコンをクリックする
   - 「Tomcat ...」に [Debugging, Synchronized] が表示される
   - 「Sample」に [Synchronized] が表示される
@@ -121,6 +126,7 @@ coding の Other を選択して UTF-8 を設定する
 ![デバグ実行01.jpg]({{ '/images/wiki/45636C697073652F576562E382A2E38397E383AAE382B1E383BCE382B7E383A7E383B3E38292E4BD9CE68890E38199E3828B_E38387E38390E382B0E5AE9FE8A18C30312E6A7067' | relative_url }})
 
 ### ブラウザで表示を確認する
+
 1. アドレス欄に次を入力してアクセスする
   - http://localhost:8080/Sample/SampleServlet
 

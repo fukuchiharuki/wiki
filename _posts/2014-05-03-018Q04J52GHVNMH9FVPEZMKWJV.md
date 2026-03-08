@@ -5,6 +5,7 @@ last_modified_at: 2014-05-03T13:13:06+09:00
 ---
 
 # キーワード
+
 - Vim
 
 # やりたいこと
@@ -13,6 +14,7 @@ last_modified_at: 2014-05-03T13:13:06+09:00
 # 設定に書いとけって話ではある
 
 # 方法
+
 - インデントを有効にする
 
 {% raw %}
@@ -33,4 +35,5 @@ last_modified_at: 2014-05-03T13:13:06+09:00
 同じ filetype なのに別の書き方をしたりして混乱するね。
 
 # 参考
+
 - [Vim documentation: filetype](http://vim-jp.org/vimdoc-ja/filetype.html)

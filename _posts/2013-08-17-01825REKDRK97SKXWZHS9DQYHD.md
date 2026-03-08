@@ -5,17 +5,20 @@ last_modified_at: 2013-08-17T18:07:15+09:00
 ---
 
 # キーワード
+
 - Tomcat
 - WAR
 - デプロイ
 
 # 関連
+
 - [WindowsでWebアプリケーションを作ってみる]({{ site.baseurl }}{% post_url 2013-08-17-01825REKDRF59BCD8KYSM0CVBA %})
 
 # 概要
 TomcatにWARファイル(webアプリケーション)をデプロイします。
 
 ## 前提
+
 - Tomcatはインストール済み
 - Tomcatは動作確認済み
 
@@ -24,6 +27,7 @@ TomcatにWARファイル(webアプリケーション)をデプロイします。
 Tomcatをインストールしたディレクトリを /usr/local/tomcat/ とする。
 
 この /usr/local/tomcat/ 下は次の構成になっている。
+
 - /usr/local/tomcat/
   - LICENSE
   - NOTICE
@@ -39,6 +43,7 @@ Tomcatをインストールしたディレクトリを /usr/local/tomcat/ とす
 
 ## WARファイルをコピーする
 このうち、webapps/ 下に作成したWARファイルをコピーする（WARファイルを作成する方法はここでは述べないが、Eclipseを使っているのであればプロジェクトからエクスポートするのがおそらくは最も簡単。）
+
 - /usr/local/tomcat/
   - webapps/
     - Hoge.war
@@ -53,6 +58,7 @@ $ /usr/local/tomcat/bin/startup.sh
 {% endraw %}
 
 先にコピーしたWARファイルの名前が Hoge.war であれば webapps/ 下に Hoge/ が作成されているはずである。
+
 - /usr/local/tomcat/
   - webapps/
     - Hoge.war
@@ -67,5 +73,6 @@ http://localhost:8080/Hoge/
 {% endraw %}
 
 # 参考
+
 - [eclipseでwarファイルを作成。tomcatにdeploy](http://d.hatena.ne.jp/uyaji/20110604/1307140687)
 - [Eclipseで.warファイルを作成する](http://www.atmarkit.co.jp/fjava/javatips/043eclipse016.html)

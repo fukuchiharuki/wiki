@@ -5,6 +5,7 @@ last_modified_at: 2017-04-17T12:23:26+09:00
 ---
 
 # キーワード
+
 - patch
 - diff
 
@@ -104,5 +105,6 @@ $ patch -u -p1 < (パッチファイル)
 - カレントでパッチを作成して -p0 オプションでカレントでパッチあてできるようにするの%%も%%&color(blue){が};よいと思います。
 
 # 参考
+
 - [LINUX忘却録 diff / patch](http://linux.blog.kaone.net/linux%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89/diff%20-%20patch)
 - [すえん学録: Linuxでのパッチの作り方(diff)と使い方(patch)](http://suen-study.blogspot.jp/2011/02/linuxdiffpatch.html)

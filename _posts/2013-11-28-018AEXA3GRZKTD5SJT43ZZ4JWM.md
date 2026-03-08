@@ -5,6 +5,7 @@ last_modified_at: 2013-11-28T17:30:55+09:00
 ---
 
 # キーワード
+
 - JavaScript
 - jQuery
 
@@ -52,5 +53,6 @@ $('html').css({
 テキストの選択は IE とそれ以外で別の方法を採ります。IE ではイベント selectstart と dragstart を拾ってそのイベントをキャンセルすることで抑止できるようです。また IE 以外のブラウザではスタイルの指定で抑止できるようです。
 
 # 参考
+
 - [jQueryを使って右クリックメニューを禁止する方法 \| IDEA*IDEA](http://www.ideaxidea.com/archives/2009/03/how_to_disable_right_click_menu.html)
 - [ドラッグによるテキストの選択をキャンセルする【CSS, HTML, JavaScript】 - Programming Magic](http://www.programming-magic.com/20071217225449/)

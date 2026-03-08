@@ -5,6 +5,7 @@ last_modified_at: 2018-02-21T14:16:48+09:00
 ---
 
 # キーワード
+
 - Spring Boot
 - Spring Security
 - PreAuthorize
@@ -54,4 +55,5 @@ class SecurityConfig: WebSecurityConfigurerAdapter {
 @PreAuthorizeをクラスにつければどのメソッドでも権限チェックできる。
 
 # 参考
+
 - [java - Spring security - @PreAuthorize not working - Stack Overflow](https://stackoverflow.com/questions/29643183/spring-security-preauthorize-not-working)

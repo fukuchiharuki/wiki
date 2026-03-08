@@ -5,6 +5,7 @@ last_modified_at: 2013-08-17T18:07:15+09:00
 ---
 
 # 参考
+
 - WHERE句の最適化（リファレンス）
   - http://dev.mysql.com/doc/refman/4.1/ja/where-optimisations.html
 - EXPLAIN
@@ -50,12 +51,14 @@ last_modified_at: 2013-08-17T18:07:15+09:00
   - http://hain.jp/index.php/tech-j/2006/12/18/p106
 
 # 参考になりそうな実際例
+
 - はてなの例
   - http://d.hatena.ne.jp/naoya/20081111/1226395400
 - mixiの例
   - http://blog.livedoor.jp/nipotan/archives/50538571.html
 
 # まとめ
+
 - IN句でインデックスを使わないのは複合インデックスのうち先頭のみ
 - 複合インデックスの順とWHERE句で出現する順は同じでなくてよい
 - ファイルソートは一番まずい

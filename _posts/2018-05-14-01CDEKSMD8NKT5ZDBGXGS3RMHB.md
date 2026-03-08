@@ -5,6 +5,7 @@ last_modified_at: 2018-05-14T15:00:57+09:00
 ---
 
 # キーワード
+
 - React
 - コンポーネント
 - react-new-window
@@ -60,6 +61,7 @@ this.newWindow.window.print();
 今回のは NewWindow がもってしまっているので、通常のケースではない。
 
 # 参考
+
 - [Refs and the DOM - React](https://reactjs.org/docs/refs-and-the-dom.html)
 - [rmariuzzo/react-new-window: 🔲 Pop new windows in React, using `window.open`.](https://github.com/rmariuzzo/react-new-window)
 - [Reactのrefを理解する@Typescript - Qiita](https://qiita.com/knknkn1162/items/29d675c8cd26592a95b5)

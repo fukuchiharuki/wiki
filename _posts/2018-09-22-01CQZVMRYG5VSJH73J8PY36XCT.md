@@ -5,6 +5,7 @@ last_modified_at: 2018-09-22T14:22:10+09:00
 ---
 
 # キーワード
+
 - set
 - shift
 
@@ -41,4 +42,5 @@ $
 $1 や shift は引数を扱うためのものですが set を使うことで引数の代わりにすることができます。
 
 # 参考
+
 - [bourne shellのTips - web-cahier.com](http://www.web-cahier.com/log/2012/01/bourne-shelltips.html)

@@ -40,6 +40,7 @@ item.add(new Image("hoge", image));
 注意しなければならないのは、アプリケーションがgetImageData()をコールするのはブラウザが画像を取得するときだということ。つまり、ページをレンダリングした後、になる。リソースのファイルパスをLoadableDetachableModelに保持していると、アプリケーションはファイルパスを取得できなくなる。
 
 # 参照
+
 - http://wicket.apache.org/apidocs/1.3/org/apache/wicket/markup/html/image/resource/DynamicImageResource.html
 - http://java.sun.com/j2se/1.5.0/ja/docs/ja/api/java/io/FileOutputStream.html
 - http://java.sun.com/javase/ja/6/docs/ja/api/java/io/FileInputStream.html

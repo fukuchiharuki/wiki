@@ -5,6 +5,7 @@ last_modified_at: 2017-05-30T10:35:43+09:00
 ---
 
 # キーワード
+
 - Spring Boot
 - Spring Security
 
@@ -51,7 +52,9 @@ public String nanika(
 
 - 定形処理はアスペクトにしておくのが吉
 - 毎リクエストごとにデータベースから取得するなら、<br>
+
 ここで取得できるusernameを使ってLoadServiceを呼べばいい
 
 # 参考
+
 - [java - How to get active user&#39;s UserDetails - Stack Overflow](https://stackoverflow.com/questions/8764545/how-to-get-active-users-userdetails)

@@ -5,6 +5,7 @@ last_modified_at: 2024-08-27T14:56:26+09:00
 ---
 
 # キーワード
+
 - grep
 - tail
 
@@ -33,4 +34,5 @@ $ man grep
 {% endraw %}
 
 # 参考
+
 - [リアルタイムに「tail -f」をgrepする方法 #Linux - Qiita](https://qiita.com/naotarou/items/ee2afc15804e37129c2d)

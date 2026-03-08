@@ -6,6 +6,7 @@ last_modified_at: 2013-08-17T18:07:15+09:00
 
 # 手順
 ## sshdを設定する
+
 - /etc/ssh/sshd_config
   - RSA公開鍵認証を有効化する
 
@@ -75,5 +76,6 @@ $ rm id_rsa.pub
 {% endraw %}
 
 # 参考
+
 - http://www.atmarkit.co.jp/flinux/rensai/linuxtips/432makesshkey.html
 - http://gentoo.reichsarchiv.jp/item/17

@@ -5,6 +5,7 @@ last_modified_at: 2013-08-17T18:07:15+09:00
 ---
 
 # キーワード
+
 - HTML5
 - rel属性
 
@@ -25,6 +26,7 @@ Bad value (なにがし) for attribute rel on element a: Keyword (なにがし) 
 
 # 原因
 rel属性には決まったキーワードしか値になれないようで。
+
 - http://www.playstudy.net/blog/develop/html5-linkrel.html
 
 # 対策
@@ -47,5 +49,6 @@ jQuery('#hoge').data('external');
 {% endraw %}
 
 # 参考
+
 - http://css-tricks.com/forums/discussion/14733/bad-value-xxx-for-attribute-rel-on-element-a-keyword-xxx-is-not-registered-html5/p1
 - http://www.html5.jp/tag/attributes/data.html

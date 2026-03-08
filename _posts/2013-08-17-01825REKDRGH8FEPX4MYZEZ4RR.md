@@ -5,6 +5,7 @@ last_modified_at: 2013-08-17T18:07:15+09:00
 ---
 
 # 目標
+
 - MySQLをインストールする
 - サーバを起動する
 - サーバ環境を整える
@@ -12,6 +13,7 @@ last_modified_at: 2013-08-17T18:07:15+09:00
 # 手順
 
 ## インストールファイルをダウンロードする
+
 1. 次のサイトのダウンロード（GA）を選択する
   - http://www-jp.mysql.com/
 1. 「MySQL Community Server」のDOWNLOADを選択する
@@ -19,6 +21,7 @@ last_modified_at: 2013-08-17T18:07:15+09:00
 1. どこかのミラーの HTTP か FTP を選択してダウンロードする
 
 ## MySQLをインストールする
+
 1. ダウンロードしたインストールファイルを実行する
 1. Next、Install を選択していく
   1. End-User License Agreement で「I accept the terms in the License Agreement」にチェックを入れる
@@ -170,4 +173,5 @@ mysql>
 インタフェースは sjis を使っていますよ、の合図です。
 
 # 参考
+
 - http://linuxserver.jp/%E3%82%B5%E3%83%BC%E3%83%90%E6%A7%8B%E7%AF%89/DB/MySQL/%E5%A4%96%E9%83%A8%E6%8E%A5%E7%B6%9A%E8%A8%B1%E5%8F%AF%E8%A8%AD%E5%AE%9A.php

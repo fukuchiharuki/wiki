@@ -5,6 +5,7 @@ last_modified_at: 2013-08-17T18:07:15+09:00
 ---
 
 # 関連
+
 - JBoss
 - Eclipse
 
@@ -18,6 +19,7 @@ ERROR [AbstractKernelController] Error installing to Instantiated: ...
 {% endraw %}
 
 ## 詳しい状況
+
 - JBoss 6 を JBoss 5 のサーバ設定で動かしている。
 - これはEclipseにテンプレートが存在しなかったため。
 
@@ -26,7 +28,9 @@ EclipseがJVMのオプションをいい感じにしてくれていない。
 
 # 対策
 サーバ設定のテンプレートを作成してくれている人がいるので使わせてもらう。
+
 - http://www.cs.hs-rm.de/~knauf/public/index.html
 
 # 参考
+
 - http://community.jboss.org/thread/160526

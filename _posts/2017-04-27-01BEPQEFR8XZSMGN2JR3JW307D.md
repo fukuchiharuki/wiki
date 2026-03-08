@@ -5,6 +5,7 @@ last_modified_at: 2017-04-27T12:32:05+09:00
 ---
 
 # キーワード
+
 - Spring Boot
 - logback
 
@@ -53,4 +54,5 @@ logback-spring.xmlで次のように設定する。
 logback-spring.xmlにするとSpringのプロフィールが使えるのですね。
 
 # 参考
+
 - [Spring Boot解説第10回(開発環境編：ログの設定について～logback) - Qiita](http://qiita.com/TEBASAKI/items/bdbecdb22249913d6b67)

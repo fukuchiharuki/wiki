@@ -5,6 +5,7 @@ last_modified_at: 2013-08-17T18:07:15+09:00
 ---
 
 # 関連
+
 - MySQL
 - Java
 
@@ -28,5 +29,6 @@ useServerPrepStmts=true
 なぜならそもそも実行計画をキャッシュすることがないようだからです。
 
 # 参考
+
 - http://blog.everqueue.com/chiba/2008/12/23/33/
 - http://d.hatena.ne.jp/kazuhooku/20081224/1230084621

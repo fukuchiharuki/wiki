@@ -34,6 +34,7 @@ $ mysqladmin -uroot -p extended-status | grep Threads
 {% endraw %}
 
 # 参考
+
 - http://dev.mysql.com/doc/refman/5.1/en/show-status.html
 - http://dev.mysql.com/doc/refman/4.1/ja/show-status.html
 - http://d.hatena.ne.jp/foosin/20081217/1229515671

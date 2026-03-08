@@ -5,6 +5,7 @@ last_modified_at: 2013-08-17T18:07:15+09:00
 ---
 
 # 関連
+
 - JavaScript
 - jQuery
 - ajax
@@ -89,6 +90,7 @@ $(html).filter(抜き出したい要素のセレクタ);
 読み込んだページから要素を選択する。
 
 # 参考
+
 - http://semooh.jp/jquery/api/ajax/serializeArray/+/
 - http://semooh.jp/jquery/api/ajax/jQuery.ajax/options/
 - http://semooh.jp/jquery/api/traversing/filter/expr/

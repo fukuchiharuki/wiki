@@ -5,6 +5,7 @@ last_modified_at: 2017-12-07T10:50:09+09:00
 ---
 
 # キーワード
+
 - React
 - 条件分岐 (if)
 - 繰り返し (for)
@@ -63,6 +64,7 @@ const HistoryList = ({state}) => (
 なお、繰り返し中に「key」を指定しないと「ユニークなkeyをもつべし」と[怒られます]({{ site.baseurl }}{% post_url 2017-12-07-01C0QAHXB836Q53AN27R729XMC %})ので注意。
 
 # 参考
+
 - [React.jsのJSXで条件分岐・繰り返しを記述する - Qiita](https://qiita.com/r7kamura/items/b16cb11b30a54d3c607d)
 - [ReactのJSXでifやforを使いたい場合 - Qiita](https://qiita.com/yuch_i/items/ec24579024c221979317)
 - [JSX \| XML-like syntax extension to ECMAScript](https://facebook.github.io/jsx/)

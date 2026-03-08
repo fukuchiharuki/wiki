@@ -5,6 +5,7 @@ last_modified_at: 2014-07-24T17:54:14+09:00
 ---
 
 # キーワード
+
 - Webアプリケーション
 - リクエスト
 
@@ -34,6 +35,7 @@ Javaにおいてはweb.xmlにてすべてのURLパターンをひとつのサー
 # 関連
 
 # 参考
+
 - [P of EAA: Front Controller](http://www.martinfowler.com/eaaCatalog/frontController.html)
 - [フロントコントローラ - Strategic Choice](http://d.hatena.ne.jp/asakichy/20120627/1340748302)
 - [PHP10行で作る超シンプルフレームワーク - かってぃのブログ \| choilog [チョイログ]](http://choilog.com/katty0324/blog/6)

@@ -5,6 +5,7 @@ last_modified_at: 2013-08-17T18:07:15+09:00
 ---
 
 # 関連
+
 - MySQL
 
 # 概要
@@ -35,5 +36,6 @@ LOAD DATA LOCALする場合、環境によってはオプション「--local-inf
 SELECT INTO OUTFILEするユーザーはmysqldを動かしているユーザーです。/tmp/下にファイル指定する必要があるかもしれません。
 
 # 参考
+
 - http://oshiete.goo.ne.jp/qa/1030943.html
 - http://q.hatena.ne.jp/1159437279

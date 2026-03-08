@@ -5,6 +5,7 @@ last_modified_at: 2013-12-05T13:35:58+09:00
 ---
 
 # キーワード
+
 - nfs
 - UID
 - GID
@@ -33,6 +34,7 @@ last_modified_at: 2013-12-05T13:35:58+09:00
 {% endraw %}
 
 ### マウントされる口を空ける
+
 - /etc/exports
 
 {% raw %}

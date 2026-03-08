@@ -5,6 +5,7 @@ last_modified_at: 2014-05-27T09:47:50+09:00
 ---
 
 # キーワード
+
 - インスタンス
   - 生成
     - パラメータ
@@ -94,10 +95,12 @@ Client {
 {% endraw %}
 
 # 関連
+
 - [設計パターン/スタティックファクトリメソッド]({{ site.baseurl }}{% post_url 2014-05-26-018RVBGNP839YZFXNFXCAFWDQM %})
 - [設計パターン/ファクトリ]({{ site.baseurl }}{% post_url 2014-05-26-018RVBJ2KRC9HNNNFH3HT0RZZT %})
 
 # 参考
+
 - Effective Javaのビルダーパターン
   - [Item 2: Consider a builder when faced with many constructor parameters \| Creating and Destroying Java Objects \| InformIT](http://www.informit.com/articles/article.aspx?p=1216151&seqNum=2)
   - [Builderパターンについて考えてみる。 - 感謝のプログラミング 10000時間](http://programming-10000.hatenadiary.jp/entry/20130814/1376497461)

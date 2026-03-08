@@ -5,6 +5,7 @@ last_modified_at: 2013-08-17T18:07:15+09:00
 ---
 
 # 関連
+
 - HTML
 - JavaScript/jQuery
 - CSS
@@ -15,6 +16,7 @@ JavaScriptとCSSで言語切り替えをする方法のメモです(後日きれ
 Webアプリケーションのフレームワークが多言語対応しているケースが多いと思いますが、ここではあえてJavaScriptとCSSだけで実現する方法を考えてみます。多言語対応した静的なページをWebサーバで、なんてときに。
 
 # 方法
+
 - index.html
 
 {% raw %}
@@ -156,6 +158,7 @@ body {
 {% endraw %}
 
 # 解説
+
 - 例では日本語をデフォルトにして全体を非表示(css/lang.css)
   - JavaScript有効の場合言語を設定して全体を表示(js/multilingual.js)
   - JavaScript無効の場合そのまま全体を表示(css/noscript.css)
@@ -185,4 +188,5 @@ Bad value X-UA-Compatible for attribute http-equiv on element meta
 あ。(→[その2]({{ site.baseurl }}{% post_url 2013-08-17-01825REKDRPV9V18A0NT8X8DRM %})もどうぞ。)
 
 # 参考
+
 - http://terkel.jp/archives/2012/07/styles-for-noscript/

@@ -16,4 +16,5 @@ tmpfs   /tmp    tmpfs   defaults,noatime        0       0
 {% endraw %}
 
 # 参考
+
 - http://unixlife.jp/unixlife/linux/sys-fstab.jsp

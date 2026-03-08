@@ -5,6 +5,7 @@ last_modified_at: 2016-09-04T16:52:39+09:00
 ---
 
 # キーワード
+
 - Spring Boot
 
 # 現象
@@ -57,4 +58,5 @@ mvn clean spring-boot:run
 EntityManagerFactoryに関わる設定が足りてないのか？と疑ったのだが全然違ってて、環境の問題だった。なんと[@marking](https://twitter.com/making)さんが見てくれた。ログに原因が出ているという、初歩的なつまずきをしていてとても恥ずかしい。
 
 # 参考
+
 - [Toshiaki Makiさんのツイート: &quot;@fukuchiharuki ソースコードどこかに上げてくれたら見ますよ？&quot;](https://twitter.com/making/status/771651420613337088)

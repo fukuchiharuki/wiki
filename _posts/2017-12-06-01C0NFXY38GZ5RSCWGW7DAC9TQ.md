@@ -5,6 +5,7 @@ last_modified_at: 2017-12-06T17:44:01+09:00
 ---
 
 # キーワード
+
 - React
 - PropTypes
 - func
@@ -54,5 +55,6 @@ $ npm install --save prop-types
 {% endraw %}
 
 # 参考
+
 - [Typechecking With PropTypes - React](https://reactjs.org/docs/typechecking-with-proptypes.html)
 - [電卓アプリで学ぶReact/Redux入門(実装編) - Qiita](https://qiita.com/nishina555/items/9ff744a897af8ed1679b)

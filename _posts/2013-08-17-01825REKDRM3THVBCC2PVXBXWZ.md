@@ -5,12 +5,14 @@ last_modified_at: 2013-08-17T18:07:15+09:00
 ---
 
 # キーワード
+
 - HTML/JavaScript
 - img
 - Image
 
 # 現象
 次の状況でうまくいかない。
+
 1. XXX_off.png を初期表示
 1. XXX_on.png をpreload(先読み)
 1. 画像を読み込めない状況にする
@@ -31,6 +33,7 @@ JavaScriptで切り替える画像はJavaScriptでpreload(先読み)する必要
 # 対策
 
 初期表示している画像をpreload(先読み)する。
+
 1. XXX_off.png を初期表示
 1. XXX_off.png をpreload(先読み) ← ここ
 1. XXX_on.png をpreload(先読み)
@@ -39,4 +42,5 @@ JavaScriptで切り替える画像はJavaScriptでpreload(先読み)する必要
 1. mouseout で XXX_on.png を XXX_off.png に切り替えて表示
 
 # 参考
+
 - http://lion.zero.ad.jp/inn/js/image/image-preload.html

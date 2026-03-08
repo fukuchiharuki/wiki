@@ -5,6 +5,7 @@ last_modified_at: 2017-12-04T15:37:33+09:00
 ---
 
 # キーワード
+
 - AngularJS
 - ディレクティブ
 - イベントリスナ
@@ -60,5 +61,6 @@ scope.$on('$destroy', function () {
 DataTablesにも同じようなことがあるらしい。
 
 # 参考
+
 - [memory leaks - AngularJS - Does $destroy remove event listeners? - Stack Overflow](https://stackoverflow.com/questions/26983696/angularjs-does-destroy-remove-event-listeners)
 - [Possible memory leak when refreshing table - DataTables forums](https://datatables.net/forums/discussion/35701/possible-memory-leak-when-refreshing-table)

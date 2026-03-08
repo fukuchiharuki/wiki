@@ -5,6 +5,7 @@ last_modified_at: 2017-04-21T18:28:58+09:00
 ---
 
 # キーワード
+
 - DBUnit
 - ExpectedDatabase
 
@@ -40,4 +41,5 @@ junit.framework.ComparisonFailure: table count expected:<[3]> but was:<[47]>
 →複数行@ExpectedDatabaseを書けばいいのかな？
 
 # 参考
+
 - [java - DBUnit Test Comparison Failure - Stack Overflow](http://stackoverflow.com/questions/21909399/dbunit-test-comparison-failure)

@@ -5,6 +5,7 @@ last_modified_at: 2024-04-02T12:53:25+09:00
 ---
 
 # キーワード
+
 - Kotlin
 - Tuple
 
@@ -114,4 +115,5 @@ KTuple(1, 1.0, "1", true)
 {% endraw %}
 
 # 参考
+
 - [可変長タプル on Kotlin? \| KisaragiEffective.github.io](https://kisaragieffective.github.io/blog/entry/10.html)

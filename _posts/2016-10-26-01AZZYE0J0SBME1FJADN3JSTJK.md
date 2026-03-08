@@ -5,6 +5,7 @@ last_modified_at: 2016-10-26T16:31:52+09:00
 ---
 
 # キーワード
+
 - Angular2
 - Google Charts
 - declare
@@ -16,6 +17,7 @@ Angular2で作るページにGoogle Chartsを載せたい。
 # どうやって
 
 ## 用意するもの
+
 - index.html
 - チャート用のテンプレート
 - チャート用のComponent
@@ -162,5 +164,6 @@ ngOnIinitではidを与える前に動いてしまうのかエラーになった
 declareで外部のJavaScriptコードがなんでも呼べる。jQueryだって使える。
 
 # 参考
+
 - [Angular2 + Google Charts. How to integrate Google Charts in Angular2? - Stack Overflow](http://stackoverflow.com/questions/37542408/angular2-google-charts-how-to-integrate-google-charts-in-angular2)
 - [Quick Start  \|  Charts  \|  Google Developers](https://developers.google.com/chart/interactive/docs/quick_start)

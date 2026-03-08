@@ -5,6 +5,7 @@ last_modified_at: 2014-05-26T13:09:49+09:00
 ---
 
 # キーワード
+
 - コンストラクタ
 - staticメソッド
 - シングルトン
@@ -53,9 +54,11 @@ Setting {
 メソッド名はそれがコンストラクタの代用であると分かるようにした方がよいです。
 
 # 関連
+
 - [設計パターン/完全コンストラクタ]({{ site.baseurl }}{% post_url 2014-05-22-018RHZ3Z800B1S536GC6CJ199N %})
 - [設計パターン/ファクトリ]({{ site.baseurl }}{% post_url 2014-05-26-018RVBJ2KRC9HNNNFH3HT0RZZT %})
 - [設計パターン/ビルダー]({{ site.baseurl }}{% post_url 2014-05-27-018RXJBHQGBM4SCF0RJPXYEH1D %})
 
 # 参考
+
 - [コンストラクタの代わりにstaticファクトリーメソッドを検討する - Strategic Choice](http://d.hatena.ne.jp/asakichy/20110921/1316565409)

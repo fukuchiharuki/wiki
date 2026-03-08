@@ -5,11 +5,13 @@ last_modified_at: 2013-08-17T18:07:15+09:00
 ---
 
 # キーワード
+
 - Java
 - Calendar
 - java.util.Date
 
 # 関連
+
 - [Java/Date型とString型を相互に変換する]({{ site.baseurl }}{% post_url 2013-08-17-01825REKDRD4NZHM3GSCNV8DVW %})
 
 # 概要
@@ -124,4 +126,5 @@ end.set(Calendar.SECOND, 59);
 最初の引数で月や日を選択することができるので割と自在です。
 
 # 参考
+
 - http://e-class.center.yuge.ac.jp/jdk_docs/ja/api/java/util/Calendar.html

@@ -5,6 +5,7 @@ last_modified_at: 2017-05-12T12:56:39+09:00
 ---
 
 # キーワード
+
 - JUnit
 - FAILED
 - IllegalStateException
@@ -42,4 +43,5 @@ gradle clean
 こういうの困る。
 
 # 参考
+
 - [java - Spring Boot ConflictingBeanDefinitionException: Annotation-specified bean name for @Controller class - Stack Overflow](http://stackoverflow.com/questions/28498295/spring-boot-conflictingbeandefinitionexception-annotation-specified-bean-name-f)

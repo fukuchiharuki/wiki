@@ -5,6 +5,7 @@ last_modified_at: 2023-02-07T19:31:34+09:00
 ---
 
 # キーワード
+
 - JPA
 - Spring Boot
 - Kotlin
@@ -350,6 +351,7 @@ User(name = "ユーザー")
 伝票・明細、集約等（１対多）の関係のように、記事側エンティティをフィールドにセットしてユーザー側エンティティを保存する。このとき、記事側エンティティはmanagedである必要がある（はず）。
 
 # 参考
+
 - [java - How to use spring Repository without @Id? - Stack Overflow](https://stackoverflow.com/a/29561919)
 - [エンティティの状態遷移](http://itdoc.hitachi.co.jp/manuals/link/cosmi_v0870/APKC/EU070301.HTM)
 - [@OneToMany](http://itdoc.hitachi.co.jp/manuals/link/cosmi_v0870/APR4/EU260088.HTM)
