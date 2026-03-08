@@ -126,6 +126,18 @@ strong, b {
   font-weight: bold;
 }
 
+dl {
+  margin: 1rem 0;
+}
+
+dt {
+  font-weight: 700;
+}
+
+dd {
+  margin: 0.2rem 0 0.8rem 1rem;
+}
+
 img {
   max-width: 100%;
 }
