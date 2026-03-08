@@ -6,7 +6,7 @@ last_modified_at: 2016-07-02T17:25:53+09:00
 
 vimでもいいのですが、やっぱりIDEがほしい。使い慣れたEclipseでTypeScriptな環境を作ることにしました。
 
-&color(red){-- 嘘です！[Atomを使うことにしました](../AtomでTypeScript.md)};
+&color(red){-- 嘘です！[Atomを使うことにしました]({{ site.baseurl }}{% post_url 2016-07-02-01APNBASPRBTHJV7KK04M7JZF4 %})};
 
 # TypEcs - TypeScript IDE for Eclipse
 
