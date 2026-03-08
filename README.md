@@ -11,11 +11,14 @@ not perfect visual reproduction.
 - This repository root is the Jekyll site home
 - Converted pages should be generated into `_posts/`
 - Converted wiki images should be placed into `images/wiki/`
+- This site is published as a project site (`/wiki`), so links must be baseurl-aware
 - Local setup script:
   - `./scripts/setup_jekyll_env.sh`
 - Local preview:
   - `cd .`
   - `bundle exec jekyll serve --livereload`
+- Local preview (production-like baseurl):
+  - `bundle exec jekyll serve --livereload --baseurl /wiki`
 
 ## Scope
 - Input: Local PukiWiki pages written in PukiWiki markup
@@ -73,7 +76,7 @@ Content here
 - External links should remain unchanged
 - Escape `|` in link labels as `\|` to avoid unintended table parsing in Markdown
 - Internal wiki links must be resolved using `pukiwiki_page_inventory.csv` (`page_name` -> `converted_filename`)
-- For Jekyll posts, output internal links with `{% post_url YYYY-MM-DD-ULID %}` derived from `converted_filename`
+- For Jekyll posts, output internal links with `{{ site.baseurl }}{% post_url YYYY-MM-DD-ULID %}` derived from `converted_filename`
 
 ### Inline Formatting
 - `''italic''`     → `*italic*`
@@ -114,7 +117,7 @@ Content here
     `<!-- TODO: original plugin here -->`
 - Exception for image display:
   - `#ref(...)` and `&ref(...);` should be converted to image embeds when the referenced attachment exists
-  - Output format for images must be unified to Markdown: `![alt](url)`
+  - Output format for images must be unified to Markdown: `![alt]({{ '/images/wiki/...' | relative_url }})`
   - Ensure one blank line before and after each image line
   - If image resolution fails, retry resolution considering Unicode normalization differences (NFC/NFD), especially for Japanese voiced/semi-voiced characters
   - If the attachment cannot be resolved, emit a TODO comment instead of dropping it
