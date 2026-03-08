@@ -120,6 +120,29 @@ def squeeze_blank_lines(lines: List[str]) -> List[str]:
     return out
 
 
+def is_list_line(line: str) -> bool:
+    return bool(re.match(r"^\s*(?:- |\d+\. )", line))
+
+
+def normalize_list_spacing(lines: List[str]) -> List[str]:
+    out: List[str] = []
+    n = len(lines)
+
+    for i, line in enumerate(lines):
+        if line and is_list_line(line):
+            if out and out[-1] != "" and not is_list_line(out[-1]):
+                out.append("")
+            out.append(line)
+            next_line = lines[i + 1] if i + 1 < n else ""
+            if next_line != "" and not is_list_line(next_line):
+                out.append("")
+            continue
+
+        out.append(line)
+
+    return squeeze_blank_lines(out)
+
+
 def parse_table_row(line: str) -> Tuple[List[str], bool]:
     stripped = line.strip()
     if not stripped:
@@ -436,7 +459,7 @@ def convert_page(page: str, inventory: Dict[str, Dict[str, str]], image_dir: pat
 
     if in_code:
         close_code_block(out)
-    out = squeeze_blank_lines(out)
+    out = normalize_list_spacing(out)
 
     # サブページでもディレクトリ情報が分かるようページ名をそのまま title に使う
     title = page
