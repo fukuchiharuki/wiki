@@ -140,7 +140,9 @@ def parse_table_row(line: str) -> Tuple[List[str], bool]:
     return [], False
 
 
-def table_lines(table_rows: List[Tuple[List[str], bool]], inventory: Dict[str, Dict[str, str]]) -> List[str]:
+def table_lines(
+    table_rows: List[Tuple[List[str], bool]], inventory: Dict[str, Dict[str, str]], current_page: str = ""
+) -> List[str]:
     if not table_rows:
         return []
 
@@ -165,10 +167,10 @@ def table_lines(table_rows: List[Tuple[List[str], bool]], inventory: Dict[str, D
         body = normalized_rows
 
     out = []
-    out.append("| " + " | ".join(convert_inline(c, inventory) for c in header) + " |")
+    out.append("| " + " | ".join(convert_inline(c, inventory, current_page) for c in header) + " |")
     out.append("| " + " | ".join(["---"] * cols) + " |")
     for row in body:
-        out.append("| " + " | ".join(convert_inline(c, inventory) for c in row) + " |")
+        out.append("| " + " | ".join(convert_inline(c, inventory, current_page) for c in row) + " |")
     return out
 
 
@@ -180,13 +182,13 @@ def parse_definition_row(line: str) -> Tuple[str, str]:
     return term.strip(), desc.strip()
 
 
-def convert_definition_desc(desc: str, inventory: Dict[str, Dict[str, str]]) -> str:
+def convert_definition_desc(desc: str, inventory: Dict[str, Dict[str, str]], current_page: str = "") -> str:
     if not desc:
         return ""
     parts = desc.split("\n")
     converted = []
     for idx, part in enumerate(parts):
-        line = convert_inline(part, inventory)
+        line = convert_inline(part, inventory, current_page)
         # 複数行説明は改行が潰れないように明示的に繋ぐ
         if idx < len(parts) - 1 and line and not line.endswith("<br>"):
             line += "<br>"
@@ -194,11 +196,11 @@ def convert_definition_desc(desc: str, inventory: Dict[str, Dict[str, str]]) -> 
     return "".join(converted)
 
 
-def definition_lines(rows: List[Tuple[str, str]], inventory: Dict[str, Dict[str, str]]) -> List[str]:
+def definition_lines(rows: List[Tuple[str, str]], inventory: Dict[str, Dict[str, str]], current_page: str = "") -> List[str]:
     out = ["<dl>"]
     for term, desc in rows:
-        out.append("<dt>{}</dt>".format(convert_inline(term, inventory)))
-        out.append("<dd>{}</dd>".format(convert_definition_desc(desc, inventory)))
+        out.append("<dt>{}</dt>".format(convert_inline(term, inventory, current_page)))
+        out.append("<dd>{}</dd>".format(convert_definition_desc(desc, inventory, current_page)))
     out.append("</dl>")
     return out
 
@@ -222,7 +224,7 @@ def navi_lines(page: str, inventory: Dict[str, Dict[str, str]]) -> List[str]:
     return out
 
 
-def convert_inline(text: str, inventory: Dict[str, Dict[str, str]]) -> str:
+def convert_inline(text: str, inventory: Dict[str, Dict[str, str]], current_page: str = "") -> str:
     text = re.sub(r"'''(.*?)'''", r"**\1**", text)
     text = re.sub(r"''(.*?)''", r"*\1*", text)
     # PukiWiki line break plugin
@@ -268,8 +270,26 @@ def convert_inline(text: str, inventory: Dict[str, Dict[str, str]]) -> str:
             anchor = "#" + anc
         target = target.strip()
 
-        if target in inventory:
-            expr = post_url_expr(inventory[target]["converted_filename"])
+        resolved_target = target
+        if target not in inventory and current_page and "/" in current_page:
+            parent = current_page.rsplit("/", 1)[0]
+            # `[[SubPage]]` を同一ディレクトリ配下の相対指定として補完する
+            if "/" not in target:
+                candidate = parent + "/" + target
+                if candidate in inventory:
+                    resolved_target = candidate
+            # PukiWiki の `[[../SubPage]]` / `[[./SubPage]]` を sibling 指定として補完する
+            elif target.startswith("../"):
+                candidate = parent + "/" + target[3:]
+                if candidate in inventory:
+                    resolved_target = candidate
+            elif target.startswith("./"):
+                candidate = parent + "/" + target[2:]
+                if candidate in inventory:
+                    resolved_target = candidate
+
+        if resolved_target in inventory:
+            expr = post_url_expr(inventory[resolved_target]["converted_filename"])
             return "[{}]({}{})".format(label, expr, anchor)
         return "[{}]({})".format(label, target + ".md")
 
@@ -355,7 +375,7 @@ def convert_page(page: str, inventory: Dict[str, Dict[str, str]], image_dir: pat
                 j += 1
             rows.append((def_term, "\n".join(desc_lines)))
             ensure_blank_before(out)
-            out.extend(definition_lines(rows, inventory))
+            out.extend(definition_lines(rows, inventory, page))
             ensure_blank_after(out)
             i = j
             continue
@@ -371,7 +391,7 @@ def convert_page(page: str, inventory: Dict[str, Dict[str, str]], image_dir: pat
                 rows.append((next_row, next_is_header))
                 j += 1
             ensure_blank_before(out)
-            out.extend(table_lines(rows, inventory))
+            out.extend(table_lines(rows, inventory, page))
             ensure_blank_after(out)
             i = j
             continue
@@ -389,14 +409,14 @@ def convert_page(page: str, inventory: Dict[str, Dict[str, str]], image_dir: pat
         if m and m.group(2):
             level = len(m.group(1))
             title = re.sub(r"\s*\[#.*\]\s*$", "", m.group(2)).strip()
-            out.append("#" * level + " " + convert_inline(title, inventory))
+            out.append("#" * level + " " + convert_inline(title, inventory, page))
             i += 1
             continue
 
         m = re.match(r"^(-+)\s*(.*)$", stripped)
         if m:
             depth = len(m.group(1)) - 1
-            body = convert_inline(m.group(2), inventory).strip()
+            body = convert_inline(m.group(2), inventory, page).strip()
             if body:
                 out.append("  " * depth + "- " + body)
             i += 1
@@ -405,13 +425,13 @@ def convert_page(page: str, inventory: Dict[str, Dict[str, str]], image_dir: pat
         m = re.match(r"^(\++)\s*(.*)$", stripped)
         if m:
             depth = len(m.group(1)) - 1
-            body = convert_inline(m.group(2), inventory).strip()
+            body = convert_inline(m.group(2), inventory, page).strip()
             if body:
                 out.append("  " * depth + "1. " + body)
             i += 1
             continue
 
-        out.append(convert_inline(stripped, inventory))
+        out.append(convert_inline(stripped, inventory, page))
         i += 1
 
     if in_code:
