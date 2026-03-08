@@ -37,7 +37,7 @@ def post_url_expr(converted_filename: str) -> str:
     # _posts/YYYY-MM-DD-ULID.md -> YYYY-MM-DD-ULID
     name = pathlib.Path(converted_filename).name
     stem = name[:-3] if name.endswith(".md") else name
-    return "{% post_url " + stem + " %}"
+    return "{{ site.baseurl }}{% post_url " + stem + " %}"
 
 
 def build_attach_key(page: str, ref_target: str) -> str:
@@ -76,7 +76,7 @@ def image_line(page: str, ref_expr: str, image_dir: pathlib.Path) -> str:
     if not dest.exists():
         shutil.copy2(src, dest)
 
-    web_path = "/images/wiki/{}".format(src.name)
+    web_path = "{{ '/images/wiki/{}' | relative_url }}".format(src.name)
     # 幅指定などの見た目オプションは採用せず、画像記法は Markdown に統一する
     return "![{}]({})".format(target, web_path)
 
