@@ -76,6 +76,8 @@ Content here
 - `[[label:https://example.com]]` and `[[>label>https://example.com]]` should be treated as external links
 - External links should remain unchanged
 - Escape `|` in link labels as `\|` to avoid unintended table parsing in Markdown
+- If `[[SubPage]]` does not match a full page name, resolve it as a sibling under the current page directory when possible
+- Treat `[[../SubPage]]` and `[[./SubPage]]` as relative sibling-page links under the current page directory when possible
 - Internal wiki links must be resolved using `pukiwiki_page_inventory.csv` (`page_name` -> `converted_filename`)
 - For Jekyll posts, output internal links with `{{ site.baseurl }}{% post_url YYYY-MM-DD-ULID %}` derived from `converted_filename`
 
