@@ -254,6 +254,8 @@ def convert_inline(text: str, inventory: Dict[str, Dict[str, str]], current_page
     text = re.sub(r"&br\(\);?|&br;|&br(?=[^A-Za-z0-9_]|$)", "<br>", text, flags=re.IGNORECASE)
     if text.endswith("~"):
         text = text[:-1] + "<br>"
+    # 本文中のパイプは kramdown でテーブル解釈され得るため、未エスケープのみ保護する
+    text = re.sub(r"(?<!\\)\|", r"\\|", text)
 
     def repl(m):
         inner = m.group(1)
@@ -281,8 +283,6 @@ def convert_inline(text: str, inventory: Dict[str, Dict[str, str]], current_page
                 target = s
 
         label = label.replace("&nbsp;", " ")
-        # kramdown で表セル区切りと誤解釈されるのを避ける
-        label = label.replace("|", r"\|")
 
         if re.match(r"^[a-zA-Z][a-zA-Z0-9+.-]*://", target):
             return "[{}]({})".format(label, target)
