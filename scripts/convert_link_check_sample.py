@@ -76,7 +76,8 @@ def image_line(page: str, ref_expr: str, image_dir: pathlib.Path) -> str:
     if not dest.exists():
         shutil.copy2(src, dest)
 
-    web_path = "{{ '/images/wiki/{}' | relative_url }}".format(src.name)
+    # str.format() で Liquid の中括弧が崩れないように二重でエスケープする
+    web_path = "{{{{ '/images/wiki/{}' | relative_url }}}}".format(src.name)
     # 幅指定などの見た目オプションは採用せず、画像記法は Markdown に統一する
     return "![{}]({})".format(target, web_path)
 
@@ -385,14 +386,18 @@ def convert_page(page: str, inventory: Dict[str, Dict[str, str]], image_dir: pat
         m = re.match(r"^(-+)\s*(.*)$", stripped)
         if m:
             depth = len(m.group(1)) - 1
-            out.append("  " * depth + "- " + convert_inline(m.group(2), inventory))
+            body = convert_inline(m.group(2), inventory).strip()
+            if body:
+                out.append("  " * depth + "- " + body)
             i += 1
             continue
 
         m = re.match(r"^(\++)\s*(.*)$", stripped)
         if m:
             depth = len(m.group(1)) - 1
-            out.append("  " * depth + "1. " + convert_inline(m.group(2), inventory))
+            body = convert_inline(m.group(2), inventory).strip()
+            if body:
+                out.append("  " * depth + "1. " + body)
             i += 1
             continue
 
