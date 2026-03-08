@@ -91,6 +91,7 @@ Content here
 - Preserve content exactly as written (no syntax conversion inside code blocks)
 - Ensure one blank line before and after each fenced code block
 - Once a line is treated as code-block content, do not apply any conversion rules in this document to that line
+- Wrap each fenced code block with `{% raw %}` / `{% endraw %}` so Liquid syntax like `{{ ... }}` is not evaluated by Jekyll
 
 ### Tables
 - Convert simple tables to Markdown tables
