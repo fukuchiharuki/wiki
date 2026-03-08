@@ -99,6 +99,18 @@ def append_block_line(lines: List[str], line: str) -> None:
     ensure_blank_after(lines)
 
 
+def open_code_block(lines: List[str]) -> None:
+    ensure_blank_before(lines)
+    lines.append("{% raw %}")
+    lines.append("```")
+
+
+def close_code_block(lines: List[str]) -> None:
+    lines.append("```")
+    lines.append("{% endraw %}")
+    ensure_blank_after(lines)
+
+
 def squeeze_blank_lines(lines: List[str]) -> List[str]:
     out = []
     for line in lines:
@@ -299,15 +311,13 @@ def convert_page(page: str, inventory: Dict[str, Dict[str, str]], image_dir: pat
         # Preformatted blocks must be preserved as code fences before other line-level conversions.
         if stripped.startswith((" ", "\t")):
             if not in_code:
-                ensure_blank_before(out)
-                out.append("```")
+                open_code_block(out)
                 in_code = True
             out.append(stripped[1:] if stripped else "")
             i += 1
             continue
         elif in_code:
-            out.append("```")
-            ensure_blank_after(out)
+            close_code_block(out)
             in_code = False
 
         def_term, def_desc = parse_definition_row(stripped)
@@ -405,8 +415,7 @@ def convert_page(page: str, inventory: Dict[str, Dict[str, str]], image_dir: pat
         i += 1
 
     if in_code:
-        out.append("```")
-        ensure_blank_after(out)
+        close_code_block(out)
     out = squeeze_blank_lines(out)
 
     # サブページでもディレクトリ情報が分かるようページ名をそのまま title に使う
