@@ -9,7 +9,7 @@ last_modified_at: 2013-08-17T18:07:15+09:00
 - grant
 
 # 関連
-- [MySQL/データベースを作成する]({% post_url 2013-08-17-01825REKDRZKVFR2RWTH543RHB %})
+- [MySQL/データベースを作成する]({{ site.baseurl }}{% post_url 2013-08-17-01825REKDRZKVFR2RWTH543RHB %})
 
 # 概要
 ユーザを作成する。

@@ -9,7 +9,7 @@ last_modified_at: 2013-08-17T18:07:15+09:00
 - java.util.Date
 
 # 関連
-- [Java/前週や前月の開始日と終了日を計算する]({% post_url 2013-08-17-01825REKDRKME2NZYPCKPKFH5E %})
+- [Java/前週や前月の開始日と終了日を計算する]({{ site.baseurl }}{% post_url 2013-08-17-01825REKDRKME2NZYPCKPKFH5E %})
 
 # 概要
 Date型のオブジェクトをString型に、またString型のオブジェクトをDate型に変換したい。

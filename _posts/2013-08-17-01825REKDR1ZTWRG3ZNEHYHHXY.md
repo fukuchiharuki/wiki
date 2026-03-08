@@ -172,7 +172,7 @@ Bad value X-UA-Compatible for attribute http-equiv on element meta
 - http://www.joshuawinn.com/fix-html5-validator-error-bad-value-x-ua-compatible-for-attribute-http-equiv-on-element-meta/
 
 ## 本文がからっぽで検索の対象にできない
-あ。(→[その2]({% post_url 2013-08-17-01825REKDRPV9V18A0NT8X8DRM %})もどうぞ。)
+あ。(→[その2]({{ site.baseurl }}{% post_url 2013-08-17-01825REKDRPV9V18A0NT8X8DRM %})もどうぞ。)
 
 # 参考
 - http://terkel.jp/archives/2012/07/styles-for-noscript/

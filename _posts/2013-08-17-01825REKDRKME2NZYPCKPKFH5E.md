@@ -10,7 +10,7 @@ last_modified_at: 2013-08-17T18:07:15+09:00
 - java.util.Date
 
 # 関連
-- [Java/Date型とString型を相互に変換する]({% post_url 2013-08-17-01825REKDRD4NZHM3GSCNV8DVW %})
+- [Java/Date型とString型を相互に変換する]({{ site.baseurl }}{% post_url 2013-08-17-01825REKDRD4NZHM3GSCNV8DVW %})
 
 # 概要
 今日を基準日として、前週や前月の開始日と終了日を計算します。 <br>

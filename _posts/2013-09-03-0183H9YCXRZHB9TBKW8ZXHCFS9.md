@@ -14,6 +14,6 @@ last_modified_at: 2013-09-03T16:00:19+09:00
 **# あらゆる面で優位なブランチ戦略・作戦をとることは非常に困難です。**<br>
 **# 従って、ここで述べるものはある戦略・作戦の一例であり、実践です。**
 
-- [ブランチ戦略]({% post_url 2015-08-30-019XX4YKNGMYJ81VPQP48BQPYW %})
-- [ブランチ作戦]({% post_url 2014-06-10-018T2B0N4RZE4M7KJJ5QBEA0WQ %})
+- [ブランチ戦略]({{ site.baseurl }}{% post_url 2015-08-30-019XX4YKNGMYJ81VPQP48BQPYW %})
+- [ブランチ作戦]({{ site.baseurl }}{% post_url 2014-06-10-018T2B0N4RZE4M7KJJ5QBEA0WQ %})
 - [ブランチ戦術](ソースコード管理実践/ブランチ戦術.md) (まだ書いてないよ)

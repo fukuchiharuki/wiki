@@ -9,8 +9,8 @@ last_modified_at: 2017-04-13T12:41:22+09:00
 - MySQL
 
 # 関連
-- [Docker/MySQLサーバーを立てる]({% post_url 2017-04-13-01BDJPCT5GX86CSVDSWVM0SRAV %})
-- [障害メモ/Docker for Windowsでボリュームマウントできない]({% post_url 2017-04-13-01BDJPB1H0Q89Z9F8Y5MRVMK66 %})
+- [Docker/MySQLサーバーを立てる]({{ site.baseurl }}{% post_url 2017-04-13-01BDJPCT5GX86CSVDSWVM0SRAV %})
+- [障害メモ/Docker for Windowsでボリュームマウントできない]({{ site.baseurl }}{% post_url 2017-04-13-01BDJPB1H0Q89Z9F8Y5MRVMK66 %})
 
 # したいこと
 

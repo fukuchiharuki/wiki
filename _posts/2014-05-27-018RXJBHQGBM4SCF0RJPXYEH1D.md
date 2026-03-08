@@ -88,8 +88,8 @@ Client {
 ```
 
 # 関連
-- [設計パターン/スタティックファクトリメソッド]({% post_url 2014-05-26-018RVBGNP839YZFXNFXCAFWDQM %})
-- [設計パターン/ファクトリ]({% post_url 2014-05-26-018RVBJ2KRC9HNNNFH3HT0RZZT %})
+- [設計パターン/スタティックファクトリメソッド]({{ site.baseurl }}{% post_url 2014-05-26-018RVBGNP839YZFXNFXCAFWDQM %})
+- [設計パターン/ファクトリ]({{ site.baseurl }}{% post_url 2014-05-26-018RVBJ2KRC9HNNNFH3HT0RZZT %})
 
 # 参考
 - Effective Javaのビルダーパターン

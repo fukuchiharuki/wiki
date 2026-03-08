@@ -7,7 +7,7 @@ last_modified_at: 2017-03-23T12:49:51+09:00
 Spring Bootに限った話ではないけど、作り始めに整えておいた方がいいこと。
 
 ### ビルド
-- [プロジェクト分割]({% post_url 2017-03-23-01BBWMX9ZGCN5SAZ878974BECX %})
+- [プロジェクト分割]({{ site.baseurl }}{% post_url 2017-03-23-01BBWMX9ZGCN5SAZ878974BECX %})
   - Gradle
   - 依存関係
 - DB接続

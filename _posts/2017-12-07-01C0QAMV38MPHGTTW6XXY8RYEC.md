@@ -56,7 +56,7 @@ const HistoryList = ({state}) => (
 
 「()」でJSX要素が返却できるのはなんでかっていうと、ラムダ式になっているからなだけですね。
 
-なお、繰り返し中に「key」を指定しないと「ユニークなkeyをもつべし」と[怒られます]({% post_url 2017-12-07-01C0QAHXB836Q53AN27R729XMC %})ので注意。
+なお、繰り返し中に「key」を指定しないと「ユニークなkeyをもつべし」と[怒られます]({{ site.baseurl }}{% post_url 2017-12-07-01C0QAHXB836Q53AN27R729XMC %})ので注意。
 
 # 参考
 - [React.jsのJSXで条件分岐・繰り返しを記述する - Qiita](https://qiita.com/r7kamura/items/b16cb11b30a54d3c607d)

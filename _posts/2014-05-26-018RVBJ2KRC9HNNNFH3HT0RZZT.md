@@ -55,9 +55,9 @@ UserEntityFactory {
 ```
 
 # 関連
-- [設計パターン/リポジトリ]({% post_url 2014-05-23-018RMN9MBRG85AC3D582B83F4M %})
-- [設計パターン/ビルダー]({% post_url 2014-05-27-018RXJBHQGBM4SCF0RJPXYEH1D %})
-- [設計パターン/完全コンストラクタ]({% post_url 2014-05-22-018RHZ3Z800B1S536GC6CJ199N %})
+- [設計パターン/リポジトリ]({{ site.baseurl }}{% post_url 2014-05-23-018RMN9MBRG85AC3D582B83F4M %})
+- [設計パターン/ビルダー]({{ site.baseurl }}{% post_url 2014-05-27-018RXJBHQGBM4SCF0RJPXYEH1D %})
+- [設計パターン/完全コンストラクタ]({{ site.baseurl }}{% post_url 2014-05-22-018RHZ3Z800B1S536GC6CJ199N %})
 
 # 参考
 - [ドメイン駆動設計・アプリケーション構築編・ファクトリ - Strategic Choice](http://d.hatena.ne.jp/asakichy/20110531/1306794692)

@@ -10,7 +10,7 @@ last_modified_at: 2013-08-17T18:07:15+09:00
 - デプロイ
 
 # 関連
-- [WindowsでWebアプリケーションを作ってみる]({% post_url 2013-08-17-01825REKDRF59BCD8KYSM0CVBA %})
+- [WindowsでWebアプリケーションを作ってみる]({{ site.baseurl }}{% post_url 2013-08-17-01825REKDRF59BCD8KYSM0CVBA %})
 
 # 概要
 TomcatにWARファイル(webアプリケーション)をデプロイします。
