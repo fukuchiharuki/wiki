@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PukiWiki Redirect</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f8fafc;
+      color: #0f172a;
+      display: grid;
+      min-height: 100vh;
+      place-items: center;
+      line-height: 1.6;
+    }
+    main {
+      width: min(680px, 92vw);
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 8px 30px rgba(15, 23, 42, 0.06);
+    }
+    h1 { margin-top: 0; font-size: 1.25rem; }
+    .muted { color: #475569; }
+    code {
+      background: #f1f5f9;
+      border-radius: 6px;
+      padding: 0.1em 0.35em;
+    }
+    a { color: #0369a1; }
+  </style>
+  <script src="./page-map.js"></script>
+</head>
+<body>
+  <main>
+    <h1>PukiWiki ページを新URLへ転送します</h1>
+    <p id="status" class="muted">リダイレクト先を確認中です...</p>
+    <p id="details"></p>
+  </main>
+
+  <script>
+    (function () {
+      const NEW_WIKI_BASE = "https://fukuchiharuki.me/wiki/";
+
+      function decodeWikiQueryValue(value) {
+        // PukiWiki query often uses '+' for spaces.
+        const plusAsSpace = String(value || "").replace(/\+/g, " ");
+        try {
+          return decodeURIComponent(plusAsSpace);
+        } catch (_) {
+          return plusAsSpace;
+        }
+      }
+
+      function getRequestedPage() {
+        const search = window.location.search || "";
+        if (!search || search === "?") return "";
+
+        const raw = search.slice(1);
+        if (!raw.includes("=") && !raw.includes("&")) {
+          return decodeWikiQueryValue(raw);
+        }
+
+        const params = new URLSearchParams(raw);
+        if (params.get("page")) return decodeWikiQueryValue(params.get("page"));
+        if (params.get("Page")) return decodeWikiQueryValue(params.get("Page"));
+        if (params.get("name")) return decodeWikiQueryValue(params.get("name"));
+        return "";
+      }
+
+      const status = document.getElementById("status");
+      const details = document.getElementById("details");
+      const requestedPage = getRequestedPage();
+      const map = window.PAGE_REDIRECT_MAP || {};
+      const slug = requestedPage
+        ? (map[requestedPage] || map[requestedPage.replace(/\+/g, " ")])
+        : "";
+
+      if (slug) {
+        const destination = NEW_WIKI_BASE + slug + "/";
+        status.textContent = "新しいページに移動します...";
+        details.innerHTML = '移動しない場合は <a id="targetLink" href=""></a> を開いてください。';
+        document.getElementById("targetLink").href = destination;
+        document.getElementById("targetLink").textContent = destination;
+        window.location.replace(destination);
+        return;
+      }
+
+      status.textContent = "移動先を特定できませんでした。";
+      if (!requestedPage) {
+        details.innerHTML = 'URLクエリに PukiWiki のページ名がありません。<a href="' + NEW_WIKI_BASE + '">新しいWikiトップ</a>を開いてください。';
+      } else {
+        const code = document.createElement("code");
+        code.textContent = requestedPage;
+        details.textContent = "ページ名 ";
+        details.appendChild(code);
+        details.appendChild(document.createTextNode(" の移動先が見つかりませんでした。"));
+        const link = document.createElement("a");
+        link.href = NEW_WIKI_BASE;
+        link.textContent = "新しいWikiトップ";
+        details.appendChild(link);
+        details.appendChild(document.createTextNode(" から探してください。"));
+      }
+    })();
+  </script>
+</body>
+</html>
