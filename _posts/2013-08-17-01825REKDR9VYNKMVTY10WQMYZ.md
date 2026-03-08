@@ -16,10 +16,12 @@ last_modified_at: 2013-08-17T18:07:15+09:00
 
 # 方法
 
+{% raw %}
 ```
 mysql> GRANT ALL PRIVILEGES ON データベース名.* TO 'ユーザー名'@'ホスト名' IDENTIFIED BY 'パスワード';
 mysql> flush privileges;
 ```
+{% endraw %}
 
 # 解説
 - 「ALL PRIVILEGES」はfull権限を与える場合の設定

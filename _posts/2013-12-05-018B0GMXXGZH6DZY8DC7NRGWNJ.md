@@ -17,52 +17,66 @@ last_modified_at: 2013-12-05T13:35:58+09:00
 
 ### マウントされるディレクトリを作成する
 
+{% raw %}
 ```
 # mkdir -p /var/nfs/hoge
 ```
+{% endraw %}
 
 ### パーミション設定する
 ここはマウントする側のUIDとGIDに合わせます。
 
+{% raw %}
 ```
 # chown -R 500:500 /var/nfs/hoge
 ```
+{% endraw %}
 
 ### マウントされる口を空ける
 - /etc/exports
 
+{% raw %}
 ```
 /var/nfs  192.168.100.*/255.255.255.0(rw,no_root_squash)
 ```
+{% endraw %}
 
 ### nfsを起動する
 既に起動しているなら restart します。
 
+{% raw %}
 ```
 # /etc/init.d/nfs start
 ```
+{% endraw %}
 
 ## マウントする側
 
 ### マウントポイントを作成する
 
+{% raw %}
 ```
 # mkdir /var/moge
 ```
+{% endraw %}
 
 ### 起動時にマウントするように設定する
 
 - /etc/fstab
 
+{% raw %}
 ```
 {ホスト名}:/var/nfs/hoge /var/moge nfs rw 0 0
 ```
+{% endraw %}
 
 ### 今すぐマウントする
 
+{% raw %}
 ```
 # mount -a
 ```
+{% endraw %}
 
 # 解説
 

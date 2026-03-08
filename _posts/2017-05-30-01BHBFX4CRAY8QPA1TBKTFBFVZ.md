@@ -16,6 +16,7 @@ Spring Securityでログインしたログインユーザーの情報(LoggedInUs
 
 ControllerAdviceで@ModelAttributeをセットしておくのが楽だと思う。
 
+{% raw %}
 ```
 @ControllerAdvice
 public class PrincipalControllerAdvice {
@@ -32,9 +33,11 @@ public class PrincipalControllerAdvice {
 
 }
 ```
+{% endraw %}
 
 リクエストハンドラでは@ModelAttributeで取得できる。
 
+{% raw %}
 ```
 @RequestMapping("/nanika")
 public String nanika(
@@ -42,6 +45,7 @@ public String nanika(
     Model model
 ) { /* 処理 */ }
 ```
+{% endraw %}
 
 # ノート
 

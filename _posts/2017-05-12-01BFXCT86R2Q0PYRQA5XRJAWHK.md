@@ -15,11 +15,13 @@ last_modified_at: 2017-05-12T12:56:39+09:00
 
 すべてのテストが次の例外で失敗する。
 
+{% raw %}
 ```
     java.lang.IllegalStateException
         Caused by: org.springframework.beans.factory.BeanDefinitionStoreException
             Caused by: org.springframework.context.annotation.ConflictingBeanDefinitionException
 ```
+{% endraw %}
 
 # 原因
 
@@ -27,9 +29,11 @@ last_modified_at: 2017-05-12T12:56:39+09:00
 
 # 対策
 
+{% raw %}
 ```
 gradle clean
 ```
+{% endraw %}
 
 したら直った。
 

@@ -19,15 +19,18 @@ last_modified_at: 2013-08-17T18:07:15+09:00
 # 方法
 まずはこれだけ用意して、
 
+{% raw %}
 ```
 Calendar today = Calendar.getInstance();
 Calendar start = Calendar.getInstance();
 Calendar end = Calendar.getInstance();
 today.setTime(new java.util.Date());
 ```
+{% endraw %}
 
 ## 今週
 
+{% raw %}
 ```
 int diff = (today.get(Calendar.DAY_OF_WEEK) + 5) % 7;
 start.setTime(today.getTime());
@@ -35,9 +38,11 @@ start.add(Calendar.DATE, -diff);
 end.setTime(start.getTime());
 end.add(Calendar.DATE, 6);
 ```
+{% endraw %}
 
 ## 前週
 
+{% raw %}
 ```
 int diff = (today.get(Calendar.DAY_OF_WEEK) + 5) % 7 + 7;
 start.setTime(today.getTime());
@@ -45,9 +50,11 @@ start.add(Calendar.DATE, -diff);
 end.setTime(start.getTime());
 end.add(Calendar.DATE, 6);
 ```
+{% endraw %}
 
 ## 前々週
 
+{% raw %}
 ```
 int diff = (today.get(Calendar.DAY_OF_WEEK) + 5) % 7 + 7*2;
 start.setTime(today.getTime());
@@ -55,9 +62,11 @@ start.add(Calendar.DATE, -diff);
 end.setTime(start.getTime());
 end.add(Calendar.DATE, 6);
 ```
+{% endraw %}
 
 ## 今月
 
+{% raw %}
 ```
 int diff = (today.get(Calendar.DATE)) - 1;
 start.setTime(today.getTime());
@@ -66,9 +75,11 @@ end.setTime(start.getTime());
 end.add(Calendar.MONTH, 1);
 end.add(Calendar.DATE, -1);
 ```
+{% endraw %}
 
 ## 前月
 
+{% raw %}
 ```
 int diff = (today.get(Calendar.DATE)) - 1;
 start.setTime(today.getTime());
@@ -78,9 +89,11 @@ end.setTime(start.getTime());
 end.add(Calendar.MONTH, 1);
 end.add(Calendar.DATE, -1);
 ```
+{% endraw %}
 
 ## 前々月
 
+{% raw %}
 ```
 int diff = (today.get(Calendar.DATE)) - 1;
 start.setTime(today.getTime());
@@ -90,10 +103,12 @@ end.setTime(start.getTime());
 end.add(Calendar.MONTH, 1);
 end.add(Calendar.DATE, -1);
 ```
+{% endraw %}
 
 <br>
 最後に、
 
+{% raw %}
 ```
 start.set(Calendar.HOUR_OF_DAY, 0);
 start.set(Calendar.MINUTE, 0);
@@ -102,6 +117,7 @@ end.set(Calendar.HOUR_OF_DAY, 23);
 end.set(Calendar.MINUTE, 59);
 end.set(Calendar.SECOND, 59);
 ```
+{% endraw %}
 
 # 解説
 [Calendar#add(int, int)](http://e-class.center.yuge.ac.jp/jdk_docs/ja/api/java/util/Calendar.html#add%28int,%20int%29)で足したり引いたりするだけです。

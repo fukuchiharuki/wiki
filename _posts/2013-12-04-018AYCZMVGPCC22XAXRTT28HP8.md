@@ -14,24 +14,30 @@ last_modified_at: 2013-12-04T17:53:26+09:00
 # 方法
 - dir/sample.sh
 
+{% raw %}
 ```
 cd `dirname $0`
 ./echo.sh
 ```
+{% endraw %}
 
 - dir/echo.sh
 
+{% raw %}
 ```
 echo echo
 ```
+{% endraw %}
 
 次の実行結果を得ます。
 
+{% raw %}
 ```
 $./dir/sample.sh
 echo
 $
 ```
+{% endraw %}
 
 # 解説
 

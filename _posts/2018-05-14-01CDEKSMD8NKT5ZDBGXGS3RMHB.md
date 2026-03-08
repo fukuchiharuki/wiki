@@ -13,9 +13,11 @@ last_modified_at: 2018-05-14T15:00:57+09:00
 
 react-new-window で開いた別ウィンドウを印刷させたい、のがきっかけ。
 
+{% raw %}
 ```
 window.print();
 ```
+{% endraw %}
 
 すると、親ウィンドウが印刷されてしまう。
 
@@ -25,15 +27,19 @@ window.print();
 
 ref を使う。
 
+{% raw %}
 ```
 <NewWindow {...newWindowProps} ref={element => this.newWindow = element} />
 ```
+{% endraw %}
 
 目的の window オブジェクトでプリントするには、
 
+{% raw %}
 ```
 this.newWindow.window.print();
 ```
+{% endraw %}
 
 # なお書き
 

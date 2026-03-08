@@ -11,9 +11,11 @@ last_modified_at: 2013-08-17T18:07:15+09:00
 # 現象
 EclipseからJbossを起動すると以下の例外が起こる。
 
+{% raw %}
 ```
 ERROR [AbstractKernelController] Error installing to Instantiated: ...
 ```
+{% endraw %}
 
 ## 詳しい状況
 - JBoss 6 を JBoss 5 のサーバ設定で動かしている。

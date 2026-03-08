@@ -11,9 +11,11 @@ last_modified_at: 2014-05-26T13:10:35+09:00
 
 # 何か
 
+{% raw %}
 ```
 専門工場
 ```
+{% endraw %}
 
 インスタンスの生成をするための専用クラスを設けます。
 
@@ -33,13 +35,16 @@ last_modified_at: 2014-05-26T13:10:35+09:00
 
 ファクトリによってインスタンスを生成するようにします。
 
+{% raw %}
 ```
 UserEntityFactory factory = new UserEntityFactory();
 UserEntity user = factory.createUser("haruki", "fukuchi", "B");
 ```
+{% endraw %}
 
 ファクトリは完全なインスタンスとしての整合性や妥当性を保証します。
 
+{% raw %}
 ```
 UserEntityFactory {
 
@@ -53,6 +58,7 @@ UserEntityFactory {
 
 }
 ```
+{% endraw %}
 
 # 関連
 - [設計パターン/リポジトリ]({{ site.baseurl }}{% post_url 2014-05-23-018RMN9MBRG85AC3D582B83F4M %})

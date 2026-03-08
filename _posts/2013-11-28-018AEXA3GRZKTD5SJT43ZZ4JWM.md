@@ -14,23 +14,28 @@ last_modified_at: 2013-11-28T17:30:55+09:00
 # 方法
 ## 右クリック禁止
 
+{% raw %}
 ```
 $(document).bind("contextmenu", function(e) {
 	return false;
 });
 ```
+{% endraw %}
 
 ## テキストの選択禁止
 ### IE向け
 
+{% raw %}
 ```
 $('html').on('selectstart dragstart', function(e) { 
 	e.preventDefault(); 
 });
 ```
+{% endraw %}
 
 ### IE以外向け
 
+{% raw %}
 ```
 $('html').css({
 	'user-select': 'none',
@@ -39,6 +44,7 @@ $('html').css({
 	'-webkit-user-select': 'none'
 });
 ```
+{% endraw %}
 
 # 解説
 右クリックはイベント contextmenu を拾って false を返却すれば抑止できるようです。

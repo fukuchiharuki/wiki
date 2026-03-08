@@ -24,12 +24,15 @@ Dockerで立ち上げたMySQLに別のコンテナから接続したい。
 
 Dockerで立ち上げたMySQLコンテナの名前が『mysqld』であるとして。
 
+{% raw %}
 ```
 $ docker run -it --rm --link mysqld:dbserver mysql bash
 ```
+{% endraw %}
 
 MySQLのイメージにはmysqlクライアントもbashもある。
 
+{% raw %}
 ```
 # env | grep DBSERVER
 DBSERVER_PORT_3306_TCP_ADDR=172.17.0.2
@@ -48,10 +51,13 @@ DBSERVER_ENV_MYSQL_MAJOR=5.7
 DBSERVER_ENV_GOSU_VERSION=1.7
 #
 ```
+{% endraw %}
 
+{% raw %}
 ```
 # mysql -h$DBSERVER_PORT_3306_TCP_ADDR -u$DBSERVER_ENV_MYSQL_USER -p$DBSERVER_ENV_MYSQL_PASSWORD $DBSERVER_ENV_MYSQL_DATABASE
 ```
+{% endraw %}
 
 # ノート
 

@@ -26,6 +26,7 @@ last_modified_at: 2017-04-27T12:32:05+09:00
 
 logback-spring.xmlで次のように設定する。
 
+{% raw %}
 ```
 <springProfile name="prod">
 	<property name="WEB_FILE_NAME" value="/home/hoge/log/application.log" />	
@@ -37,12 +38,15 @@ logback-spring.xmlで次のように設定する。
 	<property name="WEB_FILE_NAME" value="/home/hogedev/log/dev.application.log" />	
 </springProfile>
 ```
+{% endraw %}
 
 ファイル名の指定で次のように書く。
 
+{% raw %}
 ```
 <file>${WEB_FILE_NAME}</file>
 ```
+{% endraw %}
 
 # ノート
 

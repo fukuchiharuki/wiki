@@ -23,25 +23,30 @@ Angular2で作るページにGoogle Chartsを載せたい。
 
 ## index.html
 
+{% raw %}
 ```
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
    google.charts.load('current', {'packages':['corechart', 'geochart', 'annotationchart']});
 </script>
 ```
+{% endraw %}
 
 index.htmlから普通にGoogle Chartsを使うように書く。パッケージは使うものを任意で。
 
 ## チャート用のテンプレート
 
+{% raw %}
 ```
 <div [id]="elementId"></div>
 ```
+{% endraw %}
 
 idはchart描画でgetElementByIdするときに使う。
 
 ## チャート用のComponent
 
+{% raw %}
 ```
 import {
   Component,
@@ -103,43 +108,52 @@ export class MyPieChartComponent implements OnInit {
 
 }
 ```
+{% endraw %}
 
 大事なところは次。
 
 ### 外部ライブラリの利用
 
+{% raw %}
 ```
 declare var google: any;
 ```
+{% endraw %}
 
 なんとこれだけでgoogle.*が普通に使える。（jQueryも同じようにいける）
 
 ### 描画関数の登録
 
+{% raw %}
 ```
   ngAfterViewInit() {
     google.charts.setOnLoadCallback(() => this.drawChart());
   }
 ```
+{% endraw %}
 
 ngOnIinitではidを与える前に動いてしまうのかエラーになった。ので、描画後イベントにした。
 
 ### リサイズに対応
 
+{% raw %}
 ```
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.drawChart();
   }
 ```
+{% endraw %}
 
 リサイズイベントはデコレータでとるのがいいと思う。
 
 ## 使う側のテンプレート
 
+{% raw %}
 ```
 <app-my-pie-chart></app-my-pie-chart>
 ```
+{% endraw %}
 
 使うだけ。
 

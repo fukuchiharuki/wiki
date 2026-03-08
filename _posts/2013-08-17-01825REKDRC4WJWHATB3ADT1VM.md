@@ -11,10 +11,12 @@ last_modified_at: 2013-08-17T18:07:15+09:00
 # 現象
 JBoss (Tomcat)を起動しようとすると次のエラーになる。
 
+{% raw %}
 ```
 ERROR [AbstractKernelController] Error installing to Start: （どうのこうの）
 java.rmi.server.ExportException: Port already in use: 1090; nested exception is: 
 ```
+{% endraw %}
 
 # 原因
 ポート番号が既に使われているために起動できない様子。
@@ -22,6 +24,7 @@ java.rmi.server.ExportException: Port already in use: 1090; nested exception is:
 # 対策
 まずnetstatでポート番号を使っているプロセスを特定する。
 
+{% raw %}
 ```
 > netstat -no
 
@@ -32,6 +35,7 @@ Active Connections
   TCP    xxx.xx.xxx.xxx:1090    xxx.xx.xxx.xxx:6080    ESTABLISHED     3088
           ～省略～
 ```
+{% endraw %}
 
 次にタスクマネジャで該当するプロセスを殺す。<br>
 netstat で State が ESTABLISH になっている場合は大丈夫かどうか確認を。

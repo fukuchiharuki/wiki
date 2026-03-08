@@ -65,6 +65,7 @@ last_modified_at: 2013-08-17T18:07:15+09:00
 
 ![Servletを作成する01.jpg]({{ '/images/wiki/45636C697073652F576562E382A2E38397E383AAE382B1E383BCE382B7E383A7E383B3E38292E4BD9CE68890E38199E3828B_536572766C6574E38292E4BD9CE68890E38199E3828B30312E6A7067' | relative_url }})
 
+{% raw %}
 ```
 @Override
 protected void service(HttpServletRequest request, HttpServletResponse response) 
@@ -74,6 +75,7 @@ throws ServletException, IOException {
     rd.forward(request, response);
 }
 ```
+{% endraw %}
 
 ### JSPを作成する
 

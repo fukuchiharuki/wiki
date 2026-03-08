@@ -9,12 +9,15 @@ last_modified_at: 2017-04-13T12:41:02+09:00
 
 # イメージをダウンロード
 
+{% raw %}
 ```
 docker pull mysql
 ```
+{% endraw %}
 
 # コンテナを起動
 
+{% raw %}
 ```
 docker run \
 --name mysqld \
@@ -26,6 +29,7 @@ docker run \
 -p 3306:3306 \
 -d mysql
 ```
+{% endraw %}
 
 「-e」で指定の箇所は任意で設定のこと。
 
@@ -33,14 +37,18 @@ docker run \
 
 停止。
 
+{% raw %}
 ```
 docker stop mysqld
 ```
+{% endraw %}
 
 再起動。
 
+{% raw %}
 ```
 docker start mysqld
 ```
+{% endraw %}
 
 「--name」でつけた名前で停止と再起動ができる。

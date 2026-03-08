@@ -29,6 +29,7 @@ useCtrlKeysが無効になっているから。公式にちゃんと書いてあ
 
 で次を打ち込んでおく。
 
+{% raw %}
 ```
 // 既定の設定を上書きするには、このファイル内に設定を挿入します
 {
@@ -41,6 +42,7 @@ useCtrlKeysが無効になっているから。公式にちゃんと書いてあ
   "editor.cursorStyle": "block"
 }
 ```
+{% endraw %}
 
 必要なのは次だけです。
 - vim.useCtrlKeys

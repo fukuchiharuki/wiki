@@ -14,6 +14,7 @@ last_modified_at: 2018-09-22T14:22:10+09:00
 # 方法
 sample.sh: 
 
+{% raw %}
 ```
 set -- `echo i1 i2 i3`
 while [ $# -ne 0 ]
@@ -22,9 +23,11 @@ do
     shift
 done
 ```
+{% endraw %}
 
 次の実行結果を得ます。
 
+{% raw %}
 ```
 $ ./sample.sh
 i1
@@ -32,6 +35,7 @@ i2
 i3
 $
 ```
+{% endraw %}
 
 # 解説
 $1 や shift は引数を扱うためのものですが set を使うことで引数の代わりにすることができます。

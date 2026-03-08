@@ -14,10 +14,12 @@ JSPで一文字ずつsplitする方法です。
 
 # 方法
 
+{% raw %}
 ```
 <c:set var="text" value="${longtext}" />
 <c:forEach var="str" items="<%=((String)pageContext.getAttribute(\"text\")).toCharArray() %>" ><c:out value="${str}" />&shy;</c:forEach>
 ```
+{% endraw %}
 
 # 解説
 各ブラウザで折り返しがどうのとかいう、見栄えが優先されるときに。

@@ -34,23 +34,29 @@ last_modified_at: 2013-08-17T18:07:15+09:00
 ## Tomcatを起動する
 1. プロンプトで次のように叩く
 
+{% raw %}
 ```
 >cd c:\opt\tomcat\apache-tomcat-7.0.12\
 >bin\startup.bat
 ```
+{% endraw %}
 
 ### 動作確認する
 別のプロンプトが立ち上がって次のように表示されたらOKです。
 
+{% raw %}
 ```
 情報: Server startup in 0000 ms
 ```
+{% endraw %}
 
 ブラウザからも確認してみましょう。次のURLにアクセスします。
 
+{% raw %}
 ```
 http://localhost:8080/
 ```
+{% endraw %}
 
 猫さんが表示されたらOKです。
 

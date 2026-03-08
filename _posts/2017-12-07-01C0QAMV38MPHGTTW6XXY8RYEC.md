@@ -19,6 +19,7 @@ Reactで条件分岐や繰り返しをして描画したい。
 
 ## 条件分岐
 
+{% raw %}
 ```
 const ResultLabel = ({state}) => (
     <div>
@@ -33,9 +34,11 @@ const ResultLabel = ({state}) => (
     </div>
 )
 ```
+{% endraw %}
 
 ## 繰り返し
 
+{% raw %}
 ```
 const HistoryList = ({state}) => (
     <div>
@@ -49,6 +52,7 @@ const HistoryList = ({state}) => (
     </div>
 )
 ```
+{% endraw %}
 
 # ちなみに
 

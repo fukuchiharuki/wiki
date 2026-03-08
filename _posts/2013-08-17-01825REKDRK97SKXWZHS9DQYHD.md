@@ -46,9 +46,11 @@ Tomcatをインストールしたディレクトリを /usr/local/tomcat/ とす
 # 動作確認
 ## Tomcatを起動する
 
+{% raw %}
 ```
 $ /usr/local/tomcat/bin/startup.sh
 ```
+{% endraw %}
 
 先にコピーしたWARファイルの名前が Hoge.war であれば webapps/ 下に Hoge/ が作成されているはずである。
 - /usr/local/tomcat/
@@ -58,9 +60,11 @@ $ /usr/local/tomcat/bin/startup.sh
 
 ## ブラウザで次のURIにアクセスする
 
+{% raw %}
 ```
 http://localhost:8080/Hoge/
 ```
+{% endraw %}
 
 # 参考
 - [eclipseでwarファイルを作成。tomcatにdeploy](http://d.hatena.ne.jp/uyaji/20110604/1307140687)

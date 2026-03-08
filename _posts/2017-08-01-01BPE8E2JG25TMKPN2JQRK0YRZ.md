@@ -15,10 +15,12 @@ last_modified_at: 2017-08-01T15:41:22+09:00
 
 TortoiseSVNで何かがどうかなってクリーンアップを求めたれたが、クリーンアップができずにさらにクリーンアップを求められて詰んだ。
 
+{% raw %}
 ```
 Previous operation has not finished; run 'cleanup' if it was interrupted
 Please execute the 'Cleanup' command."
 ```
+{% endraw %}
 
 # 原因
 
@@ -28,15 +30,19 @@ Please execute the 'Cleanup' command."
 
 sqliteを使ってsvnのデータベースに残ったゴミを削除してやればよいらしい。
 
+{% raw %}
 ```
 sqlite3 .svn/wc.db "select * from work_queue"
 ```
+{% endraw %}
 
 ここでリストが出てくるようなら次のようにして消す。
 
+{% raw %}
 ```
 sqlite3 .svn/wc.db "delete from work_queue"
 ```
+{% endraw %}
 
 その後、クリーンアップする。このとき、「ロックを強制的に解除する」にチェックを入れた状態でないとだめだったが、もうなにがどうしてということは分からない。
 

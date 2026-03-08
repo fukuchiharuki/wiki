@@ -12,9 +12,11 @@ last_modified_at: 2017-10-03T18:47:22+09:00
 
 データが存在しないと次の内容の行ができてしまう。
 
+{% raw %}
 ```
 No data available in table
 ```
+{% endraw %}
 
 # 原因
 
@@ -24,6 +26,7 @@ No data available in table
 
 描画後に無理やり消してやる。
 
+{% raw %}
 ```
 .DataTable({
   .. options ..
@@ -32,6 +35,7 @@ No data available in table
   }
 });
 ```
+{% endraw %}
 
 # 備考
 

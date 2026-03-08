@@ -16,9 +16,11 @@ last_modified_at: 2014-12-23T13:27:35+09:00
 
 たくさんオプション(評価式やアクション)がついて難解ですが次のようにします。
 
+{% raw %}
 ```
 $ find . -type d -name HOGE -prune -false -o -type f
 ```
+{% endraw %}
 
 # ノート
 
@@ -28,39 +30,51 @@ findは評価式を左から評価する仕組みのようです。
 
 なので左から見ていきましょう。
 
+{% raw %}
 ```
 find .
 ```
+{% endraw %}
 
 カレントディレクトリを探す。
 
+{% raw %}
 ```
 -type d -name HOGE
 ```
+{% endraw %}
 
 ディレクトリ、HOGEという名前の。
 
+{% raw %}
 ```
 -prune
 ```
+{% endraw %}
 
 ディレクトリを降りない。
 
+{% raw %}
 ```
 -false
 ```
+{% endraw %}
 
 偽。
 
+{% raw %}
 ```
 -o
 ```
+{% endraw %}
 
 でなければ、
 
+{% raw %}
 ```
 -type f
 ```
+{% endraw %}
 
 ファイル。
 

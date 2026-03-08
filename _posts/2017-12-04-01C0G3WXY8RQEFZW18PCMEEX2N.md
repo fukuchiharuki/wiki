@@ -17,6 +17,7 @@ $on()を経由せずエレメントに直接追加したイベントリスナは
 
 「$destroy」イベントを拾って処理する。
 
+{% raw %}
 ```
 element.on('click', function () {
   ...
@@ -26,9 +27,11 @@ scope.$on('$destroy', function () {
   element.off();
 });
 ```
+{% endraw %}
 
 $rootScopeに登録したリスナも片付ける必要があるようです。
 
+{% raw %}
 ```
 const deregister = $rootScope.$on('anEvent', function () {
   ...
@@ -36,9 +39,11 @@ const deregister = $rootScope.$on('anEvent', function () {
 
 scope.$on('$destroy', deregister);
 ```
+{% endraw %}
 
 $timeoutでペンディング中のものもキャンセルするべきみたい。
 
+{% raw %}
 ```
 const timer = $timeout(function () {
   ...
@@ -48,6 +53,7 @@ scope.$on('$destroy', function () {
   $timeout.cancel(timer);
 });
 ```
+{% endraw %}
 
 # ちなみに
 

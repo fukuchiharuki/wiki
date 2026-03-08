@@ -13,9 +13,11 @@ last_modified_at: 2017-12-06T17:44:01+09:00
 
 プロパティを定義するところでエラーになる。 
 
+{% raw %}
 ```
 TypeError: Cannot read property 'func' of undefined
 ```
+{% endraw %}
 
 # 原因
 
@@ -27,23 +29,29 @@ React.PropTypesは非推奨になった。
 
 prop-typesを使え、ということのようです。
 
+{% raw %}
 ```
 import React, { PropTypes } from 'react'
 ```
+{% endraw %}
 
 などとしていたところを次のようにする。
 
+{% raw %}
 ```
 import PropTypes from 'prop-types'
 ```
+{% endraw %}
 
 # 備考
 
 インストールも忘れずに。
 
+{% raw %}
 ```
 $ npm install --save prop-types
 ```
+{% endraw %}
 
 # 参考
 - [Typechecking With PropTypes - React](https://reactjs.org/docs/typechecking-with-proptypes.html)

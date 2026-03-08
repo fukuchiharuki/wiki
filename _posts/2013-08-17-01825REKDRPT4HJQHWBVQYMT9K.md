@@ -7,6 +7,7 @@ last_modified_at: 2013-08-17T18:07:15+09:00
 # 手順
 MySQLにログイン済みなら
 
+{% raw %}
 ```
 mysql> SHOW STATUS LIKE 'Threads%';
 +-------------------+--------+
@@ -18,9 +19,11 @@ mysql> SHOW STATUS LIKE 'Threads%';
 | Threads_running   | *      |
 +-------------------+--------+
 ```
+{% endraw %}
 
 MySQLにログインしていないなら
 
+{% raw %}
 ```
 $ mysqladmin -uroot -p extended-status | grep Threads
 | Threads_cached                    | 0         |
@@ -28,6 +31,7 @@ $ mysqladmin -uroot -p extended-status | grep Threads
 | Threads_created                   | *         |
 | Threads_running                   | *         |
 ```
+{% endraw %}
 
 # 参考
 - http://dev.mysql.com/doc/refman/5.1/en/show-status.html

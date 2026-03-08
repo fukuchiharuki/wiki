@@ -12,9 +12,11 @@ last_modified_at: 2017-04-21T18:28:58+09:00
 
 CSVを用意して@DatabaseSetupで事前条件と@ExpectedDatabaseで事後条件をセットすると、次の失敗になる。
 
+{% raw %}
 ```
 junit.framework.ComparisonFailure: table count expected:<[3]> but was:<[47]>
 ```
+{% endraw %}
 
 ここのexpected:<[3]>はCSVで用意したテーブル数。was:<[47]>は実際のテーブル数。
 
@@ -26,9 +28,11 @@ junit.framework.ComparisonFailure: table count expected:<[3]> but was:<[47]>
 
 @ExpectedDatabaseに検査対象のテーブルを指定する。
 
+{% raw %}
 ```
 @ExpectedDatabase(value="/path/to/csv/", table="your_table_name")
 ```
+{% endraw %}
 
 # 備考
 

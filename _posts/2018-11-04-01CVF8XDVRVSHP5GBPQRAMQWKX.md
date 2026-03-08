@@ -20,17 +20,20 @@ last_modified_at: 2018-11-04T20:49:47+09:00
 
 ## webpackの設定
 
+{% raw %}
 ```
 resolve: {
     modules: ['node_modules', 'src'],
     extensions: ['.js', '.jsx']
 },
 ```
+{% endraw %}
 
 ## VisualStudio Codeの設定
 
 プロジェクトのルートディレクトリに jsconfig.json を作成して次を書く。 
 
+{% raw %}
 ```
 {
     "compilerOptions": {
@@ -39,6 +42,7 @@ resolve: {
     }
 }
 ```
+{% endraw %}
 
 //* ちなみに [#n87e0748]
 

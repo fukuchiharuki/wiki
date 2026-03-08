@@ -102,11 +102,13 @@ last_modified_at: 2013-08-17T18:07:15+09:00
 ### サーバを起動する
 先の手順で既に起動してしまいますのでここでは起動確認してみましょう。
 
+{% raw %}
 ```
 >mysqladmin -u root -p ping
 Enter password: ****
 mysqld is alive
 ```
+{% endraw %}
 
 上記のように表示されたらOKです。
 
@@ -116,29 +118,36 @@ mysqld is alive
 ### データベースを作成する
 MySQLに接続します（ローカルで。）
 
+{% raw %}
 ```
 >mysql -u root -p 
 Enter password: ****
 ```
+{% endraw %}
 
 データベース（テーブルのセット）を作成します。
 
+{% raw %}
 ```
 mysql> CREATE DATABASE SandBox; 
 ```
+{% endraw %}
 
 ここでは練習用のデータベースとして「SandBox」と名前をつけました。
 
 ### ユーザを追加する
 外部端末から接続するためのユーザを追加します。
 
+{% raw %}
 ```
 mysql> GRANT ALL PRIVILEGES ON SandBox.* TO 'fukuchi'@'%' IDENTIFIED BY 'fukuchi';
 mysql> flush privileges;
 ```
+{% endraw %}
 
 いちどMySQLからログアウトしてユーザが有効か確認してみましょう。
 
+{% raw %}
 ```
 mysql> quit;
 Bye
@@ -147,13 +156,16 @@ Bye
 Enter password: *******
 mysql>
 ```
+{% endraw %}
 
 ## おまけ
 プロンプトからMySQLにログインする際には文字コードを指定する必要があります。
 
+{% raw %}
 ```
 >mysql -h 127.0.0.1 -u fukuchi -p SandBox --default-character-set=sjis
 ```
+{% endraw %}
 
 インタフェースは sjis を使っていますよ、の合図です。
 

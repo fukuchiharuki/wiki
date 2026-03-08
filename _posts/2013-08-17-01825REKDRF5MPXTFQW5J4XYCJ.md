@@ -28,6 +28,7 @@ ajaxの枠組みがないフレームワーク等の環境でとりあえずajax
   - 別ページの要素を選択して
   - ajaxしたいページに入れ込む
 
+{% raw %}
 ```
 var formData = $(フォームのセレクタ).serializeArray();
 $.ajax({
@@ -53,15 +54,19 @@ $.ajax({
 	}
 });
 ```
+{% endraw %}
 
 # 解説
 
+{% raw %}
 ```
 $(フォームのセレクタ).serializeArray()
 ```
+{% endraw %}
 
 JSON形式のデータ構造を取得する。
 
+{% raw %}
 ```
 $.ajax({
 	・
@@ -71,12 +76,15 @@ $.ajax({
     error: function(){}
 });
 ```
+{% endraw %}
 
 ajaxして成功時、失敗時の関数をそれぞれ実行する。
 
+{% raw %}
 ```
 $(html).filter(抜き出したい要素のセレクタ);
 ```
+{% endraw %}
 
 読み込んだページから要素を選択する。
 

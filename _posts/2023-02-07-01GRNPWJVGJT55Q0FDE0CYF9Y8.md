@@ -23,6 +23,7 @@ last_modified_at: 2023-02-07T19:31:34+09:00
 
 ## モデル
 
+{% raw %}
 ```
 @Entity
 class User(
@@ -36,6 +37,7 @@ class User(
   var version: Long = -1
 )
 ```
+{% endraw %}
 
 ### エンティティにはIDが必要
 
@@ -47,18 +49,22 @@ JPAのエンティティはID（プライマリキー）を持つ、のが基本
 
 ## 永続化処理
 
+{% raw %}
 ```
 User(name = "山田太郎")
   .also { entityManager.persist(it) }
 ```
+{% endraw %}
 
 ### Kotlinで実装する場合デフォルト値の定義が必要
 
 Kotlinでエンティティを実装する場合、デフォルト値を定義しておく必要がある。デフォルト値を定義しておかないと、エンティティ永続化時にエラーが発生する。永続化時に値があるかどうかではないことに注意。エラーメッセージからだと原因がなんとも想像つかない。
 
+{% raw %}
 ```
 detached entity passed to persist spring jpa
 ```
+{% endraw %}
 
 # 伝票・明細、集約等（１対多）の関係
 
@@ -68,6 +74,7 @@ detached entity passed to persist spring jpa
 
 Slipを伝票、Detailを明細として。
 
+{% raw %}
 ```
 @Entity
 class Slip(
@@ -84,7 +91,9 @@ class Slip(
   var version: Long = -1
 )
 ```
+{% endraw %}
 
+{% raw %}
 ```
 @Entity
 class Detail(
@@ -99,6 +108,7 @@ class Detail(
   var name: String = ""
 )
 ```
+{% endraw %}
 
 ### @OneToManyの設定
 
@@ -126,11 +136,13 @@ class Detail(
 
 ## 永続化処理
 
+{% raw %}
 ```
 Slip(name = "伝票")
   .apply { detils.add(Detail(slip = this, name = "明細")) }
   .also { entityManager.persist(it) }
 ```
+{% endraw %}
 
 ### 明細側エンティティの永続化処理は不要
 
@@ -144,6 +156,7 @@ Slip(name = "伝票")
 
 Dealを取引、DealEventを取引イベントとして。
 
+{% raw %}
 ```
 @Entity
 class Deal(
@@ -155,7 +168,9 @@ class Deal(
   var version: Long = -1
 )
 ```
+{% endraw %}
 
+{% raw %}
 ```
 @Entity
 class DealEvent(
@@ -172,6 +187,7 @@ class DealEvent(
   var raisedAt: LocalDateTime = LocalDateTime.now()
 )
 ```
+{% endraw %}
 
 ### @ManyToOne (@JoinColumn)の設定
 
@@ -186,11 +202,13 @@ class DealEvent(
 
 ## 永続化処理
 
+{% raw %}
 ```
 entityManager.find(Deal::class.java, dealId)
   ?.let { DealEvent(deal = it, name = "取引イベント") }
   ?.also { entityManager.persist(it) }
 ```
+{% endraw %}
 
 ### managedな親側エンティティが必要
 
@@ -202,6 +220,7 @@ entityManager.find(Deal::class.java, dealId)
 
 ## モデル
 
+{% raw %}
 ```
 @Entity
 class Cursor(
@@ -217,7 +236,9 @@ class Cursor(
   var version: Long = -1
 )
 ```
+{% endraw %}
 
+{% raw %}
 ```
 @Entity
 class Details(
@@ -231,6 +252,7 @@ class Details(
   var version: Long = -1   
 )
 ```
+{% endraw %}
 
 ### @OneToOne (@JoinColumn)の設定
 
@@ -245,12 +267,14 @@ class Details(
 
 ## 永続化処理
 
+{% raw %}
 ```
 Details(name = "スナップショット等")
   .also { entityManager.persist(it) }
   .let { Cursor(details = it) }
   .also { entityManager.persist(it) }
 ```
+{% endraw %}
 
 ### カーソル側エンティティは子として処理する
 
@@ -262,6 +286,7 @@ Details(name = "スナップショット等")
 
 ## モデル
 
+{% raw %}
 ```
 @Entity
 class User(
@@ -283,7 +308,9 @@ class User(
   var version: Long = -1
 )
 ```
+{% endraw %}
 
+{% raw %}
 ```
 @Entity
 class Post(
@@ -297,6 +324,7 @@ class Post(
   var version: Long = -1
 )
 ```
+{% endraw %}
 
 ### @OneToOne (@JoinTable, JoinColumn)の設定
 
@@ -309,11 +337,13 @@ class Post(
 
 ## 永続化処理
 
+{% raw %}
 ```
 User(name = "ユーザー")
   .apply { fixedPost = entityManager.find(Post::class.java, postId) }
   .also { entityManager.persist(it) }
 ```
+{% endraw %}
 
 ### 記事側エンティティは子のようであるがmanaged
 

@@ -21,9 +21,11 @@ Xcodeのバージョンによる？
 - AppStoreからXcodeの最新をインストールする
 - 次のコマンドを叩く（[Titaniumのドキュメントに解説あり](http://docs.appcelerator.com/titanium/release-notes/?version=2.0.1.GA#xcode43)）
 
+{% raw %}
 ```
 sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer
 ```
+{% endraw %}
 
 # 参考
 - http://developer.appcelerator.com/question/135521/build-error-with-titanium-sdk-201--ios-sdk-42

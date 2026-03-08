@@ -22,9 +22,11 @@ last_modified_at: 2017-04-10T10:13:50+09:00
 
 __config.ymlに次を追記する。
 
+{% raw %}
 ```
 timezone: Asia/Tokyo
 ```
+{% endraw %}
 
 # 備考
 

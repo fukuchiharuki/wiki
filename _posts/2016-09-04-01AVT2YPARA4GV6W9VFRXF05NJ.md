@@ -11,21 +11,27 @@ last_modified_at: 2016-09-04T16:52:39+09:00
 
 Spring Bootを立ち上げようとしても次の例外が発生して立ち上がらない。
 
+{% raw %}
 ```
 Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'entityManagerFactory' is defined
 ```
+{% endraw %}
 
 # 原因
 
 STSから実行すると確認できないが端末でmavenから実行すると次のログを確認できる。
 
+{% raw %}
 ```
 mvn clean spring-boot:run
 ```
+{% endraw %}
 
+{% raw %}
 ```
 [WARNING] /Users/haruki/.m2/repository/org/hibernate/hibernate-entitymanager/5.0.9.Final/hibernate-entitymanager-5.0.9.Final.jarの読込みエラーです。invalid LOC header (bad signature)
 ```
+{% endraw %}
 
 ローカルリポジトリのjarが壊れているということのよう。
 
@@ -33,14 +39,18 @@ mvn clean spring-boot:run
 
 ここではhibernate一式を削除して再度mavenから実行した。
 
+{% raw %}
 ```
 cd /Users/haruki/.m2/repository/org/
 mv hibernate hibernate.org
 ```
+{% endraw %}
 
+{% raw %}
 ```
 mvn clean spring-boot:run
 ```
+{% endraw %}
 
 # 備考
 

@@ -12,9 +12,11 @@ last_modified_at: 2017-04-10T13:04:43+09:00
 
 # 現象
 
+{% raw %}
 ```
 SpringApplicationConfiguration cannot be resolved to a type
 ```
+{% endraw %}
 
 # 原因
 

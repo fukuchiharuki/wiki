@@ -13,15 +13,19 @@ last_modified_at: 2017-12-28T02:12:43+09:00
 
 # したいこと
 
+{% raw %}
 ```
 name = "a.b"
 ```
+{% endraw %}
 
 で
 
+{% raw %}
 ```
 data.a.b
 ```
+{% endraw %}
 
 を参照したい。また更新したい。
 
@@ -29,20 +33,25 @@ data.a.b
 
 ## 参照
 
+{% raw %}
 ```
 console.log(
   name.split('.').reduce((data, prop) => data[prop], data)
 )
 ```
+{% endraw %}
 
 ## 更新
 
+{% raw %}
 ```
 ;(a => { a.pop(); return a })(name.split('.')).reduce((data, prop) => data[prop], data)[(a => a.pop())(name.split('.'))] = value
 ```
+{% endraw %}
 
 # 例
 
+{% raw %}
 ```
 const data = {
 	numbers: [ "one", "two", "three" ],
@@ -65,14 +74,17 @@ console.log(name.split('.').reduce((data, prop) => data[prop], data))
 
 console.log(data)
 ```
+{% endraw %}
 
 の結果は、
 
+{% raw %}
 ```
 four
 Hello!
 {numbers:["one","two","three","four"],greeting:{hi:"Hi!",hello:"Hello!"}}
 ```
+{% endraw %}
 
 になる。
 
@@ -84,35 +96,45 @@ Hello!
 
 ### オブジェクトのプロパティは連想配列のようにできる
 
+{% raw %}
 ```
 data.a.b
 ```
+{% endraw %}
 
 は
 
+{% raw %}
 ```
 data[a][b]
 ```
+{% endraw %}
 
 と同じ。
 
 ### 配列のインデックスは文字列でもよい
 
+{% raw %}
 ```
 data.c
 ```
+{% endraw %}
 
 が配列なら
 
+{% raw %}
 ```
 data.c[0]
 ```
+{% endraw %}
 
 と
 
+{% raw %}
 ```
 data.c['0']
 ```
+{% endraw %}
 
 は同じに振る舞う。ので、名前は "c.0" とできる。
 

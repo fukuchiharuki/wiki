@@ -20,9 +20,11 @@ IE10のバグかな？とかっていう噂。
 # 対策
 IE9モードで動かすという強引な手で解決するらしい(試してない)。
 
+{% raw %}
 ```
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9" >
 ```
+{% endraw %}
 
 # 参考
 - [Why is IE 10 Refusing to send POST data via jQuery $.ajax - Stack Overflow](http://stackoverflow.com/questions/13188500/why-is-ie-10-refusing-to-send-post-data-via-jquery-ajax)

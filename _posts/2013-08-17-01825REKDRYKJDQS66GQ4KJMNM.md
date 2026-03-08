@@ -14,9 +14,11 @@ JavaでサーバーサイドPreparedStatementします。
 # 方法
 接続URLに次のパラメータを足します。
 
+{% raw %}
 ```
 useServerPrepStmts=true
 ```
+{% endraw %}
 
 # 解説
 デフォルトの接続だとどうもクライアントPreparedStatementしてるようです（クライアント側でパラメータをバインドしたSQL文を作成して投げる）。

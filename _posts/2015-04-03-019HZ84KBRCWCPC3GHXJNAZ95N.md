@@ -19,15 +19,19 @@ last_modified_at: 2015-04-03T18:00:11+09:00
 
 たとえば「HOGE」を探す場合
 
+{% raw %}
 ```
 $ find . -name "*.txt" -exec grep -q HOGE {} \; -print
 ```
+{% endraw %}
 
 または
 
+{% raw %}
 ```
 $ find . -name "*.txt" -print | xargs grep HOGE
 ```
+{% endraw %}
 
 # 備考
 オプションでgrepするか、パイプしてxargs越しにgrepする。

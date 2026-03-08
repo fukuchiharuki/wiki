@@ -18,17 +18,21 @@ last_modified_at: 2015-08-29T15:27:43+09:00
 # 方法
 - index.xml
 
+{% raw %}
 ```
 <Label id="label1">I am Window 1</Label>
 ```
+{% endraw %}
 
 - index.js
 
+{% raw %}
 ```
 $.label1.addEventListener('click', function() {
 	Ti.UI.createAlertDialog({title:'Click', message:'You clicked it.'}).show();
 });
 ```
+{% endraw %}
 
 # 解説
 index.xml のタグ中に onclick 属性を書くこともできるようですが、分離の観点から index.js に書くのがよいでしょう。
