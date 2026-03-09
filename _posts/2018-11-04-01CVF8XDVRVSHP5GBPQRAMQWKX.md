@@ -45,8 +45,6 @@ resolve: {
 ```
 {% endraw %}
 
-//* ちなみに [#n87e0748]
-
 # 参考
 
 - [大規模でスケールするReactアプリケーション開発のための実践的アドバイス - WPJ](https://www.webprofessional.jp/organize-large-react-application/)
