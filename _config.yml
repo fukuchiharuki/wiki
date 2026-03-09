@@ -37,7 +37,7 @@ footer-links:
 disqus:
 
 # Enter your Google AdSense publisher ID (e.g. ca-pub-xxxxxxxxxxxxxxxx) to activate ads
-google_adsense:
+google_adsense: ca-pub-3652547341671748
 
 # Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
 google_analytics:
