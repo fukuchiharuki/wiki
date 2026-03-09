@@ -39,7 +39,7 @@ disqus:
 # Enter your Google AdSense publisher ID (e.g. ca-pub-xxxxxxxxxxxxxxxx) to activate ads
 google_adsense: ca-pub-3652547341671748
 
-# Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
+# Enter your Google Analytics web tracking code (e.g. G-XXXXXXXXXX) to activate tracking
 google_analytics:
 
 # Your website URL (e.g. http://barryclark.github.io or http://www.barryclark.co)
