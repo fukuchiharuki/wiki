@@ -87,6 +87,7 @@ Content here
 - `'''bold'''`     → `**bold**`
 - `&br;` / `&br` / `&br()` / `&br();` → `<br>`
 - `%%%` or similar inline styles → preserve text, drop styling if unclear
+- Lines starting with `//` should be treated as comments and dropped (except inside code blocks)
 
 ### Code Blocks
 - PukiWiki preformatted blocks
