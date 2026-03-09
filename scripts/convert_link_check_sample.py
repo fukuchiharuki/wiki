@@ -363,6 +363,11 @@ def convert_page(page: str, inventory: Dict[str, Dict[str, str]], image_dir: pat
             close_code_block(out)
             in_code = False
 
+        # PukiWiki comment line: ignore lines starting with // (except inside code block)
+        if re.match(r"^//", stripped):
+            i += 1
+            continue
+
         def_term, def_desc = parse_definition_row(stripped)
         if def_term:
             rows: List[Tuple[str, str]] = []
